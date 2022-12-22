@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Personal Profoliot</title>
+  <script src="https://kit.fontawesome.com/2c13535727.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="header">
+    <div class="container">
+      <nav>
+        <a href="index.html"><img src="image/newlogo.PNG" class="logo" ></a>
+        <ul id="sidemenu">
+          <li><a href="#header">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Experiences</a></li>
+          <li><a href="#portfolio">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <i class="fas fa-times" onclick="closemenu()"></i>
+        </ul>
+        <i class="fas fa-bars" onclick="openmenu()"></i>
+      </nav>
+      <div class="header-text">
+        <p>Upcoming as a<br> computer science major</p>
+        <h1>Hi, I'm QingPeng Lam <br>From LaGuardia High School</h1>
+      </div>
+    </div>
+  </div>
+  <!---------about---------->
+  <div id="about">
+    <div class="container">
+      <div class="row">
+        <div class="about-col-1">
+          <img src="image/Capture.PNG">
+        </div>
+        <div class="about-col-2">
+          <h1 class="sub-title">About Me</h1>
+          <p><span>Ambitious</span> and <span>responsible</span> high school graduate self taught programming language and web development and have well experience in field of <span>
+            Computer Scienece, Web-development, and Game design.</span><br>
+            <br>Persude Major: <span>Computer Science</span>
+          </p>
+          
+          <div class="tab-titles">
+            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+            <p class="tab-links" onclick="opentab('experience')">Activities</p>
+            <p class="tab-links" onclick="opentab('education')">Education</p>
+          </div>
+          <div class="tab-contents active-tab" id="skills">
+            <ul>
+              <li><span>Programming Language</span><br>Python <br>Javascript <br>C# </li>
+              <li><span>Web development</span><br>Web app development</li>
+              
+            </ul>
+          </div>
+          <div class="tab-contents" id="experience">
+            <ul>
+              <li><span>Sport</span><br>1. Three years varsity basketball starter<br>2. Out School basketball organization : thrive, street to street<br>3. Track</li>
+              <li><span>Art</span><br>1. One year of Art Design<br>2. One year of archecture<br>3. One year of Digital Media Design</li>
+              <li><span>Research Study</span><br>1. Psychological research- mental illness, mental behavior, social behavior<br>
+                2. Scientific research- quantum mechanics, time travel</li>
+            </ul>
+          </div>
+          <div class="tab-contents" id="education">
+            <ul>
+              <li><span>Fiorello H. LaGuardia High School of Music & Art and Performing Arts</span><br>Current: Senior<br>Graduation Date: June 2022
+                <br>GPA: 97.21/100 Weighted<br>CS related Course taken : discrete math , Calculus BC</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--------services---------->
+  <div id="services">
+    <div class="container">
+        <h1 class="sub-title"><i class="fa-solid fa-user"></i>  My Experience</h1>
+        <div class="services-list">
+            <div>
+                <i class="fa-solid fa-code"></i> 
+                <h2>Web design / CS</h2>
+                <p>Current Website:<br>E-commerece and Food ordering website<br>Personal portfolio website etc<br>Python <br>C# in Unity3D <br>Javascript in html css<br><br><i1 class="fa-solid fa-arrow-down"></i1> </p>
+                <a href="web.html"><span1>Learn more</span1></a>
+            </div>
+            <div>
+              <i class="fa-brands fa-dribbble"></i>
+                <h2>Outschool Activities</h2>
+                <p>Architecture design <br>Digital media design <br>Basketball varsity<br><br><i1 class="fa-solid fa-arrow-down"></i1></p>
+                <a href="experience.html"><span1>Learn more</span1></a>
+            </div>
+            <div>
+              <i class="fa-solid fa-handshake-angle"></i>
+                <h2>Volunteer and work experience</h2>
+                <p>Art Studo TA<br>NYCS TA<br>AMNH Summer intership<br>A+ academy summer intership<br><br><i1 class="fa-solid fa-arrow-down"></i1></p>
+                <a href="volunteer.html"><span1>Learn more</span1></a>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!------portfolio -->
+<div id="portfolio">
+    <div class="container">
+        <h1 class="sub-title"><i class="fa-solid fa-network-wired"></i>  My Work / Project</h1>
+        <div class="work-list">
+            <div class="work">
+                <img src="image/work1.PNG" >
+                <div class="layer">
+                    <h3>social media App</h3>
+                    <p>An app where will help student schedule their college application or
+                      a daily schedule planning</p>
+                    <a href="#"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="image/work2.PNG" >
+                <div class="layer">
+                    <h3>RPG game design</h3>
+                    <p>First 3D UI working with Unity3D goal is teaching art history using RPG setting</p>
+                    <a href="https://github.com/QINGPENGLAM/arthistory-RPG"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="image/ecommerce.PNG" >
+                <div class="layer">
+                    <h3>E-commercal website</h3>
+                    <p>First ecommerce well organzied website</p>
+                    <a href="https://cosmic-cascaron-a2ebfa.netlify.app"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+        <a href="web.html" class="btn">See More</a>
+    </div>
+</div>
+<!-------contact-------->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title"><i class="fa-solid fa-address-book"></i>  Contact me</h1>
+                <p><i class="fa-solid fa-paper-plane"></i>qingpenglam@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i> (646)591-6080</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
+                    <a href="http://www.instagram.com/qpl_0401"><i class="fa-brands fa-square-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <a href="#" class="btn btn2">DownLoad CV</a>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="3" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+  <div class="copyright">
+    <p>Copyright @ qingpeng <i class="fas fa-heart"></i></p>
+  </div>
+</div>
+<script>
+
+  var tablinks = document.getElementsByClassName("tab-links");
+  var tabcontents = document.getElementsByClassName("tab-contents");
+
+  function opentab(tabname){
+    for(tablink of tablinks){
+      tablink.classList.remove("active-link");
+    }
+    for(tabcontent of tabcontents){
+      tabcontent.classList.remove("active-tab");
+    }
+    event.currentTarget.classList.add("active-link");
+    document.getElementById(tabname).classList.add("active-tab")
+  }
+</script>
+
+<script>
+
+  var sidemenu = document.getElementById("sidemenu");
+  function openmenu(){
+    sidemenu.style.right = "0";
+  }
+  function closemenu(){
+    sidemenu.style.right = "-200px";
+  }
+</script>
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwkEStuZRH1wtzaiWf02mUHRxsxc2y46xAX2T7SkbrpM2h6sQsYSqdcO-NbRwfI110u9Q/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("msg")
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        msg.innerHTML = "Message sent successfully"
+        setTimeout(function(){
+          msg.innerHTML = ""
+        },5000)
+        form.reset()
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+</body>
+</html>
