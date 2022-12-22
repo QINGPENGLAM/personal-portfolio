@@ -384,9 +384,9 @@ color: #ff004f;
 nav .fas{
   display: none;
 }
-@media only screen and (max-width:600px){
+@media only screen and (max-width:400px){
 #header{
-  background-image: url(image/phonebackground.PNG);
+  background-image: url(image/phonebackground.png);
 }
 .header-text{
   margin-top: 100%;
