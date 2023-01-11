@@ -228,6 +228,13 @@ nav ul li a:hover::after{
   margin-top: 50px;
   cursor: pointer;
 }
+.work1-list{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 40px;
+  margin-top: 50px;
+  cursor: pointer;
+}
 .work{
   border-radius: 10px;
   position: relative;
@@ -245,6 +252,7 @@ nav ul li a:hover::after{
   display: block;
   transition: transform 0.5s;
 }
+
 .work1 img{
   width: 100%;
   border-radius: 10px;
