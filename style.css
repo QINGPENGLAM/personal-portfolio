@@ -112,6 +112,19 @@ nav ul li a:hover::after{
   font-weight: 600;
   color: #fff;
 }
+.row1 p span{
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff004f;
+}
+.row1 p span1{
+  font-size: 20px;
+  font-weight: bold;
+  color:white;
+}
+.row1 p{
+  color: #ababab;
+}
 .about-col-2 p span{
   color: #ff004f;
 }
@@ -235,6 +248,23 @@ nav ul li a:hover::after{
   margin-top: 50px;
   cursor: pointer;
 }
+.work2-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 40px;
+  margin-top: 50px;
+  cursor: pointer;
+  padding: 20px 20px;
+}
+.work3-list {
+
+  cursor: pointer;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .work{
   border-radius: 10px;
   position: relative;
@@ -259,6 +289,8 @@ nav ul li a:hover::after{
   display: block;
   transition: transform 0.5s;
 }
+
+
 .layer{
   width: 100%;
   height: 0;
@@ -299,6 +331,7 @@ nav ul li a:hover::after{
 .work1:hover img{
   transform: scale(1.1);
 }
+
 .work:hover .layer{
   height: 100%;
 }
