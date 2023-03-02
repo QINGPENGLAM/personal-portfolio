@@ -4,6 +4,14 @@
   font-family: 'Poppins', sans-serif;
   box-sizing:border-box;
 }
+button{
+  color: white;
+  width: 150px;
+  height: 40px;
+  background-color: #ff004f;
+  border-radius: 8px;
+  font-size: 15px;
+}
 html{
   scroll-behavior: smooth;
 }
