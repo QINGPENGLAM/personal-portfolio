@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="side-bar/sidebar.css">
+  <title>Personal Portfolio</title>
+  <script src="https://kit.fontawesome.com/2c13535727.js" crossorigin="anonymous"></script>
+  <script src="side-bar/sidebar.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="index.html"><img src="image/newlogo.PNG" class="logo"></a>
+            <ul1 id="sidemenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="volunteer.html">Volunteer/Work</a></li>
+                <li><a href="experience.html">Architecture/Activities/Graphic design</a></li>
+            </ul1>
+        </nav>
+
+        <div class="sidebar">
+            <ul class="sidebar-nav">
+                <li><a href="index.html">Main</a></li>
+                <li><a href="#" onclick="window.scrollTo(0, 0)">Top</a></li>
+                <li><a href="#programming">Programming Languages</a></li>
+                <li><a href="#ml-data">Machine Learning & Data Science</a></li>
+                <li><a href="#analysis">Data Analysis Tools</a></li>
+                <li><a href="#portfolio">My Work / Project</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 技能部分 -->
+    <section id="programming">
+        <div class="container">
+            <h1 class="sub-title"><i class="fa-solid fa-code"></i> Programming Languages</h1>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <i class="fa-brands fa-python"></i>
+                    <h2>Python</h2>
+                    <p>Advanced data processing, web scraping, and automation</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-solid fa-code"></i>
+                    <h2>C++</h2>
+                    <p>System programming and algorithm implementation</p>
+                </div>
+                <div class="skill-item">
+                    <a href="react-projects.html" class="skill-link">
+                        <i class="fa-brands fa-react"></i>
+                        <h2>React</h2>
+                        <p>Modern frontend development and UI components</p>
+                    </a>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-brands fa-html5"></i>
+                    <h2>HTML</h2>
+                    <p>Semantic markup and modern web structure</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-brands fa-css3-alt"></i>
+                    <h2>CSS</h2>
+                    <p>Responsive design and styling</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <h2>R</h2>
+                    <p>Statistical analysis and data visualization</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-solid fa-database"></i>
+                    <h2>SQL</h2>
+                    <p>Database management and complex queries</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ml-data">
+        <div class="container">
+            <h1 class="sub-title"><i class="fa-solid fa-brain"></i> Machine Learning & Data Science</h1>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <i class="fa-solid fa-network-wired"></i>
+                    <h2>TensorFlow</h2>
+                    <p>Deep learning models and neural networks</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-solid fa-fire"></i>
+                    <h2>PyTorch</h2>
+                    <p>Machine learning research and development</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-solid fa-square-root-variable"></i>
+                    <h2>MATLAB</h2>
+                    <p>Numerical computing and algorithm prototyping</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <h2>Tableau</h2>
+                    <p>Data visualization and business intelligence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="analysis">
+        <div class="container">
+            <h1 class="sub-title"><i class="fa-solid fa-chart-line"></i> Data Analysis Tools</h1>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <i class="fa-solid fa-table"></i>
+                    <h2>Excel</h2>
+                    <p>Advanced functions including Pivot Tables and VLOOKUP</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-solid fa-file-spreadsheet"></i>
+                    <h2>Google Sheets</h2>
+                    <p>Collaborative data analysis and reporting</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    <h2>FactSet Research Systems</h2>
+                    <p>Financial data analysis and research</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品展示部分 -->
+    <section id="portfolio">
+        <div id="portfolio1">
+            <div class="container">
+                <h1 class="sub-title"><i class="fa-solid fa-network-wired"></i> My Work / Project</h1>
+                <div class="work-list">
+                    <div class="work">
+                        <img src="image/social media design.png" >
+                        <div class="layer">
+                            <h3>social media App</h3>
+                            <p>An app where will help student schedule their college application or
+                              a daily schedule planning
+                            </p>
+                            <a href="appplan.html"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="work">
+                        <img src="image/work2.PNG" >
+                        <div class="layer">
+                            <h3>RPG game design</h3>
+                            <p>First 3D UI working with Unity3D goal is teaching art history using RPG setting</p>
+                            <a href="gameplan.html"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="work">
+                        <img src="image/expense-tracker.png" >
+                        <div class="layer">
+                            <h3>Personal Finance Tracker</h3>
+                            <p>A comprehensive web application for tracking personal finances, featuring real-time visualization, 
+                               budget management, and detailed transaction analysis.</p>
+                            <a href="expenseplan.html"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-list">
+                    <div class="work">
+                        <img src="image/calculator.png" >
+                        <div class="layer">
+                            <h3>Calculator</h3>
+                            <p>First html working with Javascript </p>
+                            <a href="https://genuine-dusk-83ca82.netlify.app"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="work">
+                        <img src="image/foodordering.png" >
+                        <div class="layer">
+                            <h3>Food ordering website </h3>
+                            <p>First business plan and first ordering Javascript website</p>
+                            <a href="https://qingpengfoodordering.netlify.app"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="work">
+                        <img src="image/Topic and lesson that i found is interesting and helpful for student.png" >
+                        <div class="layer">
+                            <h3>Education Website</h3>
+                            <p>First html website goal is to teach academic related topics</p>
+                            <a href="https://qingpengtopicshare.netlify.app"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-list">
+                    <div class="work">
+                        <img src="image/tictactoe.PNG" >
+                        <div class="layer">
+                            <h3>Tic Tac Toe</h3>
+                            <p>Html with Javascript creating AI combat game</p>
+                            <a href="https://illustrious-croquembouche-1499e9.netlify.app"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="work">
+                        <img src="image/Game Over.png" >
+                        <div class="layer">
+                            <h3>2D UI game</h3>
+                            <p>First 2D version with random c# script project  </p>
+                            <a href="https://github.com/QINGPENGLAM/random-spawn-dodge"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="work">
+                        <img src="image/cubegame.png" >
+                        <div class="layer">
+                            <h3>2.5D cube game</h3>
+                            <p>First project working with Unity3D and C#script</p>
+                            <a href="https://github.com/QINGPENGLAM/cube-game"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-item h2 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .skill-item p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        section {
+            padding: 50px 0;
+        }
+    </style>
+</body>
+</html>
+ 
