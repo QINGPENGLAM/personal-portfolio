@@ -8,7 +8,7 @@ button{
   color: white;
   width: 150px;
   height: 40px;
-  background-color: #ff004f;
+  background-color: #d40000;
   border-radius: 8px;
   font-size: 15px;
 }
@@ -62,7 +62,7 @@ nav ul li a::after{
   content: '';
   width: 0;
   height: 3px;
-  background: #ff004f;
+  background: #d40000;
   position: absolute;
   left: 0;
   bottom: -6px;
@@ -127,7 +127,7 @@ nav ul li a:hover::after{
 .row1 p span{
   font-size: 20px;
   font-weight: bold;
-  color: #ff004f;
+  color: #ff6b6b;
 }
 .row1 p span1{
   font-size: 20px;
@@ -135,23 +135,26 @@ nav ul li a:hover::after{
   color:white;
 }
 .row1 p{
-  color: #ababab;
+  color: #e0e0e0;
 }
 .about-col-2 p span{
-  color: #ff004f;
+  color: #ff6b6b;
 }
 .tab-titles{
   display: flex;
   margin: 20px 0 40px;
-  font-family: "Times New Roman", Times, serif;
+  gap: 20px;
 }
 .tab-links{
-  margin-right: 50px;
+  position: relative;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-  position: relative;
-  font-family: "Times New Roman", Times, serif;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #ababab;
+  transition: color 0.3s ease;
 }
 .tab-links::after{
   content: '';
@@ -161,17 +164,27 @@ nav ul li a:hover::after{
   position: absolute;
   left: 0;
   bottom: -8px;
-  transition: 0.5s;
+  transition: width 0.3s ease;
+}
+.tab-links.active-link{
+  color: #ff004f;
 }
 .tab-links.active-link::after{
   width: 50%;
+}
+.tab-links:hover{
+  color: #ff004f;
+}
+.tab-links:focus{
+  outline: none;
+  color: #ff004f;
 }
 .tab-contents ul li{
   list-style: none;
   margin: 10px 0;
 }
 .tab-contents ul li span{
-  color: #b54769;
+  color: #ff6b6b;
   font-size: 18px;
 }
 .tab-contents{
@@ -195,7 +208,7 @@ nav ul li a:hover::after{
   margin-top: 50px;
 }
 .services-list div{
-  background: #262626;
+  background: #1a1a1a;
   padding: 40px;
   font-size: 13px;
   font-weight: 300;
@@ -226,7 +239,7 @@ nav ul li a:hover::after{
   display: inline-block;
 }
 .services-list div:hover{
-  background :#ff004f;
+  background: #d40000;
   transform: translateY(-10px);
 }
 .services-list div a span1{

@@ -11,21 +11,23 @@
   <script src="side-bar/sidebar.js"></script>
 </head>
 <body>
-  <div id="header">
+  <header id="header" role="banner">
     <div class="container">
-      <nav>
-        <a href="index.html"><img src="image/newlogo1.png" class="logo" ></a>
+      <nav role="navigation">
+        <a href="index.html"><img src="image/newlogo1.png" class="logo" alt="QingPeng Lam's Portfolio Logo"></a>
         <ul id="sidemenu">
           <li><a href="#header">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#services">Experiences</a></li>
           <li><a href="#portfolio">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
-          <i class="fas fa-times" onclick="closemenu()"></i>
+          <li><i class="fas fa-times" onclick="closemenu()" role="button" aria-label="Close menu" tabindex="0"></i></li>
         </ul>
-        <i class="fas fa-bars" onclick="openmenu()"></i>
+        <i class="fas fa-bars" onclick="openmenu()" role="button" aria-label="Open menu" tabindex="0"></i>
       </nav>
       <div class="sidebar">
+      <!-- <div>
+      <nav class="sidebar" role="navigation" aria-label="Sidebar navigation"> -->
         <ul class="sidebar-nav">
           <li><a href="#header">Home</a></li>
           <li><a href="#about">About</a></li>
@@ -33,233 +35,242 @@
           <li><a href="#portfolio">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+      <!-- </nav> -->
       </div>
       <div class="header-text">
-        <p>Computer Science Student<br>focusing on Data & Design</p>
+        <h2>Computer Science Student<br>focusing on Data & Design</h2>
         <h1>Hi, I'm QingPeng Lam<br>From University of Michigan</h1>
       </div>
     </div>
-  </div>
-  <!---------about---------->
-  <div id="about">
-    <div class="container">
-      <div class="row">
-        <div class="about-col-1">
-          <img src="image/Capture.PNG">
-        </div>
-        <div class="about-col-2">
-          <h1 class="sub-title">About Me</h1>
-          <p>
-            <span>Detail-oriented</span> Computer Science major at the University of Michigan with minors in <span>Business and UI/UX Design</span>. 
-            Passionate about combining technical expertise with creative problem-solving through <span>data analysis, machine learning, and user-centered design</span>.
+  </header>
+
+  <main role="main">
+    <section id="about" role="region" aria-label="About section">
+      <div class="container">
+        <div class="row">
+          <div class="about-col-1">
+            <img src="image/Capture.PNG" alt="QingPeng Lam's professional portrait">
+          </div>
+          <div class="about-col-2">
+            <h1 class="sub-title">About Me</h1>
+            <p>
+              <span>Detail-oriented</span> Computer Science major at the University of Michigan with minors in <span>Business and UI/UX Design</span>. 
+              Passionate about combining technical expertise with creative problem-solving through <span>data analysis, machine learning, and user-centered design</span>.
+              
+              My interdisciplinary background enables me to bridge the gap between technical implementation and business strategy, while maintaining a strong focus on user experience.
+            </p>
             
-            My interdisciplinary background enables me to bridge the gap between technical implementation and business strategy, while maintaining a strong focus on user experience.
-          </p>
-          
-          <div class="tab-titles">
-            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-            <p class="tab-links" onclick="opentab('experience')">Activities</p>
-            <p class="tab-links" onclick="opentab('education')">Education</p>
-          </div>  
-          <div class="tab-contents active-tab" id="skills">
-            <ul>
-              <li><span>Programming Languages</span><br>Python • C++ • JavaScript • HTML • CSS • React • R • SQL</li>
-              
-              <li><span>Machine Learning & Data Science</span><br>TensorFlow • PyTorch • MATLAB • Tableau</li>
-              
-              <li><span>Data Analysis Tools</span><br>Excel (Pivot Tables, VLOOKUP) • Google Sheets • FactSet Research Systems</li>
-              
-              <li><span>Development Tools</span><br>LaTeX • Git • Mac OS</li>
-              
-              <li><span>Languages</span><br>English • Mandarin • Cantonese</li>
-              
-              <li><span>Core Competencies</span><br>Data Analysis • Problem Solving • Cross-functional Collaboration • Technical Communication</li>
-            </ul>
-          </div>
-          <div class="tab-contents" id="experience">
-            <ul>
-              <li><span>Sport</span><br>1. Three years varsity basketball starter<br>2. Out School basketball organization : thrive, street to street<br>3. Track</li>
-              <li><span>Art</span><br>1. One year of Art Design<br>2. One year of Archecture<br>3. One year of Digital Media Design</li>
-              <li><span>Research Study</span><br>1. Psychological research- mental illness, mental behavior, social behavior<br>
-                2. Scientific research- quantum mechanics, time travel</li>
-            </ul>
-          </div>
-          <div class="tab-contents" id="education">
-            <ul>
-              <li>
-                <span>University of Michigan – Ann Arbor, MI (Aug 2024 - May 2027)</span><br>
-                Bachelor of Science in Computer Science<br>
-                • Minor in Business and UI/UX Design<br>
-                • Full Scholarship Recipient<br>
-                • Relevant Coursework: Data Structures and Algorithms, Introduction to Machine Learning, 
-                  Data Mining, Making Financial Decisions, Business Strategy, Entrepreneurial Management
-              </li>
-              
-              <li>
-                <span>Penn State University - University Park, PA (Aug 2023 - May 2024)</span><br>
-                Bachelor of Science in Software Engineering<br>
-                • Dean's List (Fall 2023 - Spring 2024)<br>
-                • Enrolled in Honors Program<br>
-                • Full Scholarship Recipient
-              </li>
-              
-              <li>
-                <span>Fiorello H. LaGuardia High School (Graduated June 2022)</span><br>
-                • GPA: 97.21/100 Weighted<br>
-                • CS Related Courses: Discrete Math, Calculus BC
-              </li>
-            </ul>
+            <div class="tab-titles" role="tablist">
+              <button class="tab-links active-link" onclick="opentab('skills')" role="tab" aria-selected="true" aria-controls="skills" id="skills-tab">Skills</button>
+              <button class="tab-links" onclick="opentab('experience')" role="tab" aria-selected="false" aria-controls="experience" id="experience-tab">Activities</button>
+              <button class="tab-links" onclick="opentab('education')" role="tab" aria-selected="false" aria-controls="education" id="education-tab">Education</button>
+            </div>  
+            <div class="tab-contents active-tab" id="skills" role="tabpanel" aria-labelledby="skills-tab" tabindex="0">
+              <ul>
+                <li><span>Programming Languages</span><br>Python • C++ • JavaScript • HTML • CSS • React • R • SQL</li>
+                <li><span>Machine Learning & Data Science</span><br>TensorFlow • PyTorch • MATLAB • Tableau</li>
+                <li><span>Data Analysis Tools</span><br>Excel (Pivot Tables, VLOOKUP) • Google Sheets • FactSet Research Systems</li>
+                <li><span>Development Tools</span><br>LaTeX • Git • Mac OS</li>
+                <li><span>Languages</span><br>English • Mandarin • Cantonese</li>
+                <li><span>Core Competencies</span><br>Data Analysis • Problem Solving • Cross-functional Collaboration • Technical Communication</li>
+              </ul>
+            </div>
+            <div class="tab-contents" id="experience" role="tabpanel" aria-labelledby="experience-tab" tabindex="0">
+              <ul>
+                <li><span>Sport</span><br>1. Three years varsity basketball starter<br>2. Out School basketball organization : thrive, street to street<br>3. Track</li>
+                <li><span>Art</span><br>1. One year of Art Design<br>2. One year of Archecture<br>3. One year of Digital Media Design</li>
+                <li><span>Research Study</span><br>1. Psychological research- mental illness, mental behavior, social behavior<br>
+                  2. Scientific research- quantum mechanics, time travel</li>
+              </ul>
+            </div>
+            <div class="tab-contents" id="education" role="tabpanel" aria-labelledby="education-tab" tabindex="0">
+              <ul>
+                <li>
+                  <span>University of Michigan – Ann Arbor, MI (Aug 2024 - May 2027)</span><br>
+                  Bachelor of Science in Computer Science<br>
+                  • Minor in Business and UI/UX Design<br>
+                  • Full Scholarship Recipient<br>
+                  • Relevant Coursework: Data Structures and Algorithms, Introduction to Machine Learning, 
+                    Data Mining, Making Financial Decisions, Business Strategy, Entrepreneurial Management
+                </li>
+                <li>
+                  <span>Penn State University - University Park, PA (Aug 2023 - May 2024)</span><br>
+                  Bachelor of Science in Software Engineering<br>
+                  • Dean's List (Fall 2023 - Spring 2024)<br>
+                  • Enrolled in Honors Program<br>
+                  • Full Scholarship Recipient
+                </li>
+                <li>
+                  <span>Fiorello H. LaGuardia High School (Graduated June 2022)</span><br>
+                  • GPA: 97.21/100 Weighted<br>
+                  • CS Related Courses: Discrete Math, Calculus BC
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <!--------services---------->
-  <div id="services">
-    <div class="container">
+    </section>
+
+    <section id="services" role="region" aria-label="Services section">
+      <div class="container">
         <h1 class="sub-title"><i class="fa-solid fa-user"></i>  My Experience</h1>
         <div class="services-list">
-            <div>
-                <i class="fa-solid fa-code"></i> 
-                <h2>Web design / CS</h2>
-                <p>Current Website:<br>E-commerece and Food ordering website<br>Personal portfolio website etc<br>Python <br>C# in Unity3D <br>Javascript in html css<br><br><i1 class="fa-solid fa-arrow-down"></i1> </p>
-                <a href="web.html"><span1>Learn more</span1></a>
-            </div>
-            <div>
-              <i class="fa-brands fa-dribbble"></i>
-                <h2>Outschool Activities</h2>
-                <p>Architecture design <br>Digital media design <br>Basketball varsity<br><br><i1 class="fa-solid fa-arrow-down"></i1></p>
-                <a href="experience.html"><span1>Learn more</span1></a>
-            </div>
-            <div>
-              <i class="fa-solid fa-handshake-angle"></i>
-                <h2>Volunteer and work experience</h2>
-                <p>Art Studo TA<br>NYCS TA<br>AMNH Summer intership<br>A+ academy summer intership<br><br><i1 class="fa-solid fa-arrow-down"></i1></p>
-                <a href="volunteer.html"><span1>Learn more</span1></a>
-            </div>
+          <div>
+            <i class="fa-solid fa-code"></i> 
+            <h2>Web design / CS</h2>
+            <p>Current Website:<br>E-commerece and Food ordering website<br>Personal portfolio website etc<br>Python <br>C# in Unity3D <br>Javascript in html css<br><br><i1 class="fa-solid fa-arrow-down"></i1> </p>
+            <a href="web.html"><span1>Learn more</span1></a>
+          </div>
+          <div>
+            <i class="fa-brands fa-dribbble"></i>
+            <h2>Outschool Activities</h2>
+            <p>Architecture design <br>Digital media design <br>Basketball varsity<br><br><i1 class="fa-solid fa-arrow-down"></i1></p>
+            <a href="experience.html"><span1>Learn more</span1></a>
+          </div>
+          <div>
+            <i class="fa-solid fa-handshake-angle"></i>
+            <h2>Volunteer and work experience</h2>
+            <p>Art Studo TA<br>NYCS TA<br>AMNH Summer intership<br>A+ academy summer intership<br><br><i1 class="fa-solid fa-arrow-down"></i1></p>
+            <a href="volunteer.html"><span1>Learn more</span1></a>
+          </div>
         </div>
-    </div>
-  </div>
-  <!------portfolio -->
-<div id="portfolio">
-    <div class="container">
+      </div>
+    </section>
+
+    <section id="portfolio" role="region" aria-label="Portfolio section">
+      <div class="container">
         <h1 class="sub-title"><i class="fa-solid fa-network-wired"></i>  My Work / Project</h1>
         <div class="work-list">
-            <div class="work">
-                <img src="image/social media design.png" >
-                <div class="layer">
-                    <h3>social media App</h3>
-                    <p>An app where will help student schedule their college application or
-                      a daily schedule planning</p>
-                    <a href="appplan.html"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
-                </div>
+          <div class="work">
+            <img src="image/social media design.png" alt="Social Media App project screenshot">
+            <div class="layer">
+              <h2>social media App</h2>
+              <p>An app where will help student schedule their college application or
+                a daily schedule planning</p>
+              <a href="appplan.html" aria-label="View Social Media App project"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
-            <div class="work">
-                <img src="image/work2.PNG" >
-                <div class="layer">
-                    <h3>RPG game design</h3>
-                    <p>First 3D UI working with Unity3D goal is teaching art history using RPG setting</p>
-                    <a href="gameplan.html"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
-                </div>
+          </div>
+          <div class="work">
+            <img src="image/work2.PNG" alt="RPG Game Design project screenshot">
+            <div class="layer">
+              <h3>RPG game design</h3>
+              <p>First 3D UI working with Unity3D goal is teaching art history using RPG setting</p>
+              <a href="gameplan.html" aria-label="View RPG Game Design project"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
-            <div class="work">
-                <img src="image/ecommoce.PNG" >
-                <div class="layer">
-                    <h3>E-commercal website</h3>
-                    <p>First ecommerce well organzied website</p>
-                    <a href="https://qingpengdesign.netlify.app/"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
-                </div>
+          </div>
+          <div class="work">
+            <img src="image/ecommoce.PNG" alt="E-commerce website project screenshot">
+            <div class="layer">
+              <h3>E-commercal website</h3>
+              <p>First ecommerce well organzied website</p>
+              <a href="https://qingpengdesign.netlify.app/" aria-label="View E-commerce website project"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
+          </div>
         </div>
         <a href="web.html" class="btn">See More</a>
-    </div>
-</div>
-<!-------contact-------->
+      </div>
+    </section>
+  </main>
 
-<div id="contact">
+  <footer id="contact" role="contentinfo">
     <div class="container">
-        <div class="row">
-            <div class="contact-left">
-                <h1 class="sub-title"><i class="fa-solid fa-address-book"></i>  Contact me</h1>
-                <p><i class="fa-solid fa-paper-plane"></i>qingpenglam@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> (646)591-6080</p>
-                <div class="social-icons">
-                    <a href="https://github.com/QINGPENGLAM"><i class="fa-brands fa-github"></i></a>
-                    <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
-                    <a href="http://www.instagram.com/qpl_0401"><i class="fa-brands fa-square-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                </div>
-                <a href="#" class="btn btn2">DownLoad CV</a>
-            </div>
-            <div class="contact-right">
-              <form name="contact" method="POST" data-netlify="true">
-                <p>
-                  <label>Your Name: <input type="text" name="name" /></label>
-                </p>
-                <p>
-                  <label>Your Email: <input type="email" name="email" /></label>
-                </p>
-                
-                <p>
-                  <label>Message: <textarea name="message"></textarea></label>
-                </p>
-                <p>
-                  <button type="submit">Send</button>
-                </p>
-              </form>
-                <span id="msg"></span>
-            </div>
+      <div class="row">
+        <div class="contact-left">
+          <h1 class="sub-title"><i class="fa-solid fa-address-book"></i>  Contact me</h1>
+          <p><i class="fa-solid fa-paper-plane"></i>qingpenglam@gmail.com</p>
+          <p><i class="fa-solid fa-phone"></i> (646)591-6080</p>
+          <div class="social-icons">
+            <a href="https://github.com/QINGPENGLAM" aria-label="GitHub profile"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/qpl_0401" aria-label="Instagram profile"><i class="fa-brands fa-square-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/in/qingpeng-lam" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+          </div>
         </div>
+        <div class="contact-right">
+          <form name="contact" method="POST" data-netlify="true">
+            <p>
+              <label for="name">Your Name:</label>
+              <input type="text" id="name" name="name" required>
+            </p>
+            <p>
+              <label for="email">Your Email:</label>
+              <input type="email" id="email" name="email" required>
+            </p>
+            <p>
+              <label for="message">Message:</label>
+              <textarea id="message" name="message" required></textarea>
+            </p>
+            <p>
+              <button type="submit">Send</button>
+            </p>
+          </form>
+          <span id="msg"></span>
+        </div>
+      </div>
     </div>
-  <div class="copyright">
-    <p>Copyright @ qingpeng <i class="fas fa-heart"></i></p>
-  </div>
-</div>
-<script>
+    <div class="copyright">
+      <p>Copyright @ qingpeng <i class="fas fa-heart"></i></p>
+    </div>
+  </footer>
 
-  var tablinks = document.getElementsByClassName("tab-links");
-  var tabcontents = document.getElementsByClassName("tab-contents");
-
-  function opentab(tabname){
-    for(tablink of tablinks){
-      tablink.classList.remove("active-link");
+  <script>
+    // 改进的事件处理函数
+    function opentab(tabname) {
+      const tablinks = document.getElementsByClassName("tab-links");
+      const tabcontents = document.getElementsByClassName("tab-contents");
+      
+      for(let tablink of tablinks) {
+        tablink.classList.remove("active-link");
+        tablink.setAttribute("aria-selected", "false");
+      }
+      
+      for(let tabcontent of tabcontents) {
+        tabcontent.classList.remove("active-tab");
+      }
+      
+      event.currentTarget.classList.add("active-link");
+      event.currentTarget.setAttribute("aria-selected", "true");
+      document.getElementById(tabname).classList.add("active-tab");
     }
-    for(tabcontent of tabcontents){
-      tabcontent.classList.remove("active-tab");
+
+    // 改进的菜单处理函数
+    const sidemenu = document.getElementById("sidemenu");
+    
+    function openmenu() {
+      sidemenu.style.right = "0";
+      sidemenu.setAttribute("aria-expanded", "true");
     }
-    event.currentTarget.classList.add("active-link");
-    document.getElementById(tabname).classList.add("active-tab")
-  }
-</script>
+    
+    function closemenu() {
+      sidemenu.style.right = "-200px";
+      sidemenu.setAttribute("aria-expanded", "false");
+    }
 
-<script>
+    // 添加键盘事件支持
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && sidemenu.style.right === "0") {
+        closemenu();
+      }
+    });
+  </script>
 
-  var sidemenu = document.getElementById("sidemenu");
-  function openmenu(){
-    sidemenu.style.right = "0";
-  }
-  function closemenu(){
-    sidemenu.style.right = "-200px";
-  }
-</script>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwkEStuZRH1wtzaiWf02mUHRxsxc2y46xAX2T7SkbrpM2h6sQsYSqdcO-NbRwfI110u9Q/exec'
+    const form = document.forms['contact']
+    const msg = document.getElementById("msg")
 
-<script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwkEStuZRH1wtzaiWf02mUHRxsxc2y46xAX2T7SkbrpM2h6sQsYSqdcO-NbRwfI110u9Q/exec'
-  const form = document.forms['submit-to-google-sheet']
-  const msg = document.getElementById("msg")
-
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-        msg.innerHTML = "Message sent successfully"
-        setTimeout(function(){
-          msg.innerHTML = ""
-        },5000)
-        form.reset()
-      })
-      .catch(error => console.error('Error!', error.message))
-  })
-</script>
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          msg.innerHTML = "Message sent successfully"
+          setTimeout(function(){
+            msg.innerHTML = ""
+          },5000)
+          form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
 </body>
 </html>
