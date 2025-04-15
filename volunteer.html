@@ -38,7 +38,7 @@
         <div class="container">
           <div class="row1">
             <div class="about1-col-1">
-              <img src="image/michigan-hillel.jpg" alt="Michigan Hillel building">
+              <img src="image/michigan-hillel.webp" alt="Michigan Hillel building">
             </div>
             <div class="about1-col-2">
               <h2 class="sub1-title">Database Programming Assistant - Michigan Hillel</h2>
@@ -57,7 +57,7 @@
 
           <div class="row1">
             <div class="about1-col-1">
-              <img src="image/penn-state.jpg" alt="Penn State University campus">
+              <img src="image/psu-behrend.jpeg" alt="Penn State University campus">
             </div>
             <div class="about1-col-2">
               <h2 class="sub1-title">Research Assistant - Penn State University</h2>
@@ -75,7 +75,7 @@
 
           <div class="row1">
             <div class="about1-col-1">
-              <img src="image/ny-chinese-school.jpg" alt="New York Chinese School building">
+              <img src="image/nycs.png" alt="New York Chinese School building">
             </div>
             <div class="about1-col-2">
               <h2 class="sub1-title">Office Assistant - New York Chinese School</h2>
@@ -167,11 +167,9 @@
     </section>
   </main>
 
-  <div class="social-icons">
-    <a href="https://github.com/QINGPENGLAM" aria-label="GitHub profile"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-    <a href="https://www.instagram.com/qpl_0401" aria-label="Instagram profile"><i class="fa-brands fa-square-instagram" aria-hidden="true"></i></a>
-    <a href="https://www.linkedin.com/in/qingpeng-lam" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
-  </div>
+  <footer>
+    <p>&copy; <span id="current-year"></span> QingPeng Lam. All rights reserved.</p>
+  </footer>
 
   <script>
     const sidemenu = document.getElementById("sidemenu");
@@ -192,6 +190,9 @@
         closemenu();
       }
     });
+
+    // 显示当前年份
+    document.getElementById('current-year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

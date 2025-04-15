@@ -703,3 +703,83 @@ nav ul1 li a:hover::after{
 .skill-item:hover {
     background: rgba(255, 255, 255, 0.1);
 }
+
+.project-link {
+    color: #64b5f6; /* 明亮的蓝色，提供足够的对比度 */
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.project-link:hover {
+    color: #ffffff;
+    background-color: #64b5f6;
+    transform: translateY(-2px);
+}
+
+.project-link i {
+    font-size: 1.1em;
+}
+
+.project-links {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+/* 确保在深色背景上有足够的对比度 */
+.project-card {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.project-info h3 {
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.project-info p {
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+.project-tech span {
+    background-color: rgba(100, 181, 246, 0.2);
+    color: #64b5f6;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    margin-right: 8px;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin: 2rem 0;
+    padding: 0 1rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.8;
+}

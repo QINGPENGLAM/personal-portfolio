@@ -221,6 +221,9 @@
                 </div>
             </div>
         </section>
+        <footer><div class="copyright">
+            <p>&copy; <span id="current-year"></span> QingPeng Lam. All rights reserved.</p>
+          </div></footer>
     </main>
 
     <style>
@@ -303,6 +306,11 @@
             background: rgba(255, 255, 255, 0.1);
         }
     </style>
+
+<script>
+// 显示当前年份
+document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
  

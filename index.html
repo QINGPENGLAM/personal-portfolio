@@ -16,11 +16,11 @@
       <nav role="navigation">
         <a href="index.html"><img src="image/newlogo1.png" class="logo" alt="QingPeng Lam's Portfolio Logo"></a>
         <ul id="sidemenu">
-          <li><a href="#header">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Experiences</a></li>
-          <li><a href="#portfolio">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="web.html">Project/Web design</a></li>
+          <li><a href="volunteer.html">Volunteer/Work</a></li>
+          <li><a href="experience.html">Architecture/Activities/Graphic design</a></li>
+
+
           <li><i class="fas fa-times" onclick="closemenu()" role="button" aria-label="Close menu" tabindex="0"></i></li>
         </ul>
         <i class="fas fa-bars" onclick="openmenu()" role="button" aria-label="Open menu" tabindex="0"></i>
@@ -209,7 +209,7 @@
       </div>
     </div>
     <div class="copyright">
-      <p>Copyright @ qingpeng <i class="fas fa-heart"></i></p>
+      <p>&copy; <span id="current-year"></span> QingPeng Lam. All rights reserved.</p>
     </div>
   </footer>
 
@@ -271,6 +271,11 @@
         })
         .catch(error => console.error('Error!', error.message))
     })
+  </script>
+
+  <script>
+    // 显示当前年份
+    document.getElementById('current-year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
