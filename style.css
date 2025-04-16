@@ -1054,3 +1054,13 @@ footer p {
         right: 0;
     }
 }
+
+.active {
+    color: #0056b3; 
+    background-color: #cfe1f5;
+    font-weight: bold;
+}
+
+.active:hover {
+    color: #003d82; 
+}
