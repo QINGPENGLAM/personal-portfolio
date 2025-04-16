@@ -138,37 +138,98 @@
       </div>
     </section>
 
-    <section id="portfolio" role="region" aria-label="Portfolio section">
+    <section id="portfolio" aria-labelledby="portfolio-title">
       <div class="container">
-        <h1 class="sub-title"><i class="fa-solid fa-network-wired"></i>  My Work / Project</h1>
-        <div class="work-list">
-          <div class="work">
-            <img src="image/social media design.png" alt="Social Media App project screenshot">
-            <div class="layer">
-              <h2>social media App</h2>
-              <p>An app where will help student schedule their college application or
-                a daily schedule planning</p>
-              <a href="appplan.html" aria-label="View Social Media App project"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+        <h2 id="portfolio-title" class="sub-title">
+          <i class="fa-solid fa-network-wired" aria-hidden="true"></i> My Work / Project
+        </h2>
+        <div class="project-navigation">
+          <button class="nav-btn prev-btn" aria-label="Previous projects">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <div class="project-slider">
+            <!-- Project Set 1 -->
+            <div class="project-set active">
+              <div class="work-list">
+                <div class="work">
+                  <img src="image/social media design.png" alt="Social Media App project screenshot">
+                  <div class="layer">
+                    <h3>social media App</h3>
+                    <p>An app where will help student schedule their college application or a daily schedule planning</p>
+                    <a href="appplan.html" aria-label="View Social Media App project">
+                      <i class="fa-sharp fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="work">
+                  <img src="image/work2.PNG" alt="RPG Game Design project screenshot">
+                  <div class="layer">
+                    <h3>RPG game design</h3>
+                    <p>First 3D UI working with Unity3D goal is teaching art history using RPG setting</p>
+                    <a href="gameplan.html" aria-label="View RPG Game Design project">
+                      <i class="fa-sharp fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="work">
+                  <img src="image/expense-tracker.png" alt="Personal Finance Tracker project screenshot">
+                  <div class="layer">
+                    <h3>Personal Finance Tracker</h3>
+                    <p>A comprehensive web application for tracking personal finances, featuring real-time visualization, budget management, and detailed transaction analysis.</p>
+                    <a href="expenseplan.html" aria-label="View Personal Finance Tracker project">
+                      <i class="fa-sharp fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Project Set 2 -->
+            <div class="project-set">
+              <div class="work-list">
+                <div class="work">
+                  <img src="image/calculator.png" alt="Calculator project screenshot">
+                  <div class="layer">
+                    <h3>Calculator</h3>
+                    <p>First html working with Javascript</p>
+                    <a href="https://genuine-dusk-83ca82.netlify.app" aria-label="View Calculator project">
+                      <i class="fa-sharp fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="work">
+                  <img src="image/foodordering.png" alt="Food Ordering Website project screenshot">
+                  <div class="layer">
+                    <h3>Food ordering website</h3>
+                    <p>First business plan and first ordering Javascript website</p>
+                    <a href="https://qingpengfoodordering.netlify.app" aria-label="View Food Ordering Website project">
+                      <i class="fa-sharp fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="work">
+                  <img src="image/Topic and lesson that i found is interesting and helpful for student.png" alt="Education Website project screenshot">
+                  <div class="layer">
+                    <h3>Education Website</h3>
+                    <p>First html website goal is to teach academic related topics</p>
+                    <a href="https://qingpengtopicshare.netlify.app" aria-label="View Education Website project">
+                      <i class="fa-sharp fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="work">
-            <img src="image/work2.PNG" alt="RPG Game Design project screenshot">
-            <div class="layer">
-              <h3>RPG game design</h3>
-              <p>First 3D UI working with Unity3D goal is teaching art history using RPG setting</p>
-              <a href="gameplan.html" aria-label="View RPG Game Design project"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
-            </div>
-          </div>
-          <div class="work">
-            <img src="image/ecommoce.PNG" alt="E-commerce website project screenshot">
-            <div class="layer">
-              <h3>E-commercal website</h3>
-              <p>First ecommerce well organzied website</p>
-              <a href="https://qingpengdesign.netlify.app/" aria-label="View E-commerce website project"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
-            </div>
-          </div>
+          <button class="nav-btn next-btn" aria-label="Next projects">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>
         </div>
-        <a href="web.html" class="btn">See More</a>
+        <div class="project-dots">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+        </div>
+        <div class="view-more">
+          <a href="web.html" class="btn">View All Projects</a>
+        </div>
       </div>
     </section>
   </main>
@@ -276,6 +337,53 @@
   <script>
     // 显示当前年份
     document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // 项目切换功能
+    document.addEventListener('DOMContentLoaded', function() {
+      const projectSets = document.querySelectorAll('.project-set');
+      const dots = document.querySelectorAll('.dot');
+      const prevBtn = document.querySelector('.prev-btn');
+      const nextBtn = document.querySelector('.next-btn');
+      let currentIndex = 0;
+
+      function showProjectSet(index) {
+        projectSets.forEach(set => set.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        projectSets[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentIndex = index;
+      }
+
+      function nextProject() {
+        currentIndex = (currentIndex + 1) % projectSets.length;
+        showProjectSet(currentIndex);
+      }
+
+      function prevProject() {
+        currentIndex = (currentIndex - 1 + projectSets.length) % projectSets.length;
+        showProjectSet(currentIndex);
+      }
+
+      // 添加按钮点击事件
+      nextBtn.addEventListener('click', nextProject);
+      prevBtn.addEventListener('click', prevProject);
+
+      // 添加圆点点击事件
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showProjectSet(index));
+      });
+
+      // 自动轮播
+      let autoSlide = setInterval(nextProject, 5000);
+
+      // 鼠标悬停时暂停自动轮播
+      const slider = document.querySelector('.project-slider');
+      slider.addEventListener('mouseenter', () => clearInterval(autoSlide));
+      slider.addEventListener('mouseleave', () => {
+        autoSlide = setInterval(nextProject, 5000);
+      });
+    });
   </script>
 </body>
 </html>

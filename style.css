@@ -941,3 +941,116 @@ footer p {
         grid-template-columns: 1fr 1fr;
     }
 }
+
+/* 项目切换功能样式 */
+.project-navigation {
+    position: relative;
+    margin: 20px 0;
+}
+
+.project-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-set {
+    display: none;
+    transition: opacity 0.5s ease;
+}
+
+.project-set.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(100, 181, 246, 0.8);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.nav-btn:hover {
+    background: #64b5f6;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: -20px;
+}
+
+.next-btn {
+    right: -20px;
+}
+
+.project-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: #64b5f6;
+    transform: scale(1.2);
+}
+
+.view-more {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.view-more .btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #d40000;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.view-more .btn:hover {
+    background: #ff004f;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .nav-btn {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .prev-btn {
+        left: 0;
+    }
+    
+    .next-btn {
+        right: 0;
+    }
+}
