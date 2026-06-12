@@ -4,9 +4,28 @@ import ProjectPanel from './components/ProjectPanel'
 import { projects } from './data/projects'
 
 const startPosition = {
-  x: 54,
+  x: 53,
   y: 78,
 }
+
+const playerRadius = 2.35
+
+const walkablePolygon = [
+  { x: 18, y: 56 },
+  { x: 58, y: 39 },
+  { x: 86, y: 52 },
+  { x: 73, y: 84 },
+  { x: 26, y: 85 },
+]
+
+const blockingVolumes = [
+  { xMin: 16, xMax: 36, yMin: 57, yMax: 80 },
+  { xMin: 18, xMax: 27, yMin: 56, yMax: 65 },
+  { xMin: 50, xMax: 66, yMin: 40, yMax: 60 },
+  { xMin: 66, xMax: 74, yMin: 40, yMax: 61 },
+  { xMin: 77, xMax: 95, yMin: 58, yMax: 78 },
+  { xMin: 81, xMax: 88, yMin: 67, yMax: 77 },
+]
 
 const touchDirections = [
   { id: 'forward', symbol: 'Up', label: 'Move up' },
@@ -35,13 +54,50 @@ function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max)
 }
 
+function pointInPolygon(point, polygon) {
+  let isInside = false
+
+  for (let index = 0, previous = polygon.length - 1; index < polygon.length; previous = index, index += 1) {
+    const currentPoint = polygon[index]
+    const previousPoint = polygon[previous]
+    const intersects =
+      currentPoint.y > point.y !== previousPoint.y > point.y &&
+      point.x <
+        ((previousPoint.x - currentPoint.x) * (point.y - currentPoint.y)) / (previousPoint.y - currentPoint.y) +
+          currentPoint.x
+
+    if (intersects) {
+      isInside = !isInside
+    }
+  }
+
+  return isInside
+}
+
+function overlapsBlockingVolume(position) {
+  return blockingVolumes.some((volume) => {
+    const nearestX = clamp(position.x, volume.xMin, volume.xMax)
+    const nearestY = clamp(position.y, volume.yMin, volume.yMax)
+    return Math.hypot(position.x - nearestX, position.y - nearestY) < playerRadius
+  })
+}
+
+function isBlocked(position) {
+  if (!pointInPolygon(position, walkablePolygon)) {
+    return true
+  }
+
+  return overlapsBlockingVolume(position)
+}
+
 function findNearbyProject(playerPosition) {
   let closestProject = null
   let closestDistance = Number.POSITIVE_INFINITY
 
   for (const project of projects) {
-    const dx = playerPosition.x - project.roomPosition.x
-    const dy = (playerPosition.y - project.roomPosition.y) * 1.15
+    const accessPosition = project.accessPosition ?? project.roomPosition
+    const dx = playerPosition.x - accessPosition.x
+    const dy = (playerPosition.y - accessPosition.y) * 1.08
     const distance = Math.hypot(dx, dy)
 
     if (distance < closestDistance) {
@@ -50,7 +106,7 @@ function findNearbyProject(playerPosition) {
     }
   }
 
-  if (closestDistance > 11.5) {
+  if (closestDistance > 10.8) {
     return null
   }
 
@@ -63,6 +119,7 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null)
   const [hoveredId, setHoveredId] = useState(null)
   const [playerPosition, setPlayerPosition] = useState(startPosition)
+  const [showRoomHints, setShowRoomHints] = useState(true)
 
   const nearbyProject = findNearbyProject(playerPosition)
   const activeId = hoveredId ?? selectedId ?? nearbyProject?.id ?? null
@@ -73,6 +130,16 @@ export default function App() {
   }, [nearbyProject])
 
   useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      setShowRoomHints(false)
+    }, 2200)
+
+    return () => {
+      window.clearTimeout(timeoutId)
+    }
+  }, [])
+
+  useEffect(() => {
     let animationFrameId = 0
     let lastTimestamp = performance.now()
 
@@ -81,37 +148,54 @@ export default function App() {
       lastTimestamp = timestamp
 
       setPlayerPosition((previousPosition) => {
-        let nextX = previousPosition.x
-        let nextY = previousPosition.y
+        let targetX = previousPosition.x
+        let targetY = previousPosition.y
         const speed = 0.52 * delta
 
         if (movementRef.current.forward) {
-          nextY -= speed * 1.15
+          targetY -= speed * 1.15
         }
 
         if (movementRef.current.backward) {
-          nextY += speed * 1.15
+          targetY += speed * 1.15
         }
 
         if (movementRef.current.left) {
-          nextX -= speed
+          targetX -= speed
         }
 
         if (movementRef.current.right) {
-          nextX += speed
+          targetX += speed
         }
 
-        nextX = clamp(nextX, 18, 82)
-        nextY = clamp(nextY, 34, 84)
+        targetX = clamp(targetX, 18, 86)
+        targetY = clamp(targetY, 34, 84)
 
-        if (nextX === previousPosition.x && nextY === previousPosition.y) {
+        let nextPosition = previousPosition
+
+        const xOnlyPosition = {
+          x: targetX,
+          y: previousPosition.y,
+        }
+
+        if (!isBlocked(xOnlyPosition)) {
+          nextPosition = xOnlyPosition
+        }
+
+        const yOnlyPosition = {
+          x: nextPosition.x,
+          y: targetY,
+        }
+
+        if (!isBlocked(yOnlyPosition)) {
+          nextPosition = yOnlyPosition
+        }
+
+        if (nextPosition.x === previousPosition.x && nextPosition.y === previousPosition.y) {
           return previousPosition
         }
 
-        return {
-          x: nextX,
-          y: nextY,
-        }
+        return nextPosition
       })
 
       animationFrameId = window.requestAnimationFrame(updatePlayer)
@@ -137,6 +221,12 @@ export default function App() {
     }
 
     const handleKeyDown = (event) => {
+      if (event.code === 'KeyH') {
+        setShowRoomHints((currentValue) => !currentValue)
+        event.preventDefault()
+        return
+      }
+
       if (event.code === 'Enter' || event.code === 'Space') {
         if (nearbyProjectRef.current) {
           setSelectedId(nearbyProjectRef.current)
@@ -193,46 +283,16 @@ export default function App() {
   return (
     <main className="app-shell">
       <section className="experience-stage" aria-labelledby="room-portfolio-title">
-        <div className="page-copy">
-          <p className="eyebrow">QingPeng Lam · Interactive Room Portfolio</p>
-          <h1 id="room-portfolio-title">A 2.5D pixel bedroom you can send with a resume instead of a plain link dump.</h1>
-          <p className="deck">
-            The goal is simple: give recruiters and teams a live profile they can actually play. Walk around the
-            room, inspect the desk, synth corner, bookshelf, and project stations, then open the work behind each
-            object.
-          </p>
-          <div className="stat-row" aria-label="Portfolio summary">
-            <div className="stat-card">
-              <strong>8</strong>
-              <span>room objects</span>
-            </div>
-            <div className="stat-card">
-              <strong>React</strong>
-              <span>static deploy-ready</span>
-            </div>
-            <div className="stat-card">
-              <strong>Live</strong>
-              <span>job-application friendly</span>
-            </div>
-          </div>
-        </div>
-
         <div className="scene-frame scene-frame-pixel">
-          <div className="scene-banner">
-            <div className="signal-card pixel-card">
-              <p className="signal-title">Play</p>
-              <p>Use WASD or arrow keys to move. Press Enter when you are near an object.</p>
-            </div>
-            <div className="signal-card pixel-card">
-              <p className="signal-title">Mode</p>
-              <p>2.5D room, cute pixel vibe, and a lighter React build that is easier to ship as a live link.</p>
-            </div>
-            <div className="signal-card pixel-card">
-              <p className="signal-title">Position</p>
-              <p>
-                x {playerPosition.x.toFixed(0)} · y {playerPosition.y.toFixed(0)}
-              </p>
-            </div>
+          <div className={`scene-copy${showRoomHints ? '' : ' is-muted'}`}>
+            <p className="eyebrow">Playable Profile Room</p>
+            <h1 id="room-portfolio-title">Walk the room.</h1>
+          </div>
+
+          <div className={`scene-guide${showRoomHints ? '' : ' is-muted'}`} aria-label="Room controls">
+            <span>Move · WASD / Arrows</span>
+            <span>Open · Enter</span>
+            <span>Hints · H</span>
           </div>
 
           <PixelRoom
@@ -245,30 +305,10 @@ export default function App() {
             selectedId={selectedId}
           />
 
-          <div className="room-toolbar">
-            <nav className="object-strip object-strip-pixel" aria-label="Quick select room objects">
-              {projects.map((project) => {
-                const isActive = project.id === activeId
-
-                return (
-                  <button
-                    key={project.id}
-                    className={`object-chip pixel-chip${isActive ? ' is-active' : ''}`}
-                    onClick={() => openProject(project.id)}
-                    type="button"
-                  >
-                    <span>{project.roomLabel}</span>
-                    <small>{project.shortLabel}</small>
-                  </button>
-                )
-              })}
-            </nav>
-          </div>
-
           {nearbyProject ? (
             <div className="interaction-banner" aria-live="polite">
-              <strong>Near {nearbyProject.shortLabel}</strong>
-              <span>Press Enter or tap the room object to open the card.</span>
+              <strong>{nearbyProject.roomLabel}</strong>
+              <span>Press Enter to open</span>
             </div>
           ) : null}
 
@@ -309,7 +349,13 @@ export default function App() {
         </div>
       </section>
 
-      <ProjectPanel project={selectedProject} onClose={() => setSelectedId(null)} />
+      <ProjectPanel
+        activeId={activeId}
+        onClose={() => setSelectedId(null)}
+        onSelect={openProject}
+        project={selectedProject}
+        projects={projects}
+      />
     </main>
   )
 }

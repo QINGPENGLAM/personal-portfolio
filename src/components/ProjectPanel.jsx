@@ -1,37 +1,45 @@
-function DefaultPanel() {
+function DefaultPanel({ activeId, onSelect, projects }) {
   return (
     <aside className="project-panel" aria-live="polite">
-      <p className="eyebrow">Hire Me Mode</p>
-      <h2>Walk the room and open whatever feels interesting.</h2>
+      <p className="eyebrow">Project Directory</p>
+      <h2>Explore the room.</h2>
       <p className="panel-summary">
-        This version is meant to feel like a playable profile: lighter than a heavyweight full-3D build, more
-        personal than a standard portfolio, and much easier to ship as one live link for applications.
+        Walk with the keyboard, move close to a piece of furniture, and open the project that lives there. Quick Open
+        is here if you want a faster scan.
       </p>
 
       <section className="panel-section">
-        <h3>Why this version works</h3>
+        <h3>Zones</h3>
         <ul className="panel-list">
-          <li>Isometric room layout feels memorable without needing heavyweight 3D rendering</li>
-          <li>Keyboard movement and clickable furniture turn the profile into a small game loop</li>
-          <li>Static React build makes deployment to a live URL much easier than a local-only demo</li>
+          <li>Left side holds the more personal projects around the bed, lamp, wall art, and window.</li>
+          <li>Center uses the terrarium cabinets and bookshelf as the visual anchor for system-heavy work.</li>
+          <li>Right side is the study zone: desk, monitor, chair, gallery wall, and smaller interactive pieces.</li>
         </ul>
       </section>
 
       <section className="panel-section">
-        <h3>Interaction map</h3>
-        <ul className="panel-list">
-          <li>Desk PC: USAA workflow automation</li>
-          <li>Synth Lamp and Terrarium: playful GitHub projects worth remembering</li>
-          <li>Bookshelf, wall board, cabinet, and nightstand: the rest of the story</li>
-        </ul>
+        <h3>Quick Open</h3>
+        <div className="panel-quick-grid">
+          {projects.map((project) => (
+            <button
+              key={project.id}
+              className={`panel-quick-card${project.id === activeId ? ' is-active' : ''}`}
+              onClick={() => onSelect(project.id)}
+              type="button"
+            >
+              <strong>{project.roomLabel}</strong>
+              <span>{project.shortLabel}</span>
+            </button>
+          ))}
+        </div>
       </section>
     </aside>
   )
 }
 
-export default function ProjectPanel({ onClose, project }) {
+export default function ProjectPanel({ activeId, onClose, onSelect, project, projects }) {
   if (!project) {
-    return <DefaultPanel />
+    return <DefaultPanel activeId={activeId} onSelect={onSelect} projects={projects} />
   }
 
   return (

@@ -9,7 +9,10 @@ export const projects = [
     location: 'USAA · San Antonio, TX',
     color: '#ffaf7a',
     model: 'laptop',
-    roomPosition: { x: 69, y: 62 },
+    roomPosition: { x: 82, y: 61 },
+    accessPosition: { x: 79, y: 60 },
+    displayPosition: { x: 76.8, y: 54.8 },
+    labelPlacement: 'left',
     summary:
       'Engineered MCP-based developer tools and AI skills to automate log retrieval, error triage, root cause analysis, code-change support, Git pushes, and merge request workflows.',
     highlights: [
@@ -29,7 +32,10 @@ export const projects = [
     location: 'University of Michigan ISR · Ann Arbor, MI',
     color: '#8be7dd',
     model: 'monitor',
-    roomPosition: { x: 58, y: 40 },
+    roomPosition: { x: 33, y: 25 },
+    accessPosition: { x: 27, y: 40 },
+    displayPosition: { x: 28.2, y: 37.2 },
+    labelPlacement: 'right',
     summary:
       'Designed, developed, and deployed RESTful APIs and data dashboards to process and visualize structured datasets for more than 200 stakeholders.',
     highlights: [
@@ -49,7 +55,10 @@ export const projects = [
     location: 'Michigan Hillel · Ann Arbor, MI',
     color: '#f0d277',
     model: 'stack',
-    roomPosition: { x: 64, y: 44 },
+    roomPosition: { x: 53, y: 24 },
+    accessPosition: { x: 58, y: 42 },
+    displayPosition: { x: 69.8, y: 45.6 },
+    labelPlacement: 'bottom',
     summary:
       'Built automated ETL pipelines in Python, pandas, NumPy, and SQL to clean, transform, and validate more than 3,000 records while reducing reporting errors by 35 percent.',
     highlights: [
@@ -69,7 +78,9 @@ export const projects = [
     location: 'MediaPipe Hands + Web Audio + browser game loop',
     color: '#d09bff',
     model: 'wave',
-    roomPosition: { x: 28, y: 60 },
+    roomPosition: { x: 24, y: 58 },
+    displayPosition: { x: 20.2, y: 58.2 },
+    labelPlacement: 'right',
     summary:
       'A minimal playable hand-tracking instrument and arcade demo where the right hand controls pitch and firing, the left hand boosts or pauses, and a mouse fallback keeps the demo usable without camera access.',
     highlights: [
@@ -91,7 +102,10 @@ export const projects = [
     location: 'React + Flask/Node.js + SQL',
     color: '#94a8ff',
     model: 'kiosk',
-    roomPosition: { x: 30, y: 38 },
+    roomPosition: { x: 73, y: 25 },
+    accessPosition: { x: 80, y: 40 },
+    displayPosition: { x: 83.6, y: 33.8 },
+    labelPlacement: 'bottom',
     summary:
       'Developed a full-stack application where users upload CSV files and view interactive KPI visualizations through a React interface.',
     highlights: [
@@ -111,7 +125,9 @@ export const projects = [
     location: 'Python + SQL + REST APIs',
     color: '#ff9fba',
     model: 'piggy',
-    roomPosition: { x: 32, y: 68 },
+    roomPosition: { x: 21, y: 67 },
+    displayPosition: { x: 22.8, y: 63.6 },
+    labelPlacement: 'right',
     summary:
       'Created a user-facing web application to track spending, categorize transactions, and visualize financial trends across account activity.',
     highlights: [
@@ -131,7 +147,10 @@ export const projects = [
     location: 'Local simulation + room memory + multi-room state',
     color: '#9ee694',
     model: 'city',
-    roomPosition: { x: 78, y: 70 },
+    roomPosition: { x: 89, y: 64 },
+    accessPosition: { x: 57, y: 47 },
+    displayPosition: { x: 52.4, y: 45.4 },
+    labelPlacement: 'left',
     summary:
       'A fully local AI Town-style social simulation MVP with three characters, one town scene, memory-driven daily story generation, multi-room saves, and player chat that changes later NPC behavior.',
     highlights: [
@@ -153,7 +172,10 @@ export const projects = [
     location: 'Unity3D + interactive storytelling',
     color: '#84ddab',
     model: 'arcade',
-    roomPosition: { x: 70, y: 80 },
+    roomPosition: { x: 79, y: 75 },
+    accessPosition: { x: 66, y: 55 },
+    displayPosition: { x: 61.8, y: 55.4 },
+    labelPlacement: 'right',
     summary:
       'Built an early 3D interaction prototype in Unity with the goal of teaching art history through a game-like environment and visual exploration.',
     highlights: [
