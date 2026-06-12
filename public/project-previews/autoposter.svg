@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="960" viewBox="0 0 1440 960">
+  <defs>
+    <linearGradient id="pageBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#18202e"/>
+      <stop offset="0.48" stop-color="#090a0f"/>
+      <stop offset="1" stop-color="#17110b"/>
+    </linearGradient>
+    <linearGradient id="slider" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#49d8df"/>
+      <stop offset="1" stop-color="#ffd34e"/>
+    </linearGradient>
+    <radialGradient id="posterGlow" cx="50%" cy="42%" r="65%">
+      <stop offset="0" stop-color="#fff4d8" stop-opacity="0.24"/>
+      <stop offset="0.38" stop-color="#f64c45" stop-opacity="0.22"/>
+      <stop offset="0.7" stop-color="#2d3be0" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#120f1d"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#000" flood-opacity="0.42"/>
+    </filter>
+  </defs>
+
+  <rect width="1440" height="960" fill="url(#pageBg)"/>
+  <circle cx="120" cy="90" r="360" fill="#49d8df" opacity="0.15"/>
+  <circle cx="1330" cy="870" r="320" fill="#ffd34e" opacity="0.14"/>
+
+  <g filter="url(#shadow)">
+    <rect x="36" y="36" width="382" height="888" rx="28" fill="#080a10" opacity="0.86"/>
+    <rect x="36" y="36" width="382" height="888" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
+  </g>
+
+  <text x="70" y="84" fill="#49d8df" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="3">P5CATALYST-INSPIRED MVP</text>
+  <text x="70" y="134" fill="#f6f1e7" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="40" font-weight="800">生成式海报</text>
+  <text x="70" y="180" fill="#f6f1e7" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="40" font-weight="800">壁纸工厂</text>
+  <text x="70" y="222" fill="#aaa3b8" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="18">6 个参数 · 3 套版式 · URL 种子复现</text>
+
+  <g>
+    <rect x="64" y="262" width="326" height="190" rx="24" fill="#10121c" opacity="0.88" stroke="#fff" stroke-opacity="0.09"/>
+    <text x="88" y="302" fill="#f6f1e7" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="24" font-weight="800">版式</text>
+    <rect x="88" y="326" width="278" height="38" rx="12" fill="#ffd34e" opacity="0.18" stroke="#ffd34e" stroke-opacity="0.55"/>
+    <text x="108" y="351" fill="#fff4d8" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="17" font-weight="800">Burst</text>
+    <rect x="88" y="374" width="278" height="38" rx="12" fill="#ffffff" opacity="0.04" stroke="#fff" stroke-opacity="0.08"/>
+    <text x="108" y="399" fill="#aaa3b8" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="17" font-weight="700">Bands</text>
+    <rect x="88" y="422" width="278" height="38" rx="12" fill="#ffffff" opacity="0.04" stroke="#fff" stroke-opacity="0.08"/>
+    <text x="108" y="447" fill="#aaa3b8" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="17" font-weight="700">Totem</text>
+  </g>
+
+  <g>
+    <rect x="64" y="474" width="326" height="286" rx="24" fill="#10121c" opacity="0.88" stroke="#fff" stroke-opacity="0.09"/>
+    <text x="88" y="514" fill="#f6f1e7" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="24" font-weight="800">参数</text>
+    <g font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="15" fill="#f6f1e7">
+      <text x="88" y="556">Seed</text><text x="312" y="556" fill="#ffd34e">240613</text>
+      <rect x="88" y="572" width="278" height="12" rx="6" fill="url(#slider)"/><circle cx="212" cy="578" r="11" fill="#0b0b10" stroke="#fff4d8" stroke-width="2"/>
+      <text x="88" y="616">Palette</text><text x="286" y="616" fill="#ffd34e">Solar Pop</text>
+      <rect x="88" y="632" width="278" height="12" rx="6" fill="url(#slider)"/><circle cx="300" cy="638" r="11" fill="#0b0b10" stroke="#fff4d8" stroke-width="2"/>
+      <text x="88" y="676">Density</text><text x="334" y="676" fill="#ffd34e">14</text>
+      <rect x="88" y="692" width="278" height="12" rx="6" fill="url(#slider)"/><circle cx="190" cy="698" r="11" fill="#0b0b10" stroke="#fff4d8" stroke-width="2"/>
+      <text x="88" y="736">Chaos / Focus / Grain</text><text x="285" y="736" fill="#ffd34e">48 / 62 / 24</text>
+    </g>
+  </g>
+
+  <g>
+    <rect x="64" y="782" width="98" height="48" rx="16" fill="#ffffff" opacity="0.07"/>
+    <rect x="174" y="782" width="98" height="48" rx="16" fill="#49d8df"/>
+    <rect x="284" y="782" width="98" height="48" rx="16" fill="#ffd34e"/>
+    <text x="91" y="812" fill="#f6f1e7" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="15" font-weight="800">Seed</text>
+    <text x="205" y="812" fill="#0a0b10" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="15" font-weight="800">随机</text>
+    <text x="312" y="812" fill="#111" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="15" font-weight="800">导出</text>
+  </g>
+
+  <text x="470" y="86" fill="#f6f1e7" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="2">LIVE POSTER</text>
+  <text x="470" y="118" fill="#aaa3b8" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="18">预览按 3:4 缩放显示，导出使用 1080 × 1440 画布。</text>
+  <rect x="470" y="150" width="902" height="752" rx="40" fill="#ffffff" opacity="0.05" stroke="#fff" stroke-opacity="0.07" filter="url(#shadow)"/>
+
+  <g transform="translate(620 198) scale(0.43)">
+    <rect width="1080" height="1440" rx="34" fill="url(#posterGlow)"/>
+    <g opacity="0.38" stroke="#fff4d8" stroke-width="2">
+      <line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="160" x2="1080" y2="160"/><line x1="0" y1="230" x2="1080" y2="230"/>
+      <line x1="0" y1="300" x2="1080" y2="300"/><line x1="0" y1="370" x2="1080" y2="370"/><line x1="0" y1="440" x2="1080" y2="440"/>
+    </g>
+    <g transform="translate(540 635)">
+      <g opacity="0.88">
+        <path d="M0,-36 L85,-110 L430,0 L85,110 L0,36 Z" fill="#fff4d8" transform="rotate(0)"/>
+        <path d="M0,-34 L76,-96 L392,0 L76,96 L0,34 Z" fill="#f64c45" transform="rotate(24)"/>
+        <path d="M0,-38 L92,-124 L475,0 L92,124 L0,38 Z" fill="#44d4d8" transform="rotate(48)"/>
+        <path d="M0,-30 L80,-100 L430,0 L80,100 L0,30 Z" fill="#fff4d8" transform="rotate(72)"/>
+        <path d="M0,-42 L98,-135 L500,0 L98,135 L0,42 Z" fill="#f64c45" transform="rotate(96)"/>
+        <path d="M0,-34 L82,-102 L415,0 L82,102 L0,34 Z" fill="#44d4d8" transform="rotate(120)"/>
+        <path d="M0,-36 L85,-110 L430,0 L85,110 L0,36 Z" fill="#fff4d8" transform="rotate(144)"/>
+        <path d="M0,-34 L76,-96 L392,0 L76,96 L0,34 Z" fill="#f64c45" transform="rotate(168)"/>
+        <path d="M0,-38 L92,-124 L475,0 L92,124 L0,38 Z" fill="#44d4d8" transform="rotate(192)"/>
+        <path d="M0,-30 L80,-100 L430,0 L80,100 L0,30 Z" fill="#fff4d8" transform="rotate(216)"/>
+        <path d="M0,-42 L98,-135 L500,0 L98,135 L0,42 Z" fill="#f64c45" transform="rotate(240)"/>
+        <path d="M0,-34 L82,-102 L415,0 L82,102 L0,34 Z" fill="#44d4d8" transform="rotate(264)"/>
+        <path d="M0,-36 L85,-110 L430,0 L85,110 L0,36 Z" fill="#fff4d8" transform="rotate(288)"/>
+        <path d="M0,-34 L76,-96 L392,0 L76,96 L0,34 Z" fill="#f64c45" transform="rotate(312)"/>
+        <path d="M0,-38 L92,-124 L475,0 L92,124 L0,38 Z" fill="#44d4d8" transform="rotate(336)"/>
+      </g>
+      <circle r="260" fill="none" stroke="#fff4d8" stroke-width="14" opacity="0.84"/>
+      <circle r="150" fill="#fff4d8"/>
+      <circle r="76" fill="#120f1d" opacity="0.78"/>
+    </g>
+    <rect x="48" y="48" width="340" height="136" rx="28" fill="#120f1d" opacity="0.9"/>
+    <text x="74" y="96" fill="#fff4d8" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="18">P5-INSPIRED POSTER LAB</text>
+    <text x="72" y="152" fill="#ffcb47" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="66" font-weight="900">BURST</text>
+    <text x="72" y="182" fill="#fff4d8" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="22">SEED 240613  |  SOLAR</text>
+    <rect x="48" y="1260" width="460" height="104" rx="28" fill="#fff4d8" opacity="0.9"/>
+    <text x="76" y="1316" fill="#120f1d" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="28" font-weight="800">6 params · 3 layouts · PNG export</text>
+    <text x="76" y="1354" fill="#120f1d" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="18">seed / palette / density / chaos / focus / grain</text>
+    <rect x="26" y="26" width="1028" height="1388" rx="32" fill="none" stroke="#fff4d8" stroke-width="10" opacity="0.8"/>
+  </g>
+</svg>

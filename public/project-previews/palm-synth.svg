@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Palm Synth Blaster demo poster</title>
+  <desc id="desc">A neon demo poster showing a hand-tracked rhythm game with glowing note lanes, gesture overlays, and score panels.</desc>
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#08101d"/>
+      <stop offset="45%" stop-color="#101b30"/>
+      <stop offset="100%" stop-color="#070c16"/>
+    </linearGradient>
+    <radialGradient id="cyan-bloom" cx="25%" cy="22%" r="58%">
+      <stop offset="0%" stop-color="#7af3ff" stop-opacity="0.42"/>
+      <stop offset="55%" stop-color="#7af3ff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#7af3ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gold-bloom" cx="80%" cy="18%" r="40%">
+      <stop offset="0%" stop-color="#ffd36d" stop-opacity="0.26"/>
+      <stop offset="60%" stop-color="#ffd36d" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#ffd36d" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shell-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#18253d" stop-opacity="0.84"/>
+      <stop offset="100%" stop-color="#0b1321" stop-opacity="0.94"/>
+    </linearGradient>
+    <linearGradient id="panel-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.11"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.03"/>
+    </linearGradient>
+    <linearGradient id="lane-gradient-1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7af3ff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#7af3ff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="lane-gradient-2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38d8d2" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#38d8d2" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="lane-gradient-3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffd36d" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffd36d" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="lane-gradient-4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff8168" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ff8168" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="meter-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38d8d2"/>
+      <stop offset="46%" stop-color="#7af3ff"/>
+      <stop offset="100%" stop-color="#ffd36d"/>
+    </linearGradient>
+    <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
+      <path d="M 54 0 L 0 0 0 54" fill="none" stroke="#b5e7ff" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="26" stdDeviation="28" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <filter id="panel-shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000000" flood-opacity="0.34"/>
+    </filter>
+    <filter id="cyan-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#7af3ff" flood-opacity="0.75"/>
+    </filter>
+    <filter id="gold-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#ffd36d" flood-opacity="0.7"/>
+    </filter>
+    <filter id="coral-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#ff8168" flood-opacity="0.78"/>
+    </filter>
+    <clipPath id="shell-clip">
+      <rect x="80" y="70" width="1440" height="760" rx="44"/>
+    </clipPath>
+    <style>
+      text { font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif; }
+      .mono { font-family: "SFMono-Regular", "Consolas", "Menlo", monospace; }
+      .eyebrow { font-size: 18px; letter-spacing: 0.22em; text-transform: uppercase; fill: rgba(247, 251, 255, 0.72); }
+      .title { font-size: 68px; font-weight: 700; letter-spacing: -0.05em; fill: #f7fbff; }
+      .lede { font-size: 22px; fill: rgba(247, 251, 255, 0.76); }
+      .small { font-size: 16px; fill: rgba(247, 251, 255, 0.64); }
+      .panel-title { font-size: 18px; letter-spacing: 0.18em; text-transform: uppercase; fill: rgba(247, 251, 255, 0.62); }
+      .panel-value { font-size: 34px; font-weight: 700; fill: #f7fbff; }
+      .panel-copy { font-size: 20px; fill: rgba(247, 251, 255, 0.8); }
+      .stat-label { font-size: 15px; letter-spacing: 0.15em; text-transform: uppercase; fill: rgba(247, 251, 255, 0.58); }
+      .stat-value { font-size: 28px; font-weight: 700; fill: #f7fbff; }
+      .card-label { font-size: 19px; font-weight: 700; fill: #f7fbff; }
+      .card-copy { font-size: 17px; fill: rgba(247, 251, 255, 0.74); }
+      .lane-label { font-size: 20px; font-weight: 700; fill: rgba(247, 251, 255, 0.78); }
+      .button-copy { font-size: 18px; font-weight: 700; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg-gradient)"/>
+  <rect width="1600" height="900" fill="url(#cyan-bloom)"/>
+  <rect width="1600" height="900" fill="url(#gold-bloom)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+
+  <g filter="url(#soft-shadow)">
+    <rect x="80" y="70" width="1440" height="760" rx="44" fill="url(#shell-gradient)" stroke="rgba(181,231,255,0.22)" stroke-width="2"/>
+  </g>
+
+  <g clip-path="url(#shell-clip)">
+    <rect x="104" y="96" width="972" height="708" rx="34" fill="#08111f"/>
+    <rect x="104" y="96" width="972" height="708" rx="34" fill="url(#cyan-bloom)" opacity="0.5"/>
+    <rect x="104" y="96" width="972" height="708" rx="34" fill="url(#gold-bloom)" opacity="0.55"/>
+
+    <rect x="104" y="96" width="972" height="708" rx="34" fill="rgba(8, 12, 24, 0.26)"/>
+    <path d="M124 760 C286 626, 428 536, 558 552 C706 570, 842 460, 1036 336 L1036 804 L124 804 Z" fill="rgba(10,18,34,0.82)"/>
+    <path d="M152 666 C320 542, 454 490, 606 520 C714 542, 830 506, 1038 392" fill="none" stroke="rgba(122,243,255,0.08)" stroke-width="110" stroke-linecap="round"/>
+
+    <g opacity="0.8">
+      <rect x="202" y="156" width="152" height="560" rx="26" fill="url(#lane-gradient-1)"/>
+      <rect x="386" y="156" width="152" height="560" rx="26" fill="url(#lane-gradient-2)"/>
+      <rect x="570" y="156" width="152" height="560" rx="26" fill="url(#lane-gradient-3)"/>
+      <rect x="754" y="156" width="152" height="560" rx="26" fill="url(#lane-gradient-4)"/>
+      <line x1="278" y1="150" x2="278" y2="736" stroke="rgba(122,243,255,0.26)" stroke-width="2"/>
+      <line x1="462" y1="150" x2="462" y2="736" stroke="rgba(56,216,210,0.24)" stroke-width="2"/>
+      <line x1="646" y1="150" x2="646" y2="736" stroke="rgba(255,211,109,0.25)" stroke-width="2"/>
+      <line x1="830" y1="150" x2="830" y2="736" stroke="rgba(255,129,104,0.24)" stroke-width="2"/>
+    </g>
+
+    <line x1="178" y1="690" x2="930" y2="690" stroke="#f7fbff" stroke-opacity="0.9" stroke-width="4"/>
+    <line x1="178" y1="698" x2="930" y2="698" stroke="#7af3ff" stroke-opacity="0.44" stroke-width="10"/>
+
+    <g fill="none" stroke-width="3">
+      <circle cx="646" cy="690" r="38" stroke="#ffd36d" stroke-opacity="0.95" filter="url(#gold-glow)"/>
+      <circle cx="646" cy="690" r="78" stroke="#ffd36d" stroke-opacity="0.22"/>
+      <circle cx="646" cy="690" r="114" stroke="#ffd36d" stroke-opacity="0.08"/>
+    </g>
+
+    <g>
+      <circle cx="278" cy="258" r="26" fill="#7af3ff" filter="url(#cyan-glow)"/>
+      <circle cx="278" cy="258" r="11" fill="#f7fbff" fill-opacity="0.7"/>
+      <circle cx="462" cy="400" r="23" fill="#38d8d2" filter="url(#cyan-glow)"/>
+      <circle cx="646" cy="528" r="24" fill="#ffd36d" filter="url(#gold-glow)"/>
+      <circle cx="830" cy="346" r="25" fill="#ff8168" filter="url(#coral-glow)"/>
+      <circle cx="830" cy="560" r="20" fill="#ff8168" filter="url(#coral-glow)"/>
+      <circle cx="462" cy="196" r="19" fill="#38d8d2" filter="url(#cyan-glow)"/>
+      <circle cx="646" cy="294" r="20" fill="#ffd36d" filter="url(#gold-glow)"/>
+    </g>
+
+    <g stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(360 210) rotate(-8)" stroke="#ffd36d" fill="none" filter="url(#gold-glow)">
+        <path d="M0 152 C22 114, 52 92, 90 84 C122 78, 152 92, 168 122 C182 148, 174 178, 154 198 C130 220, 92 230, 56 220 C18 208, -4 182, 0 152 Z" stroke-width="4"/>
+        <path d="M34 158 C44 136, 68 126, 94 128" stroke-width="4"/>
+        <path d="M46 192 C70 176, 100 172, 128 180" stroke-width="4"/>
+        <path d="M36 126 C28 92, 34 68, 44 40" stroke-width="5"/>
+        <path d="M68 112 C62 84, 62 54, 68 26" stroke-width="5"/>
+        <path d="M102 112 C100 84, 104 54, 116 30" stroke-width="5"/>
+        <path d="M136 124 C142 98, 152 74, 168 54" stroke-width="5"/>
+        <path d="M18 150 C-8 138, -22 118, -24 92" stroke-width="5"/>
+        <circle cx="44" cy="40" r="8" fill="#ffd36d"/>
+        <circle cx="68" cy="26" r="8" fill="#ffd36d"/>
+        <circle cx="116" cy="30" r="8" fill="#ffd36d"/>
+        <circle cx="168" cy="54" r="8" fill="#ffd36d"/>
+        <circle cx="-24" cy="92" r="8" fill="#ffd36d"/>
+      </g>
+
+      <g transform="translate(692 184) rotate(10)" stroke="#7af3ff" fill="none" filter="url(#cyan-glow)">
+        <path d="M0 178 C18 124, 62 90, 116 88 C160 86, 194 108, 212 146 C230 182, 224 220, 196 248 C164 278, 118 288, 70 274 C20 260, -10 224, 0 178 Z" stroke-width="4"/>
+        <path d="M46 140 C28 104, 18 72, 18 30" stroke-width="5"/>
+        <path d="M86 122 C76 88, 74 48, 74 14" stroke-width="5"/>
+        <path d="M126 120 C126 84, 132 44, 144 10" stroke-width="5"/>
+        <path d="M164 136 C172 100, 186 64, 206 34" stroke-width="5"/>
+        <path d="M24 188 C-12 172, -38 142, -48 104" stroke-width="5"/>
+        <path d="M64 198 C96 176, 132 168, 176 176" stroke-width="4"/>
+        <circle cx="18" cy="30" r="8" fill="#7af3ff"/>
+        <circle cx="74" cy="14" r="8" fill="#7af3ff"/>
+        <circle cx="144" cy="10" r="8" fill="#7af3ff"/>
+        <circle cx="206" cy="34" r="8" fill="#7af3ff"/>
+        <circle cx="-48" cy="104" r="8" fill="#7af3ff"/>
+      </g>
+    </g>
+
+    <g>
+      <rect x="154" y="120" width="176" height="42" rx="21" fill="rgba(8,17,31,0.72)" stroke="rgba(181,231,255,0.18)"/>
+      <text x="182" y="147" class="small">HAND TRACKING MVP</text>
+      <rect x="792" y="118" width="206" height="44" rx="22" fill="rgba(8,17,31,0.72)" stroke="rgba(181,231,255,0.18)"/>
+      <text x="820" y="146" class="small">NEON STEPS  •  LIVE RUN</text>
+    </g>
+
+    <g>
+      <text x="228" y="740" class="lane-label">C4</text>
+      <text x="412" y="740" class="lane-label">E4</text>
+      <text x="596" y="740" class="lane-label">G4</text>
+      <text x="780" y="740" class="lane-label">B4</text>
+    </g>
+  </g>
+
+  <g filter="url(#panel-shadow)">
+    <rect x="1110" y="104" width="374" height="176" rx="30" fill="rgba(7,16,31,0.76)" stroke="rgba(181,231,255,0.22)"/>
+    <rect x="1110" y="104" width="374" height="176" rx="30" fill="url(#panel-gradient)"/>
+    <text x="1140" y="136" class="eyebrow">Hand Tracking MVP</text>
+    <text x="1140" y="198" class="title" style="font-size:54px">Palm Synth</text>
+    <text x="1140" y="250" class="title" style="font-size:54px">Blaster</text>
+    <text x="1140" y="276" class="lede" style="font-size:19px">Right hand fires notes. Left hand boosts or pauses the run.</text>
+  </g>
+
+  <g filter="url(#panel-shadow)">
+    <rect x="1110" y="304" width="374" height="126" rx="28" fill="rgba(7,16,31,0.76)" stroke="rgba(181,231,255,0.22)"/>
+    <rect x="1110" y="304" width="374" height="126" rx="28" fill="url(#panel-gradient)"/>
+    <text x="1140" y="336" class="panel-title">Run Stats</text>
+    <text x="1140" y="370" class="stat-label">State</text>
+    <text x="1140" y="404" class="stat-value mono">Calibrated</text>
+    <text x="1290" y="370" class="stat-label">Score</text>
+    <text x="1290" y="404" class="stat-value mono">1280</text>
+    <text x="1394" y="370" class="stat-label">Combo</text>
+    <text x="1394" y="404" class="stat-value mono">12x</text>
+  </g>
+
+  <g filter="url(#panel-shadow)">
+    <rect x="1110" y="454" width="374" height="180" rx="28" fill="rgba(7,16,31,0.76)" stroke="rgba(181,231,255,0.22)"/>
+    <rect x="1110" y="454" width="374" height="180" rx="28" fill="url(#panel-gradient)"/>
+    <text x="1140" y="486" class="panel-title">Pitch Monitor</text>
+    <text x="1140" y="530" class="panel-value mono">A3  •  220 Hz</text>
+    <rect x="1140" y="552" width="314" height="18" rx="9" fill="rgba(255,255,255,0.12)"/>
+    <rect x="1140" y="552" width="204" height="18" rx="9" fill="url(#meter-gradient)"/>
+    <text x="1140" y="606" class="stat-label">Song</text>
+    <text x="1140" y="632" class="panel-copy">Neon Steps</text>
+    <text x="1296" y="606" class="stat-label">Beat</text>
+    <text x="1296" y="632" class="panel-copy mono">18 / 64</text>
+    <text x="1140" y="664" class="stat-label">Pose</text>
+    <text x="1140" y="690" class="panel-copy">R Tap / L Boost</text>
+  </g>
+
+  <g filter="url(#panel-shadow)">
+    <rect x="1110" y="658" width="374" height="146" rx="28" fill="rgba(7,16,31,0.76)" stroke="rgba(181,231,255,0.22)"/>
+    <rect x="1110" y="658" width="374" height="146" rx="28" fill="url(#panel-gradient)"/>
+    <text x="1140" y="690" class="panel-title">Controls</text>
+    <rect x="1140" y="714" width="150" height="42" rx="21" fill="#7af3ff"/>
+    <text x="1168" y="741" class="button-copy" fill="#08101d">Launch Demo</text>
+    <rect x="1306" y="714" width="148" height="42" rx="21" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.14)"/>
+    <text x="1331" y="741" class="button-copy" fill="#f7fbff">Mouse Mode</text>
+    <text x="1140" y="780" class="small">Three built-in songs, dual-hand calibration, realtime synth feedback.</text>
+  </g>
+
+  <g filter="url(#panel-shadow)">
+    <rect x="112" y="708" width="290" height="100" rx="24" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.09)"/>
+    <rect x="418" y="708" width="290" height="100" rx="24" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.09)"/>
+    <rect x="724" y="708" width="290" height="100" rx="24" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.09)"/>
+    <text x="140" y="744" class="card-label">Right Hand</text>
+    <text x="140" y="775" class="card-copy">Move left and right to change lane and pitch. Open to fire.</text>
+    <text x="446" y="744" class="card-label">Left Hand Open</text>
+    <text x="446" y="775" class="card-copy">Boost resonance, widen the hit window, and catch nearby lanes.</text>
+    <text x="752" y="744" class="card-label">Left Hand Fist</text>
+    <text x="752" y="775" class="card-copy">Pause the demo instantly, then release to resume the song.</text>
+  </g>
+</svg>

@@ -1,37 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
-import PixelRoom from './components/PixelRoom'
+import Experience3D from './components/Experience3D'
 import ProjectPanel from './components/ProjectPanel'
 import { projects } from './data/projects'
 
-const startPosition = {
-  x: 53,
-  y: 78,
-}
-
-const playerRadius = 2.35
-
-const walkablePolygon = [
-  { x: 18, y: 56 },
-  { x: 58, y: 39 },
-  { x: 86, y: 52 },
-  { x: 73, y: 84 },
-  { x: 26, y: 85 },
-]
-
-const blockingVolumes = [
-  { xMin: 16, xMax: 36, yMin: 57, yMax: 80 },
-  { xMin: 18, xMax: 27, yMin: 56, yMax: 65 },
-  { xMin: 50, xMax: 66, yMin: 40, yMax: 60 },
-  { xMin: 66, xMax: 74, yMin: 40, yMax: 61 },
-  { xMin: 77, xMax: 95, yMin: 58, yMax: 78 },
-  { xMin: 81, xMax: 88, yMin: 67, yMax: 77 },
-]
-
 const touchDirections = [
-  { id: 'forward', symbol: 'Up', label: 'Move up' },
-  { id: 'left', symbol: 'Left', label: 'Move left' },
-  { id: 'backward', symbol: 'Down', label: 'Move down' },
-  { id: 'right', symbol: 'Right', label: 'Move right' },
+  { id: 'forward', symbol: '↑', label: 'Move forward' },
+  { id: 'left', symbol: '←', label: 'Move left' },
+  { id: 'backward', symbol: '↓', label: 'Move backward' },
+  { id: 'right', symbol: '→', label: 'Move right' },
 ]
 
 function createInputState() {
@@ -40,6 +16,8 @@ function createInputState() {
     backward: false,
     left: false,
     right: false,
+    turnLeft: false,
+    turnRight: false,
   }
 }
 
@@ -48,91 +26,36 @@ function clearInputState(inputState) {
   inputState.backward = false
   inputState.left = false
   inputState.right = false
-}
-
-function clamp(value, min, max) {
-  return Math.min(Math.max(value, min), max)
-}
-
-function pointInPolygon(point, polygon) {
-  let isInside = false
-
-  for (let index = 0, previous = polygon.length - 1; index < polygon.length; previous = index, index += 1) {
-    const currentPoint = polygon[index]
-    const previousPoint = polygon[previous]
-    const intersects =
-      currentPoint.y > point.y !== previousPoint.y > point.y &&
-      point.x <
-        ((previousPoint.x - currentPoint.x) * (point.y - currentPoint.y)) / (previousPoint.y - currentPoint.y) +
-          currentPoint.x
-
-    if (intersects) {
-      isInside = !isInside
-    }
-  }
-
-  return isInside
-}
-
-function overlapsBlockingVolume(position) {
-  return blockingVolumes.some((volume) => {
-    const nearestX = clamp(position.x, volume.xMin, volume.xMax)
-    const nearestY = clamp(position.y, volume.yMin, volume.yMax)
-    return Math.hypot(position.x - nearestX, position.y - nearestY) < playerRadius
-  })
-}
-
-function isBlocked(position) {
-  if (!pointInPolygon(position, walkablePolygon)) {
-    return true
-  }
-
-  return overlapsBlockingVolume(position)
-}
-
-function findNearbyProject(playerPosition) {
-  let closestProject = null
-  let closestDistance = Number.POSITIVE_INFINITY
-
-  for (const project of projects) {
-    const accessPosition = project.accessPosition ?? project.roomPosition
-    const dx = playerPosition.x - accessPosition.x
-    const dy = (playerPosition.y - accessPosition.y) * 1.08
-    const distance = Math.hypot(dx, dy)
-
-    if (distance < closestDistance) {
-      closestDistance = distance
-      closestProject = project
-    }
-  }
-
-  if (closestDistance > 10.8) {
-    return null
-  }
-
-  return closestProject
+  inputState.turnLeft = false
+  inputState.turnRight = false
 }
 
 export default function App() {
   const movementRef = useRef(createInputState())
   const nearbyProjectRef = useRef(null)
-  const [selectedId, setSelectedId] = useState(null)
   const [hoveredId, setHoveredId] = useState(null)
-  const [playerPosition, setPlayerPosition] = useState(startPosition)
+  const [nearbyId, setNearbyId] = useState(null)
+  const [selectedId, setSelectedId] = useState(null)
   const [showRoomHints, setShowRoomHints] = useState(true)
 
-  const nearbyProject = findNearbyProject(playerPosition)
-  const activeId = hoveredId ?? selectedId ?? nearbyProject?.id ?? null
+  const nearbyProject = projects.find((project) => project.id === nearbyId) ?? null
   const selectedProject = projects.find((project) => project.id === selectedId) ?? null
+  const activeId = hoveredId ?? selectedId ?? nearbyId ?? null
 
   useEffect(() => {
-    nearbyProjectRef.current = nearbyProject?.id ?? null
-  }, [nearbyProject])
+    if (selectedId) {
+      clearInputState(movementRef.current)
+    }
+  }, [selectedId])
+
+  useEffect(() => {
+    nearbyProjectRef.current = nearbyId
+  }, [nearbyId])
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
       setShowRoomHints(false)
-    }, 2200)
+    }, 2800)
 
     return () => {
       window.clearTimeout(timeoutId)
@@ -140,94 +63,57 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    let animationFrameId = 0
-    let lastTimestamp = performance.now()
-
-    const updatePlayer = (timestamp) => {
-      const delta = Math.min((timestamp - lastTimestamp) / 16.67, 2.2)
-      lastTimestamp = timestamp
-
-      setPlayerPosition((previousPosition) => {
-        let targetX = previousPosition.x
-        let targetY = previousPosition.y
-        const speed = 0.52 * delta
-
-        if (movementRef.current.forward) {
-          targetY -= speed * 1.15
-        }
-
-        if (movementRef.current.backward) {
-          targetY += speed * 1.15
-        }
-
-        if (movementRef.current.left) {
-          targetX -= speed
-        }
-
-        if (movementRef.current.right) {
-          targetX += speed
-        }
-
-        targetX = clamp(targetX, 18, 86)
-        targetY = clamp(targetY, 34, 84)
-
-        let nextPosition = previousPosition
-
-        const xOnlyPosition = {
-          x: targetX,
-          y: previousPosition.y,
-        }
-
-        if (!isBlocked(xOnlyPosition)) {
-          nextPosition = xOnlyPosition
-        }
-
-        const yOnlyPosition = {
-          x: nextPosition.x,
-          y: targetY,
-        }
-
-        if (!isBlocked(yOnlyPosition)) {
-          nextPosition = yOnlyPosition
-        }
-
-        if (nextPosition.x === previousPosition.x && nextPosition.y === previousPosition.y) {
-          return previousPosition
-        }
-
-        return nextPosition
-      })
-
-      animationFrameId = window.requestAnimationFrame(updatePlayer)
-    }
-
-    animationFrameId = window.requestAnimationFrame(updatePlayer)
-
-    return () => {
-      window.cancelAnimationFrame(animationFrameId)
-    }
-  }, [])
-
-  useEffect(() => {
     const keyMap = {
-      ArrowUp: 'forward',
-      ArrowDown: 'backward',
-      ArrowLeft: 'left',
-      ArrowRight: 'right',
       KeyW: 'forward',
       KeyS: 'backward',
       KeyA: 'left',
       KeyD: 'right',
+      ArrowUp: 'forward',
+      ArrowDown: 'backward',
+      ArrowLeft: 'turnLeft',
+      ArrowRight: 'turnRight',
+      KeyQ: 'turnLeft',
+      KeyE: 'turnRight',
     }
 
     const handleKeyDown = (event) => {
+      const modifierKeys = new Set(['ShiftLeft', 'ShiftRight', 'ControlLeft', 'ControlRight', 'AltLeft', 'AltRight', 'MetaLeft', 'MetaRight'])
+
+      if (selectedId) {
+        if (modifierKeys.has(event.code)) {
+          return
+        }
+
+        setSelectedId(null)
+        setHoveredId(null)
+        event.preventDefault()
+        return
+      }
+
+      if (event.repeat && event.code !== 'KeyH') {
+        return
+      }
+
       if (event.code === 'KeyH') {
         setShowRoomHints((currentValue) => !currentValue)
         event.preventDefault()
         return
       }
 
+      if (event.code === 'Escape') {
+        setSelectedId(null)
+        setHoveredId(null)
+        event.preventDefault()
+        return
+      }
+
       if (event.code === 'Enter' || event.code === 'Space') {
+        if (hoveredId) {
+          setSelectedId(hoveredId)
+          event.preventDefault()
+          return
+        }
+
         if (nearbyProjectRef.current) {
           setSelectedId(nearbyProjectRef.current)
           event.preventDefault()
@@ -270,7 +156,7 @@ export default function App() {
       window.removeEventListener('keyup', handleKeyUp)
       window.removeEventListener('blur', handleBlur)
     }
-  }, [])
+  }, [hoveredId])
 
   const setDirection = (direction, pressed) => {
     movementRef.current[direction] = pressed
@@ -283,33 +169,44 @@ export default function App() {
   return (
     <main className="app-shell">
       <section className="experience-stage" aria-labelledby="room-portfolio-title">
-        <div className="scene-frame scene-frame-pixel">
+        <div className="scene-frame">
           <div className={`scene-copy${showRoomHints ? '' : ' is-muted'}`}>
-            <p className="eyebrow">Playable Profile Room</p>
-            <h1 id="room-portfolio-title">Walk the room.</h1>
+            <p className="eyebrow">3D Room Portfolio MVP</p>
+            <h1 id="room-portfolio-title">Walk the room, open the work.</h1>
+            <p>
+              Minimal playable demo inspired by Room Portfolio: six stations, keyboard movement, clickable project
+              cards, and a live room you can share instead of a static profile.
+            </p>
           </div>
 
           <div className={`scene-guide${showRoomHints ? '' : ' is-muted'}`} aria-label="Room controls">
-            <span>Move · WASD / Arrows</span>
-            <span>Open · Enter</span>
-            <span>Hints · H</span>
+            <span>Move: WASD</span>
+            <span>Turn: ← →</span>
+            <span>Interact: Enter / Click</span>
+            <span>Hints: H</span>
+            <span>Close card: any key</span>
           </div>
 
-          <PixelRoom
-            activeId={activeId}
-            nearbyId={nearbyProject?.id ?? null}
-            onHover={setHoveredId}
-            onSelect={openProject}
-            playerPosition={playerPosition}
-            projects={projects}
-            selectedId={selectedId}
-          />
+          <div className="scene-canvas-wrap">
+            <Experience3D
+              activeId={activeId}
+              inputState={movementRef.current}
+              nearbyId={nearbyId}
+              onClearSelection={() => setSelectedId(null)}
+              onHoverChange={setHoveredId}
+              onNearbyChange={setNearbyId}
+              onSelect={openProject}
+              projects={projects}
+              selectedId={selectedId}
+            />
+          </div>
 
           {nearbyProject ? (
-            <div className="interaction-banner" aria-live="polite">
-              <strong>{nearbyProject.roomLabel}</strong>
-              <span>Press Enter to open</span>
-            </div>
+            <button className="nearby-prompt" onClick={() => openProject(nearbyProject.id)} type="button">
+              <strong>{nearbyProject.stationLabel}</strong>
+              <span>{nearbyProject.shortLabel}</span>
+              <em>Enter or click</em>
+            </button>
           ) : null}
 
           <div className="mobile-pad" aria-label="Touch movement controls">
@@ -317,14 +214,16 @@ export default function App() {
               <button
                 key={direction.id}
                 aria-label={direction.label}
-                className={`pad-button pixel-pad pad-${direction.id}`}
+                className={`pad-button pad-${direction.id}`}
                 onPointerCancel={() => setDirection(direction.id, false)}
                 onPointerDown={(event) => {
+                  event.preventDefault()
                   event.stopPropagation()
                   setDirection(direction.id, true)
                 }}
                 onPointerLeave={() => setDirection(direction.id, false)}
                 onPointerUp={(event) => {
+                  event.preventDefault()
                   event.stopPropagation()
                   setDirection(direction.id, false)
                 }}
@@ -333,8 +232,9 @@ export default function App() {
                 {direction.symbol}
               </button>
             ))}
+
             <button
-              className="pad-button pixel-pad pad-action"
+              className="pad-button pad-action"
               disabled={!nearbyProject}
               onClick={() => {
                 if (nearbyProject) {
@@ -346,16 +246,10 @@ export default function App() {
               Open
             </button>
           </div>
+
+          <ProjectPanel onClose={() => setSelectedId(null)} project={selectedProject} />
         </div>
       </section>
-
-      <ProjectPanel
-        activeId={activeId}
-        onClose={() => setSelectedId(null)}
-        onSelect={openProject}
-        project={selectedProject}
-        projects={projects}
-      />
     </main>
   )
 }
