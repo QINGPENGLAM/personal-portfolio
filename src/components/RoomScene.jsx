@@ -22,10 +22,12 @@ const PLAYER_START = {
 }
 
 const OBSTACLES = [
-  { minX: -3.8, maxX: -1.55, minZ: -0.25, maxZ: 2.8 },
-  { minX: -2.55, maxX: -1.6, minZ: -0.2, maxZ: 0.9 },
-  { minX: 0.15, maxX: 1.75, minZ: -3.75, maxZ: -2.15 },
-  { minX: 1.7, maxX: 2.9, minZ: -3.35, maxZ: -1.35 },
+  { minX: -4.08, maxX: -1.02, minZ: 0.48, maxZ: 2.78 },
+  { minX: -3.72, maxX: -2.58, minZ: -3.42, maxZ: -2.64 },
+  { minX: -2.5, maxX: -1.88, minZ: -3.38, maxZ: -2.72 },
+  { minX: -1.85, maxX: -0.25, minZ: -3.75, maxZ: -2.15 },
+  { minX: -0.3, maxX: 0.9, minZ: -3.35, maxZ: -2.05 },
+  { minX: 3.42, maxX: 4.08, minZ: -2.72, maxZ: -2.02 },
   { minX: 2.65, maxX: 4.0, minZ: -1.35, maxZ: 2.2 },
   { minX: 2.15, maxX: 3.2, minZ: 1.2, maxZ: 2.45 },
 ]
@@ -42,18 +44,18 @@ function collides(x, z) {
   })
 }
 
-function Frame({ position, rotation = [0, 0, 0], scale = [1, 1, 1], tone = '#d6e5ea' }) {
+function Frame({ position, rotation = [0, 0, 0], scale = [1, 1, 1], tone = '#d6e5ea', mirrored = false }) {
   return (
     <group position={position} rotation={rotation} scale={scale}>
       <mesh>
         <boxGeometry args={[0.62, 0.86, 0.05]} />
-        <meshStandardMaterial color="#2e3745" />
+        <meshStandardMaterial color="#7a5e4c" />
       </mesh>
       <mesh position={[0, 0, 0.03]}>
         <boxGeometry args={[0.5, 0.74, 0.025]} />
         <meshStandardMaterial color="#f9fbfd" />
       </mesh>
-      <mesh position={[0.03, 0.04, 0.045]}>
+      <mesh position={[mirrored ? -0.03 : 0.03, 0.04, 0.045]}>
         <boxGeometry args={[0.2, 0.26, 0.01]} />
         <meshStandardMaterial color={tone} />
       </mesh>
@@ -327,7 +329,7 @@ export default function RoomScene({
         <meshStandardMaterial color="#edf1ff" emissive="#edf1ff" emissiveIntensity={0.18} />
       </mesh>
 
-      <group position={[-2.78, 0.6, 1.08]}>
+      <group position={[-2.56, 0.6, 1.62]} rotation={[0, Math.PI / 2, 0]}>
         <RoundedBox args={[2.15, 0.34, 3.1]} castShadow radius={0.05} receiveShadow>
           <meshStandardMaterial color="#424752" roughness={0.95} />
         </RoundedBox>
@@ -348,45 +350,55 @@ export default function RoomScene({
         </mesh>
       </group>
 
-      <group position={[-2.08, 0.72, -0.02]} {...lamp.eventHandlers}>
-        <InteractionMarker color={lamp.project.color} mode={lamp.mode} />
-        <RoundedBox args={[0.72, 0.58, 0.68]} castShadow radius={0.05} receiveShadow>
+      <group position={[-3.12, 0.29, -3.06]}>
+        <RoundedBox args={[0.98, 0.58, 0.72]} castShadow radius={0.05} receiveShadow>
           <meshStandardMaterial color="#f1f4f8" />
         </RoundedBox>
         <mesh castShadow position={[0, -0.06, 0.01]}>
-          <boxGeometry args={[0.58, 0.15, 0.52]} />
+          <boxGeometry args={[0.78, 0.15, 0.54]} />
           <meshStandardMaterial color="#2a2f39" />
         </mesh>
-        <mesh castShadow position={[-0.15, 0.26, -0.06]}>
-          <cylinderGeometry args={[0.06, 0.08, 0.28, 18]} />
+      </group>
+
+      <group position={[-2.18, 0, -3.06]} {...lamp.eventHandlers}>
+        <InteractionMarker color={lamp.project.color} mode={lamp.mode} position={[0, 0.08, 0]} />
+        <RoundedBox args={[0.48, 0.76, 0.48]} castShadow position={[0, 0.38, 0]} radius={0.05} receiveShadow>
+          <meshStandardMaterial color="#eef2f7" />
+        </RoundedBox>
+        <mesh castShadow position={[0, 0.8, 0]}>
+          <boxGeometry args={[0.38, 0.08, 0.38]} />
+          <meshStandardMaterial color="#f6f8fb" />
+        </mesh>
+        <mesh castShadow position={[-0.06, 0.98, -0.02]}>
+          <cylinderGeometry args={[0.06, 0.08, 0.32, 18]} />
           <meshStandardMaterial color="#141821" />
         </mesh>
-        <mesh castShadow position={[-0.15, 0.49, -0.06]}>
-          <sphereGeometry args={[0.15, 22, 22]} />
+        <mesh castShadow position={[-0.06, 1.24, -0.02]}>
+          <sphereGeometry args={[0.16, 22, 22]} />
           <meshStandardMaterial
             color="#f5e7ff"
             emissive={lamp.highlighted ? '#d59aff' : '#b772ff'}
             emissiveIntensity={lamp.highlighted ? 1.6 : 1.15}
           />
         </mesh>
-        <mesh castShadow position={[0.13, 0.22, 0.06]}>
-          <boxGeometry args={[0.15, 0.08, 0.15]} />
+        <mesh castShadow position={[-0.22, 0.84, 0.08]}>
+          <boxGeometry args={[0.14, 0.08, 0.14]} />
           <meshStandardMaterial color="#f0d35d" />
         </mesh>
-        <mesh castShadow position={[0.17, 0.16, -0.14]}>
+        <mesh castShadow position={[-0.18, 0.79, -0.13]}>
           <boxGeometry args={[0.08, 0.18, 0.08]} />
           <meshStandardMaterial color="#151920" />
         </mesh>
-        <mesh position={[0, 0.3, 0]} {...lamp.eventHandlers}>
-          <sphereGeometry args={[0.52, 14, 14]} />
+        <mesh position={[0, 0.98, 0]} {...lamp.eventHandlers}>
+          <sphereGeometry args={[0.56, 14, 14]} />
           <meshBasicMaterial opacity={0.001} transparent />
         </mesh>
         {lamp.highlighted ? <StationLabel project={lamp.project} /> : null}
       </group>
 
-      <group position={[-3.68, 1.9, 0.6]}>
-        <Frame position={[0, 0.34, -0.72]} tone="#d8e1df" />
-        <Frame position={[0.2, -0.9, -0.2]} tone="#d9d5f1" />
+      <group position={[-4.3, 1.88, 0.9]}>
+        <Frame position={[0, 0.34, 0]} rotation={[0, Math.PI / 2, 0]} tone="#d8e1df" mirrored />
+        <Frame position={[0, -0.9, 0.56]} rotation={[0, Math.PI / 2, 0]} tone="#d9d5f1" mirrored />
       </group>
 
       <group position={[-4.24, 1.74, -0.5]} rotation={[0, Math.PI / 2, 0]}>
@@ -399,7 +411,7 @@ export default function RoomScene({
           <meshStandardMaterial color="#90a8ae" opacity={0.72} transparent />
         </mesh>
       </group>
-      <group position={[-3.32, 0.86, -0.92]}>
+      <group position={[-3.12, 0.59, -3.02]}>
         <mesh castShadow position={[0, 0.05, 0]}>
           <cylinderGeometry args={[0.18, 0.24, 0.12, 16]} />
           <meshStandardMaterial color="#b97649" />
@@ -408,25 +420,25 @@ export default function RoomScene({
           <sphereGeometry args={[0.32, 18, 18]} />
           <meshStandardMaterial color="#4d9754" />
         </mesh>
-        <mesh castShadow position={[0.42, 0.2, -0.2]}>
+        <mesh castShadow position={[0.26, 0.2, -0.12]}>
           <cylinderGeometry args={[0.14, 0.18, 0.1, 16]} />
           <meshStandardMaterial color="#eceef2" />
         </mesh>
-        <mesh castShadow position={[0.42, 0.46, -0.2]}>
+        <mesh castShadow position={[0.26, 0.46, -0.12]}>
           <sphereGeometry args={[0.22, 18, 18]} />
           <meshStandardMaterial color="#89c286" />
         </mesh>
-        <mesh castShadow position={[0.54, 0.86, -0.28]} rotation={[0, 0, 0.35]}>
+        <mesh castShadow position={[0.36, 0.86, -0.18]} rotation={[0, 0, 0.35]}>
           <cylinderGeometry args={[0.015, 0.015, 0.6, 10]} />
           <meshStandardMaterial color="#8b6d63" />
         </mesh>
-        <mesh castShadow position={[0.62, 1.13, -0.34]}>
+        <mesh castShadow position={[0.42, 1.13, -0.24]}>
           <sphereGeometry args={[0.08, 14, 14]} />
           <meshStandardMaterial color="#d980bb" />
         </mesh>
       </group>
 
-      <group position={[0.95, 0, -3.1]} {...terrarium.eventHandlers}>
+      <group position={[-1.05, 0, -3.1]} {...terrarium.eventHandlers}>
         <InteractionMarker color={terrarium.project.color} mode={terrarium.mode} />
         <RoundedBox args={[1.46, 2.9, 0.72]} castShadow position={[0, 1.45, 0]} radius={0.08} receiveShadow>
           <meshStandardMaterial color="#f4f6f9" />
@@ -478,7 +490,7 @@ export default function RoomScene({
         {terrarium.highlighted ? <StationLabel project={terrarium.project} /> : null}
       </group>
 
-      <group position={[2.25, 0, -2.25]} {...bookshelf.eventHandlers}>
+      <group position={[0.25, 0, -3.05]} {...bookshelf.eventHandlers}>
         <InteractionMarker color={bookshelf.project.color} mode={bookshelf.mode} />
         <RoundedBox args={[1.15, 2.55, 0.65]} castShadow position={[0, 1.28, 0]} radius={0.06} receiveShadow>
           <meshStandardMaterial color="#f4f6fa" />
@@ -574,7 +586,7 @@ export default function RoomScene({
         </mesh>
       </group>
 
-      <group position={[3.35, 0, 0.15]}>
+      <group position={[3.72, 0, -3.15]} rotation={[0, -Math.PI / 2, 0]}>
         <mesh castShadow position={[-0.8, 0.88, 0.05]} {...kiosk.eventHandlers}>
           <InteractionMarker color={kiosk.project.color} mode={kiosk.mode} position={[0.02, -0.52, 0.02]} />
           <boxGeometry args={[0.72, 1.2, 0.56]} />
@@ -599,13 +611,13 @@ export default function RoomScene({
         {kiosk.highlighted ? <StationLabel project={kiosk.project} /> : null}
       </group>
 
-      <group position={[3.98, 1.92, -0.38]} rotation={[0, -Math.PI / 2, 0]} {...gallery.eventHandlers}>
-        <InteractionMarker color={gallery.project.color} groundRing={false} mode={gallery.mode} position={[0.12, 0.12, 0.62]} />
-        <Frame position={[0, 0.34, -0.48]} rotation={[0, 0, 0]} scale={[0.8, 0.8, 1]} tone="#d7e3e9" />
-        <Frame position={[0, -0.28, 0.12]} rotation={[0, 0, 0]} scale={[0.8, 0.8, 1]} tone="#eadabf" />
-        <Frame position={[0, 0.1, 0.66]} rotation={[0, 0, 0]} scale={[0.8, 0.8, 1]} tone="#d8d4f4" />
-        <mesh position={[0, 0.04, 0.12]} {...gallery.eventHandlers}>
-          <boxGeometry args={[0.72, 2.2, 3.0]} />
+      <group position={[1.75, 1.92, -3.66]} {...gallery.eventHandlers}>
+        <InteractionMarker color={gallery.project.color} groundRing={false} mode={gallery.mode} position={[0.34, 0.12, 0.18]} />
+        <Frame position={[-0.56, 0.26, 0]} tone="#d7e3e9" />
+        <Frame position={[0.02, -0.16, 0]} scale={[0.82, 0.82, 1]} tone="#eadabf" />
+        <Frame position={[0.6, 0.14, 0]} scale={[0.76, 0.76, 1]} tone="#d8d4f4" />
+        <mesh position={[0.04, 0.06, 0.12]} {...gallery.eventHandlers}>
+          <boxGeometry args={[1.95, 1.8, 0.4]} />
           <meshBasicMaterial opacity={0.001} transparent />
         </mesh>
         {gallery.highlighted ? <StationLabel project={gallery.project} /> : null}

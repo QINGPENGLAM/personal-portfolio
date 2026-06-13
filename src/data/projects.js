@@ -30,7 +30,7 @@ export const projects = [
     period: 'GitHub MVP · June 2026',
     location: 'Local simulation + room memory + multi-room state',
     color: '#97e59d',
-    scenePosition: [0.95, 1.58, -3.02],
+    scenePosition: [-1.05, 1.58, -3.02],
     summary:
       'A fully local AI Town-style social simulation MVP with three characters, one scene, stored memory, daily story updates, and player chat that changes later NPC behavior.',
     previewAlt: 'AI Town NPC social game MVP screenshot',
@@ -54,7 +54,7 @@ export const projects = [
     period: 'Aug. 2024 - June 2025',
     location: 'Michigan Hillel · Ann Arbor, MI',
     color: '#f0d277',
-    scenePosition: [2.25, 1.45, -2.26],
+    scenePosition: [0.25, 1.45, -3.05],
     summary:
       'Built automated ETL pipelines in Python, pandas, NumPy, and SQL to clean, transform, and validate operational data while reducing reporting errors.',
     highlights: [
@@ -68,12 +68,12 @@ export const projects = [
     id: 'handmotion-lamp',
     title: 'Palm Synth Blaster',
     shortLabel: 'Palm Synth',
-    stationLabel: 'Bedside Lamp',
+    stationLabel: 'Synth Lamp',
     category: 'Project',
     period: 'GitHub MVP · June 2026',
     location: 'MediaPipe Hands + Web Audio + browser game loop',
     color: '#d7a6ff',
-    scenePosition: [-2.26, 0.92, 0.46],
+    scenePosition: [-2.18, 1.18, -3.02],
     summary:
       'A playable hand-tracking instrument and arcade experiment where hand poses control pitch, firing, pause states, and a camera-free fallback keeps the demo usable anywhere.',
     previewAlt: 'Palm Synth Blaster demo illustration',
@@ -97,7 +97,7 @@ export const projects = [
     period: 'Aug. 2025 - Present',
     location: 'University of Michigan ISR · Ann Arbor, MI',
     color: '#8be7dd',
-    scenePosition: [3.58, 2.05, -0.38],
+    scenePosition: [1.75, 2.05, -1.95],
     summary:
       'Designed, built, and deployed REST APIs and data dashboards that process structured datasets and support more than 200 stakeholders.',
     highlights: [
@@ -116,7 +116,7 @@ export const projects = [
     period: 'Portfolio archive',
     location: 'Unity3D + interactive storytelling',
     color: '#84ddab',
-    scenePosition: [2.66, 1.02, 1.86],
+    scenePosition: [3.77, 1.02, -2.35],
     summary:
       'An early 3D prototype in Unity exploring how art history could be taught through movement, visual discovery, and game-like interaction.',
     highlights: [
