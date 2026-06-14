@@ -1,3 +1,5 @@
+const asset = (path) => `${import.meta.env.BASE_URL}${path}`.replace(/([^:]\/)\/+/g, '$1')
+
 export const projects = [
   {
     id: 'usaa-monitor',
@@ -13,7 +15,7 @@ export const projects = [
       'Built MCP-based internal tooling and reusable AI workflow skills to automate log retrieval, error triage, root cause analysis, code support, and Git/MR handoff flows.',
     previewAlt: 'AutoPoster workflow demo preview',
     previewFit: 'contain',
-    previewSrc: '/project-previews/autoposter.svg',
+    previewSrc: asset('project-previews/autoposter.svg'),
     highlights: [
       'Designed reusable workflow modules that turned repeated developer support tasks into maintainable automation.',
       'Built a custom MCP server so internal engineering tools could be surfaced through one stable interface.',
@@ -35,7 +37,7 @@ export const projects = [
       'A fully local AI Town-style social simulation MVP with three characters, one scene, stored memory, daily story updates, and player chat that changes later NPC behavior.',
     previewAlt: 'AI Town NPC social game MVP screenshot',
     previewFit: 'cover',
-    previewSrc: '/project-previews/ai-town.png',
+    previewSrc: asset('project-previews/ai-town.png'),
     highlights: [
       'Runs without paid API calls by using a local story template engine and persisted room state.',
       'Stores world progress locally so reloads and restarts do not wipe the town state.',
@@ -78,7 +80,7 @@ export const projects = [
       'A playable hand-tracking instrument and arcade experiment where hand poses control pitch, firing, pause states, and a camera-free fallback keeps the demo usable anywhere.',
     previewAlt: 'Palm Synth Blaster demo illustration',
     previewFit: 'contain',
-    previewSrc: '/project-previews/palm-synth.svg',
+    previewSrc: asset('project-previews/palm-synth.svg'),
     highlights: [
       'Uses MediaPipe Hands and Web Audio for direct movement-to-sound feedback.',
       'Includes a startup calibration flow plus a mouse fallback for restricted environments.',

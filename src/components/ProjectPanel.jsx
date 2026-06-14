@@ -1,4 +1,4 @@
-export default function ProjectPanel({ onClose, project }) {
+export default function ProjectPanel({ dismissHint = 'Press Esc to close', onClose, project }) {
   if (!project) {
     return null
   }
@@ -71,7 +71,7 @@ export default function ProjectPanel({ onClose, project }) {
         </section>
 
         <section className="panel-section panel-actions">
-          <div className="panel-dismiss-hint">Press any key to close</div>
+          <div className="panel-dismiss-hint">{dismissHint}</div>
           {project.repoUrl ? (
             <a className="panel-link" href={project.repoUrl} rel="noreferrer" target="_blank">
               {project.repoLabel ?? 'View Project'}
