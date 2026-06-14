@@ -121,6 +121,9 @@ export const projects = [
     scenePosition: [3.77, 1.02, -2.35],
     summary:
       'An early 3D prototype in Unity exploring how art history could be taught through movement, visual discovery, and game-like interaction.',
+    previewAlt: 'Art History RPG Unity gameplay screenshot',
+    previewFit: 'cover',
+    previewSrc: asset('project-previews/art-history-rpg.png'),
     highlights: [
       'Explored cameras, lighting, textures, interaction, and educational pacing inside a 3D space.',
       'Used the project to test whether historical learning could feel more immersive through spatial storytelling.',

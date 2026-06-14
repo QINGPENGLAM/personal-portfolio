@@ -39,22 +39,42 @@ function PortfolioParticleField() {
 
     let animationFrameId = 0
     let particles = []
+    const palette = [
+      [243, 199, 95],
+      [140, 180, 255],
+      [110, 228, 255],
+      [196, 156, 255],
+      [255, 148, 122],
+      [142, 228, 197],
+    ]
 
-    const createParticle = (width, height) => ({
-      opacity: Math.random() * 0.45 + 0.16,
-      radius: Math.random() * 1.8 + 0.7,
-      speedX: (Math.random() - 0.5) * 0.18,
-      speedY: Math.random() * 0.18 + 0.06,
-      x: Math.random() * width,
-      y: Math.random() * height,
-    })
+    const createParticle = (width, height) => {
+      const [red, green, blue] = palette[Math.floor(Math.random() * palette.length)]
+
+      return {
+        baseOpacity: Math.random() * 0.32 + 0.16,
+        drift: Math.random() * 0.55 + 0.2,
+        pulseOffset: Math.random() * Math.PI * 2,
+        pulseSpeed: Math.random() * 0.02 + 0.008,
+        radius: Math.random() * 2 + 0.75,
+        red,
+        green,
+        blue,
+        speedX: (Math.random() - 0.5) * 0.22,
+        speedY: Math.random() * 0.16 + 0.04,
+        swayOffset: Math.random() * Math.PI * 2,
+        swaySpeed: Math.random() * 0.018 + 0.005,
+        x: Math.random() * width,
+        y: Math.random() * height,
+      }
+    }
 
     const resizeCanvas = () => {
       const rect = canvas.getBoundingClientRect()
       const width = Math.max(rect.width, 1)
       const height = Math.max(rect.height, 1)
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
-      const particleCount = width < 768 ? 34 : 58
+      const particleCount = width < 768 ? 42 : 74
 
       canvas.width = width * dpr
       canvas.height = height * dpr
@@ -65,12 +85,19 @@ function PortfolioParticleField() {
     const renderFrame = () => {
       const width = canvas.width / Math.min(window.devicePixelRatio || 1, 2)
       const height = canvas.height / Math.min(window.devicePixelRatio || 1, 2)
+      const time = window.performance.now() * 0.0018
 
       context.clearRect(0, 0, width, height)
+      context.globalCompositeOperation = 'screen'
 
-      particles.forEach((particle, index) => {
-        particle.x += particle.speedX
-        particle.y += particle.speedY
+      particles.forEach((particle) => {
+        const swayX = Math.sin(time * (particle.swaySpeed * 90) + particle.swayOffset) * particle.drift
+        const swayY = Math.cos(time * (particle.swaySpeed * 72) + particle.swayOffset) * particle.drift * 0.35
+        const shimmer = 0.76 + Math.sin(time * (particle.pulseSpeed * 120) + particle.pulseOffset) * 0.24
+        const opacity = Math.min(0.92, particle.baseOpacity * shimmer + 0.08)
+
+        particle.x += particle.speedX + swayX * 0.08
+        particle.y += particle.speedY + swayY * 0.05
 
         if (particle.x < -8) {
           particle.x = width + 8
@@ -83,12 +110,16 @@ function PortfolioParticleField() {
           particle.x = Math.random() * width
         }
 
-        context.fillStyle = index % 9 === 0 ? `rgba(243, 199, 95, ${particle.opacity})` : `rgba(255, 255, 255, ${particle.opacity})`
+        context.shadowBlur = particle.radius * (4.2 + shimmer * 4.5)
+        context.shadowColor = `rgba(${particle.red}, ${particle.green}, ${particle.blue}, ${opacity * 0.85})`
+        context.fillStyle = `rgba(${particle.red}, ${particle.green}, ${particle.blue}, ${opacity})`
         context.beginPath()
         context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2)
         context.fill()
       })
 
+      context.shadowBlur = 0
+      context.globalCompositeOperation = 'source-over'
       animationFrameId = window.requestAnimationFrame(renderFrame)
     }
 
@@ -289,6 +320,7 @@ export default function ClassicPortfolio({ onOpenProject, onSwitchToRoom, projec
     <div className="portfolio-page-shell">
       <PortfolioParticleField />
       <div aria-hidden="true" className="portfolio-page-aura is-left" />
+      <div aria-hidden="true" className="portfolio-page-aura is-center" />
       <div aria-hidden="true" className="portfolio-page-aura is-right" />
 
       <div className="portfolio-page">
@@ -319,6 +351,7 @@ export default function ClassicPortfolio({ onOpenProject, onSwitchToRoom, projec
 
         <section {...interactiveSurfaceProps} className="portfolio-name-hero glass-surface interactive-surface" id="overview">
           <div aria-hidden="true" className="portfolio-hero-glow is-primary" />
+          <div aria-hidden="true" className="portfolio-hero-glow is-tertiary" />
           <div aria-hidden="true" className="portfolio-hero-glow is-secondary" />
           <div className="portfolio-name-stage">
             <div className="portfolio-hero-copy-stack">
@@ -397,7 +430,7 @@ export default function ClassicPortfolio({ onOpenProject, onSwitchToRoom, projec
         <section aria-label="Portfolio highlights" className="portfolio-stat-grid">
           <article {...interactiveSurfaceProps} className="portfolio-stat-card glass-surface interactive-surface">
             <strong>{allProjectCount}</strong>
-            <span>projects across current builds, resume work, and selected archive pieces</span>
+            <span>projects across current work and past builds</span>
           </article>
           <article {...interactiveSurfaceProps} className="portfolio-stat-card glass-surface interactive-surface">
             <strong>{allExperienceCount}</strong>
@@ -405,7 +438,7 @@ export default function ClassicPortfolio({ onOpenProject, onSwitchToRoom, projec
           </article>
           <article {...interactiveSurfaceProps} className="portfolio-stat-card glass-surface interactive-surface">
             <strong>{portfolioOnlyProjects.length}</strong>
-            <span>portfolio-only additions pulled forward from resume and earlier site versions</span>
+            <span>additional archived and resume projects</span>
           </article>
         </section>
 
@@ -413,18 +446,13 @@ export default function ClassicPortfolio({ onOpenProject, onSwitchToRoom, projec
           <div className="portfolio-section-heading">
             <div>
               <p className="eyebrow">Experience</p>
-              <h2>Professional work with stronger resume context.</h2>
+              <h2>Selected Experience</h2>
             </div>
-            <p>
-              I pulled these entries from the current portfolio, older pages, the resume, and the USAA experience
-              notes so this version reads more like a standard professional site.
-            </p>
           </div>
 
           <div className="portfolio-subsection">
             <div className="portfolio-subsection-heading">
               <h3>Recent Roles</h3>
-              <p>Current and recent engineering roles with product, data, and automation emphasis.</p>
             </div>
 
             <div className="portfolio-timeline">
@@ -437,7 +465,6 @@ export default function ClassicPortfolio({ onOpenProject, onSwitchToRoom, projec
           <div className="portfolio-subsection">
             <div className="portfolio-subsection-heading">
               <h3>Earlier Experience</h3>
-              <p>Research, operations, museum, and education roles that still shape how I work with people and systems.</p>
             </div>
 
             <div className="portfolio-timeline">
@@ -452,18 +479,13 @@ export default function ClassicPortfolio({ onOpenProject, onSwitchToRoom, projec
           <div className="portfolio-section-heading">
             <div>
               <p className="eyebrow">Projects</p>
-              <h2>Current interactive builds plus portfolio-only archive work.</h2>
+              <h2>Selected Projects</h2>
             </div>
-            <p>
-              The 3D room still focuses on a smaller set of interactive stations, while this page can carry the broader
-              project history.
-            </p>
           </div>
 
           <div className="portfolio-subsection">
             <div className="portfolio-subsection-heading">
-              <h3>Current Interactive Builds</h3>
-              <p>These are the projects still tied to the main interactive portfolio experience.</p>
+              <h3>Featured Projects</h3>
             </div>
 
             <div className="portfolio-project-grid">
@@ -475,8 +497,7 @@ export default function ClassicPortfolio({ onOpenProject, onSwitchToRoom, projec
 
           <div className="portfolio-subsection">
             <div className="portfolio-subsection-heading">
-              <h3>Additional Product and Web Projects</h3>
-              <p>Resume projects and selected older builds that only need to live on the standard portfolio page.</p>
+              <h3>More Projects</h3>
             </div>
 
             <div className="portfolio-project-grid">
