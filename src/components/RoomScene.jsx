@@ -27,6 +27,7 @@ const OBSTACLES = [
   { minX: -2.5, maxX: -1.88, minZ: -3.38, maxZ: -2.72 },
   { minX: -1.85, maxX: -0.25, minZ: -3.75, maxZ: -2.15 },
   { minX: -0.3, maxX: 0.9, minZ: -3.35, maxZ: -2.05 },
+  { minX: 0.96, maxX: 1.74, minZ: 1.36, maxZ: 2.04 },
   { minX: 3.42, maxX: 4.08, minZ: -2.72, maxZ: -2.02 },
   { minX: 2.65, maxX: 4.0, minZ: -1.35, maxZ: 2.2 },
   { minX: 2.15, maxX: 3.2, minZ: 1.2, maxZ: 2.45 },
@@ -262,6 +263,7 @@ export default function RoomScene({
 
   const terrarium = stationState('ai-town-terrarium')
   const bookshelf = stationState('hillel-bookshelf')
+  const photoDock = stationState('private-album-search')
   const monitor = stationState('usaa-monitor')
   const lamp = stationState('handmotion-lamp')
   const gallery = stationState('isr-gallery')
@@ -524,6 +526,64 @@ export default function RoomScene({
           <meshBasicMaterial opacity={0.001} transparent />
         </mesh>
         {bookshelf.highlighted ? <StationLabel project={bookshelf.project} /> : null}
+      </group>
+
+      <group position={[1.35, 0, 1.72]} rotation={[0, -0.42, 0]} {...photoDock.eventHandlers}>
+        <InteractionMarker color={photoDock.project.color} mode={photoDock.mode} position={[0, 0.02, 0.06]} />
+        <RoundedBox args={[0.94, 0.14, 0.94]} castShadow position={[0, 0.07, 0]} radius={0.05} receiveShadow>
+          <meshStandardMaterial color="#eff3f7" />
+        </RoundedBox>
+        <RoundedBox args={[0.42, 0.92, 0.42]} castShadow position={[0, 0.53, 0.02]} radius={0.05} receiveShadow>
+          <meshStandardMaterial color="#f4f7fb" />
+        </RoundedBox>
+        <mesh castShadow position={[0, 1.08, -0.08]}>
+          <boxGeometry args={[0.86, 0.12, 0.54]} />
+          <meshStandardMaterial color="#f6f8fb" />
+        </mesh>
+        <mesh castShadow position={[0, 1.44, -0.12]}>
+          <boxGeometry args={[0.82, 0.82, 0.08]} />
+          <meshStandardMaterial color="#fbfcfd" />
+        </mesh>
+        <mesh castShadow position={[0, 1.44, -0.06]}>
+          <boxGeometry args={[0.66, 0.64, 0.03]} />
+          <meshStandardMaterial
+            color={photoDock.highlighted ? '#436b51' : '#587767'}
+            emissive={photoDock.highlighted ? '#90c79d' : '#4d775b'}
+            emissiveIntensity={photoDock.highlighted ? 0.82 : 0.32}
+          />
+        </mesh>
+        {[
+          [-0.16, 1.56, -0.03, '#e7d1a0'],
+          [0.12, 1.56, -0.03, '#d5e4cf'],
+          [-0.16, 1.34, -0.03, '#8eb77a'],
+          [0.12, 1.34, -0.03, '#516982'],
+        ].map(([x, y, z, color]) => (
+          <mesh castShadow key={`${x}-${y}-${color}`} position={[x, y, z]}>
+            <boxGeometry args={[0.2, 0.16, 0.014]} />
+            <meshStandardMaterial color={color} />
+          </mesh>
+        ))}
+        <mesh castShadow position={[-0.19, 1.08, 0.14]}>
+          <boxGeometry args={[0.16, 0.05, 0.16]} />
+          <meshStandardMaterial color="#e0ead7" />
+        </mesh>
+        <mesh castShadow position={[0.02, 1.1, 0.12]}>
+          <boxGeometry args={[0.18, 0.05, 0.18]} />
+          <meshStandardMaterial color="#f0dfb9" />
+        </mesh>
+        <mesh castShadow position={[0.24, 1.1, 0.12]}>
+          <cylinderGeometry args={[0.065, 0.065, 0.08, 18]} />
+          <meshStandardMaterial color="#27313a" />
+        </mesh>
+        <mesh castShadow position={[0.24, 1.1, 0.17]}>
+          <cylinderGeometry args={[0.032, 0.032, 0.03, 18]} />
+          <meshStandardMaterial color="#90b39a" />
+        </mesh>
+        <mesh position={[0, 1.22, 0]} {...photoDock.eventHandlers}>
+          <boxGeometry args={[0.98, 1.72, 0.92]} />
+          <meshBasicMaterial opacity={0.001} transparent />
+        </mesh>
+        {photoDock.highlighted ? <StationLabel project={photoDock.project} /> : null}
       </group>
 
       <group position={[3.3, 0, 0.05]}>

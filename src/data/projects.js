@@ -24,6 +24,28 @@ export const projects = [
     stack: ['MCP Servers', 'AI Skills', 'Internal Tooling', 'Git Workflows'],
   },
   {
+    id: 'private-album-search',
+    title: 'Private Album AI Search MVP',
+    shortLabel: 'Album AI',
+    stationLabel: 'Photo Dock',
+    category: 'Project',
+    period: 'Local MVP · June 2026',
+    location: 'Node/Express + AI captions + month-based browsing',
+    color: '#97c98d',
+    scenePosition: [1.35, 0.92, 1.72],
+    summary:
+      'A local-first photo library inspired by Immich that auto-generates captions and tags, groups images by month, and supports text, tag, and category search without a heavy multi-service stack.',
+    previewAlt: 'Private Album AI Search MVP interface preview',
+    previewFit: 'contain',
+    previewSrc: asset('project-previews/private-album-ai-search.svg'),
+    highlights: [
+      'Turns local uploads into thumbnails, EXIF-aware month groups, and AI-generated captions and tags.',
+      'Supports natural-language search plus exact `tag:` and `category:` filters for faster browsing.',
+      'Handles real iPhone HEIC batches on macOS, skips exact duplicates by SHA-256, and lets users delete items from the library grid.',
+    ],
+    stack: ['Node.js', 'Express', 'Hugging Face', 'Photo Search'],
+  },
+  {
     id: 'ai-town-terrarium',
     title: 'AI Town NPC Social Game MVP',
     shortLabel: 'AI Town',

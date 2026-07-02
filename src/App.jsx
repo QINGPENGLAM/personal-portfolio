@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import ClassicPortfolio from './components/ClassicPortfolio'
 import Experience3D from './components/Experience3D'
 import ProjectPanel from './components/ProjectPanel'
+import StudioPortfolio from './components/StudioPortfolio'
 import { projects } from './data/projects'
 
 const touchDirections = [
@@ -44,6 +45,15 @@ function ViewSwitcher({ onChange, viewMode }) {
         Portfolio
       </button>
       <button
+        aria-selected={viewMode === 'studio'}
+        className={`view-switcher-button${viewMode === 'studio' ? ' is-active' : ''}`}
+        onClick={() => onChange('studio')}
+        role="tab"
+        type="button"
+      >
+        Studio
+      </button>
+      <button
         aria-selected={viewMode === 'room'}
         className={`view-switcher-button${viewMode === 'room' ? ' is-active' : ''}`}
         onClick={() => onChange('room')}
@@ -66,6 +76,7 @@ export default function App() {
   const [viewMode, setViewMode] = useState('portfolio')
 
   const isRoomView = viewMode === 'room'
+  const isStudioView = viewMode === 'studio'
   const nearbyProject = projects.find((project) => project.id === nearbyId) ?? null
   const selectedProject = projects.find((project) => project.id === selectedId) ?? null
   const activeId = hoveredId ?? selectedId ?? nearbyId ?? null
@@ -247,7 +258,7 @@ export default function App() {
   }
 
   return (
-    <main className={`app-shell${isRoomView ? ' is-room' : ' is-portfolio'}`}>
+    <main className={`app-shell is-${viewMode}`}>
       <ViewSwitcher onChange={switchViewMode} viewMode={viewMode} />
 
       {isRoomView ? (
@@ -331,6 +342,12 @@ export default function App() {
             </div>
           </div>
         </section>
+      ) : isStudioView ? (
+        <StudioPortfolio
+          onOpenProject={openProject}
+          onSwitchToRoom={() => switchViewMode('room')}
+          projects={projects}
+        />
       ) : (
         <ClassicPortfolio onOpenProject={openProject} onSwitchToRoom={() => switchViewMode('room')} projects={projects} />
       )}
