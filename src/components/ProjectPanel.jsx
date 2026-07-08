@@ -1,7 +1,11 @@
+import { getProjectLinks } from '../utils/projectLinks'
+
 export default function ProjectPanel({ dismissHint = 'Press Esc to close', onClose, project }) {
   if (!project) {
     return null
   }
+
+  const projectLinks = getProjectLinks(project)
 
   return (
     <div
@@ -72,10 +76,14 @@ export default function ProjectPanel({ dismissHint = 'Press Esc to close', onClo
 
         <section className="panel-section panel-actions">
           <div className="panel-dismiss-hint">{dismissHint}</div>
-          {project.repoUrl ? (
-            <a className="panel-link" href={project.repoUrl} rel="noreferrer" target="_blank">
-              {project.repoLabel ?? 'View Project'}
-            </a>
+          {projectLinks.length ? (
+            <div className="panel-link-row">
+              {projectLinks.map((link) => (
+                <a className="panel-link" href={link.href} key={link.href} rel="noreferrer" target="_blank">
+                  {link.label}
+                </a>
+              ))}
+            </div>
           ) : null}
         </section>
       </aside>

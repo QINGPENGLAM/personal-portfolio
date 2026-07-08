@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { portfolioExperience, portfolioOnlyProjects } from '../data/portfolioArchive'
 import { profile } from '../data/profile'
+import { getProjectLinks } from '../utils/projectLinks'
 
 function updateInteractiveSurface(event) {
   const bounds = event.currentTarget.getBoundingClientRect()
@@ -137,6 +138,8 @@ function PortfolioParticleField() {
 }
 
 function FeaturedProjectCard({ onOpenProject, project }) {
+  const projectLinks = getProjectLinks(project)
+
   return (
     <article
       {...interactiveSurfaceProps}
@@ -181,11 +184,11 @@ function FeaturedProjectCard({ onOpenProject, project }) {
             View details
           </button>
 
-          {project.repoUrl ? (
-            <a className="portfolio-card-link" href={project.repoUrl} rel="noreferrer" target="_blank">
-              {project.repoLabel ?? 'Open link'}
+          {projectLinks.map((link) => (
+            <a className="portfolio-card-link" href={link.href} key={link.href} rel="noreferrer" target="_blank">
+              {link.label}
             </a>
-          ) : null}
+          ))}
         </div>
       </div>
     </article>
@@ -497,7 +500,7 @@ export default function ClassicPortfolio({ onOpenProject, onSwitchToRoom, projec
 
           <div className="portfolio-subsection">
             <div className="portfolio-subsection-heading">
-              <h3>More Projects</h3>
+              <h3>GitHub Archive + Additional Work</h3>
             </div>
 
             <div className="portfolio-project-grid">

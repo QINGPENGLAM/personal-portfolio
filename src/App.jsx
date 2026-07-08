@@ -91,6 +91,7 @@ export default function App() {
       return
     }
 
+    window.scrollTo(0, 0)
     clearInputState(movementRef.current)
     setHoveredId(null)
     setNearbyId(null)
@@ -259,7 +260,7 @@ export default function App() {
 
   return (
     <main className={`app-shell is-${viewMode}`}>
-      <ViewSwitcher onChange={switchViewMode} viewMode={viewMode} />
+      {isStudioView ? null : <ViewSwitcher onChange={switchViewMode} viewMode={viewMode} />}
 
       {isRoomView ? (
         <section className="experience-stage" aria-labelledby="room-portfolio-title">
@@ -345,6 +346,7 @@ export default function App() {
       ) : isStudioView ? (
         <StudioPortfolio
           onOpenProject={openProject}
+          onSwitchToPortfolio={() => switchViewMode('portfolio')}
           onSwitchToRoom={() => switchViewMode('room')}
           projects={projects}
         />
