@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">QingPeng Lam monogram</title>
+  <rect width="64" height="64" rx="17" fill="#0a1426"/>
+  <path d="M17 34c0-10 6-17 15-17s15 7 15 17-6 17-15 17-15-7-15-17Z" fill="none" stroke="#8f7cff" stroke-width="5"/>
+  <path d="m35 40 12 11M32 17v22h13" fill="none" stroke="#72e6ff" stroke-linecap="round" stroke-width="5"/>
+</svg>

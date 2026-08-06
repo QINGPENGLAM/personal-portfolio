@@ -1,22 +1,43 @@
 {
-  "name": "room-portfolio-mvp",
+  "name": "qingpeng-lam-portfolio",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.1.0",
   "type": "module",
+  "engines": {
+    "node": "^20.19.0 || ^22.13.0 || >=24"
+  },
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0"
+    "audit:budgets": "node scripts/check-static-budgets.mjs",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint app components data e2e lib scripts server tests next.config.ts playwright.config.ts vitest.config.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "npm run test:e2e:core && npm run test:e2e:world",
+    "test:e2e:core": "playwright test",
+    "test:e2e:world": "PLAYWRIGHT_WORLD=1 playwright test --project=chromium --grep \"opens a project from the interactive world\"",
+    "test:e2e:chromium": "playwright test --project=chromium"
   },
   "dependencies": {
-    "@react-three/drei": "^9.99.0",
-    "@react-three/fiber": "^8.15.16",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "three": "^0.164.1"
+    "@react-three/drei": "10.7.7",
+    "@react-three/fiber": "9.7.0",
+    "next": "16.3.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "three": "0.182.0",
+    "zod": "4.4.3"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "4.2.1",
-    "vite": "5.1.0"
+    "@axe-core/playwright": "^4.12.1",
+    "@playwright/test": "^1.62.1",
+    "@types/node": "26.1.2",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.3",
+    "@types/three": "0.182.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.0",
+    "typescript": "5.9.3",
+    "vitest": "4.1.10"
   }
 }
