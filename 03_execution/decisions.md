@@ -1,5 +1,18 @@
 # Decisions
 
+## Public repository codebase audit
+
+- Define the publishable audit boundary as the 39 currently public source repositories; do not expose or summarize authenticated private repository inventory in a public portfolio artifact.
+- Treat the default-branch README and authored source as separate evidence. A README can guide inspection but cannot substitute for missing implementation.
+- Keep source-derived understanding distinct from runtime certification: the audit does not claim that every historical Unity, C++, React, or static project was rebuilt in its original environment.
+- Preserve course exercises and early experiments in the searchable archive while concentrating recruiter attention on five evidence-rich public projects.
+- Classify `project-0007-personal-ai-workbench` as an Open WebUI evaluation and `project-0009-montage-product-video-generator` as an artifact/evidence repository until public authored implementation proves a stronger claim.
+- Treat correctness and evidence repair as higher priority than cosmetic README work when promoting `myOwnRedis`, the Montage artifact repository, empty duplicates, or visibly broken controls.
+- Record the 2026-08-11 public portfolio HTTP/title/Next.js check separately from the still-dated 2026-08-06 repository metadata and project live-link snapshot.
+- Use the Codex project registry as the deeper internal source of truth when it exists, while continuing to judge recruiter inspectability from the public repository; local code can validate a project without silently becoming public evidence.
+- Publish missing READMEs through one-file draft pull requests so historical code remains untouched and each repository description can be reviewed independently.
+- Allow a direct first `main` commit only for the empty `UnityKitchenGame` repository because no base commit exists from which GitHub could create a pull request; keep that README explicitly limited to placeholder status.
+
 ## Phase 10
 
 - Derive repository insights from the validated local snapshot with pure deterministic functions; do not introduce a charting dependency or runtime GitHub request for simple counts.

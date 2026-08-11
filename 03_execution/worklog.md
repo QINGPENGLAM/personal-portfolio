@@ -1,5 +1,45 @@
 # Worklog
 
+## 2026-08-11 · Public repository codebase audit
+
+- Refreshed the authenticated public source inventory and confirmed that the `QINGPENGLAM` account still exposes exactly 39 public repositories
+- Read every available root README and inspected default-branch manifests, source trees, entry points, state/data layers, and representative core implementation files across all 39 repositories
+- Classified 23 repositories with root READMEs, 16 without them, two evidence/tool-evaluation repositories, two effectively empty repositories, one README-only repository, and the strongest recruiter-facing implementation evidence
+- Recorded a repository-by-repository source audit, ordered README repair plan, correctness and evidence risks, portfolio claim cross-check, and practical review checklist in `docs/PUBLIC_PROJECT_CODEBASE_AUDIT_2026-08-11.md`
+- Identified blocking cleanup items including the missing public source behind the Montage claims, a possible incremental-rehash correctness issue in `myOwnRedis`, local n8n runtime artifacts, Calculator percent behavior, NASA app-wide storage clearing, empty/duplicate repositories, and unclear third-party asset boundaries
+- Directly verified the public portfolio URL returns HTTP 200 with the current `QingPeng Lam · Software Engineer` Next.js page and `/personal-portfolio/_next/` assets, then corrected stale local deployment documentation
+- Kept private repositories outside the publishable audit and distinguished source inspection from runtime/build certification
+- Verified that all 39 inventory names have exactly one numbered audit entry, `git diff --check` passes, lint and strict TypeScript pass, all 39 Vitest tests pass, and the 17-route static production build completes successfully
+- Located the separate Codex project registry with 15 governed workspaces and confirmed that it contains fuller local evidence for several projects; in particular, the local Montage workspace includes the Next.js/Remotion source that is absent from its public GitHub repository
+- Updated the audit methodology and Montage assessment so local implementation evidence improves internal understanding without being mislabeled as public recruiter evidence
+
+## 2026-08-11 · Missing README remediation
+
+- Revisited all 16 public repositories that lacked a root README and wrote a tailored document from each repository's actual default-branch code and assets
+- Created isolated `codex/add-project-readme` commits and draft pull requests for 15 non-empty repositories; remotely verified that every PR remains draft and contains only `README.md`
+- Published an honest placeholder README as the first `main` commit in the previously empty `UnityKitchenGame` repository because GitHub cannot create a pull request without an existing base commit
+- Documented implemented features, architecture, setup, honest prototype boundaries, known defects, and incomplete asset licensing without inventing production behavior
+- Confirmed Unity `2021.3.13f1` for all three documented Unity source repositories
+- Compiled Raytracer and rendered all five documented PPM scenes; compiled the supported myOwnRedis server/client/AVL commands and ran the passing AVL test
+- Found that `myOwnRedis/test_offset.cpp` does not compile because `verify_avl` is undefined, so the README explicitly records the broken test instead of publishing an invalid command
+- Added `docs/README_UPGRADE_PRS_2026-08-11.md` as the durable PR index, validation record, and human review checklist
+- Rechecked all 15 draft PRs immediately before merge: each was open, mergeable, conflict-free, and limited to `README.md`; configured Netlify previews were successful and the remaining repositories had no checks
+- Marked all 15 PRs ready, squash-merged them into their public `main` branches, deleted the temporary remote branches, and remotely verified every PR's `MERGED` state and merge commit
+
+### Reflection
+
+- What went wrong: GitHub CLI authentication succeeded in the user's Terminal but initially appeared invalid inside the restricted Codex process because macOS keyring access required an approved unsandboxed check.
+- What repeated: documentation commands must be tested against source; reading filenames alone would have advertised the broken `test_offset.cpp` target.
+- What became reusable: sparse clones, one-file branches, compile checks, remote draft verification, and a centralized PR index make multi-repository documentation changes reviewable without downloading large Unity histories.
+- Global-rule candidate: for broad README work, keep every repository isolated, test all runnable commands, and use an explicit placeholder instead of inventing content for an empty repository.
+
+### Reflection
+
+- What went wrong: several repositories use polished documentation or names that imply more public implementation than the default branch actually contains, while some of the strongest code has no meaningful README.
+- What repeated: repository presence, README claims, source evidence, runtime verification, and production readiness are separate evidence levels.
+- What became reusable: a sparse-clone audit that reads every README and samples manifests, entry points, state, and core algorithms can review a large public portfolio without downloading large media histories.
+- Global-rule candidate: rank public projects only after comparing README claims with inspectable source, and label tool evaluations, generated artifacts, coursework, empty repositories, and custom applications as different categories.
+
 ## 2026-08-06 · Phase 10
 
 - Added deterministic repository-insight aggregation for language, latest recorded push year, Pages configuration, verified reachability, unavailable URLs, and code-only records

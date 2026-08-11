@@ -2,7 +2,9 @@
 
 A recruiter-friendly software engineering portfolio with an optional, explorable 3D world.
 
-Phase 10 adds a repository evidence dashboard derived from the verified 2026-08-06 snapshot. Recruiters can compare primary-language distribution, latest recorded push years, and deployment reachability without mistaking repository metadata for creation dates, development duration, traffic, scale, or production maturity. The archive and its 17 verified live pages remain available as the inspectable source layer. No Phase 10 deployment was performed.
+Phase 10 adds a repository evidence dashboard derived from the verified 2026-08-06 snapshot. Recruiters can compare primary-language distribution, latest recorded push years, and deployment reachability without mistaking repository metadata for creation dates, development duration, traffic, scale, or production maturity. The archive and its 17 verified live pages remain available as the inspectable source layer. The current Next.js export was directly verified at the public GitHub Pages URL on 2026-08-11.
+
+The source-level review in [`docs/PUBLIC_PROJECT_CODEBASE_AUDIT_2026-08-11.md`](docs/PUBLIC_PROJECT_CODEBASE_AUDIT_2026-08-11.md) covers every repository in the 39-project public inventory, including README quality, implemented architecture, evidence gaps, correctness risks, recruiter priority, and a cleanup checklist.
 
 ## What is implemented
 
@@ -132,7 +134,7 @@ The workflow sets `NEXT_PUBLIC_BASE_PATH=/personal-portfolio`, builds the export
 
 Workflow configuration is not proof of a live release. Verify the final public URL directly after pushing. The complete manual release steps live in `docs/PRODUCTION_CHECKLIST.md`; the hosting and response-header boundary lives in `SECURITY.md`.
 
-The 2026-08-06 live check confirms that the public `personal-portfolio` URL still serves the earlier site titled `QingPeng Lam | Portfolio`. The Phase 9 Next.js export is production-ready locally, but this work did not push or replace that public site.
+The 2026-08-11 live check returned HTTP 200, the title `QingPeng Lam · Software Engineer`, and Next.js static assets under `/personal-portfolio/_next/`, confirming that the current export replaced the earlier Vite site. Future pushes still require direct post-deployment verification.
 
 ## Phase 5 service configuration
 
