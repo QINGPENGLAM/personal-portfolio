@@ -1,5 +1,12 @@
 # Decisions
 
+## 2026-08-16 Experience and Skills repository evidence
+
+- Reuse one static Server Component on both routes so repository counts, live-page totals, snapshot date, and all 39 code links continue to derive from the validated archive data instead of duplicated page copy.
+- Keep the complete repository-name index inside a native disclosure so the pages literally expose all 39 repositories without overwhelming the primary recruiter narrative.
+- On Experience, explicitly separate personal, coursework, and evaluation repositories from employer deliverables; on Skills, state that repository metadata is discovery evidence rather than a proficiency or production-maturity score.
+- Keep the full searchable archive and aggregate dashboard as the canonical inspection routes; the Experience and Skills panels are cross-navigation and compact evidence, not competing archives.
+
 ## 2026-08-16 repository-description refresh
 
 - Publish descriptions in GitHub's repository About metadata instead of deriving them from README prose at runtime; the portfolio remains a deterministic dated snapshot with no visitor-triggered GitHub request.

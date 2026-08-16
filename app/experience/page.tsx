@@ -1,4 +1,5 @@
 import { SectionPage } from '@/components/SectionPage'
+import { RepositoryEvidenceCallout } from '@/components/projects/RepositoryEvidenceCallout'
 import { CombinedTimeline } from '@/components/timeline/CombinedTimeline'
 import { experiences } from '@/data/experience'
 import { createPageMetadata } from '@/lib/site'
@@ -21,6 +22,7 @@ export default function ExperiencePage() {
           </article>
         ))}
       </div>
+      <RepositoryEvidenceCallout context="experience" />
       <CombinedTimeline />
     </SectionPage>
   )

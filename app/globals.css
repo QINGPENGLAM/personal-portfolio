@@ -325,6 +325,24 @@ button { color: inherit; }
 .plain-skill-list > div { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin-top: 1rem; }
 .plain-skill-list h3 { margin: 0 0 .3rem; font-size: .8rem; }
 .plain-skill-list p { margin: 0; color: var(--ink-muted); font-size: .7rem; }
+.repository-evidence-callout { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(17rem, .65fr); gap: 1.5rem 2.5rem; margin-bottom: 1rem; padding: clamp(1.5rem, 4vw, 2.4rem); background: radial-gradient(circle at 92% 10%, rgba(114,230,255,.11), transparent 17rem), linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018)); }
+.repository-evidence-experience { margin-top: 4rem; }
+.repository-evidence-copy h2 { max-width: 700px; margin: .35rem 0 .7rem; font-size: clamp(1.8rem, 3.4vw, 3.1rem); letter-spacing: -.05em; line-height: 1.03; }
+.repository-evidence-copy > p:not(.eyebrow) { max-width: 760px; margin: 0; color: var(--ink-soft); }
+.repository-evidence-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.1rem; margin-top: 1.35rem; }
+.repository-evidence-actions > a:not(.button) { color: var(--cyan); font-size: .72rem; font-weight: 760; }
+.repository-evidence-metrics { display: grid; align-content: start; margin: 0; }
+.repository-evidence-metrics div { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: .8rem 0; border-top: 1px solid var(--line); }
+.repository-evidence-metrics dt { color: var(--ink-muted); font-family: var(--font-mono); font-size: .58rem; letter-spacing: .04em; text-transform: uppercase; }
+.repository-evidence-metrics dd { margin: 0; color: var(--cyan); font-family: var(--font-mono); font-size: 1.1rem; font-weight: 760; }
+.repository-evidence-metrics time { color: var(--ink-soft); font-size: .68rem; }
+.repository-evidence-details { grid-column: 1 / -1; border-top: 1px solid var(--line); }
+.repository-evidence-details summary { padding: 1rem 0 0; color: var(--cyan); cursor: pointer; font-size: .72rem; font-weight: 760; }
+.repository-evidence-index { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .45rem; padding-top: 1rem; }
+.repository-evidence-index a { display: flex; min-width: 0; flex-direction: column; gap: .25rem; padding: .7rem; border: 1px solid var(--line); border-radius: .65rem; background: rgba(255,255,255,.025); }
+.repository-evidence-index a:hover { border-color: var(--cyan); }
+.repository-evidence-index strong { overflow: hidden; font-size: .7rem; text-overflow: ellipsis; white-space: nowrap; }
+.repository-evidence-index a > span { color: var(--ink-muted); font-family: var(--font-mono); font-size: .53rem; }
 .contact-layout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(20rem, .85fr); gap: 1rem; align-items: start; }
 .contact-card { display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 2rem; min-height: 31rem; padding: clamp(2rem, 5vw, 3rem); }
 .contact-card h2 { margin: .5rem 0; font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -.05em; }
@@ -854,7 +872,8 @@ body:has(.world-stage.is-tour-active) .portfolio-assistant.is-world { visibility
 }
 
 @media (max-width: 900px) {
-  .case-study-hero, .case-study-section, .constraint-panel, .architecture-workspace, .technical-breakdown-grid, .skill-explorer, .contact-layout { grid-template-columns: 1fr; }
+  .case-study-hero, .case-study-section, .constraint-panel, .architecture-workspace, .technical-breakdown-grid, .skill-explorer, .contact-layout, .repository-evidence-callout { grid-template-columns: 1fr; }
+  .repository-evidence-index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact-card { min-height: auto; }
   .skill-evidence-panel { position: static; }
   .case-study-hero { min-height: auto; }
@@ -908,6 +927,7 @@ body:has(.world-stage.is-tour-active) .portfolio-assistant.is-world { visibility
   .architecture-controls button { flex: 1; }
   .verified-metrics > div { padding: 1rem; }
   .case-study-dialog .case-study-hero h1 { font-size: 3.15rem; }
+  .repository-evidence-index { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {

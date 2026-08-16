@@ -13,7 +13,7 @@ Build QingPeng Lam's recruiter-friendly engineering portfolio with an optional e
 - Phase 7 complete: five-stop guided cinematic tour, shareable tour state, reduced-motion behavior, and richer adaptive procedural world scenery
 - Phase 8 complete: dated 39-repository GitHub snapshot, searchable project archive, transparent evidence boundaries, and recruiter-facing archive discovery
 - Phase 9 complete and refreshed on 2026-08-16: 39 published repository descriptions, independent verification of all 20 Pages candidates, 18 reachable live-demo links, 2 transparent unavailable states, and demo-availability filtering
-- Phase 10 complete: repository evidence dashboard with language distribution, latest-recorded-push years, deployment ledger, and explicit metadata interpretation limits
+- Phase 10 complete and extended: repository evidence dashboard plus reusable Experience and Skills panels with an expandable 39-name repository index and explicit employment/proficiency boundaries
 - Public codebase audit complete: all 39 public repositories received a README/source review, recruiter classification, evidence-gap assessment, and ordered cleanup checklist
 
 ## Production boundary

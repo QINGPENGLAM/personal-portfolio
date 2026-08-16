@@ -41,6 +41,21 @@ test('explains repository insights without overstating the metadata', async ({ p
   await expect(page.getByRole('link', { name: 'Browse all repositories →' })).toHaveAttribute('href', /\/projects\/archive\/$/)
 })
 
+test('connects experience and skills to all 39 public repositories', async ({ page }) => {
+  for (const route of ['/experience/', '/skills/']) {
+    await page.goto(route)
+    await expect(page.getByRole('heading', { name: '39 public repositories behind the portfolio.' })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Browse all 39 repositories →' })).toHaveAttribute('href', /\/projects\/archive\/$/)
+    await page.getByText('Show all 39 repository names').click()
+    await expect(page.locator('.repository-evidence-index a')).toHaveCount(39)
+  }
+
+  await page.goto('/experience/')
+  await expect(page.getByText(/separate from the employer roles above/)).toBeVisible()
+  await page.goto('/skills/')
+  await expect(page.getByText(/not a proficiency score/)).toBeVisible()
+})
+
 test('keeps the resume available without client-side JavaScript', async ({ page }) => {
   await page.goto('/resume/')
   const download = page.getByRole('link', { name: 'Download PDF' })
