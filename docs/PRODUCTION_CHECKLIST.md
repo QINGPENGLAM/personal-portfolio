@@ -6,9 +6,9 @@
 - Confirm project, résumé, GitHub, LinkedIn, email, and any live-demo URLs are current.
 - Confirm unresolved project placeholders remain visibly marked instead of filled with assumptions.
 - Open `/projects/archive`, search by repository and observed live-page title, filter at least two languages, filter verified demos/code-only, change sort order, and confirm the visible count updates.
-- Confirm all archive code links use the intended `QINGPENGLAM` repository URL and that missing GitHub descriptions remain explicitly labeled.
-- Confirm the verified-live filter shows 17 repositories and every live button carries a 2026-08-06 check date.
-- Confirm the 3 configured candidates that returned 404 are visibly labeled and have no live button.
+- Confirm all archive code links use the intended `QINGPENGLAM` repository URL and all 39 GitHub descriptions are visible.
+- Confirm the verified-live filter shows 18 repositories and every live button carries a 2026-08-16 check date.
+- Confirm the 2 configured candidates that returned 404 are visibly labeled and have no live button.
 - Do not publish a future live-demo link from `has_pages=true`; open and verify the exact public URL first.
 - Open `/projects/insights` and confirm the four deployment totals reconcile to 39 repositories.
 - Confirm every language and latest-push-year bar includes an exact text count and remains understandable without color.

@@ -1,5 +1,12 @@
 # Decisions
 
+## 2026-08-16 repository-description refresh
+
+- Publish descriptions in GitHub's repository About metadata instead of deriving them from README prose at runtime; the portfolio remains a deterministic dated snapshot with no visitor-triggered GitHub request.
+- Keep every description under 160 characters and label legacy, coursework, placeholder, tool-evaluation, and artifact-only repositories according to their inspectable scope.
+- Refresh descriptions, primary language, latest recorded push date, Pages configuration, exact live URL status, and observed HTML title as separate fields.
+- Promote `arthistory-RPG` from unavailable to verified only because its exact Pages URL returned HTTP 200 HTML on 2026-08-16; keep `AI-Town` and the Montage artifact repository unlinked because their exact URLs still returned 404.
+
 ## Public repository codebase audit
 
 - Define the publishable audit boundary as the 39 currently public source repositories; do not expose or summarize authenticated private repository inventory in a public portfolio artifact.

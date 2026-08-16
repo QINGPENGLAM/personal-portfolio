@@ -28,7 +28,7 @@ test('browses the complete repository archive with verified demo evidence', asyn
   await page.getByLabel('Search repositories').clear()
   await page.getByLabel('Language').selectOption('All')
   await page.getByLabel('Availability').selectOption('verified')
-  await expect(page.getByText('Showing 17 of 39 public repositories.')).toBeVisible()
+  await expect(page.getByText('Showing 18 of 39 public repositories.')).toBeVisible()
   await expect(page.getByRole('link', { name: 'Open HandMotionMusic verified live demo' })).toHaveAttribute('href', 'https://qingpenglam.github.io/HandMotionMusic/')
 })
 
@@ -37,7 +37,7 @@ test('explains repository insights without overstating the metadata', async ({ p
   await expect(page.getByRole('heading', { level: 1, name: 'Read the build history at a glance.' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'What the repository history actually shows.' })).toBeVisible()
   await expect(page.getByText(/latest recorded push—not its creation date/)).toBeVisible()
-  await expect(page.getByRole('definition').filter({ hasText: '17' })).toBeVisible()
+  await expect(page.getByRole('definition').filter({ hasText: '18' })).toBeVisible()
   await expect(page.getByRole('link', { name: 'Browse all repositories →' })).toHaveAttribute('href', /\/projects\/archive\/$/)
 })
 
