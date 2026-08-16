@@ -27,6 +27,7 @@ The source-level review in [`docs/PUBLIC_PROJECT_CODEBASE_AUDIT_2026-08-11.md`](
 - Client-side project filtering by evidence-backed engineering focus
 - Searchable 39-repository GitHub archive with validated snapshot data, exact code links, language/activity/demo filters, 18 independently checked live pages, observed HTML titles, transparent 404 states, and no unverified demo URLs
 - Accessible repository evidence dashboard with exact language counts, latest-push-year distribution, deployment ledger, proportional CSS bars, and explicit interpretation limits
+- Reusable Experience and Skills evidence panels with 39 repository names, archive/dashboard navigation, and employment/proficiency interpretation boundaries
 - Expandable recruiter-friendly role details with direct contributions and technologies
 - Combined work, project, and education timeline with desktop horizontal layout, mobile vertical layout, type filters, and direct case-study links
 - Interactive skill evidence map that connects résumé-supported skills to published projects and roles, plus a plain accessible list
@@ -123,8 +124,8 @@ Update content files instead of hardcoding portfolio facts inside UI components.
 | `/projects/insights` | Repository language, latest-push-year, and deployment-evidence dashboard with interpretation boundaries |
 | `/projects/devdoctor` | DevDoctor engineering case study |
 | `/projects/immich-ai-photo-search` | Immich AI Photo Search engineering case study |
-| `/experience` | Recruiter-friendly role detail plus combined filterable timeline |
-| `/skills` | Interactive skill-to-evidence map plus accessible grouped list |
+| `/experience` | Recruiter-friendly role detail, combined filterable timeline, and expandable 39-repository evidence index |
+| `/skills` | Interactive skill-to-evidence map, accessible grouped list, and expandable 39-repository evidence index |
 | `/contact` | Validated contact form, delivery status, direct links, and email fallback |
 | `/resume` | Résumé preview and download |
 

@@ -1,4 +1,5 @@
 import { SectionPage } from '@/components/SectionPage'
+import { RepositoryEvidenceCallout } from '@/components/projects/RepositoryEvidenceCallout'
 import { SkillExplorer } from '@/components/skills/SkillExplorer'
 import { createPageMetadata } from '@/lib/site'
 
@@ -7,6 +8,7 @@ export const metadata = createPageMetadata('Skills', 'See the engineering tools 
 export default function SkillsPage() {
   return (
     <SectionPage eyebrow="Skills" title="A stack organized by how it gets used." intro="No arbitrary proficiency bars. Every item below comes directly from the supplied résumé.">
+      <RepositoryEvidenceCallout context="skills" />
       <SkillExplorer />
     </SectionPage>
   )

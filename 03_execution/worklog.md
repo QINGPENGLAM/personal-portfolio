@@ -1,5 +1,21 @@
 # Worklog
 
+## 2026-08-16 · Experience and Skills repository evidence
+
+- Added a reusable published-evidence panel to `/experience` and `/skills` with the 39 public-repository total, 18 verified live pages, 2026-08-16 snapshot date, archive and insight links, and an expandable index of all 39 repository names
+- Preserved recruiter truthfulness with route-specific copy that separates the repository portfolio from employer work and rejects language metadata as a proficiency or production-maturity score
+- Added responsive desktop, tablet, and single-column mobile styling without adding a client boundary or another runtime data request
+- Added a cross-browser critical flow that opens both disclosures and confirms exactly 39 code links, plus automated accessibility coverage for both routes
+- Verified ESLint, strict TypeScript, all 39 Vitest tests, the 17-route static build, every static performance budget, and 39 passing Playwright core checks with 21 intentional skips across Chromium, Firefox, and mobile Chromium
+- Visually reviewed the real Experience and Skills panels in the local browser; the 390 px expanded index had no horizontal overflow and rendered all 39 links in one readable column
+
+### Reflection
+
+- What went wrong: the first combined patch used a mobile CSS context from the wrong media-query block, so it was split into smaller verified patches before any file was changed.
+- What repeated: a full repository inventory should remain canonical in one data source even when several recruiter routes need discovery entry points.
+- What became reusable: one context-aware Server Component can provide a compact metric panel, an accessible native disclosure, and route-specific evidence boundaries without duplicating repository data.
+- Global-rule candidate: when broad portfolio evidence appears beside employment or skills, make the relationship explicit and prevent repository counts from being read as workplace output or proficiency scoring.
+
 ## 2026-08-16 · GitHub repository descriptions and evidence refresh
 
 - Published concise, source-grounded GitHub About descriptions for all 39 public `QINGPENGLAM` repositories and verified that none remain blank; private repositories stayed out of scope
