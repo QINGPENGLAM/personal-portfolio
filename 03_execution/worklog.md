@@ -1,5 +1,21 @@
 # Worklog
 
+## 2026-08-16 · GitHub repository descriptions and evidence refresh
+
+- Published concise, source-grounded GitHub About descriptions for all 39 public `QINGPENGLAM` repositories and verified that none remain blank; private repositories stayed out of scope
+- Refreshed the authenticated public metadata snapshot, including repository descriptions, push dates, and the `personal-portfolio` primary language correction from JavaScript to TypeScript
+- Rechecked all 20 GitHub Pages candidates at their exact public URLs: 18 returned HTTP 200 HTML, while `project-0009-montage-product-video-generator` and `AI-Town` returned HTTP 404
+- Added `arthistory-RPG` to the verified live-page records after its public URL changed from the previous 404 result to HTTP 200 with the title `Art History RPG | arthistory-RPG`
+- Updated the repository archive, insight counts, production checklist, audit records, and regression expectations so every displayed description and deployment count is traceable to the 2026-08-16 snapshot
+- Verified ESLint, strict TypeScript, all 39 Vitest tests, the 17-route production export, every bundle/export budget, 34 core Playwright browser checks with 17 intentional skips, and the isolated Chromium WebGL regression
+
+### Reflection
+
+- What went wrong: the README remediation did not populate GitHub's separate repository-description field, so the portfolio correctly rendered its missing-description fallback until the About metadata was explicitly published.
+- What repeated: mutable GitHub metadata and live Pages availability must be recaptured together; the README merges also changed recorded push dates and invalidated an old insight-test boundary.
+- What became reusable: a complete public-repository inventory, per-repository description map, exact Pages URL checks, and a deterministic local snapshot provide an auditable refresh workflow.
+- Global-rule candidate: treat README content, GitHub About metadata, Pages configuration, and observed live reachability as four separate evidence fields, and update tests from the same dated snapshot.
+
 ## 2026-08-11 · Public repository codebase audit
 
 - Refreshed the authenticated public source inventory and confirmed that the `QINGPENGLAM` account still exposes exactly 39 public repositories

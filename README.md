@@ -2,7 +2,7 @@
 
 A recruiter-friendly software engineering portfolio with an optional, explorable 3D world.
 
-Phase 10 adds a repository evidence dashboard derived from the verified 2026-08-06 snapshot. Recruiters can compare primary-language distribution, latest recorded push years, and deployment reachability without mistaking repository metadata for creation dates, development duration, traffic, scale, or production maturity. The archive and its 17 verified live pages remain available as the inspectable source layer. The current Next.js export was directly verified at the public GitHub Pages URL on 2026-08-11.
+Phase 10 adds a repository evidence dashboard derived from the refreshed 2026-08-16 snapshot. Recruiters can compare primary-language distribution, latest recorded push years, and deployment reachability without mistaking repository metadata for creation dates, development duration, traffic, scale, or production maturity. All 39 public repositories now have concise GitHub descriptions, and the archive exposes 18 independently verified live pages plus two transparent unavailable Pages candidates.
 
 The source-level review in [`docs/PUBLIC_PROJECT_CODEBASE_AUDIT_2026-08-11.md`](docs/PUBLIC_PROJECT_CODEBASE_AUDIT_2026-08-11.md) covers every repository in the 39-project public inventory, including README quality, implemented architecture, evidence gaps, correctness risks, recruiter priority, and a cleanup checklist.
 
@@ -25,7 +25,7 @@ The source-level review in [`docs/PUBLIC_PROJECT_CODEBASE_AUDIT_2026-08-11.md`](
 - Interactive architecture diagrams with component inspection, request-flow animation, pause, restart, keyboard control, and reduced-motion behavior
 - Verified metric panels, engineering decisions, testing evidence, technical breakdowns, reflection, and related-project navigation
 - Client-side project filtering by evidence-backed engineering focus
-- Searchable 39-repository GitHub archive with validated snapshot data, exact code links, language/activity/demo filters, 17 independently checked live pages, observed HTML titles, transparent 404 states, and no unverified demo URLs
+- Searchable 39-repository GitHub archive with validated snapshot data, exact code links, language/activity/demo filters, 18 independently checked live pages, observed HTML titles, transparent 404 states, and no unverified demo URLs
 - Accessible repository evidence dashboard with exact language counts, latest-push-year distribution, deployment ledger, proportional CSS bars, and explicit interpretation limits
 - Expandable recruiter-friendly role details with direct contributions and technologies
 - Combined work, project, and education timeline with desktop horizontal layout, mobile vertical layout, type filters, and direct case-study links
@@ -119,7 +119,7 @@ Update content files instead of hardcoding portfolio facts inside UI components.
 | `/world` | Procedural 3D world, project dialogs, professional dossiers, custom loader, and adaptive data signals |
 | `/about` | Concise introduction, interests, working style, goals, and education |
 | `/projects` | Filterable selected work and technical summaries |
-| `/projects/archive` | Searchable archive of all 39 public GitHub repositories and 17 verified live pages in the 2026-08-06 snapshot |
+| `/projects/archive` | Searchable archive of all 39 public GitHub repositories and 18 verified live pages in the 2026-08-16 snapshot |
 | `/projects/insights` | Repository language, latest-push-year, and deployment-evidence dashboard with interpretation boundaries |
 | `/projects/devdoctor` | DevDoctor engineering case study |
 | `/projects/immich-ai-photo-search` | Immich AI Photo Search engineering case study |
@@ -170,7 +170,7 @@ The UI lists project-specific placeholders in the Projects page so missing evide
 - **Phase 6:** complete — performance budgets, accessibility and mobile hardening, browser matrix, SEO/social metadata, error and security review, release tests, production build, and gated GitHub Pages configuration; external service deployment remains unconfigured
 - **Phase 7:** complete — guided cinematic tour, shareable tour state, reduced-motion/manual storytelling, richer adaptive procedural scenery, mobile interaction review, and regression validation; live release remains unapproved
 - **Phase 8:** complete — validated 39-repository snapshot, searchable evidence archive, recruiter and Projects discovery links, archive SEO/sitemap coverage, accessibility review, and browser regression validation; live release remains unapproved
-- **Phase 9:** complete — refreshed public metadata, independently checked all 20 Pages candidates, published 17 verified live-demo links with observed titles and check dates, retained 3 failed candidates as unlinked evidence, added availability filtering, and passed production/browser regression validation; live release remains unapproved
+- **Phase 9:** complete — refreshed public metadata on 2026-08-16, independently checked all 20 Pages candidates, published 18 verified live-demo links with observed titles and check dates, retained 2 failed candidates as unlinked evidence, and kept availability filtering and evidence boundaries
 - **Phase 10:** complete — repository evidence calculations, accessible language and latest-push-year visualizations, deployment ledger, interpretation boundaries, archive/project discovery links, metadata/sitemap coverage, and cross-browser validation; live release remains unapproved
 
 See `ASSET_GUIDE.md` before replacing the procedural geometry with production assets.

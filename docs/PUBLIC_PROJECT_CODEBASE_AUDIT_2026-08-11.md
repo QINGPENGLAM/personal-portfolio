@@ -365,7 +365,7 @@ Course exercises, static storefronts, early games, duplicates, empty repositorie
 
 - **DevDoctor:** The portfolio correctly shows no public repository or live demo. Its implementation claims cannot be independently checked through the public GitHub inventory, so keep the explicit evidence placeholders and avoid stronger production wording without approved evidence.
 - **Immich AI Photo Search:** The public source supports the ingestion, caption/embedding, metadata, hybrid search, SHA-256 duplicate control, deletion, and HEIC recovery story. Add tests and clarify that it is a standalone MVP rather than implying upstream Immich integration.
-- **Public archive:** Repository membership was refreshed on 2026-08-11 and remains 39. Language, activity, Pages, and live-link values in `data/github-repositories.ts` are still a dated 2026-08-06 snapshot and should not be described as current without another metadata/live-link refresh.
+- **Public archive:** Repository membership remains 39. On 2026-08-16, all repositories received concise GitHub descriptions, language/activity metadata was refreshed, and all 20 Pages candidates were rechecked: 18 returned HTTP 200 HTML and 2 returned 404.
 - **Current deployment:** The portfolio README’s prior “no deployment performed” language is obsolete. The current Next.js export was directly observed at the public URL on 2026-08-11.
 - **Tool evaluations:** Keep `project-0007` and `project-0009` clearly separated from custom application code. Their evidence is useful, but the public repositories do not prove ownership of the underlying Open WebUI or Montage product implementations.
 

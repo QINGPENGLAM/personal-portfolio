@@ -45,4 +45,4 @@ Scope: the 16 public repositories identified without a root README during the so
 - [ ] Confirm client/collaborator authorship for XIWENPORT and any imported Unity assets.
 - [ ] Confirm the asset/licensing warnings before making those repositories more prominent.
 - [x] Merge the 15 README PRs after verification.
-- [ ] Refresh the portfolio repository snapshot after merges so README coverage is current.
+- [x] Refresh the portfolio repository snapshot after the merges and publish all 39 GitHub descriptions.

@@ -4,14 +4,14 @@ import { projects } from '@/data/projects'
 
 describe('Phase 8 repository evidence', () => {
   it('publishes a dated snapshot of every current public repository', () => {
-    expect(githubRepositorySnapshot.capturedAt).toBe('2026-08-06')
+    expect(githubRepositorySnapshot.capturedAt).toBe('2026-08-16')
     expect(githubRepositories).toHaveLength(39)
     expect(new Set(githubRepositories.map((repository) => repository.name))).toHaveLength(39)
     expect(new Set(githubRepositories.map((repository) => repository.codeUrl))).toHaveLength(39)
   })
 
-  it('keeps missing GitHub descriptions explicit instead of filling them with marketing copy', () => {
-    expect(githubRepositories.filter((repository) => repository.description === null).length).toBeGreaterThanOrEqual(38)
+  it('publishes the concise descriptions configured on GitHub for every repository', () => {
+    expect(githubRepositories.every((repository) => repository.description?.trim())).toBe(true)
   })
 
   it('does not turn GitHub Pages metadata into an unverified live link', () => {
