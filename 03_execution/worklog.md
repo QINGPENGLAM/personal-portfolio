@@ -8,6 +8,8 @@
 - Added `arthistory-RPG` to the verified live-page records after its public URL changed from the previous 404 result to HTTP 200 with the title `Art History RPG | arthistory-RPG`
 - Updated the repository archive, insight counts, production checklist, audit records, and regression expectations so every displayed description and deployment count is traceable to the 2026-08-16 snapshot
 - Verified ESLint, strict TypeScript, all 39 Vitest tests, the 17-route production export, every bundle/export budget, 34 core Playwright browser checks with 17 intentional skips, and the isolated Chromium WebGL regression
+- Merged pull request #1 after its independent quality job passed, deployed merge commit `a72e220` through the gated Pages workflow, and directly verified the home, archive, and insight routes at HTTP 200 HTML
+- Confirmed the live archive renders 39 cards, 18 verified badges, two unavailable badges, the new `arthistory-RPG` live action, and no missing-description fallback; the live insight totals also reconcile to 18 verified and two unavailable
 
 ### Reflection
 

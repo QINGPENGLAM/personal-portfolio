@@ -134,7 +134,7 @@ The workflow sets `NEXT_PUBLIC_BASE_PATH=/personal-portfolio`, builds the export
 
 Workflow configuration is not proof of a live release. Verify the final public URL directly after pushing. The complete manual release steps live in `docs/PRODUCTION_CHECKLIST.md`; the hosting and response-header boundary lives in `SECURITY.md`.
 
-The 2026-08-11 live check returned HTTP 200, the title `QingPeng Lam · Software Engineer`, and Next.js static assets under `/personal-portfolio/_next/`, confirming that the current export replaced the earlier Vite site. Future pushes still require direct post-deployment verification.
+The 2026-08-16 release and its archive and insight routes returned HTTP 200 HTML with the expected titles and `/personal-portfolio/_next/` assets. The deployed archive rendered all 39 descriptions, 18 verified-live badges, two unavailable badges, and no missing-description fallback. Future pushes still require direct post-deployment verification.
 
 ## Phase 5 service configuration
 

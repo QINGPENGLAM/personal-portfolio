@@ -19,7 +19,7 @@ Build QingPeng Lam's recruiter-friendly engineering portfolio with an optional e
 ## Production boundary
 
 - Static export remains the deployment architecture.
-- GitHub Pages workflow configuration is complete, and the current Next.js export was directly verified at the public URL on 2026-08-11; every future release still needs its own verification.
+- GitHub Pages workflow configuration is complete, and the refreshed Next.js export was directly verified at the home, archive, and insight URLs on 2026-08-16; every future release still needs its own verification.
 - Contact and external analytics endpoints remain intentionally unconfigured until their separate services and credentials are approved and deployed.
 - Repository code links are sourced from the public GitHub snapshot; Pages flags are not presented as live demos without independent URL verification.
 - Every published archive live link returned HTTP 200 HTML on 2026-08-16; the two unlinked Pages candidates returned 404 and remain visibly unavailable.
