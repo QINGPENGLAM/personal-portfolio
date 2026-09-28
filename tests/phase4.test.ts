@@ -12,8 +12,8 @@ describe('Phase 4 professional story', () => {
     expect(timelineItems.map((item) => item.sortKey)).toEqual([...timelineItems.map((item) => item.sortKey)].sort().reverse())
   })
 
-  it('filters every timeline type without losing source records', () => {
-    expect(filterTimeline('all')).toHaveLength(experiences.length + projects.length + 1)
+  it('filters every timeline type without losing dated source records', () => {
+    expect(filterTimeline('all')).toHaveLength(experiences.length + projects.filter((project) => !project.course).length + 1)
     for (const type of timelineTypes.slice(1)) {
       const items = filterTimeline(type)
       expect(items.length).toBeGreaterThan(0)
@@ -23,7 +23,7 @@ describe('Phase 4 professional story', () => {
 
   it('links project milestones directly to valid case studies', () => {
     const projectLinks = filterTimeline('project').map((item) => item.href)
-    expect(projectLinks).toEqual(expect.arrayContaining(projects.map((project) => `/projects/${project.slug}`)))
+    expect(projectLinks).toEqual(expect.arrayContaining(projects.filter((project) => !project.course).map((project) => `/projects/${project.slug}`)))
   })
 
   it('uses only résumé skills and resolves evidence to published records', () => {

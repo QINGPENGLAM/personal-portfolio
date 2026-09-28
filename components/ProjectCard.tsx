@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ProjectDownload } from '@/components/ProjectDownload'
 import type { Project } from '@/data/schemas'
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -10,6 +11,7 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
       <h3>{project.title}</h3>
       <p>{project.shortDescription}</p>
+      {project.course ? <p>{project.course}</p> : null}
       <ul className="metric-list">
         {project.measurableResults.map((result) => <li key={result}>{result}</li>)}
       </ul>
@@ -17,6 +19,7 @@ export function ProjectCard({ project }: { project: Project }) {
         {project.technologies.slice(0, 6).map((technology) => <span key={technology}>{technology}</span>)}
       </div>
       <div className="card-actions">
+        <ProjectDownload url={project.downloadUrl} />
         <Link data-analytics-event="project_opened" href={`/projects/${project.slug}`}>Read case study <span aria-hidden="true">→</span></Link>
         {project.githubUrl ? <a href={project.githubUrl} rel="noreferrer" target="_blank">View code <span aria-hidden="true">↗</span></a> : <span className="link-placeholder">Public code not available</span>}
         {project.liveDemoUrl ? <a href={project.liveDemoUrl} rel="noreferrer" target="_blank">Live demo <span aria-hidden="true">↗</span></a> : null}

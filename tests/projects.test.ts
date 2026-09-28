@@ -18,6 +18,7 @@ describe('Phase 3 project experience', () => {
 
   it('keeps architecture edges and request flows referentially valid', () => {
     for (const project of projects) {
+      if (!project.caseStudy) continue
       const nodeIds = new Set(project.caseStudy.architectureNodes.map((node) => node.id))
       for (const edge of project.caseStudy.architectureEdges) {
         expect(nodeIds.has(edge.source)).toBe(true)

@@ -175,3 +175,13 @@ The UI lists project-specific placeholders in the Projects page so missing evide
 - **Phase 10:** complete — repository evidence calculations, accessible language and latest-push-year visualizations, deployment ledger, interpretation boundaries, archive/project discovery links, metadata/sitemap coverage, and cross-browser validation; live release remains unapproved
 
 See `ASSET_GUIDE.md` before replacing the procedural geometry with production assets.
+
+## EECS 494 Zelda project
+
+The dedicated `/projects/zelda-recreation/` page and project card reuse the existing portfolio components. Existing project entries remain intact.
+
+- Zelda’s `downloadUrl` in `data/projects.ts` points to the public v1.0 `Zelda-P1-Game.zip` release asset. For future releases, update this field to the new playable ZIP URL. Never use the Unity source repository or GitHub’s automatically generated source archives.
+- Both supplied gameplay screenshots are in `public/project-previews/`; Zelda’s `screenshots` array controls the hero image and Gameplay gallery.
+- Remove the corresponding Zelda `placeholders` entries when those assets are supplied.
+- Dates and a dated timeline entry are intentionally omitted until provided.
+- After publishing and verifying the playable download, put the public portfolio URL in the course `DESIGN.txt` and share it in the course exhibition channel. This change does not publish a release or post to Discord.

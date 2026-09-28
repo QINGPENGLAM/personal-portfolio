@@ -202,3 +202,32 @@
 - What repeated: content facts need one validated source so recruiter pages, world panels, and filters stay consistent.
 - What became reusable: timeline records and exact technology matching now provide a shared relationship layer.
 - Global-rule candidate: keep immersive landmarks curated and open accessible HTML detail instead of duplicating large content inside 3D geometry.
+
+## 2026-09-27 — EECS 494 Zelda portfolio entry
+
+Added `/projects/zelda-recreation/` through the existing project data and shared case-study route, with a matching card, course/university, description, all 14 supplied contributions, technologies, labeled image placeholder, and disabled Download Game control. The original two project records remain unchanged. No Unity source files, source repository links, build directories, or debug artifacts were copied. The user will supply screenshots later; the final release URL remains pending. No commit, push, deployment, DESIGN.txt edit, or Discord post was performed.
+
+Verification: production export with `/personal-portfolio` base path passed; TypeScript and lint passed; 42 unit tests passed; browser suite passed 42 tests with 21 configured skips; final Zelda-specific rerun passed Chromium, Firefox, and mobile Chromium (3 tests); interactive-world regression passed (1 test). Static budgets passed. Every exported local route/asset reference resolved. No `.cs` files exist under `public`. Reviewed desktop and mobile screenshots; corrected stretched technology chips. Build-generated `next-env.d.ts` changes restored to avoid unrelated churn.
+
+Reflection: the initial unit run exposed the timeline's assumption that every project has supplied dates. Added a chronology-map filter rather than fabricating a date. Optional case-study sections avoid invented architecture/testing/reflection for course projects. Reused existing styles, routing, and tests; no dependencies were added. No cross-project governance change is needed.
+
+Changed files:
+- `data/projects.ts`, `data/schemas.ts`, `data/timeline.ts`
+- `components/ProjectCard.tsx`, `components/ProjectDownload.tsx`
+- `components/case-study/CaseStudyContent.tsx`, `components/architecture/ArchitectureDiagram.tsx`
+- `app/projects/[slug]/page.tsx`, `app/globals.css`
+- `public/project-previews/zelda-recreation.svg`
+- `tests/projects.test.ts`, `tests/phase4.test.ts`, `tests/zelda.test.ts`, `e2e/zelda.spec.ts`
+- `README.md`, `00_admin/project-brief.md`, `02_planning/todo.md`, `03_execution/decisions.md`, `03_execution/worklog.md`
+
+
+### 2026-09-27 — Download activated
+
+Verified the public v1.0 release through GitHub API: `Zelda-P1-Game.zip` is uploaded (122,129,672 bytes). Connected the Download Game button directly to that release asset, excluding automatic source archives. Archive contents and platform execution have not been independently verified. Screenshot files remain pending accessible copies. No portfolio push or deployment performed.
+
+
+### 2026-09-27 — Gameplay screenshots added
+
+Recovered both user attachments through the image reader after temporary-directory access failed. Replaced placeholder artwork with the two gameplay PNGs: first in the hero, second in a Gameplay section. Full frames are contained without cropping; no unconfirmed custom-level labels are assigned. Existing project content remains unchanged.
+
+Validation after release URL and screenshot updates: lint, 42 unit tests, and the production build including TypeScript passed. Zelda browser checks passed in Chromium, Firefox, and mobile Chromium, verifying both image loads and the exact release-asset link. The running local preview returned HTTP 200. Reflection: use the attachment image reader when macOS temporary-directory enumeration is blocked; no permission or source-sharing policy change was needed.

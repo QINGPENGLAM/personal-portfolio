@@ -25,3 +25,17 @@ Build QingPeng Lam's recruiter-friendly engineering portfolio with an optional e
 - Every published archive live link returned HTTP 200 HTML on 2026-08-16; the two unlinked Pages candidates returned 404 and remain visibly unavailable.
 
 Final external 3D models, hosted contact/analytics services, provider credentials, and unverified project claims remain outside the completed scope.
+
+## Zelda addition — 2026-09-27
+
+Added the EECS 494 Zelda recreation as a separate project page and matching card, preserving the existing portfolio. Includes user-supplied contributions, course, technologies, and disabled download placeholder. Gameplay screenshot and final playable-build URL remain pending; no Unity source files are included.
+
+
+### 2026-09-27 — Download activated
+
+Verified the public v1.0 release through GitHub API: `Zelda-P1-Game.zip` is uploaded (122,129,672 bytes). Connected the Download Game button directly to that release asset, excluding automatic source archives. Archive contents and platform execution have not been independently verified. Screenshot files remain pending accessible copies. No portfolio push or deployment performed.
+
+
+### 2026-09-27 — Gameplay screenshots added
+
+Recovered both user attachments through the image reader after temporary-directory access failed. Replaced placeholder artwork with the two gameplay PNGs: first in the hero, second in a Gameplay section. Full frames are contained without cropping; no unconfirmed custom-level labels are assigned. Existing project content remains unchanged.

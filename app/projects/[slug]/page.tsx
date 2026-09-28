@@ -43,7 +43,7 @@ export default async function ProjectCaseStudyPage({ params }: { params: Promise
 
   const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareSourceCode',
+    '@type': project.downloadUrl ? 'VideoGame' : 'SoftwareSourceCode',
     name: project.title,
     description: project.shortDescription,
     author: { '@type': 'Person', name: profile.name, url: siteConfig.canonicalUrl },

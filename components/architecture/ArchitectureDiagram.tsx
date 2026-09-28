@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import type { Project } from '@/data/schemas'
 
-export function ArchitectureDiagram({ project }: { project: Project }) {
+export function ArchitectureDiagram({ project }: { project: Project & { caseStudy: NonNullable<Project['caseStudy']> } }) {
   const { architectureEdges, architectureNodes, requestFlow } = project.caseStudy
   const [activeNodeId, setActiveNodeId] = useState(requestFlow[0])
   const [paused, setPaused] = useState(false)

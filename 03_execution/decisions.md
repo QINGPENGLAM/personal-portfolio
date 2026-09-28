@@ -88,3 +88,21 @@
 - Keep the existing seven category landmarks and deepen four of them with HTML dossiers rather than adding more 3D geometry.
 - Preserve the world while a dossier is open, pause rendering behind the overlay, and encode the open panel in `?panel=` for history behavior.
 - Do not infer related projects for work roles when the résumé does not explicitly establish that relationship.
+
+## 2026-09-27 — Zelda portfolio entry
+
+- Reuse data-driven cards and `/projects/[slug]`; keep the existing projects and design intact.
+- Allow project entries without an engineering case study so Zelda can show supplied facts without fabricated architecture, testing results, or reflection.
+- Keep the download placeholder disabled; accept only HTTPS GitHub Release/asset URLs in this field, excluding ordinary source-repository links.
+- Use labeled SVG placeholder artwork until the user supplies screenshots. Copy no Unity source, build, or debug files into the public portfolio.
+- Omit Zelda from the dated timeline until dates are supplied. The timeline's explicit chronology map remains the authority.
+
+
+### 2026-09-27 — Download activated
+
+Verified the public v1.0 release through GitHub API: `Zelda-P1-Game.zip` is uploaded (122,129,672 bytes). Connected the Download Game button directly to that release asset, excluding automatic source archives. Archive contents and platform execution have not been independently verified. Screenshot files remain pending accessible copies. No portfolio push or deployment performed.
+
+
+### 2026-09-27 — Gameplay screenshots added
+
+Recovered both user attachments through the image reader after temporary-directory access failed. Replaced placeholder artwork with the two gameplay PNGs: first in the hero, second in a Gameplay section. Full frames are contained without cropping; no unconfirmed custom-level labels are assigned. Existing project content remains unchanged.

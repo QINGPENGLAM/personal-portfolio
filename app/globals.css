@@ -934,3 +934,9 @@ body:has(.world-stage.is-tour-active) .portfolio-assistant.is-world { visibility
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* Playable-build downloads share the existing button treatment. */
+.project-download .button:disabled { cursor: not-allowed; opacity: .6; }
+.download-status { display: block; margin-top: .5rem; color: var(--ink-soft); font-size: .8rem; }
+
+.case-study-visual.is-gameplay img { object-fit: contain; image-rendering: pixelated; }

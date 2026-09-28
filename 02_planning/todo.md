@@ -16,3 +16,11 @@
 
 - Contact Worker hosting, KV binding, email provider credentials, and delivery verification
 - Optional privacy-conscious analytics collector and endpoint verification
+
+## Zelda portfolio entry
+
+- [x] Add a dedicated Zelda page and matching project card using existing components.
+- [x] Include all supplied contributions and technologies; exclude Unity source links.
+- [x] Replace `GAME_DOWNLOAD_URL` with the verified public v1.0 playable ZIP asset URL.
+- [x] Replace the labeled image placeholder with both user-supplied gameplay screenshots.
+- [ ] Publish and verify the final portfolio and download; add its link to DESIGN.txt and share in the course exhibition channel.

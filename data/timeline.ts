@@ -27,7 +27,8 @@ export const timelineItems: TimelineItem[] = timelineItemSchema.array().parse([
     technologies: experience.technologies,
     href: `/experience#${experience.id}`,
   })),
-  ...projects.map((project) => {
+  // Only publish dated milestones when their chronology is supplied.
+  ...projects.filter((project) => projectSortKeys[project.slug]).map((project) => {
     const [startDate, endDate] = project.date.split(' - ')
     return {
       id: `project-${project.slug}`,
