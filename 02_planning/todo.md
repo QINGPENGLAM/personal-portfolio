@@ -38,4 +38,4 @@
 - [x] Publish the updated portfolio and verify its deployed P2 page, both images, download destination, mobile layout, and retained P1 page.
 
 - [x] Add the requested Explore P1 Gold footer card to P2 and verify navigation across desktop/mobile browsers.
-- [ ] Verify the updated P2-to-P1 footer link after deployment.
+- [x] Verify the updated P2-to-P1 footer link after deployment.

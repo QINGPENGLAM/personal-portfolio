@@ -130,3 +130,7 @@ Published implementation commit c67cf24f56373b57bcaee44530cba51505c74b9c to orig
 
 ### 2026-10-16 — P2 footer links to P1 Gold
 Added an explicit related-project target for P2. Its existing footer card now says Explore P1 Gold and opens the Zelda page. Other project navigation uses the original circular fallback. No styling or dependency changes. Production build/TypeScript, lint, 43 unit tests, and six P2/P1 checks across Chromium, Firefox and mobile Chrome passed. The added navigation assertion failed before implementation and passed afterward.
+
+
+### P2-to-P1 footer published — 2026-10-16
+Commit b795a20 deployed successfully through Actions run 38989654006. Live browser verification clicked Explore P1 Gold from P2’s footer and reached /projects/zelda-recreation/. Both screenshots and download links remain available; no mobile overflow or page errors.

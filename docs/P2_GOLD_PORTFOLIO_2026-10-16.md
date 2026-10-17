@@ -86,3 +86,7 @@ git add public/project-previews/p2-fire-gameplay.png public/project-previews/p2-
 git commit -m "Add P2 Gold modular weapon arena portfolio entry"
 git push origin master
 ```
+
+
+### P2-to-P1 footer published — 2026-10-16
+Commit b795a20 deployed successfully through Actions run 38989654006. Live browser verification clicked Explore P1 Gold from P2’s footer and reached /projects/zelda-recreation/. Both screenshots and download links remain available; no mobile overflow or page errors.

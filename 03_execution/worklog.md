@@ -271,3 +271,7 @@ Reflection: initial live-verification heading lookup matched both project cards 
 Added an explicit related-project target for P2. Its existing footer card now says Explore P1 Gold and opens the Zelda page. Other project navigation uses the original circular fallback. No styling or dependency changes. Production build/TypeScript, lint, 43 unit tests, and six P2/P1 checks across Chromium, Firefox and mobile Chrome passed. The added navigation assertion failed before implementation and passed afterward.
 
 Reflection: the default circular next-project link routed P2 to DevDoctor. An optional data-driven target keeps the requested game connection explicit while preserving the shared footer. Existing styles and browser checks were reusable; no global rule change needed.
+
+
+### P2-to-P1 footer published — 2026-10-16
+Commit b795a20 deployed successfully through Actions run 38989654006. Live browser verification clicked Explore P1 Gold from P2’s footer and reached /projects/zelda-recreation/. Both screenshots and download links remain available; no mobile overflow or page errors.
