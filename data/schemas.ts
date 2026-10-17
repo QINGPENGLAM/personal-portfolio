@@ -47,6 +47,7 @@ export const projectSchema = z.object({
   screenshots: z.array(nonEmptyText),
   screenshotAlt: nonEmptyText.optional(),
   course: nonEmptyText.optional(),
+  relatedProject: z.object({ slug: nonEmptyText, label: nonEmptyText }).optional(),
   gameplay: z.object({
     mechanics: z.array(nonEmptyText).min(1),
     controls: z.array(nonEmptyText).min(1),

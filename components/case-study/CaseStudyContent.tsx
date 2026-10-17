@@ -3,12 +3,14 @@ import { ProjectDownload } from '@/components/ProjectDownload'
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
 import type { Project } from '@/data/schemas'
-import { getAdjacentProjects } from '@/lib/projects'
+import { getAdjacentProjects, getProjectBySlug } from '@/lib/projects'
 import { withBasePath } from '@/lib/site'
 import { ArchitectureDiagram } from '@/components/architecture/ArchitectureDiagram'
 
 export function CaseStudyContent({ mode = 'page', project }: { mode?: 'page' | 'dialog'; project: Project }) {
   const adjacent = getAdjacentProjects(project.slug)
+  const relatedProject = getProjectBySlug(project.relatedProject?.slug)
+  const nextProject = relatedProject ?? adjacent.next
   const preview = project.screenshots[0]
 
   return (
@@ -130,7 +132,7 @@ export function CaseStudyContent({ mode = 'page', project }: { mode?: 'page' | '
 
       <nav aria-label="Related project navigation" className="related-projects">
         <Link href="/projects"><span>Project index</span><strong>All selected work</strong></Link>
-        {adjacent.next ? <Link href={`/projects/${adjacent.next.slug}`}><span>Next case study</span><strong>{adjacent.next.title} →</strong></Link> : null}
+        {nextProject ? <Link href={`/projects/${nextProject.slug}`}><span>{relatedProject ? project.relatedProject?.label : 'Next case study'}</span><strong>{nextProject.title} →</strong></Link> : null}
       </nav>
     </article>
   )

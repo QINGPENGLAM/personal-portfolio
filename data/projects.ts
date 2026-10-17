@@ -192,6 +192,7 @@ export const projects = projectSchema.array().parse([
   },
   {
     id: 'modular-weapon-arena',
+    relatedProject: { slug: 'zelda-recreation', label: 'Explore P1 Gold' },
     slug: 'modular-weapon-arena',
     title: 'Modular Weapon Arena Prototype',
     course: 'EECS 494 – Introduction to Game Development · University of Michigan',

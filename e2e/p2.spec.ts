@@ -21,4 +21,9 @@ test('opens P2 from its card with supplied screenshots and its playable-build li
     await expect.poll(() => image.evaluate((element) => (element as HTMLImageElement).naturalWidth)).toBeGreaterThan(0)
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
+  const p1Link = page.getByRole('navigation', { name: 'Related project navigation' }).getByRole('link', { name: /Explore P1 Gold/ })
+  await expect(p1Link).toHaveAttribute('href', /\/projects\/zelda-recreation\/$/)
+  await p1Link.click()
+  await expect(page).toHaveURL(/\/projects\/zelda-recreation\/$/)
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('The Legend of Zelda Recreation')
 })
