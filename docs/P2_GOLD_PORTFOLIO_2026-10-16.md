@@ -1,6 +1,11 @@
 # P2 Gold portfolio update — 2026-10-16
 
-Implemented locally in `/Users/qp2333/Desktop/Personal Porfolio` after design approval. No commit, public upload, push, or deployment performed.
+Implemented in `/Users/qp2333/Desktop/Personal Porfolio` after design approval, then committed, pushed, and deployed after the user requested publication. Earlier local-only statements below describe the prior implementation stage.
+
+
+
+## P2 live release verified — 2026-10-16
+Published implementation commit c67cf24f56373b57bcaee44530cba51505c74b9c to origin/master. GitHub Actions run https://github.com/QINGPENGLAM/personal-portfolio/actions/runs/38989245850 completed quality and deploy successfully. Live page: https://qingpenglam.github.io/personal-portfolio/projects/modular-weapon-arena/ . Direct browser verification passed: project index contains P2 and P1 cards; P2 card navigation works; exact public build link is present; both supplied screenshots load; mobile width has no overflow; no page errors; P1 page returns HTTP 200 and retains its existing release download. Desktop game execution and Windows moving-and-shooting behavior remain unverified.
 
 ## Added
 

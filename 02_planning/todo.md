@@ -35,4 +35,4 @@
 - [x] Run applicable build, lint, unit and route/mobile checks; preserve P1 entry and release URL.
 - [ ] Verify current Windows moving-and-shooting behavior separately; archive inspection is not runtime testing.
 
-- [ ] Publish the updated portfolio and verify its deployed P2 page and download.
+- [x] Publish the updated portfolio and verify its deployed P2 page, both images, download destination, mobile layout, and retained P1 page.

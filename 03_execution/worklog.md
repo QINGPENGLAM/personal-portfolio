@@ -259,3 +259,9 @@ Reflection: supplied temporary image paths were readable, so direct byte-preserv
 
 ## 2026-10-16 — P2 publication authorized
 User asked for the portfolio push. Remote master matches local HEAD before the change (0 ahead/0 behind). Rechecked all 43 unit tests, lint and diff whitespace. Commit and normal push will include only the reviewed P2 implementation, images, tests and governance; the existing gated Pages workflow will perform release validation. Deployment verification follows the push.
+
+
+## P2 live release verified — 2026-10-16
+Published implementation commit c67cf24f56373b57bcaee44530cba51505c74b9c to origin/master. GitHub Actions run https://github.com/QINGPENGLAM/personal-portfolio/actions/runs/38989245850 completed quality and deploy successfully. Live page: https://qingpenglam.github.io/personal-portfolio/projects/modular-weapon-arena/ . Direct browser verification passed: project index contains P2 and P1 cards; P2 card navigation works; exact public build link is present; both supplied screenshots load; mobile width has no overflow; no page errors; P1 page returns HTTP 200 and retains its existing release download. Desktop game execution and Windows moving-and-shooting behavior remain unverified.
+
+Reflection: initial live-verification heading lookup matched both project cards and the existing technical summaries; scoping to .project-card resolved the test-script ambiguity. No product fix was required. Release gates and exact deployed checks were reusable. Existing browser-selector practice covers this; no global rule change. A documentation-only follow-up uses [skip ci] to avoid redeploying unchanged product files.
