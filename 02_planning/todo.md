@@ -24,3 +24,15 @@
 - [x] Replace `GAME_DOWNLOAD_URL` with the verified public v1.0 playable ZIP asset URL.
 - [x] Replace the labeled image placeholder with both user-supplied gameplay screenshots.
 - [ ] Publish and verify the final portfolio and download; add its link to DESIGN.txt and share in the course exhibition channel.
+
+
+## P2 Gold portfolio entry — 2026-10-16
+- [x] Locate Unity P2 project and inspect P1 data/card/page/download patterns.
+- [x] Inspect Builds/P2Build.zip: MacBuild.app and WindowBuild are present; no Assets, Packages, ProjectSettings path segments or .cs files found in the archive inventory.
+- [x] Obtain approval of the bounded in-chat design before editing product code.
+- [x] Add matching P2 card/page with mechanics, contributions, Unity/C#, and controls using existing components.
+- [x] Add both supplied screenshots and activate the public P2Build.zip release asset URL (HTTP 200).
+- [x] Run applicable build, lint, unit and route/mobile checks; preserve P1 entry and release URL.
+- [ ] Verify current Windows moving-and-shooting behavior separately; archive inspection is not runtime testing.
+
+- [ ] Publish the updated portfolio and verify its deployed P2 page and download.

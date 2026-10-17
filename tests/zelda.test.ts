@@ -23,6 +23,14 @@ describe('Zelda playable build', () => {
     expect(html).not.toContain('href=')
   })
 
+  it('accepts the P2 placeholder but never turns it into a link', () => {
+    const html = renderToStaticMarkup(createElement(ProjectDownload, { url: 'P2_GAME_DOWNLOAD_URL' }))
+    expect(html).toContain('disabled')
+    expect(html).not.toContain('href=')
+    const project = getProjectBySlug('zelda-recreation')
+    expect(projectSchema.safeParse({ ...project, downloadUrl: 'P2_GAME_DOWNLOAD_URL' }).success).toBe(true)
+  })
+
   it('links the playable release when configured and rejects source repository URLs', () => {
     const url = 'https://github.com/example/game-builds/releases/download/v1/game.zip'
     expect(renderToStaticMarkup(createElement(ProjectDownload, { url }))).toContain(`href="${url}"`)

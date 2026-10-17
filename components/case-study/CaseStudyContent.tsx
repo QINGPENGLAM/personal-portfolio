@@ -47,6 +47,23 @@ export function CaseStudyContent({ mode = 'page', project }: { mode?: 'page' | '
         <div><p>{project.fullOverview}</p>{project.caseStudy ? <dl><div><dt>Problem</dt><dd>{project.problem}</dd></div><div><dt>For</dt><dd>{project.caseStudy.audience}</dd></div></dl> : null}</div>
       </div>
 
+      {project.gameplay ? (
+        <>
+          <section className="case-study-section" aria-labelledby={`${project.slug}-mechanics`}>
+            <div><p className="eyebrow">Weapon combinations</p><h2 id={`${project.slug}-mechanics`}>Core mechanics</h2></div>
+            <ul>{project.gameplay.mechanics.map((mechanic) => <li key={mechanic}>{mechanic}</li>)}</ul>
+          </section>
+          <section className="case-study-section" aria-labelledby={`${project.slug}-controls`}>
+            <div><p className="eyebrow">How to play</p><h2 id={`${project.slug}-controls`}>Controls</h2></div>
+            <ul>{project.gameplay.controls.map((control) => <li key={control}>{control}</li>)}</ul>
+          </section>
+          <section className="case-study-section" aria-labelledby={`${project.slug}-iteration`}>
+            <div><p className="eyebrow">Feedback and revisions</p><h2 id={`${project.slug}-iteration`}>Iteration</h2></div>
+            <div><p>{project.gameplay.iteration}</p><h3>Build status</h3><p>{project.gameplay.buildNote}</p></div>
+          </section>
+        </>
+      ) : null}
+
       <section className="case-study-section" aria-labelledby={`${project.slug}-contributions`}>
         <div><p className="eyebrow">Direct contribution</p><h2 id={`${project.slug}-contributions`}>{project.course ? 'My Contributions' : 'The work I personally owned.'}</h2></div>
         <ol className="contribution-list">{project.directContributions.map((contribution, index) => <li key={contribution}><span>{String(index + 1).padStart(2, '0')}</span><p>{contribution}</p></li>)}</ol>

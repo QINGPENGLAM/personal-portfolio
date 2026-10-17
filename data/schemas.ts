@@ -47,7 +47,13 @@ export const projectSchema = z.object({
   screenshots: z.array(nonEmptyText),
   screenshotAlt: nonEmptyText.optional(),
   course: nonEmptyText.optional(),
-  downloadUrl: z.union([z.literal('GAME_DOWNLOAD_URL'), z.url().refine((value) => {
+  gameplay: z.object({
+    mechanics: z.array(nonEmptyText).min(1),
+    controls: z.array(nonEmptyText).min(1),
+    iteration: nonEmptyText,
+    buildNote: nonEmptyText,
+  }).optional(),
+  downloadUrl: z.union([z.literal('GAME_DOWNLOAD_URL'), z.literal('P2_GAME_DOWNLOAD_URL'), z.url().refine((value) => {
     const url = new URL(value)
     return url.protocol === 'https:' && url.hostname === 'github.com' && /^\/[^/]+\/[^/]+\/releases(?:\/|$)/.test(url.pathname)
   }, 'Use a GitHub Release or release asset URL, never a source repository URL.')]).optional(),

@@ -185,3 +185,15 @@ The dedicated `/projects/zelda-recreation/` page and project card reuse the exis
 - Remove the corresponding Zelda `placeholders` entries when those assets are supplied.
 - Dates and a dated timeline entry are intentionally omitted until provided.
 - After publishing and verifying the playable download, put the public portfolio URL in the course `DESIGN.txt` and share it in the course exhibition channel. This change does not publish a release or post to Discord.
+
+
+### P2 Gold — 2026-10-16
+Discovery complete; additive P2 card/page design awaiting review. Local combined desktop build located at Unity/P2_Roguelite/Builds/P2Build.zip. Screenshots and public P2 download URL remain pending. No product code or public deployment changed.
+
+
+### P2 implementation — 2026-10-16
+Approved P2 card and /projects/modular-weapon-arena/ page implemented with existing shared components and styles. Added mechanics, controls, iteration, honest Windows build status, contributions, and Unity/C# technologies. Screenshot fallback and disabled P2_GAME_DOWNLOAD_URL remain until supplied. P1 data is byte-preserved. Build, lint, TypeScript, 43 unit tests, static budgets, 45 browser tests (21 configured skips), and the isolated world test passed. Local preview: http://localhost:3102/personal-portfolio/projects/modular-weapon-arena/. No commit, upload, push, or deployment performed.
+
+
+### P2 supplied build and screenshots — 2026-10-16
+Connected the user-supplied public v1.0 P2Build.zip URL and copied both supplied gameplay screenshots unchanged to public/project-previews/p2-fire-gameplay.png and p2-ice-gameplay.png. Fire screenshot is the hero with factual alt text; Ice screenshot appears in Gameplay. P2 placeholders are cleared. GitHub release API lists the uploaded 105794027-byte asset, and an unauthenticated redirect-following HEAD request returned HTTP 200. This verifies download availability, not runtime correctness. Windows gameplay note is preserved. No commit, push, portfolio deployment, or external upload was performed.

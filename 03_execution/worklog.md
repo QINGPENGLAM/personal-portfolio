@@ -231,3 +231,31 @@ Verified the public v1.0 release through GitHub API: `Zelda-P1-Game.zip` is uplo
 Recovered both user attachments through the image reader after temporary-directory access failed. Replaced placeholder artwork with the two gameplay PNGs: first in the hero, second in a Gameplay section. Full frames are contained without cropping; no unconfirmed custom-level labels are assigned. Existing project content remains unchanged.
 
 Validation after release URL and screenshot updates: lint, 42 unit tests, and the production build including TypeScript passed. Zelda browser checks passed in Chromium, Firefox, and mobile Chromium, verifying both image loads and the exact release-asset link. The running local preview returned HTTP 200. Reflection: use the attachment image reader when macOS temporary-directory enumeration is blocked; no permission or source-sharing policy change was needed.
+
+
+## 2026-10-16 — P2 Gold portfolio discovery
+Read supplied prompt as reference and inspected the existing portfolio, clean master checkout, project governance, shared cards and case-study route. Located /Users/qp2333/Unity/P2_Roguelite/Builds/P2Build.zip (105794027 bytes, 800 entries), containing MacBuild.app, WindowBuild, and __MACOSX. Archive inventory includes Mac and Windows executables and no .cs files or Unity source-project directory segments. Did not execute builds, upload files, edit product code, commit, push, or deploy. P1 currently retains two screenshots and its configured Zelda-P1-Game.zip release-asset URL; live reachability was not checked. P2 screenshot/public URL not yet identified. Presented minimal additive design for user approval.
+
+Reflection: broad Unity searches surfaced package-cache noise; future inventory should target Builds and Assets. Reuse the existing project and components. ZIP content checks establish packaging only, not game correctness. Existing project rules already cover evidence boundaries; no global change needed.
+
+
+## 2026-10-16 — Approved P2 implementation and validation
+Added P2 to data/projects.ts and extended optional gameplay content in data/schemas.ts and the shared CaseStudyContent component. ProjectDownload accepts the P2 sentinel as a disabled button; the initial regression failed because the old component emitted href="P2_GAME_DOWNLOAD_URL", then passed after the fix. Reused all styles and routing without dependencies. Existing Zelda data is byte-identical to HEAD. No Unity source files appear in public or out. No screenshot was invented; existing abstract visual fallback is used.
+
+Validation: 43/43 unit tests, lint, strict TypeScript, production static export with /personal-portfolio base path, all five static budgets, 45/45 applicable core browser checks with 21 configured skips, and isolated Chromium world regression passed. P2 and Zelda navigation passed Chromium, Firefox and mobile Chrome. Reviewed 1440 px desktop and 390 px mobile screenshots: no overflow or page errors. Independent read-only review found no actionable issue. GitHub CLI confirmed v1.0 still has the uploaded 122129672-byte Zelda-P1-Game.zip asset. Did not download or run it. Restored build-generated next-env.d.ts churn.
+
+Pending: supplied P2 screenshots, public build-only URL, and user verification of current Windows moving-and-shooting behavior. The combined local P2 ZIP was inspected only, not uploaded or executed. No commit/push/deployment.
+
+Reflection: the existing disabled-download behavior recognized only P1's sentinel, so P2 needed explicit schema/component handling. A focused rendering regression caught the otherwise clickable placeholder. Broad Unity searches from discovery were noisy; targeting Builds worked. Existing data-driven routing and image fallback were reusable. Existing governance already covers source and verification boundaries; no new global rule is needed.
+
+
+### P2 supplied build and screenshots — 2026-10-16
+Connected the user-supplied public v1.0 P2Build.zip URL and copied both supplied gameplay screenshots unchanged to public/project-previews/p2-fire-gameplay.png and p2-ice-gameplay.png. Fire screenshot is the hero with factual alt text; Ice screenshot appears in Gameplay. P2 placeholders are cleared. GitHub release API lists the uploaded 105794027-byte asset, and an unauthenticated redirect-following HEAD request returned HTTP 200. This verifies download availability, not runtime correctness. Windows gameplay note is preserved. No commit, push, portfolio deployment, or external upload was performed.
+
+Validation: production build with base path and TypeScript passed; lint and 43 unit tests passed; all six P2/P1 browser checks passed across Chromium, Firefox and mobile Chrome, verifying exact release links and both image loads. All static budgets passed. Desktop/mobile screenshots reviewed. No new source files exposed; generated next-env.d.ts restored.
+
+Reflection: supplied temporary image paths were readable, so direct byte-preserving copies avoided any recreation or cropping. Reused existing contained-image presentation and active-download behavior. No repeated failure or new cross-project rule.
+
+
+## 2026-10-16 — P2 publication authorized
+User asked for the portfolio push. Remote master matches local HEAD before the change (0 ahead/0 behind). Rechecked all 43 unit tests, lint and diff whitespace. Commit and normal push will include only the reviewed P2 implementation, images, tests and governance; the existing gated Pages workflow will perform release validation. Deployment verification follows the push.

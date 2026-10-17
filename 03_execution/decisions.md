@@ -106,3 +106,19 @@ Verified the public v1.0 release through GitHub API: `Zelda-P1-Game.zip` is uplo
 ### 2026-09-27 — Gameplay screenshots added
 
 Recovered both user attachments through the image reader after temporary-directory access failed. Replaced placeholder artwork with the two gameplay PNGs: first in the hero, second in a Gameplay section. Full frames are contained without cropping; no unconfirmed custom-level labels are assigned. Existing project content remains unchanged.
+
+
+## 2026-10-16 — P2 Gold proposed scope
+Continue the existing personal portfolio project; no separate product scaffold. Follow P1 card and shared /projects/[slug] presentation. Proposed P2 working title: Modular Weapon Arena Prototype. Preserve existing P1 content and download configuration. Treat supplied markdown as reference, and require explicit authorization before public upload. P2Build.zip combines both platforms but has not been run. Use the existing visual fallback if no screenshot is supplied, and extend the disabled-download sentinel handling if using P2_GAME_DOWNLOAD_URL. Product implementation awaits the brainstorming bounded-design approval gate.
+
+
+## 2026-10-16 — Approved P2 implementation
+User approved the bounded in-chat design. Add one project record and an optional gameplay block to existing shared presentation; no new framework, dependency or route implementation. Use the existing abstract visual fallback until supplied screenshots arrive, and disable the exact P2_GAME_DOWNLOAD_URL sentinel. Keep undated P2 out of timeline chronology. Preserve all P1 data. Keep public uploads and deployment outside this implementation; do not imply archive inventory proves runtime correctness.
+
+
+### P2 supplied build and screenshots — 2026-10-16
+Connected the user-supplied public v1.0 P2Build.zip URL and copied both supplied gameplay screenshots unchanged to public/project-previews/p2-fire-gameplay.png and p2-ice-gameplay.png. Fire screenshot is the hero with factual alt text; Ice screenshot appears in Gameplay. P2 placeholders are cleared. GitHub release API lists the uploaded 105794027-byte asset, and an unauthenticated redirect-following HEAD request returned HTTP 200. This verifies download availability, not runtime correctness. Windows gameplay note is preserved. No commit, push, portfolio deployment, or external upload was performed.
+
+
+## 2026-10-16 — Publish P2
+Proceed with the user-requested normal push to the existing origin/master deployment branch. Do not force push. Verify the workflow and deployed P2/P1 pages before claiming publication complete.
