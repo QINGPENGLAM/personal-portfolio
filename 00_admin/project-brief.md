@@ -63,3 +63,7 @@ Added an explicit related-project target for P2. Its existing footer card now sa
 
 ### P2-to-P1 footer published — 2026-10-16
 Commit b795a20 deployed successfully through Actions run 38989654006. Live browser verification clicked Explore P1 Gold from P2’s footer and reached /projects/zelda-recreation/. Both screenshots and download links remain available; no mobile overflow or page errors.
+
+
+## Resume update — 2026-10-24
+Replaced the portfolio resume PDF with the user-supplied `/Users/qp2333/Downloads/QingPengLam_Resume.pdf`. Existing preview and download links retain their current path. Local update verified; deployment pending.

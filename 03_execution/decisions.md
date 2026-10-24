@@ -134,3 +134,7 @@ Added an explicit related-project target for P2. Its existing footer card now sa
 
 ### P2-to-P1 footer published — 2026-10-16
 Commit b795a20 deployed successfully through Actions run 38989654006. Live browser verification clicked Explore P1 Gold from P2’s footer and reached /projects/zelda-recreation/. Both screenshots and download links remain available; no mobile overflow or page errors.
+
+
+## 2026-10-24 — Resume asset
+Use the exact user-supplied PDF without rewriting its contents and preserve the existing public filename so every preview/download entry point uses the replacement. User authorized commit and push on 2026-10-24; publish through the existing origin/master release workflow.

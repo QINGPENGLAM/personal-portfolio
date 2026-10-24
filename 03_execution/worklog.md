@@ -275,3 +275,12 @@ Reflection: the default circular next-project link routed P2 to DevDoctor. An op
 
 ### P2-to-P1 footer published — 2026-10-16
 Commit b795a20 deployed successfully through Actions run 38989654006. Live browser verification clicked Explore P1 Gold from P2’s footer and reached /projects/zelda-recreation/. Both screenshots and download links remain available; no mobile overflow or page errors.
+
+
+## 2026-10-24 — Resume PDF replacement
+Copied the supplied Downloads/QingPengLam_Resume.pdf to public/resume/QingPengLam_Resume.pdf. Confirmed PDF identification and exact byte equality with cmp; inspected data/profile.ts and preview/download callers to confirm the existing path is shared. Source SHA-256: 88e54907376a05d1106c81b7eda3e4d37d64057616f9e38b682acc5e269aa057. No application code changed; no build or deployment performed.
+
+Reflection: no failures or repeated issues. Reusing the existing asset path updates all resume entry points; byte comparison is the appropriate verification for an unchanged supplied binary. No new global rule needed.
+
+### 2026-10-24 — Resume publication authorized
+User requested commit and push. All 43 unit tests passed across 12 files; PDF byte comparison and diff whitespace checks passed. Publish the resume and its four governance records to origin/master, then inspect the deployment result.

@@ -39,3 +39,9 @@
 
 - [x] Add the requested Explore P1 Gold footer card to P2 and verify navigation across desktop/mobile browsers.
 - [x] Verify the updated P2-to-P1 footer link after deployment.
+
+
+## Resume update — 2026-10-24
+- [x] Replace the public resume PDF with the user-supplied newest version.
+- [x] Verify byte equality and confirm existing preview/download references resolve to the same asset path.
+- [ ] Publish the updated resume through the existing release workflow when requested.
