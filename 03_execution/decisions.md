@@ -176,3 +176,12 @@ Added a 260ms fade/lift/scale popup entrance and 170ms exit, with matching backd
 
 ## Publication order — 2026-10-25
 Commit and push the existing homepage/HRS work first, as explicitly requested. Record current accessibility failures without mixing new skills work into this checkpoint. A push does not establish a successful Pages release.
+
+## Skills evidence sources and interaction — 2026-10-25
+Use a static 2026-10-25 language snapshot for the 39 repositories already in the archive; do not change the archive/deployment snapshot or fetch GitHub at visitor time. Explicit inspected manifests and public gameplay scripts support framework/Unity connections. Case-study descriptions support explicitly curated concepts. Keep missing evidence visible rather than infer React from JavaScript or imply ownership/proficiency from byte totals. A case study and its linked repository count once. HRS uses its existing dedicated workflow route without a new world landmark.
+
+Keep hover alive across the entire explorer so result links stay clickable. Pointer and keyboard previews are separate; later keyboard focus clears stale pointer preview. Enter/Space pinning transfers focus to evidence so Tab can reach the selected project's links. Mobile selection scrolls to the panel and offers a return-to-skills control. Use scoped styles for contrast fixes; existing global day-theme contrast work stays separate. User authorization to push applied to the prior checkpoint; the new skills work stays local for review.
+
+
+## HRS interview content revision — 2026-10-25
+Updated the problem/ownership copy using the user’s account: research-institute staff spent30–60 minutes daily opening Scholar/WoS alerts, copying details and checking multiple criteria; the user designed and built the Python automation. This is a user-reported baseline, not measured time saved. Replaced checkpoint/pagination jargon with saved PostgreSQL message IDs/status and100-ID result batches using nextPageToken. Explained From-address routing, Beautiful Soup4+lxml/urllib.parse/regex parsing, ordered DOI/WoS/URL/title deduplication and distinct email-versus-paper recovery state. Removed the requested backfill, source-quality and dated-local-guard lines. The PubMed-unmatched branch now opens AI check, explicitly planned until connected.

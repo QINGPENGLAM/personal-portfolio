@@ -102,4 +102,18 @@ Added a 260ms fade/lift/scale popup entrance and 170ms exit, with matching backd
 ## Publication checkpoint — 2026-10-25
 - [x] Verify existing homepage/HRS changes before the requested push.
 - [ ] Resolve the eight Chromium color-contrast accessibility failures; deployment gate may block release.
-- [ ] Implement the approved skills evidence improvements after the current-change push.
+- [x] Implement the approved skills evidence improvements after the current-change push.
+
+## Skills evidence verification — 2026-10-25
+- [x] Verify languages for all 39 archived repositories, seven manifests and three public Unity gameplay scripts.
+- [x] Add missing TypeScript/Next.js/Unity skills and sourced case-study, repository and role connections.
+- [x] Add connection counts, skill search, source filters and usable pointer/keyboard/touch navigation.
+- [x] Verify 62 unit tests, lint, production build/TypeScript and all five budgets.
+- [x] Verify 31 existing critical-flow checks and 10 final skills checks across Chromium, Firefox and mobile Chrome (13 total intentional skips).
+- [x] Verify scoped explorer accessibility in light and dark themes; visually inspect desktop and mobile.
+- [ ] Review and authorize publication of the new skills work if desired.
+- [ ] Resolve the previously recorded site-wide contrast failures separately; scoped explorer checks now pass.
+
+
+## HRS interview content revision — 2026-10-25
+Updated the problem/ownership copy using the user’s account: research-institute staff spent30–60 minutes daily opening Scholar/WoS alerts, copying details and checking multiple criteria; the user designed and built the Python automation. This is a user-reported baseline, not measured time saved. Replaced checkpoint/pagination jargon with saved PostgreSQL message IDs/status and100-ID result batches using nextPageToken. Explained From-address routing, Beautiful Soup4+lxml/urllib.parse/regex parsing, ordered DOI/WoS/URL/title deduplication and distinct email-versus-paper recovery state. Removed the requested backfill, source-quality and dated-local-guard lines. The PubMed-unmatched branch now opens AI check, explicitly planned until connected.

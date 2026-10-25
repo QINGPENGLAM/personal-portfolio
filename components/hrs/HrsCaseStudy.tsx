@@ -39,8 +39,8 @@ export function HrsCaseStudy() {
         <p className="eyebrow">01 / The problem</p>
         <h2 id="hrs-problem-heading">Every alert starts another round of checks.</h2>
         <div className={styles.problemGrid}>
-          <div><h3>The manual workflow</h3><p>Read publication alerts, check whether each paper is already in HRS, look up its publication details, and prepare anything that still needs staff review.</p><p>Repeated alerts add another question: has this paper already been checked?</p></div>
-          <div><h3>The project goal</h3><p>Collect and check candidates consistently, retain processing history, and prepare a review queue that staff can act on.</p><p>People keep the final decision. The pipeline handles the repeated lookup and tracking work.</p></div>
+          <div><h3>The manual workflow</h3><p>At my research institute, publication alerts arrive from Google Scholar and Web of Science. Staff had to open those emails, copy out paper details, and check multiple criteria across different sources.</p><p>This took 30–60 minutes a day of repetitive work.</p></div>
+          <div><h3>What I designed and built</h3><p>I designed and built a Python pipeline to automate much of that repetitive intake, checking, and preparation—turning publication alerts into a review-ready queue.</p><p>Staff keep the final decision, with the publication details and check results prepared for them.</p></div>
         </div>
         <div className={styles.outcome}><span>Design principle</span><p>Automate the repeatable checks.<br /><strong>Keep the evidence and the human decision.</strong></p></div>
       </section>

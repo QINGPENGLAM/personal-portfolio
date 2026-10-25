@@ -10,18 +10,18 @@ export type HrsNode = {
 export const hrsWorkflow = {
   gmail: {
     id: 'gmail', title: 'Gmail intake', caption: 'Find recent publication alerts',
-    explanation: 'Search the last 30 days of Google Scholar and Web of Science alerts, then compare Gmail message IDs with saved processing state.',
-    points: ['Skip previously processed messages using durable checkpoints.', 'Page through matching emails instead of assuming the first page is complete.', 'A pause longer than the search window needs an explicit backfill plan.'],
+    explanation: 'Search the last 30 days of Google Scholar and Web of Science alerts, then check a saved processing log to see which emails have already been handled.',
+    points: ['Saved checkpoint: PostgreSQL stores each Gmail message ID and its processing status. On the next run, previously processed emails are skipped—even if the program has restarted.', 'Retrieve every result page: each Gmail request returns up to 100 matching email IDs. If Gmail provides a next-page token, request the next batch and repeat until there are no more pages.'],
   },
   source: {
     id: 'source', title: 'Identify the source', caption: 'Choose the matching parser',
-    explanation: 'The sender identifies whether an alert came from Google Scholar or Web of Science. Each source has a different email structure.',
-    points: ['Extract the HTML message body.', 'Route it to a source-specific parser rather than one set of selectors for every format.'],
+    explanation: 'Read the email’s From address and compare it with the known Google Scholar and Clarivate alert senders. That tells the pipeline which email format to expect.',
+    points: ['Extract the actual email address from the sender field and convert it to lowercase before comparing.', 'Google Scholar sender → Scholar parser. Clarivate sender → Web of Science parser.', 'Pass the email’s HTML body to the selected parser, which understands that source’s layout.'],
   },
   scholar: {
     id: 'scholar', title: 'Google Scholar parser', caption: 'Extract the Scholar alert format',
-    explanation: 'Turn Scholar email entries into structured paper candidates while retaining the available source information.',
-    points: ['Capture titles, links and available alert metadata.', 'Saved email fixtures make parser changes repeatable to check.', 'An extracted title can still be bad source data; parsing alone does not verify article identity.'],
+    explanation: 'Use Beautiful Soup 4 with the lxml parser to read the email’s HTML and turn each Scholar result into structured paper details.',
+    points: ['Find the publication links, read their titles, and inspect nearby HTML elements for authors, journal, year and the short description.', 'Python’s urllib.parse extracts the original paper URL from Scholar’s tracking link. Regular expressions separate the author, journal and year text.', 'Saved example emails let parser changes be tested against the same inputs.'],
   },
   wos: {
     id: 'wos', title: 'Web of Science parser', caption: 'Extract the WoS alert format',
@@ -30,13 +30,13 @@ export const hrsWorkflow = {
   },
   storage: {
     id: 'storage', title: 'Save papers + deduplicate', caption: 'Keep identity separate from alert history',
-    explanation: 'Persist papers and their appearances in alerts, then check candidate processing state before repeating downstream work.',
-    points: ['One paper may appear in several emails; retain those occurrences.', 'Paper processing and email checkpoints serve different recovery purposes.', 'New local identity guards preserve distinct known DOIs; these improvements are separate from the dated cloud release.'],
+    explanation: 'Before creating a paper record, compare it with stored papers using the strongest available identifiers. Keep a separate record of every alert in which it appears.',
+    points: ['Match in order: DOI → Web of Science record ID → normalized paper URL → normalized title as a fallback.', 'Title normalization ignores capitalization, punctuation and extra spaces. Title fallback only merges records when their known DOI and WoS identifiers do not conflict.', 'Email checkpoint: tracks whether a particular email has been handled, so a rerun can skip opening and processing that same alert again.', 'Paper status: tracks whether a paper’s initial HRS/PubMed checks are finished, even if it appears in a different email. Failed checks remain eligible for retry; finishing these checks does not mean a person has approved the paper.', 'Retain each alert occurrence, even when the paper already has a stored record.'],
   },
   title: {
     id: 'title', title: 'Already in HRS?', caption: 'Check by normalized title',
     explanation: 'Query HRS and compare normalized titles. An existing match does not need a new manual-entry candidate.',
-    points: ['A known match is marked already in HRS.', 'Otherwise, continue to PubMed for publication metadata.', 'The newer local title-quality guard diverts suspicious author-list titles to review instead of title-only matching.'],
+    points: ['A known match is marked already in HRS.', 'Otherwise, continue to PubMed for publication metadata.'],
   },
   titleSkip: {
     id: 'title-skip', title: 'Skip new entry', caption: 'Already in HRS',
@@ -46,12 +46,12 @@ export const hrsWorkflow = {
   pubmed: {
     id: 'pubmed', title: 'Reliable PubMed match?', caption: 'Resolve publication metadata',
     explanation: 'Search PubMed for a reliable title match and retrieve the matched record’s PMID, DOI, authors and journal.',
-    points: ['A match provides identifiers for a second HRS check.', 'No reliable match remains a human-review item; it is not silently discarded.', 'PubMed membership does not prove that a paper used HRS data.'],
+    points: ['A match provides identifiers for a second HRS check.', 'No reliable match → AI check (planned).', 'PubMed membership does not prove that a paper used HRS data.'],
   },
   unmatched: {
-    id: 'unmatched', title: 'Manual review', caption: 'No reliable PubMed match',
-    explanation: 'Preserve the candidate in the review queue for a person to investigate.',
-    points: ['Export it to the review Sheet and CSV.', 'The local retry/correction tools can later revisit unmatched records without resetting Gmail checkpoints.'],
+    id: 'unmatched', title: 'AI check', caption: 'No reliable PubMed match', planned: true,
+    explanation: 'Planned: send unmatched candidates to AI screening to help assess whether they use HRS data. Until this step is connected, candidates stay in the review queue.',
+    points: ['Use article evidence when the paper’s identity and access permissions can be confirmed.', 'Keep the screening reason and evidence available for staff review.', 'This branch is a placeholder; the screening functionality will be completed later.'],
   },
   pmid: {
     id: 'pmid', title: 'PMID already in HRS?', caption: 'Check the matched identifier',

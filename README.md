@@ -30,7 +30,7 @@ The source-level review in [`docs/PUBLIC_PROJECT_CODEBASE_AUDIT_2026-08-11.md`](
 - Reusable Experience and Skills evidence panels with 39 repository names, archive/dashboard navigation, and employment/proficiency interpretation boundaries
 - Expandable recruiter-friendly role details with direct contributions and technologies
 - Combined work, project, and education timeline with desktop horizontal layout, mobile vertical layout, type filters, and direct case-study links
-- Interactive skill evidence map that connects résumé-supported skills to published projects and roles, plus a plain accessible list
+- Searchable skill evidence map with connection counts, source filters, hover/focus previews, click/tap pinning, and sourced project, repository and role connections, plus a plain accessible list
 - Expanded About story covering interests, working style, curiosity, and current direction without becoming an autobiography
 - In-world Experience, About, Skills, and Education dossiers using `/world/?panel=[landmark]`, browser Back, Escape, and focus trapping
 - Local portfolio guide that answers only from approved structured content, links to supporting sections, refuses unavailable facts, and rate-limits questions in the browser
@@ -103,7 +103,9 @@ Portfolio facts live in `data/` and are validated at module load with Zod:
 - `experience.ts` — résumé-grounded work history
 - `projects.ts` — project facts, case-study sections, architecture graphs, testing evidence, world positions, and explicit unresolved placeholders
 - `education.ts` — degree, minor, date, and GPA
-- `skills.ts` — grouped résumé-supported skills
+- `skills.ts` — grouped résumé- and project-supported skills
+- `skill-repositories.json`, `skill-manifests.json`, `skill-unity-sources.json` — dated language and source evidence for the skill map
+- `skill-evidence.ts` — explicit dependency and concept mappings; see `docs/SKILL_EVIDENCE.md`
 - `timeline.ts` — validated chronological connections across work, projects, and education
 - `world.ts` — landmark labels, routes, positions, colors, and camera framing
 - `github-repositories.ts` — dated public repository metadata snapshot and exact GitHub source links

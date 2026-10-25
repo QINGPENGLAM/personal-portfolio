@@ -105,3 +105,10 @@ Added a 260ms fade/lift/scale popup entrance and 170ms exit, with matching backd
 
 ## Current-change publication — 2026-10-25
 User requested committing and pushing the existing homepage/HRS changes before starting the approved skills improvement. Local verification: lint, 53 unit tests, production static build with the Pages base path, and all budgets pass. Chromium: 12 passed, 2 skipped, 8 accessibility checks failed for color contrast. Deployment is not confirmed.
+
+## Skills evidence improvement — 2026-10-25
+Complete locally after the requested 5620df2 publication checkpoint. The skills page now links 38 résumé- and project-supported skills to case studies, public repositories and roles, with counts, search, evidence filters, stable pointer previews, keyboard selection/focus transfer, mobile results access and inspectable source reasons. All 39 existing archive repositories have a fresh language breakdown snapshot; seven dependency manifests and three Unity scripts support explicit technology mappings. TypeScript, Next.js and Unity are added without résumé-only claims. Archive and live-demo snapshot dates stay unchanged. No new commit/push/deployment.
+
+
+## HRS interview content revision — 2026-10-25
+Updated the problem/ownership copy using the user’s account: research-institute staff spent30–60 minutes daily opening Scholar/WoS alerts, copying details and checking multiple criteria; the user designed and built the Python automation. This is a user-reported baseline, not measured time saved. Replaced checkpoint/pagination jargon with saved PostgreSQL message IDs/status and100-ID result batches using nextPageToken. Explained From-address routing, Beautiful Soup4+lxml/urllib.parse/regex parsing, ordered DOI/WoS/URL/title deduplication and distinct email-versus-paper recovery state. Removed the requested backfill, source-quality and dated-local-guard lines. The PubMed-unmatched branch now opens AI check, explicitly planned until connected.

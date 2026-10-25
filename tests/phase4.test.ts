@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { githubRepositories } from '@/data/github-repositories'
 import { experiences } from '@/data/experience'
 import { projects } from '@/data/projects'
 import { skillGroups } from '@/data/skills'
@@ -26,10 +27,10 @@ describe('Phase 4 professional story', () => {
     expect(projectLinks).toEqual(expect.arrayContaining(projects.filter((project) => !project.course).map((project) => `/projects/${project.slug}`)))
   })
 
-  it('uses only résumé skills and resolves evidence to published records', () => {
+  it('uses unique portfolio skills and resolves evidence to published records', () => {
     expect(new Set(resumeSkills)).toHaveLength(resumeSkills.length)
     expect(resumeSkills).toEqual(skillGroups.flatMap((group) => group.items))
-    const validIds = new Set([...projects.map((project) => project.id), ...experiences.map((experience) => experience.id)])
+    const validIds = new Set([...projects.map((project) => project.id), ...experiences.map((experience) => experience.id), ...githubRepositories.map(repository => repository.name), 'hrs-publication-pipeline'])
     for (const skill of resumeSkills) {
       for (const evidence of getSkillEvidence(skill)) expect(validIds.has(evidence.id)).toBe(true)
     }

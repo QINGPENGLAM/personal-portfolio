@@ -1,0 +1,277 @@
+{
+  "checkedAt": "2026-10-25",
+  "repositories": [
+    {
+      "name": "personal-portfolio",
+      "languages": {
+        "TypeScript": 317106,
+        "CSS": 146158,
+        "HTML": 47317,
+        "JavaScript": 6059
+      }
+    },
+    {
+      "name": "project-0010-n8n-workflow-hub-demo",
+      "languages": {
+        "HTML": 2333427,
+        "JavaScript": 9268
+      }
+    },
+    {
+      "name": "project-0009-montage-product-video-generator",
+      "languages": {}
+    },
+    {
+      "name": "project-0007-personal-ai-workbench",
+      "languages": {}
+    },
+    {
+      "name": "project-0006-immich-ai-photo-search-mvp",
+      "languages": {
+        "JavaScript": 46097,
+        "CSS": 7378,
+        "HTML": 3651
+      }
+    },
+    {
+      "name": "project-0008-linear-clock-dial-lab",
+      "languages": {
+        "JavaScript": 32877,
+        "HTML": 10245,
+        "CSS": 9121
+      }
+    },
+    {
+      "name": "AI-Town",
+      "languages": {
+        "JavaScript": 120106,
+        "CSS": 46885,
+        "HTML": 356
+      }
+    },
+    {
+      "name": "QINGPENGLAM",
+      "languages": {}
+    },
+    {
+      "name": "HandMotionMusic",
+      "languages": {
+        "JavaScript": 76910,
+        "CSS": 9917,
+        "HTML": 5399
+      }
+    },
+    {
+      "name": "AutoPoster",
+      "languages": {
+        "JavaScript": 21782,
+        "CSS": 5817,
+        "HTML": 349
+      }
+    },
+    {
+      "name": "Portfolio",
+      "languages": {
+        "JavaScript": 29305,
+        "CSS": 23406,
+        "HTML": 748
+      }
+    },
+    {
+      "name": "PersonalPortfolio",
+      "languages": {}
+    },
+    {
+      "name": "myOwnRedis",
+      "languages": {
+        "C++": 45516,
+        "C": 4329
+      }
+    },
+    {
+      "name": "Raytracer",
+      "languages": {
+        "C++": 17224
+      }
+    },
+    {
+      "name": "UnityKitchenGame",
+      "languages": {}
+    },
+    {
+      "name": "client_project_w25",
+      "languages": {
+        "HTML": 49829,
+        "CSS": 7408,
+        "JavaScript": 1912
+      }
+    },
+    {
+      "name": "hw6-2025",
+      "languages": {
+        "JavaScript": 2273,
+        "HTML": 1272,
+        "CSS": 406
+      }
+    },
+    {
+      "name": "dicussion9-JS",
+      "languages": {
+        "HTML": 4058
+      }
+    },
+    {
+      "name": "hw5_2025",
+      "languages": {
+        "CSS": 12294,
+        "HTML": 2896
+      }
+    },
+    {
+      "name": "discussion8-form",
+      "languages": {
+        "CSS": 5968,
+        "HTML": 1780
+      }
+    },
+    {
+      "name": "hw3_2025",
+      "languages": {
+        "CSS": 6338,
+        "HTML": 4979
+      }
+    },
+    {
+      "name": "hw2-w25",
+      "languages": {
+        "CSS": 2752,
+        "HTML": 1912
+      }
+    },
+    {
+      "name": "hw1-w25",
+      "languages": {
+        "CSS": 5646,
+        "HTML": 5122
+      }
+    },
+    {
+      "name": "discussion1",
+      "languages": {}
+    },
+    {
+      "name": "FITgym",
+      "languages": {
+        "JavaScript": 110009,
+        "HTML": 978,
+        "CSS": 344
+      }
+    },
+    {
+      "name": "NASA-REACT",
+      "languages": {
+        "JavaScript": 4585,
+        "CSS": 2856,
+        "HTML": 622
+      }
+    },
+    {
+      "name": "todolist",
+      "languages": {
+        "JavaScript": 4375,
+        "CSS": 1431,
+        "HTML": 884
+      }
+    },
+    {
+      "name": "project1",
+      "languages": {
+        "C++": 15751,
+        "Makefile": 11356
+      }
+    },
+    {
+      "name": "Econbusiness",
+      "languages": {
+        "HTML": 9877,
+        "CSS": 8594
+      }
+    },
+    {
+      "name": "XIWENPORT",
+      "languages": {
+        "HTML": 8746,
+        "CSS": 1977
+      }
+    },
+    {
+      "name": "gov-project",
+      "languages": {
+        "HTML": 7035,
+        "CSS": 1408
+      }
+    },
+    {
+      "name": "arthistory-RPG",
+      "languages": {
+        "C#": 412606,
+        "HLSL": 220890,
+        "ShaderLab": 193933
+      }
+    },
+    {
+      "name": "topicshare",
+      "languages": {
+        "HTML": 90663,
+        "CSS": 2358
+      }
+    },
+    {
+      "name": "E-Commerce",
+      "languages": {
+        "HTML": 110131,
+        "CSS": 9122
+      }
+    },
+    {
+      "name": "food-ordering-",
+      "languages": {
+        "JavaScript": 23790,
+        "CSS": 10025,
+        "HTML": 5593
+      }
+    },
+    {
+      "name": "cube-game",
+      "languages": {
+        "ShaderLab": 80492,
+        "HLSL": 13994,
+        "C#": 3070
+      }
+    },
+    {
+      "name": "random-spawn-dodge",
+      "languages": {
+        "ShaderLab": 80492,
+        "HLSL": 13994,
+        "C#": 2913
+      }
+    },
+    {
+      "name": "Tic-Tac-Toe",
+      "languages": {
+        "JavaScript": 3301,
+        "CSS": 766,
+        "HTML": 668
+      }
+    },
+    {
+      "name": "Calculator",
+      "languages": {
+        "JavaScript": 4017,
+        "HTML": 1690,
+        "CSS": 1582
+      }
+    }
+  ]
+}

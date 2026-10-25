@@ -81,7 +81,7 @@ export function answerPortfolioQuestion(question: string): AssistantAnswer {
     const evidence = getSkillEvidence(matchedSkill)
     return {
       available: evidence.length > 0,
-      answer: evidence.length ? `${matchedSkill} appears in ${evidence.length} published portfolio ${evidence.length === 1 ? 'record' : 'records'}.` : `${matchedSkill} is listed in the approved résumé skills, but no detailed project or role evidence is published for it yet.`,
+      answer: evidence.length ? `${matchedSkill} appears in ${evidence.length} published portfolio ${evidence.length === 1 ? 'record' : 'records'}.` : `${matchedSkill} is listed in the portfolio skills, but no detailed project or role evidence is published for it yet.`,
       links: evidence.map((item) => ({ href: item.href, label: item.title })),
     }
   }
