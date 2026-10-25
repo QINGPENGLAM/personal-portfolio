@@ -45,3 +45,61 @@
 - [x] Replace the public resume PDF with the user-supplied newest version.
 - [x] Verify byte equality and confirm existing preview/download references resolve to the same asset path.
 - [ ] Publish the updated resume through the existing release workflow when requested.
+
+
+## SELENE homepage preview — 2026-10-24
+- [x] Discard the task-owned Monsoon reconstruction, code, assets and dependencies.
+- [x] Integrate the supplied lunar layers and scroll choreography into the existing portfolio homepage.
+- [x] Preserve actual profile, project content, resume and 3D world routes.
+- [x] Check 390/768/1280/1920 widths, image loading, navigation, skip-to-portfolio and theme contrast.
+- [x] Run unit tests, lint, production build and unchanged performance budgets; independent source review.
+- [ ] User visual review of the local SELENE preview; no commit or deployment requested.
+
+
+### SELENE deck follow-up — 2026-10-24
+- [x] Add the scrolling project deck with actual project data, existing imagery and case-study links.
+- [x] Make Explore My 3D World visible in the opening and persist in the home navigation.
+- [x] Verify centered focus, neighboring-card clicks, keyboard navigation and compact phone layout.
+- [x] Preserve static grid fallback and all original performance budgets.
+- [ ] User visual review of the updated local preview.
+
+
+### Deck correction — 2026-10-24
+- [x] Replace the vertical pinned-scroll deck with direct horizontal scrolling and previous/next buttons.
+- [x] Remove the lower duplicate project-card grid.
+- [x] Verify horizontal arrows/scrolling, keyboard focus, responsive widths and retained recruiter details.
+
+
+### Four-point usability correction — 2026-10-24
+- [x] Make Quick Portfolio View a direct jump past the cinematic intro, with destination focus.
+- [x] Apply a consistent font hierarchy across the portfolio UI.
+- [x] Replace the mixed purple/teal UI palette with the lunar palette.
+- [x] Increase world and all-projects action prominence.
+- [x] Verify desktop/mobile quick jump and actual project-page navigation, tests/lint/build/budgets.
+
+
+### 2026-10-24 — Cosmic background polish
+Implemented the requested space atmosphere: fixed decorative star field with soft edge nebulae, gentle opacity twinkling, and star accents on dark buttons. Background is noninteractive and hidden from assistive technology; reduced motion keeps stars static. The project reel exposes the shared background. No dependencies or content changes.
+
+
+2026-10-24 cosmic intensity revision: increased edge nebula opacity and spread, star brightness/size/density, and minimum twinkle visibility after user found the first pass too subtle. Production build/TypeScript passed; browser screenshot verified stronger atmosphere with readable content. Reflection: decorative contrast must be assessed against the actual dark surface; the initial effect was too restrained.
+
+
+## HRS case-study draft — 2026-10-25
+- [x] Build problem, interactive top-down workflow and Database/Cloud decision columns.
+- [x] Add the planned AI placeholder and Projects entry link.
+- [x] Verify static build, tests, lint, performance and responsive disclosure behavior.
+- [ ] Refine interview wording and personal ownership with user feedback; subsequent presentation sections remain deferred.
+
+
+## HRS node popups — 2026-10-25
+User requested popups instead of inline dropdowns. Supersedes the native disclosure design: workflow, database and cloud nodes now open labeled native modal dialogs with a dimmed/blurred backdrop. Close button, Escape and outside-click dismiss; background scroll is locked and restored; focus stays within the popup and returns to the originating node. Small screens constrain popup height with internal scrolling and a sticky close bar. Original explanations remain available in a no-JavaScript fallback. Node layout does not expand.
+
+
+## HRS motion and branch clarity — 2026-10-25
+Added a 260ms fade/lift/scale popup entrance and 170ms exit, with matching backdrop fades. Close button, Escape and outside-click use the same delayed close path; modality/scroll lock remain until close. A 250ms fallback handles interrupted exit animations, timers are cleaned up, and reduced motion closes immediately without CSS animations. Larger outlined Yes/No pills now sit directly on stronger directional rails. Desktop branch spacing increased; mobile branch labels use a wider rail.
+
+## Publication checkpoint — 2026-10-25
+- [x] Verify existing homepage/HRS changes before the requested push.
+- [ ] Resolve the eight Chromium color-contrast accessibility failures; deployment gate may block release.
+- [ ] Implement the approved skills evidence improvements after the current-change push.

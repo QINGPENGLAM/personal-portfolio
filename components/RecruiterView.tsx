@@ -1,19 +1,16 @@
 import Link from 'next/link'
 import { education } from '@/data/education'
 import { experiences } from '@/data/experience'
-import { githubRepositories } from '@/data/github-repositories'
 import { profile } from '@/data/profile'
-import { projects } from '@/data/projects'
 import { skillGroups } from '@/data/skills'
 import { withBasePath } from '@/lib/site'
-import { ProjectCard } from './ProjectCard'
 
 export function RecruiterView() {
   return (
-    <section className="recruiter-view" id="quick-view">
+    <section className="recruiter-view" id="quick-view" tabIndex={-1}>
       <div className="section-heading">
         <div><p className="eyebrow">Recruiter View</p><h2>The useful details, immediately.</h2></div>
-        <p>Experience, selected engineering work, skills, education, and contact information—no world navigation required.</p>
+        <p>Experience, skills, education and résumé—everything you need at a glance.</p>
       </div>
 
       <div className="recruiter-summary glass-card">
@@ -27,11 +24,6 @@ export function RecruiterView() {
           <a className="button button-secondary" href={profile.githubUrl} rel="noreferrer" target="_blank">GitHub <span aria-hidden="true">↗</span></a>
         </div>
       </div>
-
-      <section className="content-section" aria-labelledby="selected-work-heading">
-        <div className="section-kicker"><h2 id="selected-work-heading">Selected work</h2><div className="section-kicker-links"><Link href="/projects">Case studies</Link><Link href="/projects/archive">All {githubRepositories.length} public repositories</Link></div></div>
-        <div className="project-grid">{projects.map((project) => <ProjectCard key={project.id} project={project} />)}</div>
-      </section>
 
       <section className="content-section" aria-labelledby="experience-heading">
         <div className="section-kicker"><h2 id="experience-heading">Experience</h2><Link href="/experience">Full experience</Link></div>

@@ -12,6 +12,7 @@ export default function ProjectsPage() {
 
   return (
     <SectionPage eyebrow="Selected engineering work" title="Systems with proof behind them." intro="The featured set stays intentionally small: every case study is supported by the supplied résumé and current project evidence.">
+      <p><Link className="button button-secondary" href="/projects/hrs-publication-pipeline">Explore the HRS publication workflow ↗</Link></p>
       <ProjectsExplorer />
       <aside className="project-archive-callout glass-card" aria-label="Complete GitHub project archive">
         <div><p className="eyebrow">Beyond the case studies</p><h2>{githubRepositories.length} public repositories, one transparent archive.</h2><p>Browse by name, language, activity, or demo availability. {verifiedLiveRepositoryCount} live pages include a current check date; missing descriptions and unavailable deployments remain explicit.</p></div>

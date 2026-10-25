@@ -11,7 +11,7 @@ export function SiteHeader() {
   const pathname = usePathname()
 
   return (
-    <header className="site-header">
+    <header className={`site-header${pathname === '/' ? ' selene-header' : ''}`}>
       <Link aria-label="QingPeng Lam home" className="brand" href="/">
         <span aria-hidden="true" className="brand-mark">QL</span>
         <span className="brand-copy">
@@ -29,7 +29,9 @@ export function SiteHeader() {
       </nav>
 
       <div className="header-actions">
-        <Link className="quick-view-link" data-analytics-event="recruiter_view_opened" href="/#quick-view">Recruiter View</Link>
+        {pathname === '/' ? (
+          <Link className="quick-view-link world-entry-link" href="/world"><span aria-hidden="true">◇</span> <span className="world-entry-full">Explore My 3D World</span><span className="world-entry-short">3D World ↗</span></Link>
+        ) : <Link className="quick-view-link" data-analytics-event="recruiter_view_opened" href="/#quick-view">Recruiter View</Link>}
         <AudioToggle />
         <ThemeToggle />
       </div>
@@ -38,9 +40,9 @@ export function SiteHeader() {
         <summary aria-label="Open navigation">Menu</summary>
         <nav aria-label="Mobile navigation">
           {navigation.map((item) => (
-            <Link href={item.href} key={item.href}>{item.label}</Link>
+            <Link href={item.href} key={item.href} onClick={(event) => event.currentTarget.closest('details')?.removeAttribute('open')}>{item.label}</Link>
           ))}
-          <Link href="/world">Enter world</Link>
+          <Link href="/world" onClick={(event) => event.currentTarget.closest('details')?.removeAttribute('open')}>Enter world</Link>
         </nav>
       </details>
     </header>

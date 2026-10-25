@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import type { ReactNode } from 'react'
+import localFont from 'next/font/local'
 import { AnalyticsListener } from '@/components/analytics/AnalyticsListener'
 import { AudioProvider } from '@/components/audio/AudioProvider'
 import { PortfolioAssistant } from '@/components/chat/PortfolioAssistant'
@@ -8,6 +9,10 @@ import { SiteHeader } from '@/components/SiteHeader'
 import { profile } from '@/data/profile'
 import { siteConfig } from '@/lib/site'
 import './globals.css'
+
+const michroma = localFont({ src: './fonts/Michroma.woff2', variable: '--font-selene-display', display: 'swap', weight: '400' })
+const manrope = localFont({ src: './fonts/Manrope.woff2', variable: '--font-selene-text', display: 'swap', weight: '300 700' })
+const plexMono = localFont({ src: './fonts/IBMPlexMono.woff2', variable: '--font-selene-mono', display: 'swap', weight: '400' })
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.canonicalUrl),
@@ -67,8 +72,9 @@ const personStructuredData = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html data-scroll-behavior="smooth" lang="en" suppressHydrationWarning>
+    <html className={`${michroma.variable} ${manrope.variable} ${plexMono.variable}`} data-scroll-behavior="smooth" lang="en" suppressHydrationWarning>
       <body>
+        <div aria-hidden="true" className="cosmic-backdrop"><span className="cosmic-stars" /><span className="cosmic-twinkles" /></div>
         <AudioProvider>
           <AnalyticsListener />
           <a className="skip-link" href="#main-content">Skip to content</a>

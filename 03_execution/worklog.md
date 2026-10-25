@@ -284,3 +284,74 @@ Reflection: no failures or repeated issues. Reusing the existing asset path upda
 
 ### 2026-10-24 — Resume publication authorized
 User requested commit and push. All 43 unit tests passed across 12 files; PDF byte comparison and diff whitespace checks passed. Publish the resume and its four governance records to origin/master, then inspect the deployment result.
+
+
+## 2026-10-24 — SELENE portfolio opening
+Read the complete supplied reference and downloaded/inspected its 17 image assets. Removed the abandoned Monsoon Vite app, video, fonts, component, tests, plans, package changes, TypeScript exclusion and budget changes. Added the personalized six-layer lunar opening to the existing homepage, responsive image cuts, local reference fonts/licenses, a shared Lenis/rAF scheduler, live reduced-motion support, static SSR fallback and skip-to-portfolio link. Existing recruiter content, routes, resume and world are retained. Scoped the reference-style navigation to the homepage; mobile links now close their menu.
+
+Verification: 46 unit tests passed; lint clean; production export compiled all 19 pages. All five original static budgets passed (homepage initial JS 258 KiB; export about 10 MiB). Browser verified all six layers load and the Earth/astronaut reveal, no horizontal overflow at 390/768/1280/1920, portrait asset selection on phone, mobile navigation, project route and skip-to-portfolio. Source reviewer identified a day-theme selector precedence issue; added and browser-checked a dark lunar header override in both themes. A script-free copy of exported HTML was inspected in-browser with all local layers loaded, visible personal content and zero script elements; raised static fallback text above the astronaut silhouette. Final production preview follows. Full Playwright browser matrix and OS reduced-motion switching were not executed this turn.
+
+Reflection: a complete template prompt initially led to an unnecessary standalone app before the user clarified portfolio fusion; the user subsequently replaced the visual direction. Explicitly tracking task-owned files made a bounded rollback safe. Source templates can contradict their stated visual checks (dust-clear timing), so verify the motion order directly. Scoped CSS can still lose to an existing theme selector; check both themes. Existing route/content structure and static budgets were reusable. Existing scope/verification rules cover these lessons; no global rule update needed.
+
+Final production verification: rebuilt with /personal-portfolio base path; all 19 routes compiled, original five budgets passed (258 KiB homepage JS, 10,254 KiB export). Opened http://127.0.0.1:3105/personal-portfolio/ and confirmed all layers loaded from the base path, personal heading, and no horizontal overflow. Final local preview remains available; development server stopped. Restored generated next-env.d.ts. No commit/push/deployment.
+
+
+### 2026-10-24 — Project reel and world discoverability
+Added ProjectReel after the lunar opening, with four real project links, existing contained screenshots/illustration, explicit concept visuals, pinned horizontal scrolling, focused-card emphasis, counter and progress line. Reuses the existing scheduler; static grid remains for reduced motion/no scripts. Added a white world CTA in the persistent home navigation plus initial dust-screen CTA.
+
+49 unit tests passed; lint/TypeScript/build passed. All five original budgets pass: homepage initial JS 265 KiB /275 KiB; export about10 MiB /12 MB. Independent source review requested focused checks of neighboring pointer clicks, tab-through, and short phones. Browser reproduced a lost-click issue when pointer focus recentered a neighboring card; restricted recentering to :focus-visible and verified the same click then opened Zelda's case study. Keyboard navigation across the deck kept stage scrollLeft at0. A390×600 check showed the compact focused card fully visible below the heading (top219, bottom513) with no horizontal overflow. Desktop1440px deck and stronger world CTA inspected. Full Playwright matrix and live OS reduced-motion switching not run. No commit/push/deployment.
+
+Reflection: scroll-linked interfaces need both pointer and keyboard checks; treating every focus as keyboard input moved pointer targets before mouseup. Compact heights need their own check in addition to widths. Shared scheduler, existing project data and original performance budgets were reusable. Existing risk-based verification guidance covers the lesson; no global rule update needed.
+
+
+### 2026-10-24 — Direct horizontal scrolling and duplicate removal
+Changed ProjectReel from pinned vertical-progress translation to a native horizontal scroller with scroll snap, visible scrollbar, previous/next buttons and keyboard support. Focus highlighting and progress now read the scroller position. Removed the duplicate selected-work grid and its imports from RecruiterView. Existing world entry points remain.
+
+49 unit tests, lint, production build/TypeScript and all five original performance budgets passed. Production browser verified arrow navigation, direct right/left scroll (page Y unchanged), last-card disabled state, phone keyboard focus, and 390/768/1280/1920 widths without document overflow. DOM confirms no selected-work duplicate grid. Phone screenshot confirmed full card visibility after focus. No commit/push/deployment.
+
+Reflection: the previous version interpreted left/right motion as a vertical scroll narrative; the user wanted direct horizontal input. Native scrolling expresses that intent more clearly and removes the tall pinned section. Reused the project DTO, visuals, links and native browser focus/scroll support. No new global rule needed.
+
+
+### 2026-10-24 — Four-point polish and quick-view repair
+Reproduced the old quick-view behavior: the hash changed immediately while the section remained about4169px below the viewport during smooth scrolling. Added QuickViewLink with explicit immediate Lenis/native navigation, 96px offset, hash history and focus on #quick-view. The fallback native href includes the deployment base path; modifier clicks retain browser behavior. A new regression failed before the helper change and passed afterward.
+
+Unified body/navigation fonts and the heading hierarchy with the locally bundled reference typefaces. Replaced purple primary buttons/background gradients and mixed color tokens with charcoal, lunar grey, ice blue and ivory. Matched lower recruiter cards to the lunar surfaces. Added large opening choices with supporting copy, a stronger persistent world action and full-size all-projects button. Bounded case-study title sizing for the wider display font.
+
+Validation:50 unit tests, lint, production export/TypeScript and original5 budgets passed (265KiB homepage initial JS; about10MiB export). Browser verified immediate desktop/mobile targetTop95.9px and activeElementquick-view, charcoal background, Manrope body/Michroma headings, strengthened opening choices and actual View all projects navigation. Mobile projects page uses the same font hierarchy without overflow. Independent source review found no important functional/accessibility issue. Full browser matrix and visual game/runtime checks were not rerun. No commit/push/deployment.
+
+Reflection: native smooth anchors and the Lenis scroll owner need explicit coordination for a promised immediate shortcut. A template hero over an unchanged older body leaves inconsistent type and colors; shared tokens and a clear CTA hierarchy resolve that boundary. The failing regression and browser position/focus measurements were reusable evidence. Existing scope/verification rules cover this; no new global rule needed.
+
+
+### 2026-10-24 — Cosmic background polish
+Added a CSS-only global star field, blue-violet edge nebulae, gentle twinkles and dark-button star accents. Decorative layers cannot intercept input; reduced motion disables twinkling and day mode softens the effect. Production export/TypeScript passed; browser screenshot confirmed visible stars and readable project content.
+
+Reflection: a flat shared surface left the cinematic hero visually disconnected from inner pages. A shared decorative background adds continuity without scripts or assets. Kept content and ivory primary actions intact; no new global rule needed. No commit/push/deployment.
+
+
+2026-10-24 cosmic intensity revision: increased edge nebula opacity and spread, star brightness/size/density, and minimum twinkle visibility after user found the first pass too subtle. Production build/TypeScript passed; browser screenshot verified stronger atmosphere with readable content. Reflection: decorative contrast must be assessed against the actual dark surface; the initial effect was too restrained.
+
+
+## HRS case-study draft — 2026-10-25
+Completed the user-authorized three-section sketch as an actual static route, with typed source-grounded content, clickable native disclosure nodes, top-down split/merge and yes/no branches, planned AI node, and Database/Google Cloud columns with why/trade-offs/services. Added one entry on Projects. No timings or new background. Full suite: 53 passing; lint clean; build/TypeScript exports 20 routes. All original performance budgets pass (homepage 265 KiB, largest CSS 20 KiB, export 10522 KiB). Browser verified accordion/keyboard behavior, independent comparison groups, base-path navigation, AI status and responsive layout at 320/390/768/1440 widths with no overflow. Fixed expanded parser forcing its collapsed sibling to stretch. Bounded independent source review reported no important issue. Browser review initially hit an account usage limit on Oct24; resumed successfully Oct25. Screenshot saved in the thread visualization directory. No HRS runtime access or changes, commit/push/deployment.
+
+Reflection: native disclosure elements provide the exact requested inline interaction with no diagram runtime or extra client bundle. Expanding a CSS grid child can unintentionally stretch a closed sibling; branch wrappers retain compact nodes and continuous connectors. Reuse the existing theme rather than a generated concept image’s decorative intensity. No global policy change is needed.
+
+
+## HRS node popups — 2026-10-25
+User requested popups instead of inline dropdowns. Supersedes the native disclosure design: workflow, database and cloud nodes now open labeled native modal dialogs with a dimmed/blurred backdrop. Close button, Escape and outside-click dismiss; background scroll is locked and restored; focus stays within the popup and returns to the originating node. Small screens constrain popup height with internal scrolling and a sticky close bar. Original explanations remain available in a no-JavaScript fallback. Node layout does not expand.
+
+Validation: updated regression failed against dropdowns and passed after replacement; all 53 unit tests pass. Lint and final production build/TypeScript pass, as do the five original budgets. Browser checked desktop/mobile popups, Close/Escape/outside dismissal, return focus, Tab containment, scroll restoration, and a 320x600 internal-scroll case without document overflow. Independent bounded source review found no important defects. No pipeline, commit, push or deployment changes.
+
+Reflection: the user wanted detail without rearranging the flowchart. Modal inspection preserves spatial context. Native dialog supplies modality and Escape; an explicit Tab wrap keeps the sole control focused instead of cycling to browser chrome. No new global rule needed.
+
+
+## HRS motion and branch clarity — 2026-10-25
+Added a 260ms fade/lift/scale popup entrance and 170ms exit, with matching backdrop fades. Close button, Escape and outside-click use the same delayed close path; modality/scroll lock remain until close. A 250ms fallback handles interrupted exit animations, timers are cleaned up, and reduced motion closes immediately without CSS animations. Larger outlined Yes/No pills now sit directly on stronger directional rails. Desktop branch spacing increased; mobile branch labels use a wider rail.
+
+Verification: HRS regression tests3/3, lint, final production build/TypeScript and all original budgets pass. Browser measured entrance0.26s, exit0.17s and a modal closing phase, then verified return focus and scroll unlock; checked phone close button and branch layout without overflow at390/320px. Bounded independent review found no important defect.
+
+Reflection: closing a native dialog immediately removes it before an exit transition can play. Route every dismissal through one animation-aware close path and retain a bounded completion fallback. Branch labels need space on the connector itself, rather than small floating text. No dependency or global policy changes; no commit/push/deployment.
+
+## Current-change push checkpoint — 2026-10-25
+User authorized pushing all existing changes before skills work. Lint, 53 unit tests, Pages-base-path production build and all five static budgets pass. Chromium browser checks: 12 passed, 2 skipped, 8 failed, all reporting color-contrast violations. No skills implementation is included.
+Reflection: use the production base path for browser verification and distinguish a successful source push from a passing deployment gate. Preserve the requested checkpoint rather than silently changing the design during publication.

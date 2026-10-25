@@ -138,3 +138,41 @@ Commit b795a20 deployed successfully through Actions run 38989654006. Live brows
 
 ## 2026-10-24 — Resume asset
 Use the exact user-supplied PDF without rewriting its contents and preserve the existing public filename so every preview/download entry point uses the replacement. User authorized commit and push on 2026-10-24; publish through the existing origin/master release workflow.
+
+
+## 2026-10-24 — SELENE replaces Monsoon
+User explicitly cancelled the Monsoon direction and supplied SELENE. Removed all task-owned Monsoon files and reverted its tracked changes before starting the replacement. Continue the existing portfolio fusion scope: personalize the opening, preserve the real portfolio below and all routes; do not add fictional lunar offerings or a waitlist. Retain Next.js and use Lenis ^1.3.11 with a single scroll loop and direct DOM style updates. Serve supplied layers and reference fonts locally; preserve base paths. Earth movement begins at progress 0.18 after dust clearance, resolving the reference's prose/check versus its earlier 0.04 source timing. Reduced motion uses a static scene and a live media-query subscription. No-JavaScript HTML shows a static introduction; visitors can skip the animated opening. Keep original static budgets unchanged. Work remains uncommitted and unpublished for user review.
+
+
+### 2026-10-24 — Project deck and discoverable world
+Use the original mission-log concept for real projects, directly after Earthrise. Keep the existing detailed recruiter cards as the fast-reading alternative. Pass a minimal preview DTO from the server rather than shipping full case-study content to the new client component. Use existing imagery; explicitly label DevDoctor's abstract system concept and Immich's illustration. Share the existing one-rAF scheduler. Normal reduced-motion/no-JavaScript layout is a project grid. Keyboard focus centers the selected card; pointer focus must not move a clicked card. Keep the persistent world CTA visible on mobile as a compact second-row button, retaining existing sound/theme controls. No dependency, commit or deployment changes.
+
+
+### 2026-10-24 — Native left/right project deck
+User clarified that the deck should scroll left/right directly and projects should not repeat below. Supersede the earlier pinned 340svh reel with native horizontal overflow and scroll snap; provide previous/next buttons and keyboard navigation. No mapping from page vertical scroll to card positions. Keep reduced-motion arrow transitions instant, preserve native horizontal access without JavaScript, and remove the now-unused pinned-deck helper. Remove only the duplicated selected-work section from RecruiterView, retaining professional summary, experience, skills and education.
+
+
+### 2026-10-24 — Navigation clarity and lunar UI system
+The user's four concerns authorize a UI consistency pass beyond the homepage top: global font variables and heading hierarchy, muted lunar surfaces and ivory primary actions. Keep real project imagery and the 3D scene intact. Use large labeled opening choices for immersive world versus quick essentials; keep a persistent world action and give View all projects a full-size filled button. Handle homepage quick view with an explicit immediate Lenis/native jump, 96px header clearance and destination focus, preserving native modifier clicks and base-path href fallback.
+
+
+### 2026-10-24 — Cosmic background polish
+Implemented the requested space atmosphere: fixed decorative star field with soft edge nebulae, gentle opacity twinkling, and star accents on dark buttons. Background is noninteractive and hidden from assistive technology; reduced motion keeps stars static. The project reel exposes the shared background. No dependencies or content changes.
+
+
+2026-10-24 cosmic intensity revision: increased edge nebula opacity and spread, star brightness/size/density, and minimum twinkle visibility after user found the first pass too subtle. Production build/TypeScript passed; browser screenshot verified stronger atmosphere with readable content. Reflection: decorative contrast must be assessed against the actual dark surface; the initial effect was too restrained.
+
+
+## HRS walkthrough — 2026-10-25
+Use a dedicated static route with native details/summary rather than a diagram dependency. Node content stays inline and one workflow node opens at a time; Database and Cloud use independent groups for comparison. On phones deployment columns and conditional branches stack, retaining yes/no labels. Preserve the current portfolio background and no timing labels. AI remains a clearly marked planned node; no runtime model integration. Use dated deployment evidence and avoid invented ownership, metrics, costs or live operating claims. Expose the draft through Projects without adding a new 3D landmark or changing the homepage deck.
+
+
+## HRS node popups — 2026-10-25
+User requested popups instead of inline dropdowns. Supersedes the native disclosure design: workflow, database and cloud nodes now open labeled native modal dialogs with a dimmed/blurred backdrop. Close button, Escape and outside-click dismiss; background scroll is locked and restored; focus stays within the popup and returns to the originating node. Small screens constrain popup height with internal scrolling and a sticky close bar. Original explanations remain available in a no-JavaScript fallback. Node layout does not expand.
+
+
+## HRS motion and branch clarity — 2026-10-25
+Added a 260ms fade/lift/scale popup entrance and 170ms exit, with matching backdrop fades. Close button, Escape and outside-click use the same delayed close path; modality/scroll lock remain until close. A 250ms fallback handles interrupted exit animations, timers are cleaned up, and reduced motion closes immediately without CSS animations. Larger outlined Yes/No pills now sit directly on stronger directional rails. Desktop branch spacing increased; mobile branch labels use a wider rail.
+
+## Publication order — 2026-10-25
+Commit and push the existing homepage/HRS work first, as explicitly requested. Record current accessibility failures without mixing new skills work into this checkpoint. A push does not establish a successful Pages release.

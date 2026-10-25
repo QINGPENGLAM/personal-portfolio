@@ -67,3 +67,41 @@ Commit b795a20 deployed successfully through Actions run 38989654006. Live brows
 
 ## Resume update — 2026-10-24
 Replaced the portfolio resume PDF with the user-supplied `/Users/qp2333/Downloads/QingPengLam_Resume.pdf`. Existing preview and download links retain their current path. Local update verified; deployment pending.
+
+
+## SELENE homepage preview — 2026-10-24
+Replaced the previous homepage opening with a personalized lunar Earthrise adapted from the supplied SELENE reference. Six local desktop/mobile image layers, dust reveal, scroll-driven depth, reference typography, and scoped navigation retain the existing Next.js portfolio, recruiter details, resume, case studies and 3D world. Status: local preview implemented, reviewed and production build verified. No publication requested.
+
+
+### SELENE project deck and world entry — 2026-10-24
+Added the reference-style horizontal project reel after Earthrise using four real case studies. The world now has a persistent home-header CTA and an initial dust-screen button. Existing recruiter content remains available. Local preview implemented; no publication requested.
+
+
+### Direct horizontal deck — 2026-10-24
+Updated the project deck to native left/right scrolling with swipe/trackpad support and arrow buttons. Removed the duplicated selected-work cards from the lower recruiter section. Experience, skills, education and the prominent world entries remain. Verified local preview; not published.
+
+
+### Lunar visual consistency and direct quick view — 2026-10-24
+Quick Portfolio View now jumps immediately to the focused recruiter section with fixed-header clearance. Unified the portfolio UI around Manrope body text, Michroma headings and Plex labels, with charcoal/lunar-grey/ice-blue/ivory colors. Added explicit opening choice cards and stronger world/project buttons. Verified local preview; no publication.
+
+
+### 2026-10-24 — Cosmic background polish
+Implemented the requested space atmosphere: fixed decorative star field with soft edge nebulae, gentle opacity twinkling, and star accents on dark buttons. Background is noninteractive and hidden from assistive technology; reduced motion keeps stars static. The project reel exposes the shared background. No dependencies or content changes.
+
+
+2026-10-24 cosmic intensity revision: increased edge nebula opacity and spread, star brightness/size/density, and minimum twinkle visibility after user found the first pass too subtle. Production build/TypeScript passed; browser screenshot verified stronger atmosphere with readable content. Reflection: decorative contrast must be assessed against the actual dark surface; the initial effect was too restrained.
+
+
+## HRS case-study draft — 2026-10-25
+Implemented the requested first three sections at `/projects/hrs-publication-pipeline/`: problem, top-down expandable workflow (planned AI node), and side-by-side Database/Google Cloud decision lists. Reuses current background and fonts; no talk timings. Accessible native disclosure controls work before hydration. Verified local preview; content remains an adjustable interview draft. No deployment.
+
+
+## HRS node popups — 2026-10-25
+User requested popups instead of inline dropdowns. Supersedes the native disclosure design: workflow, database and cloud nodes now open labeled native modal dialogs with a dimmed/blurred backdrop. Close button, Escape and outside-click dismiss; background scroll is locked and restored; focus stays within the popup and returns to the originating node. Small screens constrain popup height with internal scrolling and a sticky close bar. Original explanations remain available in a no-JavaScript fallback. Node layout does not expand.
+
+
+## HRS motion and branch clarity — 2026-10-25
+Added a 260ms fade/lift/scale popup entrance and 170ms exit, with matching backdrop fades. Close button, Escape and outside-click use the same delayed close path; modality/scroll lock remain until close. A 250ms fallback handles interrupted exit animations, timers are cleaned up, and reduced motion closes immediately without CSS animations. Larger outlined Yes/No pills now sit directly on stronger directional rails. Desktop branch spacing increased; mobile branch labels use a wider rail.
+
+## Current-change publication — 2026-10-25
+User requested committing and pushing the existing homepage/HRS changes before starting the approved skills improvement. Local verification: lint, 53 unit tests, production static build with the Pages base path, and all budgets pass. Chromium: 12 passed, 2 skipped, 8 accessibility checks failed for color contrast. Deployment is not confirmed.

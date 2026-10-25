@@ -2,9 +2,10 @@ import { expect, test } from '@playwright/test'
 
 test('loads the recruiter-first homepage and quick view', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Building software')
-  await page.getByRole('link', { name: 'Quick Portfolio View' }).click()
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('QINGPENG LAM')
+  await page.locator('.selene-dust-actions').getByRole('link', { name: /Quick Portfolio View/ }).click()
   await expect(page).toHaveURL(/#quick-view$/)
+  await expect(page.locator('#quick-view')).toBeFocused()
   await expect(page.getByRole('heading', { name: 'The useful details, immediately.' })).toBeVisible()
 })
 
