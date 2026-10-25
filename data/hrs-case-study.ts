@@ -5,6 +5,9 @@ export type HrsNode = {
   explanation: string
   points: string[]
   planned?: boolean
+  visualSteps?: { title: string; detail: string }[]
+  outcomes?: string[]
+  visualNote?: string
 }
 
 export const hrsWorkflow = {
@@ -69,9 +72,19 @@ export const hrsWorkflow = {
     points: ['Include the title, PMID, DOI, journal and author information.', 'Leadership matches provide context; a human still decides what to enter.'],
   },
   ai: {
-    id: 'ai', title: 'AI screening', caption: 'Future screening step', planned: true,
-    explanation: 'Planned: use article evidence to suggest whether a publication actually uses HRS data. The current pipeline goes directly to human review.',
-    points: ['This node is a placeholder for functionality still being developed.', 'Keep the reason and supporting evidence available to the reviewer.', 'No model runs from this portfolio page.'],
+    id: 'ai', title: 'AI screening', caption: 'Opt-in queue stage · disabled by default',
+    explanation: 'An optional local pipeline stage. It suggests; staff decide.',
+    points: [
+      'Optional and disabled by default; this page does not run a model.',
+      'AI suggestions do not add or remove HRS records.',
+    ],
+    visualSteps: [
+      { title: 'Match source', detail: 'PMID or one verified article link' },
+      { title: 'Read text', detail: 'Abstract first; approved full text if needed' },
+      { title: 'Check evidence', detail: 'Exact quotes validated against the source' },
+    ],
+    outcomes: ['Uses HRS data', 'Mentions only', 'Not enough evidence'],
+    visualNote: 'Uncertain or policy-sensitive cases go to staff review.',
   },
   review: {
     id: 'review', title: 'Google Sheet + CSV', caption: 'Human review and manual entry',

@@ -69,9 +69,9 @@ export function HrsCaseStudy() {
           <div className={styles.mainTrack}>
             <Connector outcome="No" label="Prepare candidate" />
             <Node node={hrsWorkflow.authors} /><Connector />
-            <div className={styles.futureStep}>
+            <div className={styles.aiStep}>
               <Node node={hrsWorkflow.ai} />
-              <p>The current pipeline goes directly to human review.</p>
+              <p>Implemented locally; optional and disabled by default. Staff review every suggestion.</p>
             </div>
             <Connector />
             <Node node={hrsWorkflow.review} />

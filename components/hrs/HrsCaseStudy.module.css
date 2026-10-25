@@ -48,6 +48,17 @@
 .dialogBody > p:not(.dialogCaption) { color: var(--ink-soft); }
 .dialogBody ul, .fallback ul { padding-left: 1.2rem; color: var(--ink-soft); }
 .dialogBody li + li { margin-top: .8rem; }
+.visualDetails { display: grid; gap: 1.5rem; margin-top: 1.5rem; }
+.visualFlow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; counter-reset: visual-step; }
+.visualFlow li { position: relative; display: flex; flex-direction: column; gap: .6rem; min-width: 0; min-height: 126px; padding: 1rem; border: 1px solid var(--line-strong); border-radius: 12px; background: color-mix(in srgb, var(--cyan) 5%, var(--surface-solid)); counter-increment: visual-step; }
+.visualFlow li::before { color: var(--cyan); font: .7rem var(--font-mono); content: "0" counter(visual-step); }
+.visualFlow li:not(:last-child)::after { position: absolute; top: 50%; right: -.8rem; z-index: 1; color: var(--cyan); content: "→"; transform: translate(50%, -50%); }
+.visualFlow li > span { color: var(--cyan); font: .7rem var(--font-mono); text-transform: uppercase; letter-spacing: .06em; }
+.visualFlow li > strong { color: var(--ink); font-size: .85rem; font-weight: 600; line-height: 1.45; }
+.outcomeGroup h3 { margin: 0 0 .7rem; font-size: .82rem; }
+.outcomeBadges { display: flex; flex-wrap: wrap; gap: .55rem; margin: 0; padding: 0 !important; list-style: none; }
+.dialogBody .outcomeBadges li { margin: 0; padding: .45rem .7rem; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink-soft); font-size: .75rem; }
+.visualNote { margin: 0; padding: .85rem 1rem; border-left: 2px solid var(--cyan); background: color-mix(in srgb, var(--cyan) 5%, transparent); color: var(--ink-soft); font-size: .8rem; }
 .fallback { padding: 1rem; color: var(--ink-soft); }
 .connector { position: relative; display: flex; align-items: center; min-height: 48px; }
 .connector i { position: absolute; left: 50%; top: 0; bottom: 3px; width: 2px; background: var(--line-strong); }
@@ -74,7 +85,7 @@
 .branch .node { padding: 1.1rem; }
 .planned { border-style: dashed; background: color-mix(in srgb, var(--surface-solid) 80%, transparent); }
 .badge { align-self: flex-start; color: var(--cyan); font: .65rem var(--font-mono); text-transform: uppercase; letter-spacing: .12em; }
-.futureStep > p { margin: .6rem 0 0; color: var(--ink-muted); font-size: .75rem; text-align: center; }
+.aiStep > p { margin: .6rem 0 0; color: var(--ink-muted); font-size: .75rem; text-align: center; }
 .deploymentGrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; }
 .deploymentColumn { min-width: 0; }
 .deploymentColumn > header { padding: 1.5rem 0; border-top: 1px solid var(--line-strong); }
@@ -107,6 +118,9 @@
   .node { padding: 1rem; }
   .dialogBar { padding: .8rem 1rem; }
   .dialogBody { padding: 1.2rem; }
+  .visualFlow { grid-template-columns: 1fr; gap: .65rem; }
+  .visualFlow li { min-height: auto; }
+  .visualFlow li:not(:last-child)::after { top: auto; right: 50%; bottom: -.7rem; transform: translate(50%, 50%) rotate(90deg); }
   .deploymentGrid { gap: 2rem; }
 }
 @media (prefers-reduced-motion: reduce) {

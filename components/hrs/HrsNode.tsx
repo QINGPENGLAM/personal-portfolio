@@ -110,7 +110,27 @@ export function HrsNode({ node }: { node: HrsNodeContent }) {
           <p className={styles.dialogCaption}>{node.caption}</p>
           <h2 id={`${dialogId}-title`}>{node.title}</h2>
           <p id={`${dialogId}-description`}>{node.explanation}</p>
-          <ul>{node.points.map((point) => <li key={point}>{point}</li>)}</ul>
+          {node.visualSteps ? (
+            <div className={styles.visualDetails}>
+              <ol aria-label={`${node.title} process`} className={styles.visualFlow}>
+                {node.visualSteps.map((step) => (
+                  <li key={step.title}>
+                    <span>{step.title}</span>
+                    <strong>{step.detail}</strong>
+                  </li>
+                ))}
+              </ol>
+              {node.outcomes ? (
+                <section className={styles.outcomeGroup} aria-label="Possible AI outcomes">
+                  <h3>Possible outcomes</h3>
+                  <ul className={styles.outcomeBadges}>
+                    {node.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}
+                  </ul>
+                </section>
+              ) : null}
+              {node.visualNote ? <p className={styles.visualNote}>{node.visualNote}</p> : null}
+            </div>
+          ) : <ul>{node.points.map((point) => <li key={point}>{point}</li>)}</ul>}
         </div>
       </dialog>
       <noscript><div className={styles.fallback}><h3>{node.title}</h3><p>{node.explanation}</p><ul>{node.points.map((point) => <li key={point}>{point}</li>)}</ul></div></noscript>
