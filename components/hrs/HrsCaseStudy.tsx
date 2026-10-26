@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { hrsCloud, hrsDatabase, hrsWorkflow, type HrsNode } from '@/data/hrs-case-study'
+import { hrsCloud, hrsDatabase, hrsDevelopment, hrsResults, hrsWorkflow, type HrsNode } from '@/data/hrs-case-study'
 import { HrsNode as Node } from './HrsNode'
 import styles from './HrsCaseStudy.module.css'
 
@@ -32,6 +32,8 @@ export function HrsCaseStudy() {
           <a href="#hrs-problem"><span>01</span> The problem</a>
           <a href="#hrs-workflow"><span>02</span> Architecture + workflow</a>
           <a href="#hrs-deployment"><span>03</span> Deployment + trade-offs</a>
+          <a href="#hrs-development"><span>04</span> AI-assisted development</a>
+          <a href="#hrs-results"><span>05</span> Results + lessons</a>
         </nav>
       </header>
 
@@ -71,7 +73,7 @@ export function HrsCaseStudy() {
             <Node node={hrsWorkflow.authors} /><Connector />
             <div className={styles.aiStep}>
               <Node node={hrsWorkflow.ai} />
-              <p>Implemented locally; optional and disabled by default. Staff review every suggestion.</p>
+              <p>Optional pass over active review candidates; disabled by default. Staff make the final decision.</p>
             </div>
             <Connector />
             <Node node={hrsWorkflow.review} />
@@ -95,6 +97,39 @@ export function HrsCaseStudy() {
         </div>
         <p className={styles.statusNote}>Deployment record · October 24, 2026: cloud execution and scheduling were verified, then paused pending staff readiness. Newer local changes require a separate deployment.</p>
       </section>
+
+      <section id="hrs-development" className={styles.section} aria-labelledby="hrs-development-heading">
+        <p className="eyebrow">04 / AI-assisted development and evaluation</p>
+        <h2 id="hrs-development-heading">I used AI to accelerate the work—not to own the decisions.</h2>
+        <p className={styles.sectionIntro}>ChatGPT for design refinement, Codex for incremental implementation, harness-controlled evaluation, and the WoS counterexample.</p>
+        <div className={styles.storyGrid}>
+          {hrsDevelopment.map((node) => (
+            <article className={styles.storyCard} key={node.id}>
+              <span className={styles.storyCaption}>{node.caption}</span>
+              <h3>{node.title}</h3>
+              <p>{node.explanation}</p>
+              <ul>{node.points.map((point) => <li key={point}>{point}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="hrs-results" className={styles.section} aria-labelledby="hrs-results-heading">
+        <p className="eyebrow">05 / Results and lessons</p>
+        <h2 id="hrs-results-heading">A useful system—and clear evidence for what is not ready.</h2>
+        <p className={styles.sectionIntro}>Supported functional outcomes, verification limits, and next priorities.</p>
+        <div className={styles.storyGrid}>
+          {hrsResults.map((node) => (
+            <article className={styles.storyCard} key={node.id}>
+              <span className={styles.storyCaption}>{node.caption}</span>
+              <h3>{node.title}</h3>
+              <p>{node.explanation}</p>
+              <ul>{node.points.map((point) => <li key={point}>{point}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <div className={styles.end}><span>More of my work</span><Link href="/projects">Back to projects <span aria-hidden="true">↗</span></Link></div>
     </main>
   )

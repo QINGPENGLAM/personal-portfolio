@@ -110,25 +110,41 @@ export function HrsNode({ node }: { node: HrsNodeContent }) {
           <p className={styles.dialogCaption}>{node.caption}</p>
           <h2 id={`${dialogId}-title`}>{node.title}</h2>
           <p id={`${dialogId}-description`}>{node.explanation}</p>
-          {node.visualSteps ? (
+          {node.visualDiagram ? (
             <div className={styles.visualDetails}>
-              <ol aria-label={`${node.title} process`} className={styles.visualFlow}>
-                {node.visualSteps.map((step) => (
-                  <li key={step.title}>
-                    <span>{step.title}</span>
-                    <strong>{step.detail}</strong>
-                  </li>
-                ))}
-              </ol>
-              {node.outcomes ? (
-                <section className={styles.outcomeGroup} aria-label="Possible AI outcomes">
-                  <h3>Possible outcomes</h3>
-                  <ul className={styles.outcomeBadges}>
-                    {node.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}
+              <div className={styles.visualDiagram} aria-label={`${node.title} evidence-to-decision flow`}>
+                <div className={styles.diagramSources}>
+                  <h3>Paper source</h3>
+                  <ul>
+                    {node.visualDiagram.sources.map((source) => (
+                      <li key={source.title}>
+                        <strong>{source.title}</strong>
+                        <span>{source.detail}</span>
+                      </li>
+                    ))}
                   </ul>
-                </section>
-              ) : null}
-              {node.visualNote ? <p className={styles.visualNote}>{node.visualNote}</p> : null}
+                </div>
+                <span aria-hidden="true" className={styles.diagramArrow}>↓</span>
+                <div className={styles.diagramCheck}>
+                  <span>Evidence check</span>
+                  <strong>{node.visualDiagram.check.title}</strong>
+                  <p>{node.visualDiagram.check.detail}</p>
+                </div>
+                <p className={styles.diagramFallback}>{node.visualDiagram.fallback}</p>
+                <span aria-hidden="true" className={styles.diagramArrow}>↓</span>
+                <div className={styles.diagramOutcomes}>
+                  <h3>AI suggestion</h3>
+                  <ul>
+                    {node.visualDiagram.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}
+                  </ul>
+                </div>
+                <span aria-hidden="true" className={styles.diagramArrow}>↓</span>
+                <div className={styles.diagramHuman}>
+                  <span aria-hidden="true">Human decision</span>
+                  <strong>{node.visualDiagram.humanDecision}</strong>
+                </div>
+              </div>
+              {node.points.length > 0 && <ul className={styles.diagramNotes}>{node.points.map((point) => <li key={point}>{point}</li>)}</ul>}
             </div>
           ) : <ul>{node.points.map((point) => <li key={point}>{point}</li>)}</ul>}
         </div>

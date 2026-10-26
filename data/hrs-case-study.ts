@@ -5,9 +5,13 @@ export type HrsNode = {
   explanation: string
   points: string[]
   planned?: boolean
-  visualSteps?: { title: string; detail: string }[]
-  outcomes?: string[]
-  visualNote?: string
+  visualDiagram?: {
+    sources: { title: string; detail: string }[]
+    check: { title: string; detail: string }
+    outcomes: string[]
+    humanDecision: string
+    fallback: string
+  }
 }
 
 export const hrsWorkflow = {
@@ -49,12 +53,12 @@ export const hrsWorkflow = {
   pubmed: {
     id: 'pubmed', title: 'Reliable PubMed match?', caption: 'Resolve publication metadata',
     explanation: 'Search PubMed for a reliable title match and retrieve the matched record’s PMID, DOI, authors and journal.',
-    points: ['A match provides identifiers for a second HRS check.', 'No reliable match → AI check (planned).', 'PubMed membership does not prove that a paper used HRS data.'],
+    points: ['A match provides identifiers for a second HRS check.', 'No reliable match: keep the candidate for human review; the optional AI stage is a separate pass over active queue candidates.', 'PubMed membership does not prove that a paper used HRS data.'],
   },
   unmatched: {
-    id: 'unmatched', title: 'AI check', caption: 'No reliable PubMed match', planned: true,
-    explanation: 'Planned: send unmatched candidates to AI screening to help assess whether they use HRS data. Until this step is connected, candidates stay in the review queue.',
-    points: ['Use article evidence when the paper’s identity and access permissions can be confirmed.', 'Keep the screening reason and evidence available for staff review.', 'This branch is a placeholder; the screening functionality will be completed later.'],
+    id: 'unmatched', title: 'Keep for review', caption: 'No reliable PubMed match',
+    explanation: 'A missing PubMed match does not exclude a paper. Keep it in the human review queue; a separately configured AI pass may use an identity-checked stored article link when permitted.',
+    points: ['Do not infer HRS use or non-use from the lack of a PubMed match.', 'Source identity conflicts or unavailable text remain visible for manual review.'],
   },
   pmid: {
     id: 'pmid', title: 'PMID already in HRS?', caption: 'Check the matched identifier',
@@ -72,19 +76,26 @@ export const hrsWorkflow = {
     points: ['Include the title, PMID, DOI, journal and author information.', 'Leadership matches provide context; a human still decides what to enter.'],
   },
   ai: {
-    id: 'ai', title: 'AI screening', caption: 'Opt-in queue stage · disabled by default',
-    explanation: 'An optional local pipeline stage. It suggests; staff decide.',
+    id: 'ai', title: 'AI screening', caption: 'Optional queue pass · disabled by default',
+    explanation: 'Implemented in the local pipeline as an opt-in pass over due, active review candidates after intake and optional PubMed rechecks, before CSV/Sheet output. It is not limited to the no-PubMed branch shown above. This case-study page is static and makes no model calls; the paused cloud deployment has not been updated or verified with this newer stage.',
     points: [
-      'Optional and disabled by default; this page does not run a model.',
-      'AI suggestions do not add or remove HRS records.',
+      'Sources: a verified PMID can provide a PubMed abstract; a stored article URL can provide bounded HTML/PDF text after identity and processing-permission checks. PMC uses its separate license-aware path. Generic full-text extracts may be partial.',
+      'The model selects source/span IDs. The program copies exact original text and validates its source and range before showing evidence. A verified quote proves where text came from, not that the classification is correct.',
+      'Suggestions are uses_hrs_data, mentions_hrs_only, or insufficient_evidence. “Mentions only” requires complete main-text context; an abstract or partial extract cannot establish non-use. Unclear, conflicting, and policy-sensitive cases stay with staff.',
+      'The local PostgreSQL usage ledger records tracked request costs. Its default $25 monthly threshold is a soft admission limit, not a guaranteed bill cap; unresolved request costs pause further tracked calls.',
+      'A three-paper full-text pilot recorded one known LASI false positive: related or harmonized cohorts were mistaken for US HRS use. The result remains documented; exact quotations do not resolve that inference error. Broader staff-labeled validation is still open.',
+      'AI advice appears alongside evidence and scope for staff review. It never adds or removes HRS records or replaces the staff decision.',
     ],
-    visualSteps: [
-      { title: 'Match source', detail: 'PMID or one verified article link' },
-      { title: 'Read text', detail: 'Abstract first; approved full text if needed' },
-      { title: 'Check evidence', detail: 'Exact quotes validated against the source' },
-    ],
-    outcomes: ['Uses HRS data', 'Mentions only', 'Not enough evidence'],
-    visualNote: 'Uncertain or policy-sensitive cases go to staff review.',
+    visualDiagram: {
+      sources: [
+        { title: 'PMID', detail: 'Verified PubMed record + abstract' },
+        { title: 'Stored article URL', detail: 'Identity-checked, permission-aware text' },
+      ],
+      check: { title: 'Validate evidence', detail: 'Resolve model-selected source/span IDs to exact original text and stored source ranges.' },
+      outcomes: ['Uses HRS data', 'Mentions only*', 'Insufficient evidence'],
+      humanDecision: 'Staff decide; AI never adds or removes records',
+      fallback: '*“Mentions only” requires complete main text. Partial text, identity conflicts, and uncertain cases stay in human review.',
+    },
   },
   review: {
     id: 'review', title: 'Google Sheet + CSV', caption: 'Human review and manual entry',
@@ -108,4 +119,86 @@ export const hrsCloud: HrsNode[] = [
   { id: 'cloud-scheduler', title: 'Cloud Scheduler', caption: 'Trigger a daily execution', explanation: 'A separate scheduler identity invokes the Cloud Run Job on the configured daily schedule.', points: ['The recorded configuration is 08:00 America/Detroit.', 'Scheduler invocation was verified separately from a manual job execution.', 'The October 24 operations record says the scheduler and database were paused pending staff readiness.'] },
   { id: 'cloud-secrets', title: 'Identity + secrets', caption: 'Access only what the job needs', explanation: 'Cloud identity, database login and Gmail/Sheets authorization are separate responsibilities.', points: ['A service account accesses the required cloud resources.', 'Secret Manager supplies database connection settings and API credentials.', 'Gmail and Sheets use user OAuth refresh credentials; headless execution must handle authorization failures.'] },
   { id: 'cloud-monitoring', title: 'Logs + failure alerts', caption: 'Make unsuccessful runs visible', explanation: 'Execution logs expose progress and errors. A deliberately failed test execution verified the email alert path.', points: ['Successful scheduling is not proof that a batch completed correctly.', 'The operations record documents a received failure email.', 'Long-term operational reliability and cloud concurrency still need ongoing verification.'] },
+]
+
+export const hrsDevelopment: HrsNode[] = [
+  {
+    id: 'development-design',
+    title: 'ChatGPT for design refinement',
+    caption: 'Turn broad goals into reviewable slices',
+    explanation: 'I used ChatGPT to refine requirements and explore implementation boundaries, then kept the decisions and approvals with me.',
+    points: [
+      'Break the work into explicit slices: preserve existing review state, add optional screening, validate evidence, and account for model usage.',
+      'Treat the assistant as a design partner—not an authority on HRS policy, source permissions, or whether a paper belongs in the collection.',
+    ],
+  },
+  {
+    id: 'development-codex',
+    title: 'Codex for incremental implementation',
+    caption: 'Small changes, tests, inspectable diffs',
+    explanation: 'I used Codex to help implement bounded changes in the existing Python project, while retaining ownership of scope, review, and acceptance.',
+    points: [
+      'Prefer a narrow code change with a failing regression over a broad rewrite.',
+      'Review the resulting diff and run focused checks before relying on the change; keep credentials, live queues, and deployment operations outside the coding loop.',
+    ],
+  },
+  {
+    id: 'development-harness',
+    title: 'Harness-controlled evaluation',
+    caption: 'Let the test result—not the agent—decide',
+    explanation: 'A local parser harness runs the real Google Scholar and Web of Science parser tests, classifies assertion failures separately from test-environment errors, then independently reruns tests after a repair.',
+    points: [
+      'Repairs are limited to existing Python parser files, capped at three Codex calls, and bounded by test and agent timeouts.',
+      'The harness snapshots managed files and records per-step and cumulative diffs. Scope checks detect out-of-scope changes after execution; they are not complete file-access isolation.',
+      'The recorded real-project check-only run passed all eight parser tests without invoking Codex. Fake-agent repair behavior was tested separately in disposable projects.',
+    ],
+  },
+  {
+    id: 'development-wos-counterexample',
+    title: 'The WoS counterexample',
+    caption: 'A green parser test is not a complete alert',
+    explanation: 'One saved Web of Science alert says “Showing 5 of the 6.” The parser extracts the five visible records, and intake marks the email partial because the parsed count is below the reported count.',
+    points: [
+      'Preserve the records that were extracted, but do not label the alert complete.',
+      'The counterexample tests the end-to-end completeness signal, not just whether HTML parsing returns plausible paper titles.',
+      'It is one fixture-backed case—not proof that every WoS alert format or missing-record scenario is handled.',
+    ],
+  },
+]
+
+export const hrsResults: HrsNode[] = [
+  {
+    id: 'results-functional',
+    title: 'Functional outcomes',
+    caption: 'A persistent, review-first workflow',
+    explanation: 'The local project connects alert parsing and deduplication with persistent checkpoints, publication checks, and an exportable human-review queue.',
+    points: [
+      'An optional AI stage can add a suggestion, source scope, and validated evidence to review output; it is disabled by default and does not add or remove HRS records.',
+      'The latest documented offline regression run passed 487 tests against mocked external services and disposable PostgreSQL. That verifies local behavior, not production acceptance.',
+      'A separate October 24 deployment record documents a verified scheduled cloud run, followed by a pause pending staff readiness. Newer local AI work has not been deployed or verified there.',
+    ],
+  },
+  {
+    id: 'results-limits',
+    title: 'What the evidence does—and does not—show',
+    caption: 'Tests are not an accuracy claim',
+    explanation: 'The three-paper full-text pilot was a small, operator-reviewed experiment, not a representative or independently staff-labeled evaluation set.',
+    points: [
+      'One multicohort paper received a supported HRS-use suggestion; a review paper remained manual because partial text could not support a “mentions only” conclusion.',
+      'The third case, a LASI/LASI-DAD paper, was a known false positive: exact quotations were real, but the model inferred US HRS use from a related cohort.',
+      'This is why evidence provenance, text coverage, classification correctness, and staff collection policy must be evaluated separately.',
+    ],
+  },
+  {
+    id: 'results-next',
+    title: 'Lessons and next priorities',
+    caption: 'Make the safe path the default',
+    explanation: 'My main lesson is to optimize for a trustworthy review workflow, not an impressive-looking model answer.',
+    points: [
+      'Build an independently staff-labeled evaluation set covering clear US HRS/RAND use, sister-cohort-only cases, reviews, and ambiguous or insufficient text.',
+      'Keep the LASI false positive visible, improve semantic evaluation without relaxing source or evidence checks, and establish an operator-verified process for unresolved request costs.',
+      'Before rollout, separately verify the database schema/permissions, current cloud deployment, and end-to-end behavior with staff; keep AI opt-in until those gates pass.',
+      'For an engineering role, I would bring the same habits: clarify ownership and failure states, preserve human decisions, measure what is actually verified, and make limitations actionable.',
+    ],
+  },
 ]

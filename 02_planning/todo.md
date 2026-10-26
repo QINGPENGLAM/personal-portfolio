@@ -117,3 +117,35 @@ Added a 260ms fade/lift/scale popup entrance and 170ms exit, with matching backd
 
 ## HRS interview content revision — 2026-10-25
 Updated the problem/ownership copy using the user’s account: research-institute staff spent30–60 minutes daily opening Scholar/WoS alerts, copying details and checking multiple criteria; the user designed and built the Python automation. This is a user-reported baseline, not measured time saved. Replaced checkpoint/pagination jargon with saved PostgreSQL message IDs/status and100-ID result batches using nextPageToken. Explained From-address routing, Beautiful Soup4+lxml/urllib.parse/regex parsing, ordered DOI/WoS/URL/title deduplication and distinct email-versus-paper recovery state. Removed the requested backfill, source-quality and dated-local-guard lines. The PubMed-unmatched branch now opens AI check, explicitly planned until connected.
+
+
+## HRS homepage card — 2026-10-26
+
+- [x] Add clickable homepage HRS project card and concept illustration, preserving existing projects and HRS content.
+- [x] Verify homepage/HRS tests (8 passed), scoped ESLint, TypeScript, SVG XML and route/image references.
+- [ ] Publish only if the user requests it.
+
+
+## Interview About Me — 2026-10-26
+
+- [x] Add photo-left/copy-right About Me section above projects using the supplied script and exact portrait.
+- [x] Check desktop/mobile placement, portrait load, no overflow, project anchor and HRS navigation.
+- [x] Fix scoped day-theme contrast; scoped WCAG checks pass in day/night.
+- [x] Existing focused tests12 passed; scoped lint and TypeScript passed.
+- [ ] Publish only on explicit request.
+
+
+## Circular portrait — 2026-10-26
+
+User requested a circle photo frame. Changed only AboutMe imageFrame to a square aspect ratio and50% border radius; original image and content preserved. Applies on desktop and mobile. CSS-only reversible change; browser geometry verification recorded in this task. No commit/push/deploy. Reflection:no new reusable rule.
+
+
+## Company-neutral homepage copy — 2026-10-26
+
+User clarified that the public homepage must address recruiters from any company. Replaced the Intuit-specific motivation in AboutMe with a general commitment to simplifying complex tasks, understanding user needs, clear experiences and reliable systems. Retained USAA as actual past experience. Earlier interview-specific homepage wording is superseded. Copy-only change; no layout, commit, push or deployment changes. Reflection:keep target-company motivation in interview materials rather than a general public portfolio.
+
+
+## Compact HRS workflow — 2026-10-26
+
+- [x] Tighten workflow nodes/connectors/branch spacing, retaining all explanations.
+- [x] Verify approximately35% shorter desktop chart, mobile no overflow, popup interaction and5 existing HRS tests.

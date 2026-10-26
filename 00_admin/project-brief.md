@@ -112,3 +112,39 @@ Complete locally after the requested 5620df2 publication checkpoint. The skills 
 
 ## HRS interview content revision — 2026-10-25
 Updated the problem/ownership copy using the user’s account: research-institute staff spent30–60 minutes daily opening Scholar/WoS alerts, copying details and checking multiple criteria; the user designed and built the Python automation. This is a user-reported baseline, not measured time saved. Replaced checkpoint/pagination jargon with saved PostgreSQL message IDs/status and100-ID result batches using nextPageToken. Explained From-address routing, Beautiful Soup4+lxml/urllib.parse/regex parsing, ordered DOI/WoS/URL/title deduplication and distinct email-versus-paper recovery state. Removed the requested backfill, source-quality and dated-local-guard lines. The PubMed-unmatched branch now opens AI check, explicitly planned until connected.
+
+
+## HRS homepage card — 2026-10-26
+
+Added a first-position HRS Publication Pipeline homepage carousel card linking to the existing /projects/hrs-publication-pipeline case study, using a new SVG concept illustration. Existing HRS case-study edits preserved. Local only; no commit, push or deployment.
+
+
+## Interview About Me — 2026-10-26
+
+Added an interview-oriented About Me section between the existing hero and project carousel: exact user portrait on the left, user-script-derived introduction and four talking points on the right. Includes education/UX, fitness and improvement, hands-on AI/RAG with verification, USAA experience and user-focused Intuit motivation. Mobile stacks portrait above content; existing HRS case-study edits preserved. Local only.
+
+
+## Circular portrait — 2026-10-26
+
+User requested a circle photo frame. Changed only AboutMe imageFrame to a square aspect ratio and50% border radius; original image and content preserved. Applies on desktop and mobile. CSS-only reversible change; browser geometry verification recorded in this task. No commit/push/deploy. Reflection:no new reusable rule.
+
+
+## Company-neutral homepage copy — 2026-10-26
+
+User clarified that the public homepage must address recruiters from any company. Replaced the Intuit-specific motivation in AboutMe with a general commitment to simplifying complex tasks, understanding user needs, clear experiences and reliable systems. Retained USAA as actual past experience. Earlier interview-specific homepage wording is superseded. Copy-only change; no layout, commit, push or deployment changes. Reflection:keep target-company motivation in interview materials rather than a general public portfolio.
+
+
+## Compact HRS workflow — 2026-10-26
+
+User requested a tighter workflow overview, without forcing it into one screen.
+Added workflow-scoped CSS:840px max width (was1000),64px base node minimum
+(was92),shorter24px connectors and48px decision connectors,78px fork nodes,
+72px side branches, and modest readable type/padding reductions. Deployment
+nodes and popup contents are unchanged; all workflow nodes/labels preserved.
+Browser1440px measured chart1536.78px→1005.97px tall (about35% shorter).
+Node dialog opens;390px mobile layout settles to370px wide without overflow.
+Early mobile measurements ran before viewport layout settled; a temporary
+page-width adjustment was removed after diagnosis. Final change is chart-only.
+Existing HRS tests5 passed. Desktop/mobile screenshots reviewed. No commit,
+push or deployment. Reflection:pack padding/connectors rather than scale the
+whole chart; wait for responsive layout before comparing browser geometry.

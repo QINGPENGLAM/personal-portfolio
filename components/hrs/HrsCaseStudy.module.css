@@ -48,17 +48,27 @@
 .dialogBody > p:not(.dialogCaption) { color: var(--ink-soft); }
 .dialogBody ul, .fallback ul { padding-left: 1.2rem; color: var(--ink-soft); }
 .dialogBody li + li { margin-top: .8rem; }
-.visualDetails { display: grid; gap: 1.5rem; margin-top: 1.5rem; }
-.visualFlow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; counter-reset: visual-step; }
-.visualFlow li { position: relative; display: flex; flex-direction: column; gap: .6rem; min-width: 0; min-height: 126px; padding: 1rem; border: 1px solid var(--line-strong); border-radius: 12px; background: color-mix(in srgb, var(--cyan) 5%, var(--surface-solid)); counter-increment: visual-step; }
-.visualFlow li::before { color: var(--cyan); font: .7rem var(--font-mono); content: "0" counter(visual-step); }
-.visualFlow li:not(:last-child)::after { position: absolute; top: 50%; right: -.8rem; z-index: 1; color: var(--cyan); content: "→"; transform: translate(50%, -50%); }
-.visualFlow li > span { color: var(--cyan); font: .7rem var(--font-mono); text-transform: uppercase; letter-spacing: .06em; }
-.visualFlow li > strong { color: var(--ink); font-size: .85rem; font-weight: 600; line-height: 1.45; }
-.outcomeGroup h3 { margin: 0 0 .7rem; font-size: .82rem; }
-.outcomeBadges { display: flex; flex-wrap: wrap; gap: .55rem; margin: 0; padding: 0 !important; list-style: none; }
-.dialogBody .outcomeBadges li { margin: 0; padding: .45rem .7rem; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink-soft); font-size: .75rem; }
-.visualNote { margin: 0; padding: .85rem 1rem; border-left: 2px solid var(--cyan); background: color-mix(in srgb, var(--cyan) 5%, transparent); color: var(--ink-soft); font-size: .8rem; }
+.visualDetails { margin-top: 1.4rem; }
+.visualDiagram { display: grid; justify-items: center; gap: .7rem; }
+.diagramSources, .diagramCheck, .diagramOutcomes, .diagramHuman { width: min(100%, 460px); }
+.diagramSources h3, .diagramOutcomes h3 { margin: 0 0 .5rem; color: var(--ink-muted); font: .68rem var(--font-mono); letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+.diagramSources ul, .diagramOutcomes ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; margin: 0; padding: 0 !important; list-style: none; }
+.diagramSources li { display: flex; flex-direction: column; justify-content: center; gap: .3rem; min-height: 70px; margin: 0 !important; padding: .7rem; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface-solid); }
+.diagramSources li strong { color: var(--ink); font-size: .8rem; }
+.diagramSources li span { color: var(--ink-soft); font-size: .72rem; }
+.diagramArrow { color: var(--cyan); font-size: 1.15rem; line-height: 1; }
+.diagramCheck { padding: .85rem 1rem; border: 1px solid var(--cyan); border-radius: 12px; background: color-mix(in srgb, var(--cyan) 7%, var(--surface-solid)); text-align: center; }
+.diagramCheck > span { color: var(--cyan); font: .65rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.diagramCheck strong { display: block; margin-top: .25rem; color: var(--ink); font-size: .9rem; }
+.diagramCheck p { margin: .3rem 0 0; color: var(--ink-soft); font-size: .75rem; }
+.diagramFallback { width: min(100%, 460px); margin: 0; color: var(--ink-muted); font-size: .72rem; text-align: center; }
+.diagramOutcomes ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.diagramOutcomes li { display: flex; align-items: center; justify-content: center; min-height: 48px; margin: 0 !important; padding: .45rem; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink-soft); font-size: .68rem; line-height: 1.3; text-align: center; }
+.diagramHuman { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .85rem 1rem; border-left: 3px solid var(--cyan); border-radius: 4px 10px 10px 4px; background: color-mix(in srgb, var(--cyan) 8%, var(--surface-solid)); }
+.diagramHuman span { color: var(--cyan); font: .65rem var(--font-mono); text-transform: uppercase; }
+.diagramHuman strong { color: var(--ink); font-size: .82rem; text-align: right; }
+.diagramNotes { max-width: 560px; margin: 1.5rem auto 0; padding-left: 1.2rem; color: var(--ink-soft); font-size: .8rem; }
+.diagramNotes li + li { margin-top: .8rem; }
 .fallback { padding: 1rem; color: var(--ink-soft); }
 .connector { position: relative; display: flex; align-items: center; min-height: 48px; }
 .connector i { position: absolute; left: 50%; top: 0; bottom: 3px; width: 2px; background: var(--line-strong); }
@@ -95,6 +105,13 @@
 .deploymentColumn > .node { margin-bottom: .75rem; }
 .deploymentColumn .node { min-height: 85px; }
 .statusNote { margin-top: 2rem; color: var(--ink-muted); font-size: .78rem; max-width: 800px; }
+.storyGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.storyCard { min-width: 0; padding: 1.4rem; border: 1px solid var(--line-strong); border-radius: 14px; background: color-mix(in srgb, var(--surface-solid) 72%, transparent); }
+.storyCaption { color: var(--cyan); font: .68rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+.storyCard h3 { margin: .6rem 0 .75rem; font-size: 1.15rem; }
+.storyCard p { color: var(--ink-soft); font-size: .88rem; }
+.storyCard ul { margin: .9rem 0 0; padding-left: 1.15rem; color: var(--ink-soft); font-size: .82rem; }
+.storyCard li + li { margin-top: .6rem; }
 .end { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--line); }
 .end > span { color: var(--ink-muted); font-size: .8rem; }
 .end a { color: var(--ink); }
@@ -102,7 +119,7 @@
   .back { margin-bottom: 2rem; }
   .hero h1 br { display: none; }
   .chapters { flex-direction: column; gap: .8rem; }
-  .problemGrid, .deploymentGrid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .problemGrid, .deploymentGrid, .storyGrid { grid-template-columns: 1fr; gap: 1.5rem; }
   .section { padding-top: 3.5rem; }
   .outcome { display: block; padding-left: 1rem; }
   .outcome p { margin-top: .6rem; }
@@ -118,10 +135,36 @@
   .node { padding: 1rem; }
   .dialogBar { padding: .8rem 1rem; }
   .dialogBody { padding: 1.2rem; }
-  .visualFlow { grid-template-columns: 1fr; gap: .65rem; }
-  .visualFlow li { min-height: auto; }
-  .visualFlow li:not(:last-child)::after { top: auto; right: 50%; bottom: -.7rem; transform: translate(50%, 50%) rotate(90deg); }
+  .diagramHuman { align-items: flex-start; flex-direction: column; gap: .35rem; }
+  .diagramHuman strong { text-align: left; }
   .deploymentGrid { gap: 2rem; }
+}
+/* Compact workflow overview; keep popup and deployment sizing independent. */
+.workflow { max-width: 840px; }
+.workflow .mainTrack { width: calc((100% - 72px) * 2 / 3); }
+.workflow .node { min-height: 64px; padding: .65rem .85rem; gap: .7rem; border-radius: 9px; }
+.workflow .nodeCopy { gap: .2rem; }
+.workflow .nodeCopy strong { font-size: .9rem; }
+.workflow .nodeCopy > span:not(.badge) { font-size: .75rem; line-height: 1.4; }
+.workflow .expand { font-size: 1.2rem; }
+.workflow .connector { min-height: 24px; }
+.workflow .decisionConnector { min-height: 48px; padding: .4rem 0 .4rem calc(50% - 23px); }
+.workflow .connectorLabel { gap: .45rem; font-size: .7rem; }
+.workflow .edgeBadge { min-width: 46px; min-height: 28px; padding: .2rem .5rem; font-size: .72rem; }
+.workflow .fork { gap: .75rem; padding-top: 12px; }
+.workflow .fork::before { height: 12px; }
+.workflow .fork .node { min-height: 78px; }
+.workflow .merge { height: 12px; }
+.workflow .decision { gap: 72px; }
+.workflow .branchLabel { top: 32px; width: 72px; }
+.workflow .branch .node { padding: .65rem .75rem; }
+.workflow .branch .nodeCopy strong { font-size: .82rem; }
+.workflow .aiStep > p { margin-top: .4rem; font-size: .72rem; line-height: 1.5; }
+@media (max-width: 700px) {
+  .workflow .mainTrack { width: 100%; }
+  .workflow .decision { gap: 0; }
+  .workflow .branch { margin-top: .6rem; padding-left: 64px; }
+  .workflow .branchLabel { width: 64px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .dialog[open], .dialog[open]::backdrop, .dialog[data-closing='true'], .dialog[data-closing='true']::backdrop { animation: none; }

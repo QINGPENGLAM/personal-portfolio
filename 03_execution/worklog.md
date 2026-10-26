@@ -374,3 +374,39 @@ Updated the problem/ownership copy using the user’s account: research-institut
 Checked the actual parser, sender routing, Gmail paging, processed-message and paper-storage implementations before rewriting. Existing HRS tests3/3, scoped lint and final production build/TypeScript passed. Browser confirmed revised problem and planned unmatched branch; tested the longer deduplication popup at390px with internal scrolling and no document overflow. No pipeline, publication, commit or push changes.
 
 Reflection: presentation copy needs a concrete stored identifier and an example of what a rerun skips; generic recovery terminology hides the actual engineering story. Use the user’s ownership/baseline account without converting it into an unsupported savings claim. No new global rule needed.
+
+
+## HRS homepage card — 2026-10-26
+
+Added a first-position HRS homepage carousel card with Python/PostgreSQL/Google Cloud tags and an SVG concept illustration. Link uses the existing ProjectReel Next Link path /projects/hrs-publication-pipeline. Changed app/page.tsx and added public/project-previews/hrs-publication-pipeline.svg; did not edit pre-existing dirty HRS files. Verification: 8 focused tests passed, scoped ESLint exit0, tsc --noEmit --incremental false exit0, SVG XML/route/image checks passed. Initial Vitest attempt was blocked writing its cache by the workspace sandbox; rerun with approved filesystem access passed. No commit/push/deployment. Reflection: a dedicated case-study route can exist without appearing in the homepage dataset; expose it additively while preserving the existing route and content. No global-rule change needed.
+
+
+## Interview About Me — 2026-10-26
+
+Created components/selene/AboutMe.tsx and AboutMe.module.css, copied the exact supplied portrait to public/images/qingpeng-portrait.png (SHA-256 matches original), inserted AboutMe after Earthrise and before ProjectReel. Existing HRS card retained. User confirmed portrait was in Downloads. Verification:12 existing tests passed across homepage/HRS/content, scoped ESLint exit0 and tsc --noEmit --incremental false exit0. Browser1440px confirmed portrait left/text right and section before projects;390px confirmed vertical stack/no document overflow. Tested project anchor and actual HRS navigation. Scoped axe WCAG2A/AA/2.1AA checks pass in day/night. Visual inspection found low contrast from hardcoded dark-theme colors against light backdrop; fixed with scoped day overrides and reviewed both screenshots. Browser QA harness initially needed explicit context for axe; corrected harness and rerun passed. No dependencies, commits, pushes or deployment. Reflection: verify new content in both inherited themes, not only the intended dark presentation; use scannable cues to accompany a spoken script.
+
+
+## Circular portrait — 2026-10-26
+
+User requested a circle photo frame. Changed only AboutMe imageFrame to a square aspect ratio and50% border radius; original image and content preserved. Applies on desktop and mobile. CSS-only reversible change; browser geometry verification recorded in this task. No commit/push/deploy. Reflection:no new reusable rule.
+
+
+## Company-neutral homepage copy — 2026-10-26
+
+User clarified that the public homepage must address recruiters from any company. Replaced the Intuit-specific motivation in AboutMe with a general commitment to simplifying complex tasks, understanding user needs, clear experiences and reliable systems. Retained USAA as actual past experience. Earlier interview-specific homepage wording is superseded. Copy-only change; no layout, commit, push or deployment changes. Reflection:keep target-company motivation in interview materials rather than a general public portfolio.
+
+
+## Compact HRS workflow — 2026-10-26
+
+User requested a tighter workflow overview, without forcing it into one screen.
+Added workflow-scoped CSS:840px max width (was1000),64px base node minimum
+(was92),shorter24px connectors and48px decision connectors,78px fork nodes,
+72px side branches, and modest readable type/padding reductions. Deployment
+nodes and popup contents are unchanged; all workflow nodes/labels preserved.
+Browser1440px measured chart1536.78px→1005.97px tall (about35% shorter).
+Node dialog opens;390px mobile layout settles to370px wide without overflow.
+Early mobile measurements ran before viewport layout settled; a temporary
+page-width adjustment was removed after diagnosis. Final change is chart-only.
+Existing HRS tests5 passed. Desktop/mobile screenshots reviewed. No commit,
+push or deployment. Reflection:pack padding/connectors rather than scale the
+whole chart; wait for responsive layout before comparing browser geometry.
