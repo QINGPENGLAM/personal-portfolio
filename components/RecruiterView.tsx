@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ExperienceCard } from '@/components/experience/ExperienceCard'
 import { education } from '@/data/education'
 import { experiences } from '@/data/experience'
 import { profile } from '@/data/profile'
@@ -27,14 +28,13 @@ export function RecruiterView() {
 
       <section className="content-section" aria-labelledby="experience-heading">
         <div className="section-kicker"><h2 id="experience-heading">Experience</h2><Link href="/experience">Full experience</Link></div>
-        <div className="experience-list">
+        <ol className="experience-list">
           {experiences.map((experience) => (
-            <article className="experience-row" key={experience.id}>
-              <div><span>{experience.startDate} — {experience.endDate}</span><strong>{experience.company}</strong></div>
-              <div><h3>{experience.role}</h3><p>{experience.summary}</p></div>
-            </article>
+            <li className="experience-row" key={experience.id}>
+              <ExperienceCard experience={experience} />
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
       <div className="recruiter-grid">

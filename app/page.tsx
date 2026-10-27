@@ -1,3 +1,5 @@
+import { DeferredContactForm } from '@/components/contact/DeferredContactForm'
+import { ContactContent } from '@/components/contact/ContactContent'
 import { AboutMe } from '@/components/selene/AboutMe'
 import { Earthrise } from '@/components/selene/Earthrise'
 import { ProjectReel } from '@/components/selene/ProjectReel'
@@ -20,5 +22,13 @@ export default function HomePage() {
     alt: project.screenshotAlt ?? `${project.title} project illustration`,
     tags: project.technologies.slice(0, 3), accent: project.landmark.accent,
   }))]
-  return <main><Earthrise /><AboutMe /><ProjectReel projects={reelProjects} /><RecruiterView /></main>
+  return <main><Earthrise /><AboutMe /><ProjectReel projects={reelProjects} /><RecruiterView />
+    <section aria-labelledby="home-contact-heading" className="home-contact" id="contact">
+      <div className="section-heading">
+        <div><p className="eyebrow">Contact</p><h2 id="home-contact-heading">Let’s build something useful.</h2></div>
+        <p>Get in touch about software engineering roles, projects, or collaboration.</p>
+      </div>
+      <ContactContent form={<DeferredContactForm />} />
+    </section>
+  </main>
 }

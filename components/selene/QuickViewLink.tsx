@@ -8,6 +8,6 @@ export function QuickViewLink({ className, children }: { className?: string; chi
   return <a className={className} data-analytics-event="recruiter_view_opened" href={withBasePath('/#quick-view')} onClick={event => {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
     event.preventDefault()
-    scrollToHash('#quick-view', { immediate: true, offset: 96 })
+    scrollToHash('#quick-view', { immediate: window.matchMedia('(prefers-reduced-motion: reduce)').matches, offset: 96 })
   }}>{children}</a>
 }

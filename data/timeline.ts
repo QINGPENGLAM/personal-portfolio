@@ -4,8 +4,10 @@ import { projects } from './projects'
 import { timelineItemSchema, type TimelineItem } from './schemas'
 
 const experienceSortKeys: Record<string, string> = {
+  'si539-ia': '2026-08',
   usaa: '2026-05',
   isr: '2025-08',
+  'eng101-ia': '2024-10',
   hillel: '2024-08',
 }
 

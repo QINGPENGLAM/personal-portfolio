@@ -2,6 +2,22 @@ import { experienceSchema } from './schemas'
 
 export const experiences = experienceSchema.array().parse([
   {
+    id: 'si539-ia',
+    company: 'University of Michigan · School of Information',
+    role: 'Instructional Assistant — SI 539',
+    location: 'Ann Arbor, MI',
+    startDate: 'Aug. 2026',
+    endDate: 'Present',
+    course: 'Web Design: Responsiveness and Accessibility',
+    summary: 'Supporting students in building responsive, accessible websites and understanding inclusive web design practices.',
+    contributions: [
+      'Help students connect web design concepts with responsive layouts that adapt to different devices and screen sizes.',
+      'Support student learning around accessibility and the design of clear, usable web experiences.',
+    ],
+    outcomes: [],
+    technologies: [],
+  },
+  {
     id: 'usaa',
     company: 'USAA',
     role: 'Software Engineering Intern',
@@ -32,6 +48,22 @@ export const experiences = experienceSchema.array().parse([
     ],
     outcomes: ['Reporting dashboards and APIs supported 200+ researchers and program stakeholders.'],
     technologies: ['Python', 'SQL', 'REST APIs', 'Data Pipelines', 'Dashboards'],
+  },
+  {
+    id: 'eng101-ia',
+    company: 'University of Michigan · College of Engineering',
+    role: 'Instructional Assistant — ENG 101',
+    location: 'Ann Arbor, MI',
+    startDate: 'Oct. 2024',
+    endDate: 'June 2025',
+    course: 'Introduction to Engineering',
+    summary: 'Supported student learning in an introductory engineering lab, helping students connect foundational concepts with practical problem-solving.',
+    contributions: [
+      'Helped students work through introductory engineering concepts and lab-based learning activities.',
+      'Supported a learning environment focused on asking questions, developing ideas, and communicating engineering reasoning.',
+    ],
+    outcomes: [],
+    technologies: [],
   },
   {
     id: 'hillel',

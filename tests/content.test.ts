@@ -8,7 +8,7 @@ import { skillGroups } from '@/data/skills'
 describe('portfolio content', () => {
   it('keeps core recruiter content available', () => {
     expect(profile.name).toBe('QingPeng Lam')
-    expect(experiences).toHaveLength(3)
+    expect(experiences).toHaveLength(5)
     expect(projects.length).toBeGreaterThanOrEqual(2)
     expect(skillGroups.length).toBeGreaterThanOrEqual(4)
     expect(education.institution).toBe('University of Michigan')
@@ -29,7 +29,7 @@ describe('portfolio content', () => {
     for (const project of projects) expect(project.measurableResults.length).toBeGreaterThan(0)
     for (const experience of experiences) {
       expect(experience.contributions.length).toBeGreaterThan(0)
-      expect(experience.outcomes.length).toBeGreaterThan(0)
+      if (!experience.course) expect(experience.outcomes.length).toBeGreaterThan(0)
     }
   })
 })

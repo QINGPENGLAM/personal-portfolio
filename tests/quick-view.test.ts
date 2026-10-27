@@ -16,3 +16,16 @@ it('jumps directly to quick view with header clearance and keyboard focus', () =
   expect(pushState).toHaveBeenCalledWith(null, '', '#quick-view')
   expect(focus).toHaveBeenCalledWith({ preventScroll: true })
 })
+
+it('smoothly scrolls within the same document and keeps the destination keyboard-accessible', () => {
+  const scrollTo = vi.fn()
+  const focus = vi.fn()
+  const pushState = vi.fn()
+  vi.stubGlobal('window', { scrollY: 0, scrollTo })
+  vi.stubGlobal('document', { querySelector: () => ({ getBoundingClientRect: () => ({ top: 4200 }), focus }) })
+  vi.stubGlobal('history', { pushState })
+  scrollToHash('#quick-view', { offset: 96 })
+  expect(scrollTo).toHaveBeenCalledWith({ top: 4104, behavior: 'smooth' })
+  expect(pushState).toHaveBeenCalledWith(null, '', '#quick-view')
+  expect(focus).toHaveBeenCalledWith({ preventScroll: true })
+})

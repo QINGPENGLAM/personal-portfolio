@@ -43,8 +43,8 @@ export function scrollToHash(hash: string, {immediate = false, offset = 0}: {imm
   const target = hash === '#top' ? null : document.querySelector<HTMLElement>(hash);
   if (hash !== '#top' && !target) return;
   const top = target ? Math.max(0, window.scrollY + target.getBoundingClientRect().top - offset) : 0;
-  if (lenis) lenis.scrollTo(top, {immediate, duration: immediate ? 0 : 1.6, force: true});
+  if (lenis) lenis.scrollTo(top, {immediate, duration: 1.6, force: true});
   else window.scrollTo({top, behavior: immediate ? 'instant' : 'smooth'});
+  target?.focus({preventScroll: true});
   history.pushState(null, '', hash);
-  if (immediate) target?.focus({preventScroll: true});
 }

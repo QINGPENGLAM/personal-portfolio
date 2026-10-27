@@ -221,3 +221,53 @@ page-width adjustment was removed after diagnosis. Final change is chart-only.
 Existing HRS tests5 passed. Desktop/mobile screenshots reviewed. No commit,
 push or deployment. Reflection:pack padding/connectors rather than scale the
 whole chart; wait for responsive layout before comparing browser geometry.
+
+
+## Homepage IA roles and vertical timeline — 2026-10-26
+
+Use one left-side rail with nodes/branches and independent native details/summary disclosures on desktop and mobile. Preserve the supplied ENG 101 spelling and role dates. Descriptions stay at general course-support level; omit unsupported metrics, tools, and empty detail headings. Permit empty outcomes/technologies for teaching roles. Existing engineering facts and the combined timeline layout are preserved. No commit, push, deployment, or budget-threshold increase.
+
+
+## Centered experience rail — 2026-10-26
+
+User clarified the line belongs in the middle. Centered the desktop rail and alternated role cards left/right with branches joining each node. Narrow screens retain a left rail so descriptions and expanded details remain readable. Native disclosure behavior and role content are preserved. Supersedes the earlier desktop left-rail decision. Reflection: confirm the spine placement from layout references; no global-rule change. No commit, push, or deployment.
+
+
+### Content-sized timeline cards — 2026-10-26
+User requested content-sized alternating cards. Cards now use intrinsic width with a 28rem maximum, stay within their available column, and align toward the center rail. Height follows each card’s content and expansion. Reflection: timeline columns define placement, not a required card width. No commit/push/deployment.
+
+
+### Experience popups — 2026-10-26
+Homepage role cards now open native modal dialogs using the HRS workflow popup styles and lifecycle pattern: animated entrance/exit, blurred backdrop, sticky close bar, Escape/outside-click dismissal, focus containment/return, scroll locking, and reduced-motion support. Centered alternating content-sized cards stay in place. No-JavaScript users can follow a direct full-role link. Supersedes homepage inline expansion; existing full experience page remains intact. No commit/push/deployment.
+
+
+### Homepage contact placement — 2026-10-26
+Removed Contact from the desktop/mobile header menus. Added Contact after the homepage skills and education section, sharing the existing form and direct-contact links with the retained /contact route. The homepage loads the form when the contact section approaches the viewport to contain initial JavaScript cost; direct contact links render immediately. No sending service, form-delivery configuration, commit, push, or deployment changes.
+
+
+### Animated Quick Portfolio View — 2026-10-26
+Quick Portfolio View now animates the existing in-page scroll with Lenis (native smooth-scroll fallback), preserving the same document and 96px header clearance. Keyboard focus reaches the destination; reduced-motion users retain the instant jump. Hash navigation and modified-click behavior remain intact. Supersedes the previous forced instant jump. No commit/push/deployment.
+
+
+### Contact helper copy — 2026-10-26
+Removed the form-heading delivery-mode line at the user’s request. Submission behavior and the existing no-endpoint email fallback are unchanged; delivery is not configured by this copy change.
+
+
+### Web3Forms contact delivery — 2026-10-26
+Connected the user-supplied public Web3Forms access key to the shared contact form. No sample HTML needed. Empty NEXT_PUBLIC_CONTACT_ENDPOINT now selects Web3Forms; explicit custom Worker overrides still work. Only name/email/company/message, subject, public key and botcheck are submitted. Existing validation, timeout, success reset, failure preservation, and email fallback remain. Provider success must be true before claiming acceptance. Tests intercept provider requests; inbox receipt is not verified and no live test email is sent. No commit/push/deployment.
+
+
+### Required contact fields — 2026-10-26
+Name, Email and Message now show explicit required markers; Company remains optional. Kept the existing required attributes and Zod validation, including proper email syntax checking. Added an example email placeholder and email keyboard hint. Required markers are visual only for assistive technology, which already receives the native required state. No backend or live delivery changes.
+
+
+### Submit-button requirements — 2026-10-26
+User clarified that Submit must be unclickable until required fields are valid. The shared contact form now derives button availability from the same schema as submission validation on every input: trimmed Name at least 2 characters, properly formatted Email, and trimmed Message 20–2,000 characters. Company remains optional. Clearing or invalidating a field immediately disables Submit; successful delivery/reset disables it again, while failed delivery retains valid input for retry. Added disabled-button styling. This supersedes the earlier submit-then-validate interaction.
+
+
+### Live email warning — 2026-10-26
+Contact Email now shows a red inline “Enter a valid email address.” warning and red field border while a nonempty malformed address is entered. The warning clears on correction or clearing the field; untouched empty fields stay quiet. Uses the existing schema and disabled-Submit rule, with a readable darker red in day theme and an accessible error announcement. No delivery changes.
+
+
+### Repository hygiene — 2026-10-26
+Keep source, content data, tests, scripts, package-lock.json, project/governance docs, deployment workflow, asset licenses and required public assets (including the résumé) in Git. Ignore local .env files (retain .env.example), Worker .dev.vars secrets, deployment state, dependencies, build/cache output, coverage, browser reports and logs. The configured Web3Forms access key is intentionally public and remains versioned. Two previously tracked .DS_Store files are staged for removal from Git only; local copies remain. Legacy image/ assets and HTML are retained pending a separate cleanup decision; ignore rules do not remove already tracked content or history. No commit/push.

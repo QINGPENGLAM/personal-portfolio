@@ -410,3 +410,76 @@ page-width adjustment was removed after diagnosis. Final change is chart-only.
 Existing HRS tests5 passed. Desktop/mobile screenshots reviewed. No commit,
 push or deployment. Reflection:pack padding/connectors rather than scale the
 whole chart; wait for responsive layout before comparing browser geometry.
+
+
+## Homepage IA roles and vertical timeline — 2026-10-26
+
+Added user-supplied ENG 101 (Introduction to Engineering, Oct. 2024–June 2025) and SI 539 (Web Design: Responsiveness and Accessibility, Aug. 2026–Present) instructional assistant roles alongside the three existing engineering roles, newest first. Professional descriptions stay at the level of course learning support; no unconfirmed metrics, tools, grading duties, or office hours are claimed. Preserved ENG 101 spelling as supplied. Shared role content also appears on the experience page and dated combined index.
+
+Homepage now uses one continuous vertical rail with nodes and horizontal branches. Native details/summary expands each role independently using pointer or keyboard and works without JavaScript. Empty outcome/technology arrays are permitted for these teaching roles and their headings are omitted. Existing engineering contributions and metrics remain intact.
+
+Verification: 65 unit tests, four Chromium/mobile browser checks (pointer, Enter/Space, independent expansion, mobile overflow, experience deep links and no-JavaScript operation), lint, TypeScript, production static build pass. Desktop screenshot reviewed. Homepage JavaScript, world shell, largest chunk and stylesheet budgets pass; total export budget fails at 12,624 KiB versus 11,719 KiB. Budget threshold is unchanged; cause is not attributed to this change without a baseline comparison. Local only; no commit, push, or deployment. Reflection: teaching roles should not acquire fabricated metrics or technologies merely to satisfy a software-internship content schema; omit unsupported sections. No additional global rule needed.
+
+
+## Centered experience rail — 2026-10-26
+
+User clarified the line belongs in the middle. Centered the desktop rail and alternated role cards left/right with branches joining each node. Narrow screens retain a left rail so descriptions and expanded details remain readable. Native disclosure behavior and role content are preserved. Supersedes the earlier desktop left-rail decision. Reflection: confirm the spine placement from layout references; no global-rule change. No commit, push, or deployment.
+
+Centered-rail verification: production build and focused ESLint pass; desktop and mobile Playwright checks both pass. Desktop geometry asserts the rail is exactly halfway across and cards alternate on opposite sides; pointer/keyboard expansion and no horizontal overflow pass. Centered desktop screenshot reviewed.
+
+
+### Content-sized timeline cards — 2026-10-26
+User requested content-sized alternating cards. Cards now use intrinsic width with a 28rem maximum, stay within their available column, and align toward the center rail. Height follows each card’s content and expansion. Reflection: timeline columns define placement, not a required card width. No commit/push/deployment.
+Verification for content-sized cards: production build and both focused desktop/mobile browser checks pass, including alternation, centered desktop rail, expansion, and overflow checks. CSS-only product change.
+
+## Experience popups — 2026-10-26
+
+Replaced homepage inline role disclosures with ExperienceCard native modal dialogs, using the existing HRS workflow popup CSS and lifecycle pattern. Whole-card button hit area opens details while card size, center rail and alternating positions stay fixed. Uses blurred backdrop, entrance/exit animations, sticky close control, Escape/backdrop dismissal, focus trapping/return, scroll lock restoration, reduced motion and mobile internal scrolling. No-JavaScript users have direct full-role links. HRS source remains unchanged. Supersedes previous inline-expansion decisions.
+
+Verification: 66 unit tests, lint, production build/TypeScript and six desktop/mobile browser checks pass (pointer and Enter/Space opening, all close paths, focus trap/return, scroll restoration, unchanged card height, responsive geometry, no-JavaScript fallback and reduced motion). Additional desktop/mobile popup viewport checks pass. Screenshots reviewed. All individual asset budgets pass; total export budget still fails (12,607 KiB / 11,719 KiB on the audited build). No commit/push/deployment. Reflection: follow the user’s existing interaction reference directly; preserve role-page access when JavaScript is unavailable. No global rule update.
+
+## Contact moved onto homepage — 2026-10-26
+
+Removed Contact from both desktop and mobile header menus and placed the shared form/direct contact channels after the homepage skills/education section. Kept the /contact route and sitemap entry via explicit directRoutes inclusion. ContactContent shares existing content between the homepage and contact route; DeferredContactForm loads the homepage form within 600px of its section while email/social links remain server-rendered. This avoids the initial JavaScript budget regression from eagerly mounting the form. No delivery service or credentials changed and no messages sent.
+
+Verification: 66 unit tests, lint, production build/TypeScript pass. Four existing homepage/contact validation browser checks and two new homepage placement/form-loading checks pass on desktop/mobile; no horizontal overflow, blank-form validation focuses Name, direct email available. Export markup confirms the section follows education and no Contact appears in header navigation. Desktop screenshot reviewed. All individual JavaScript/style budgets pass; total export budget still fails at 12,627 KiB / 11,719 KiB. Two static homepage tests now use the app’s AudioProvider because the contact form depends on that context. Reflection: shared UI can bring provider dependencies into page-only tests; mirror the real layout provider, and verify initial bundle budgets when moving forms onto the homepage. No global rule update, commit, push or deployment.
+
+## Animated Quick Portfolio View — 2026-10-26
+
+Changed QuickViewLink from a forced immediate jump to animated in-page scrolling through the existing Lenis engine (1.6-second duration; native smooth-scroll fallback). Per-click reduced-motion detection preserves instant navigation when requested. The same document stays loaded, the hash uses pushState, destination focus uses preventScroll, and the 96px header offset remains. Modified/new-tab clicks keep native behavior. Lenis bypasses duration for immediate scroll, confirmed in the installed library source, so the redundant duration conditional was removed.
+
+Verification: 67 unit tests, lint, production build/TypeScript and four desktop/mobile browser checks pass. Browser tests observe intermediate scroll positions, verify final header clearance and focus, retain a document sentinel across navigation, and cover reduced motion. Individual asset budgets pass; the existing total export budget remains over at 12,627 KiB / 11,719 KiB. Reflection: reduced motion hides the dust overlay, so test the visible title link in .selene-actions; inspect the actual layout before selecting alternate controls. No global-rule change, commit, push or deployment.
+
+
+## Contact helper copy — 2026-10-26
+Removed only the delivery-mode paragraph below “Send a note.” in shared ContactForm. No backend, provider, credentials, or submission changes. Inspected the source diff and checked the component with ESLint. Reflection: configuration details belong in developer guidance; preserve an honest email fallback when sending is unavailable. No global-rule update, commit, push or deployment.
+
+## Web3Forms integration — 2026-10-26
+
+Used the user-supplied public access key to wire the existing shared form directly to Web3Forms; no sample HTML required. lib/contact-delivery.ts maps the validated message to access_key, subject, name, email, company, message and botcheck, omitting internal timing metadata. An explicit custom Worker endpoint still receives its original validated payload. Success requires both HTTP acceptance and Web3Forms success=true; malformed/failed responses preserve typed fields and show an error. Existing 12-second abort, client validation, confirmation/reset, analytics event and direct email fallback remain intact. Updated configuration docs to identify Web3Forms as the default.
+
+Verification: 71 unit tests, lint, production build/TypeScript, six desktop/mobile browser checks pass. Mocked provider tests cover exact outgoing payload, acceptance/reset, rejection/preserved fields, unreadable responses and custom-Worker compatibility. Both homepage deferred-form placement checks pass. All individual asset budgets pass; total export budget still fails (12,627 KiB / 11,719 KiB). No real email sent and inbox delivery unverified. No commit/push/deployment. Reflection: provider HTTP 200 alone does not establish success; check the provider’s response flag and test rejection without transmitting real messages. No global-rule change.
+
+## Required contact fields — 2026-10-26
+
+Marked Name, Email and Message explicitly required on the shared form; Company remains optional. Kept native required attributes and the existing Zod validation rather than duplicating rules. Email keeps type=email, gains inputMode=email and a you@example.com hint. Visual required badges are aria-hidden because native controls already expose the required state.
+
+Verification: lint and production build/TypeScript pass. Six desktop/mobile browser checks pass, including empty-field errors, required attributes, malformed addresses (missing @, missing domain/TLD, duplicate @, spaces), zero provider requests for invalid fields, and successful mocked acceptance with Company blank. Updated the existing exact Email label selector to use the textbox accessible name after the label changed. No real email sent, commit, push or deployment. Reflection: native required attributes and visible required labels serve different purposes; verify both and ensure invalid data never reaches the provider. No global-rule update.
+
+## Submit availability — 2026-10-26
+
+User clarified that required fields must gate clicking Submit, not just trigger errors after clicking. Added live schema-based availability on form input and a subdued disabled style. The button is disabled until hydrated, all content fields pass the existing schema, and no delivery is in progress; Company stays optional. Invalid edits/clearing a field disable it immediately. Successful form reset also resets button availability; failed delivery preserves fields for retry. Existing submission validation remains as a second check. Updated tests that previously assumed blank Submit was enabled.
+
+Verification: observed the regression fail against the old build (blank Submit was enabled), then 10 desktop/mobile browser checks pass for blank/partial/short/whitespace/invalid-email states, valid enablement without Company, re-disabling on edit/reset, provider acceptance/rejection and homepage form. 71 unit tests, lint, production build/TypeScript pass. Provider calls mocked; no real messages sent. Individual asset budgets pass; existing total export budget remains over (12,628 KiB / 11,719 KiB). Reflection: distinguish required-field validation from pre-submit button availability; use the same schema to avoid rule drift. No global-rule update, commit, push or deployment.
+
+## Live email-format warning — 2026-10-26
+
+Added immediate inline feedback while entering a nonempty invalid email: red error text and border, using the existing schema result. Correcting or clearing the email removes the warning; blank untouched fields remain quiet. Submit remains disabled until all required fields are valid. Email errors expose aria-invalid, aria-describedby and an error announcement. Added darker red for day theme so the warning remains readable; dark theme keeps the existing red/pink.
+
+Verification: regression first failed on missing aria-invalid/email warning; then six desktop/mobile browser checks pass for five malformed email formats, visible red feedback, clearing after valid correction, disabled/enabled/reset behavior and mocked provider acceptance/rejection. Screenshot reviewed. 71 unit tests, lint, production build/TypeScript pass. Provider requests mocked, no real email sent. Existing total-export budget issue is outside this change. Reflection: disabling Submit needs inline feedback so users can see what to fix. No global-rule update, commit, push or deployment.
+
+
+## Git ignore audit — 2026-10-26
+Found missing local-environment ignore rules and two tracked macOS metadata files. Added .env* with .env.example exception, .dev.vars* with example exception, .wrangler/.vercel state, coverage/log ignores, and normalized existing generated-directory rules. Staged removal of .DS_Store and side-bar/.DS_Store using git rm --cached; local files retained. Keep app/components/lib/data, tests, lockfile, configs, public assets/résumé, licenses, workflows and governance docs in Git. The Web3Forms key is a public identifier and remains in source. Retained 65 legacy image/ assets (~73MB), including image/adobe.pdf (~31.7MiB), rather than silently deleting historical content.
+
+Verification: git check-ignore probes pass for 20 generated/local paths and 12 intended versionable paths; diff whitespace check passes. Recognizable-secret pattern scan of tracked text found no matches (not a history audit). No product behavior changes or new application tests needed. Reflection: ignore rules do not untrack files already in the index; verify both the index and intended source exceptions. No global-rule change, commit or push.

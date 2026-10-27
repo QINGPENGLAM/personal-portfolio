@@ -39,7 +39,7 @@ The source-level review in [`docs/PUBLIC_PROJECT_CODEBASE_AUDIT_2026-08-11.md`](
 - Advanced procedural data-signal animation that respects reduced motion and performance mode
 - Privacy-conscious event tracking for world entry, Recruiter View, projects, résumé downloads, successful contact delivery, and guide opening
 - Professional contact form with accessible validation, feedback, honeypot timing, and a permanent direct-email fallback
-- Separate Worker-compatible contact backend with origin restriction, server validation, hashed-IP KV rate limiting, and provider secrets
+- Web3Forms contact delivery through a public form access key, with an optional Worker-compatible backend for custom delivery
 - Konami-code curiosity achievement that never blocks primary navigation
 - Route-level error recovery and a JavaScript-disabled fallback note
 - Dark/day theme preference with local persistence
@@ -144,13 +144,13 @@ The 2026-08-16 release and its archive and insight routes returned HTTP 200 HTML
 The static export does not execute request-time Next.js APIs. Copy `.env.example` to `.env.local` only when a deployed endpoint exists:
 
 ```bash
-NEXT_PUBLIC_CONTACT_ENDPOINT=https://your-contact-worker.example
+NEXT_PUBLIC_CONTACT_ENDPOINT= # Optional custom Worker; defaults to Web3Forms
 NEXT_PUBLIC_ANALYTICS_ENDPOINT=https://your-privacy-safe-collector.example
 ```
 
 Both variables are public endpoint URLs, not secrets. The contact worker keeps `EMAIL_API_KEY`, destination email, rate-limit salt, and other private settings on the server. See `server/README.md` for its deployment contract.
 
-When `NEXT_PUBLIC_CONTACT_ENDPOINT` is empty, the form still validates but clearly reports local-demo mode and directs the visitor to email. When `NEXT_PUBLIC_ANALYTICS_ENDPOINT` is empty, fixed event-name counts stay in session storage and no analytics request leaves the browser. Form content, names, email addresses, company names, questions, and message text are never analytics payloads.
+When `NEXT_PUBLIC_CONTACT_ENDPOINT` is empty, the form sends to Web3Forms using the configured public form access key in `lib/contact-delivery.ts`. A custom Worker endpoint remains optional. The form requires an explicit successful provider response before showing success; network/provider failures retain the message and offer direct email. When `NEXT_PUBLIC_ANALYTICS_ENDPOINT` is empty, fixed event-name counts stay in session storage and no analytics request leaves the browser. Form content, names, email addresses, company names, questions, and message text are never analytics payloads.
 
 The portfolio guide is intentionally a deterministic local retrieval mode. It needs no API key, makes no external AI request, and can only answer from the imported portfolio data.
 
@@ -211,3 +211,49 @@ Added an explicit related-project target for P2. Its existing footer card now sa
 
 ### P2-to-P1 footer published — 2026-10-16
 Commit b795a20 deployed successfully through Actions run 38989654006. Live browser verification clicked Explore P1 Gold from P2’s footer and reached /projects/zelda-recreation/. Both screenshots and download links remain available; no mobile overflow or page errors.
+
+
+## Homepage IA roles and vertical timeline — 2026-10-26
+
+Added ENG 101 and SI 539 instructional assistant roles with user-supplied dates and general teaching-support descriptions. Homepage experience now uses a straight vertical line, branching nodes, and independently expandable native disclosures. Local checks: 65 unit tests, four desktop/mobile browser checks (including no JavaScript), lint, TypeScript, and build pass. Total export size budget fails at 12,624 KiB / 11,719 KiB; other budgets pass. No commit, push, or deployment.
+
+
+## Centered experience rail — 2026-10-26
+
+User clarified the line belongs in the middle. Centered the desktop rail and alternated role cards left/right with branches joining each node. Narrow screens retain a left rail so descriptions and expanded details remain readable. Native disclosure behavior and role content are preserved. Supersedes the earlier desktop left-rail decision. Reflection: confirm the spine placement from layout references; no global-rule change. No commit, push, or deployment.
+
+
+### Content-sized timeline cards — 2026-10-26
+User requested content-sized alternating cards. Cards now use intrinsic width with a 28rem maximum, stay within their available column, and align toward the center rail. Height follows each card’s content and expansion. Reflection: timeline columns define placement, not a required card width. No commit/push/deployment.
+
+
+### Experience popups — 2026-10-26
+Homepage role cards now open native modal dialogs using the HRS workflow popup styles and lifecycle pattern: animated entrance/exit, blurred backdrop, sticky close bar, Escape/outside-click dismissal, focus containment/return, scroll locking, and reduced-motion support. Centered alternating content-sized cards stay in place. No-JavaScript users can follow a direct full-role link. Supersedes homepage inline expansion; existing full experience page remains intact. No commit/push/deployment.
+
+
+### Homepage contact placement — 2026-10-26
+Removed Contact from the desktop/mobile header menus. Added Contact after the homepage skills and education section, sharing the existing form and direct-contact links with the retained /contact route. The homepage loads the form when the contact section approaches the viewport to contain initial JavaScript cost; direct contact links render immediately. No sending service, form-delivery configuration, commit, push, or deployment changes.
+
+
+### Animated Quick Portfolio View — 2026-10-26
+Quick Portfolio View now animates the existing in-page scroll with Lenis (native smooth-scroll fallback), preserving the same document and 96px header clearance. Keyboard focus reaches the destination; reduced-motion users retain the instant jump. Hash navigation and modified-click behavior remain intact. Supersedes the previous forced instant jump. No commit/push/deployment.
+
+
+### Contact helper copy — 2026-10-26
+Removed the form-heading delivery-mode line at the user’s request. Submission behavior and the existing no-endpoint email fallback are unchanged; delivery is not configured by this copy change.
+
+
+### Required contact fields — 2026-10-26
+Name, Email and Message now show explicit required markers; Company remains optional. Kept the existing required attributes and Zod validation, including proper email syntax checking. Added an example email placeholder and email keyboard hint. Required markers are visual only for assistive technology, which already receives the native required state. No backend or live delivery changes.
+
+
+### Submit-button requirements — 2026-10-26
+User clarified that Submit must be unclickable until required fields are valid. The shared contact form now derives button availability from the same schema as submission validation on every input: trimmed Name at least 2 characters, properly formatted Email, and trimmed Message 20–2,000 characters. Company remains optional. Clearing or invalidating a field immediately disables Submit; successful delivery/reset disables it again, while failed delivery retains valid input for retry. Added disabled-button styling. This supersedes the earlier submit-then-validate interaction.
+
+
+### Live email warning — 2026-10-26
+Contact Email now shows a red inline “Enter a valid email address.” warning and red field border while a nonempty malformed address is entered. The warning clears on correction or clearing the field; untouched empty fields stay quiet. Uses the existing schema and disabled-Submit rule, with a readable darker red in day theme and an accessible error announcement. No delivery changes.
+
+
+### Repository hygiene — 2026-10-26
+Keep source, content data, tests, scripts, package-lock.json, project/governance docs, deployment workflow, asset licenses and required public assets (including the résumé) in Git. Ignore local .env files (retain .env.example), Worker .dev.vars secrets, deployment state, dependencies, build/cache output, coverage, browser reports and logs. The configured Web3Forms access key is intentionally public and remains versioned. Two previously tracked .DS_Store files are staged for removal from Git only; local copies remain. Legacy image/ assets and HTML are retained pending a separate cleanup decision; ignore rules do not remove already tracked content or history. No commit/push.

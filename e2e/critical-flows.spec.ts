@@ -64,13 +64,16 @@ test('keeps the resume available without client-side JavaScript', async ({ page 
   await expect(download).toHaveAttribute('href', /QingPengLam_Resume\.pdf$/)
 })
 
-test('validates the contact form and focuses the first invalid field', async ({ page }) => {
+test('keeps contact Submit disabled until required fields are valid', async ({ page }) => {
   await page.goto('/contact/')
-  await expect(page.getByRole('button', { name: 'Send message' })).toBeEnabled()
-  await page.getByRole('button', { name: 'Send message' }).click()
-  await expect(page.locator('.contact-status[role="alert"]')).toContainText('Review the highlighted fields')
-  await expect(page.getByLabel('Name')).toBeFocused()
-  await expect(page.getByLabel('Name')).toHaveAttribute('aria-invalid', 'true')
+  const submit = page.getByRole('button', { name: 'Send message' })
+  await expect(submit).toBeDisabled()
+  await page.getByLabel('Name').fill('Test Visitor')
+  await page.getByRole('textbox', { name: /^Email/ }).fill('visitor@example.com')
+  await page.getByRole('textbox', { name: /^Message/ }).fill('A test of the portfolio contact form.')
+  await expect(submit).toBeEnabled()
+  await page.getByRole('textbox', { name: /^Email/ }).fill('invalid')
+  await expect(submit).toBeDisabled()
 })
 
 test('supports the skip link using only the keyboard', async ({ page }) => {

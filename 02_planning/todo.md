@@ -149,3 +149,34 @@ User clarified that the public homepage must address recruiters from any company
 
 - [x] Tighten workflow nodes/connectors/branch spacing, retaining all explanations.
 - [x] Verify approximately35% shorter desktop chart, mobile no overflow, popup interaction and5 existing HRS tests.
+
+
+## Homepage IA timeline — 2026-10-26
+- [x] Add user-supplied ENG 101 and SI 539 roles with supplied dates and general professional teaching-support descriptions.
+- [x] Add straight vertical homepage line, nodes, branches, and accessible expandable role entries.
+- [x] Preserve existing roles and keep shared experience page and dated index valid.
+- [x] Verify 65 unit tests, four desktop/mobile browser checks including no-JavaScript expansion, lint, TypeScript, and production build.
+- [ ] Resolve total static-export size budget before release; current export 12,624 KiB exceeds 11,719 KiB.
+
+- [x] Center the desktop experience rail and alternate cards on its two sides; retain readable mobile layout.
+
+- [x] Let alternating timeline cards size to content within a readable maximum width instead of stretching across each side.
+
+- [x] Replace homepage inline role expansion with HRS-style popups, retaining centered alternating cards and a no-JavaScript full-role link.
+
+- [x] Move Contact from header menus to the homepage after skills and education; keep the direct contact route available.
+
+- [x] Animate Quick Portfolio View within the current homepage, with reduced-motion and keyboard-focus support.
+
+- [x] Remove the visible local-demo delivery-mode line from both shared contact forms.
+
+- [x] Connect the supplied Web3Forms public access key to both shared contact forms.
+- [ ] After publication, submit a real message and confirm inbox delivery.
+
+- [x] Clearly mark Name, Email and Message as required, keep Company optional, and verify malformed emails never reach the provider.
+
+- [x] Disable Submit until all required contact fields are valid; re-disable on invalid edits or successful form reset.
+
+- [x] Show a red inline email-format warning while invalid text is entered, and clear it when corrected.
+
+- [x] Audit .gitignore; protect local env/Worker secrets and generated artifacts; stage removal of tracked .DS_Store files while preserving local copies.

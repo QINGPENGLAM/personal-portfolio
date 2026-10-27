@@ -24,9 +24,10 @@ export const experienceSchema = z.object({
   startDate: nonEmptyText,
   endDate: nonEmptyText,
   summary: nonEmptyText,
+  course: nonEmptyText.optional(),
   contributions: z.array(nonEmptyText).min(1),
-  outcomes: z.array(nonEmptyText).min(1),
-  technologies: z.array(nonEmptyText).min(1),
+  outcomes: z.array(nonEmptyText),
+  technologies: z.array(nonEmptyText),
 })
 
 export const projectSchema = z.object({
