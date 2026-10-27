@@ -489,3 +489,59 @@ Verification: git check-ignore probes pass for 20 generated/local paths and 12 i
 Reproduced contrast failures on all nine initially audited routes. Root cause: day mode inherited pale accent tokens from night mode, secondary text was too light, carousel headings/captions used fixed night colors, and whole-card opacity reduced foreground/background contrast. Added a coherent day palette, stronger field/control borders, white carousel captions with darker text and opaque day cards, and an appropriate mark on the intentionally dark homepage header. Expanded checks exposed case-study project-color labels on pale surfaces and dark technical panels inheriting dark day text; corrected these with scoped text colors and local light-text tokens.
 
 Verification: 32 axe color-contrast checks pass across 15 routes and interactive contact warning, experience dialog and HRS dialog on desktop/mobile. Screenshots reviewed. 71 unit tests, lint and production build/TypeScript pass. Individual asset budgets pass; total export remains over at 12,630 KiB / 11,719 KiB. Tests wait for body theme transitions, not all descendant transitions: awaiting every document transition stalled on continuously changing components. Reflection: a light theme needs its own semantic text/accent palette; preserve local contrast within intentionally dark surfaces, and never fade entire readable cards. No new global-rule update, commit, push or deployment.
+
+## ProjectReel null-reference crash — 2026-10-27
+
+User screenshot showed barRef.current.style throwing when current was null. Reproduced the exact failure by capturing the carousel ResizeObserver callback, navigating away through the Next Link, then invoking that late callback after unmount. The old effect dereferenced the live mutable ref unconditionally; TypeScript’s non-null assertion supplied no runtime protection. Fix captures the mounted bar, checks current track/bar identity and a disposed flag before any work, and sets disposed before listener/observer cleanup. This guards both detached refs before passive cleanup and queued work after cleanup.
+
+Verification: regression failed on the original build with “Cannot read properties of null (reading style).” After the fix, late-callback/navigation/return-and-next-card checks pass in Chromium, Firefox and mobile Chromium. 71 unit tests, lint and production build/TypeScript pass. A test-only Window extension initially failed TypeScript; corrected it to an optional property with an explicit capture check. No product layout changes, commit, push or deployment. Reflection: disconnecting an observer is not a lifetime guard for callbacks already queued; guard DOM identity and disposal before updating UI. No global-rule update.
+
+
+## Shared queue before AI output — 2026-10-27
+
+User identified a misleading terminal-looking PubMed-unmatched branch. Verified
+actual HRS run_intake order:save active candidates, optional PubMed rechecks,
+run_configured_ai_stage, then CSV/Sheet outputs. Changed chart/data only:rename
+unmatched branch to Save unmatched candidate, add explicit continuation link to
+a new full-width Shared active review queue, and put AI/output below this common
+queue. Popup names both ready_for_manual_entry and needs_non_pubmed_review.
+Clarified AI selects eligible/due candidates from both paths and earlier runs,
+not every paper/every run; disabled/default, source, batch/time/cost limits and
+manual control retained. No pipeline/business code, credentials or cloud changes.
+Checks:8 existing HRS/homepage tests passed, scoped ESLint/TypeScript exit0;
+browser confirms branch anchor, both statuses,queue→AI→output order and no
+horizontal overflow at1440px/390px. No commit,push,deployment.
+Reflection:an intermediate persisted queue must look like a joining stage rather
+than a terminal human-review exit when a later shared stage can process it.
+
+
+## Candidate metadata label — 2026-10-27
+
+Renamed Prepare review details to Prepare candidate metadata after checking
+candidate_processor.process_candidate and ai_screening._run_one. The matched
+path still assembles identifiers, publication metadata and leadership context.
+Clarified that saved identity supports later AI source lookup as well as human
+review, while actual model evidence is separately fetched/verified/prepared
+inside the optional AI stage. No new chart step, layout or business-code change.
+Reflection:distinguish identity/metadata from the text evidence supplied to a model.
+
+
+## Intended required AI stage — 2026-10-27
+
+User explicitly chose chart-only changes, with AI required before Sheet output
+in the intended workflow. User chose export rather than hold when screening
+cannot finish:show “AI incomplete—manual review needed”. Updated workflow
+node captions/shared queue/popup/output copy to express a required stage, not a
+requirement that every candidate obtain a successful classification. A still-current
+AI result can be reused. Preserved evidence, permission and human control limits.
+Added visible implementation note:current runtime remains opt-in and does not
+yet enforce this policy/exact fallback label. Historical functional-results
+paragraphs continue to describe actual implemented behavior. No Python/runtime,
+configuration, key, live-data or cloud/deployment change.
+Verification:8 existing HRS/homepage tests pass with updated intent/current-state
+assertions; scoped ESLint and TypeScript pass. Browser confirms required visible
+caption, explicit incomplete fallback, implementation note, shared queue→AI→output
+order and no horizontal overflow at1440px/390px. QA locator was narrowed from
+duplicate node/popup caption to the visible AI button before the successful rerun.
+Reflection:a required attempt/stage differs from guaranteed successful screening;
+keep intended policy distinguishable from currently enforced runtime behavior.

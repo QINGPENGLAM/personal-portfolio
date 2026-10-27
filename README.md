@@ -261,3 +261,7 @@ Keep source, content data, tests, scripts, package-lock.json, project/governance
 
 ## Light-theme contrast — 2026-10-27
 Updated light surfaces, secondary text, blue/green accents, borders, project cards and case-study labels for readable contrast. Light-mode carousel cards stay opaque so unfocused card text does not fade into the background. Intentionally dark technical panels retain local light-text tokens. Layout and dark-theme styles are preserved. Verified with 32 desktop/mobile contrast checks across 15 routes plus contact feedback and experience/HRS popups, 71 unit tests, lint and production build. Individual asset budgets pass; existing total export budget remains over. Local only; no commit/push/deployment.
+
+
+### Carousel callback lifecycle — 2026-10-27
+Fixed the reported ProjectReel barRef.current.style null-reference crash. The scroll/resize effect captures the mounted progress-bar node and ignores updates once disposed or when the track/bar refs detach or are replaced. Cleanup marks the effect disposed before removing listeners/disconnecting its observer. Layout and carousel behavior remain intact; this handles late observer callbacks during navigation or component replacement. No commit/push/deployment.

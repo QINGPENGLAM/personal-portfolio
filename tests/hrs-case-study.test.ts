@@ -28,12 +28,15 @@ describe('HRS case-study draft', () => {
     expect(html).toContain('previously processed')
   })
 
-  it('describes the implemented opt-in AI stage and its human-review boundaries', () => {
+  it('distinguishes the intended required AI stage from current opt-in implementation', () => {
     const html = renderToStaticMarkup(createElement(HrsCaseStudyPage))
     expect(html).toContain('AI screening')
     expect(html).toContain('aria-controls="hrs-dialog-ai"')
     expect(html).toContain('id="hrs-dialog-ai"')
-    expect(html).toContain('Optional queue pass · disabled by default')
+    expect(html).toContain('Required before Sheet output')
+    expect(html).toContain('AI incomplete—manual review needed')
+    expect(html).toContain('The current runtime remains opt-in')
+    expect(html).toContain('a requirement for a successful classification')
     expect(html).toContain('aria-label="AI screening evidence-to-decision flow"')
     expect(html).toContain('Paper source')
     expect(html).toContain('Verified PubMed record + abstract')

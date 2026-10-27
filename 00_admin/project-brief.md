@@ -202,3 +202,57 @@ Keep source, content data, tests, scripts, package-lock.json, project/governance
 
 ## Light-theme contrast — 2026-10-27
 Updated light surfaces, secondary text, blue/green accents, borders, project cards and case-study labels for readable contrast. Light-mode carousel cards stay opaque so unfocused card text does not fade into the background. Intentionally dark technical panels retain local light-text tokens. Layout and dark-theme styles are preserved. Verified with 32 desktop/mobile contrast checks across 15 routes plus contact feedback and experience/HRS popups, 71 unit tests, lint and production build. Individual asset budgets pass; existing total export budget remains over. Local only; no commit/push/deployment.
+
+
+### Carousel callback lifecycle — 2026-10-27
+Fixed the reported ProjectReel barRef.current.style null-reference crash. The scroll/resize effect captures the mounted progress-bar node and ignores updates once disposed or when the track/bar refs detach or are replaced. Cleanup marks the effect disposed before removing listeners/disconnecting its observer. Layout and carousel behavior remain intact; this handles late observer callbacks during navigation or component replacement. No commit/push/deployment.
+
+
+## Shared queue before AI output — 2026-10-27
+
+User identified a misleading terminal-looking PubMed-unmatched branch. Verified
+actual HRS run_intake order:save active candidates, optional PubMed rechecks,
+run_configured_ai_stage, then CSV/Sheet outputs. Changed chart/data only:rename
+unmatched branch to Save unmatched candidate, add explicit continuation link to
+a new full-width Shared active review queue, and put AI/output below this common
+queue. Popup names both ready_for_manual_entry and needs_non_pubmed_review.
+Clarified AI selects eligible/due candidates from both paths and earlier runs,
+not every paper/every run; disabled/default, source, batch/time/cost limits and
+manual control retained. No pipeline/business code, credentials or cloud changes.
+Checks:8 existing HRS/homepage tests passed, scoped ESLint/TypeScript exit0;
+browser confirms branch anchor, both statuses,queue→AI→output order and no
+horizontal overflow at1440px/390px. No commit,push,deployment.
+Reflection:an intermediate persisted queue must look like a joining stage rather
+than a terminal human-review exit when a later shared stage can process it.
+
+
+## Candidate metadata label — 2026-10-27
+
+Renamed Prepare review details to Prepare candidate metadata after checking
+candidate_processor.process_candidate and ai_screening._run_one. The matched
+path still assembles identifiers, publication metadata and leadership context.
+Clarified that saved identity supports later AI source lookup as well as human
+review, while actual model evidence is separately fetched/verified/prepared
+inside the optional AI stage. No new chart step, layout or business-code change.
+Reflection:distinguish identity/metadata from the text evidence supplied to a model.
+
+
+## Intended required AI stage — 2026-10-27
+
+User explicitly chose chart-only changes, with AI required before Sheet output
+in the intended workflow. User chose export rather than hold when screening
+cannot finish:show “AI incomplete—manual review needed”. Updated workflow
+node captions/shared queue/popup/output copy to express a required stage, not a
+requirement that every candidate obtain a successful classification. A still-current
+AI result can be reused. Preserved evidence, permission and human control limits.
+Added visible implementation note:current runtime remains opt-in and does not
+yet enforce this policy/exact fallback label. Historical functional-results
+paragraphs continue to describe actual implemented behavior. No Python/runtime,
+configuration, key, live-data or cloud/deployment change.
+Verification:8 existing HRS/homepage tests pass with updated intent/current-state
+assertions; scoped ESLint and TypeScript pass. Browser confirms required visible
+caption, explicit incomplete fallback, implementation note, shared queue→AI→output
+order and no horizontal overflow at1440px/390px. QA locator was narrowed from
+duplicate node/popup caption to the visible AI button before the successful rerun.
+Reflection:a required attempt/stage differs from guaranteed successful screening;
+keep intended policy distinguishable from currently enforced runtime behavior.

@@ -7,13 +7,14 @@ function Connector({ label, outcome }: { label?: string; outcome?: 'Yes' | 'No' 
   return <div className={`${styles.connector} ${outcome ? styles.decisionConnector : ''}`}>{outcome && <span className={styles.connectorLabel}><b className={styles.edgeBadge}>{outcome}</b><span>{label}</span></span>}<i aria-hidden="true" /></div>
 }
 
-function Decision({ node, exit, label }: { node: HrsNode; exit: HrsNode; label: string }) {
+function Decision({ node, exit, label, rejoinsQueue = false }: { node: HrsNode; exit: HrsNode; label: string; rejoinsQueue?: boolean }) {
   return (
     <div className={styles.decision}>
       <Node node={node} />
       <div className={styles.branch}>
         <span className={styles.branchLabel}><b className={styles.edgeBadge}>{label}</b></span>
         <Node node={exit} />
+        {rejoinsQueue && <a className={styles.queueReturn} href="#hrs-node-queue">Continue to shared queue <span aria-hidden="true">↓</span></a>}
       </div>
     </div>
   )
@@ -65,20 +66,25 @@ export function HrsCaseStudy() {
           </div>
           <Decision node={hrsWorkflow.title} exit={hrsWorkflow.titleSkip} label="Yes" />
           <div className={styles.mainTrack}><Connector outcome="No" label="Look up publication" /></div>
-          <Decision node={hrsWorkflow.pubmed} exit={hrsWorkflow.unmatched} label="No" />
+          <Decision node={hrsWorkflow.pubmed} exit={hrsWorkflow.unmatched} label="No" rejoinsQueue />
           <div className={styles.mainTrack}><Connector outcome="Yes" label="Check PMID" /></div>
           <Decision node={hrsWorkflow.pmid} exit={hrsWorkflow.pmidSkip} label="Yes" />
           <div className={styles.mainTrack}>
             <Connector outcome="No" label="Prepare candidate" />
             <Node node={hrsWorkflow.authors} /><Connector />
+          </div>
+          <div className={styles.sharedQueue}>
+            <p className={styles.queueJoin}>Both candidate paths join here <span aria-hidden="true">↓</span></p>
+            <Node node={hrsWorkflow.queue} /><Connector />
             <div className={styles.aiStep}>
               <Node node={hrsWorkflow.ai} />
-              <p>Optional pass over active review candidates; disabled by default. Staff make the final decision.</p>
+              <p>Required pre-output stage. If screening cannot finish, export “AI incomplete—manual review needed”. Staff make the final decision.</p>
             </div>
             <Connector />
             <Node node={hrsWorkflow.review} />
           </div>
         </div>
+        <p className={styles.statusNote}>Workflow shown: intended required AI stage. The current runtime remains opt-in; enforcing this policy and the explicit incomplete-status label is a separate implementation change.</p>
       </section>
 
       <section id="hrs-deployment" className={styles.section} aria-labelledby="hrs-deployment-heading">

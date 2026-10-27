@@ -186,3 +186,23 @@ User clarified that the public homepage must address recruiters from any company
 - [x] Correct light-theme accents, secondary text, surfaces, borders and project-card opacity.
 - [x] Verify 15 routes and interactive contact/role/HRS states on desktop and mobile (32 contrast checks).
 - [ ] Resolve the existing total static-export budget before release (12,630 KiB / 11,719 KiB).
+
+- [x] Fix the carousel progress-bar null-reference crash with callback lifecycle guards and a late-resize regression.
+
+
+## Shared queue before AI — 2026-10-27
+
+- [x] Correct PubMed-unmatched routing into shared queue before optional AI and CSV/Sheet output.
+- [x] Validate source order, branch continuation, both active statuses,8 tests,lint/TypeScript and desktop/mobile browser checks.
+
+
+## Candidate metadata label — 2026-10-27
+
+- [x] Clarify metadata preparation versus later AI text-evidence preparation; retain compact layout.
+
+
+## Intended required AI stage — 2026-10-27
+
+- [x] Chart-only required AI stage with explicit incomplete/manual-review export and clear implementation boundary.
+- [x]8 tests,scoped lint/TypeScript and desktop/mobile browser checks pass.
+- [ ] Future runtime enforcement of this policy/exact label is separate work; not authorized by this chart-only request.

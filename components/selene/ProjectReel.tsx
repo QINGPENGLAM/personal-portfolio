@@ -23,8 +23,12 @@ export function ProjectReel({ projects }: { projects: readonly ReelProject[] }) 
 
   useEffect(() => {
     const track = trackRef.current
-    if (!track) return
+    const bar = barRef.current
+    if (!track || !bar) return
+    let disposed = false
     const update = () => {
+      // Refs can detach before passive cleanup; observers may also have queued work.
+      if (disposed || trackRef.current !== track || barRef.current !== bar) return
       const bounds = track.getBoundingClientRect()
       const focus = bounds.left + track.clientWidth / 2
       const centers = cards.current.map(card => {
@@ -39,13 +43,13 @@ export function ProjectReel({ projects }: { projects: readonly ReelProject[] }) 
       })
       if (activeRef.current !== nearest) { activeRef.current = nearest; setActive(nearest) }
       const travel = track.scrollWidth - track.clientWidth
-      barRef.current!.style.transform = `scaleX(${travel > 0 ? track.scrollLeft / travel : 1})`
+      bar.style.transform = `scaleX(${travel > 0 ? track.scrollLeft / travel : 1})`
     }
     track.addEventListener('scroll', update, { passive: true })
     const observer = new ResizeObserver(update)
     observer.observe(track)
     update()
-    return () => { track.removeEventListener('scroll', update); observer.disconnect() }
+    return () => { disposed = true; track.removeEventListener('scroll', update); observer.disconnect() }
   }, [])
 
   const showProject = (index: number, keyboardFocus = false) => {

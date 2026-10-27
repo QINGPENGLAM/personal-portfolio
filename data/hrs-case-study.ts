@@ -53,11 +53,11 @@ export const hrsWorkflow = {
   pubmed: {
     id: 'pubmed', title: 'Reliable PubMed match?', caption: 'Resolve publication metadata',
     explanation: 'Search PubMed for a reliable title match and retrieve the matched record’s PMID, DOI, authors and journal.',
-    points: ['A match provides identifiers for a second HRS check.', 'No reliable match: keep the candidate for human review; the optional AI stage is a separate pass over active queue candidates.', 'PubMed membership does not prove that a paper used HRS data.'],
+    points: ['A match provides identifiers for a second HRS check.', 'No reliable match: save an unmatched active candidate. It joins the same review queue as matched candidates before the required AI stage in the intended workflow and then output.', 'PubMed membership does not prove that a paper used HRS data.'],
   },
   unmatched: {
-    id: 'unmatched', title: 'Keep for review', caption: 'No reliable PubMed match',
-    explanation: 'A missing PubMed match does not exclude a paper. Keep it in the human review queue; a separately configured AI pass may use an identity-checked stored article link when permitted.',
+    id: 'unmatched', title: 'Save unmatched candidate', caption: 'Rejoins the shared queue below',
+    explanation: 'A missing PubMed match does not end the workflow. Save the candidate as needs_non_pubmed_review, then join the shared active review queue before AI screening and CSV/Sheet output. A configured AI pass can use an identity-checked stored article link when text processing is permitted.',
     points: ['Do not infer HRS use or non-use from the lack of a PubMed match.', 'Source identity conflicts or unavailable text remain visible for manual review.'],
   },
   pmid: {
@@ -71,20 +71,33 @@ export const hrsWorkflow = {
     points: ['Keep the processing outcome for repeat runs.'],
   },
   authors: {
-    id: 'authors', title: 'Prepare review details', caption: 'Metadata + leadership matching',
-    explanation: 'Compare PubMed authors with the HRS co-investigator list and assemble the publication details for the reviewer.',
-    points: ['Include the title, PMID, DOI, journal and author information.', 'Leadership matches provide context; a human still decides what to enter.'],
+    id: 'authors', title: 'Prepare candidate metadata', caption: 'Paper identifiers + author context',
+    explanation: 'Prepare the matched paper’s title, PMID, DOI, journal and authors, and compare authors with the HRS co-investigator list. Save these details in the active queue. The saved identity supports later AI source lookup, while publication details and leadership matches also remain useful to the human reviewer.',
+    points: [
+      'This is a current metadata-preparation step, not a final handoff that bypasses AI. The candidate joins the shared active queue before the required AI stage in the intended workflow and then output.',
+      'Metadata is not the AI evidence itself. Inside the enabled AI stage, the program fetches and verifies a PubMed abstract or permitted article text, then prepares bounded text sources for the model.',
+      'The model judges HRS data-use evidence from supplied text; author names or a leadership match alone do not establish data use. Staff keep the final decision.',
+    ],
+  },
+  queue: {
+    id: 'queue', title: 'Shared active review queue', caption: 'PubMed-matched + unmatched candidates',
+    explanation: 'Both intake paths save candidates in PostgreSQL. In the intended workflow, the shared queue then goes through the required AI stage before export. A reliable PubMed match that is not already in HRS becomes ready_for_manual_entry; a missing reliable match becomes needs_non_pubmed_review. Both statuses are active review candidates.',
+    points: [
+      'In the intended workflow, every active candidate passes through the AI stage before CSV and Google Sheet output. Both matched and unmatched paths are included; a still-current result can be reused rather than calling the model again.',
+      'If text is unavailable, the API fails, or batch, time or cost limits prevent screening, export the candidate with the explicit status “AI incomplete—manual review needed”. A successful classification is not required for export.',
+      'Implementation boundary: this is the intended required-stage policy. The current runtime is still opt-in and does not yet enforce the policy or this exact incomplete-status label. Staff retain the final decision.',
+    ],
   },
   ai: {
-    id: 'ai', title: 'AI screening', caption: 'Optional queue pass · disabled by default',
-    explanation: 'Implemented in the local pipeline as an opt-in pass over due, active review candidates after intake and optional PubMed rechecks, before CSV/Sheet output. It is not limited to the no-PubMed branch shown above. This case-study page is static and makes no model calls; the paused cloud deployment has not been updated or verified with this newer stage.',
+    id: 'ai', title: 'AI screening', caption: 'Required before Sheet output',
+    explanation: 'In the intended workflow, AI screening is a required pre-output stage for both PubMed-matched and unmatched active candidates. Reuse a still-current result or attempt screening; if it cannot complete, export with “AI incomplete—manual review needed” rather than silently omitting the AI status. This is a required stage, not a requirement for a successful classification. The current pipeline remains opt-in and has not yet been changed to enforce this policy; the paused cloud deployment has not been updated or verified with this newer stage.',
     points: [
       'Sources: a verified PMID can provide a PubMed abstract; a stored article URL can provide bounded HTML/PDF text after identity and processing-permission checks. PMC uses its separate license-aware path. Generic full-text extracts may be partial.',
       'The model selects source/span IDs. The program copies exact original text and validates its source and range before showing evidence. A verified quote proves where text came from, not that the classification is correct.',
       'Suggestions are uses_hrs_data, mentions_hrs_only, or insufficient_evidence. “Mentions only” requires complete main-text context; an abstract or partial extract cannot establish non-use. Unclear, conflicting, and policy-sensitive cases stay with staff.',
       'The local PostgreSQL usage ledger records tracked request costs. Its default $25 monthly threshold is a soft admission limit, not a guaranteed bill cap; unresolved request costs pause further tracked calls.',
       'A three-paper full-text pilot recorded one known LASI false positive: related or harmonized cohorts were mistaken for US HRS use. The result remains documented; exact quotations do not resolve that inference error. Broader staff-labeled validation is still open.',
-      'AI advice appears alongside evidence and scope for staff review. It never adds or removes HRS records or replaces the staff decision.',
+      'For the intended output, show either the AI advice with evidence/scope or the explicit incomplete status. AI never adds or removes HRS records or replaces the staff decision.',
     ],
     visualDiagram: {
       sources: [
@@ -94,12 +107,12 @@ export const hrsWorkflow = {
       check: { title: 'Validate evidence', detail: 'Resolve model-selected source/span IDs to exact original text and stored source ranges.' },
       outcomes: ['Uses HRS data', 'Mentions only*', 'Insufficient evidence'],
       humanDecision: 'Staff decide; AI never adds or removes records',
-      fallback: '*“Mentions only” requires complete main text. Partial text, identity conflicts, and uncertain cases stay in human review.',
+      fallback: '*“Mentions only” requires complete main text. If screening cannot finish, export “AI incomplete—manual review needed”; partial text, conflicts and uncertain cases stay with staff.',
     },
   },
   review: {
-    id: 'review', title: 'Google Sheet + CSV', caption: 'Human review and manual entry',
-    explanation: 'Export the active queue and completed archive. The Sheet is the working interface for staff decisions and notes.',
+    id: 'review', title: 'Google Sheet + CSV', caption: 'Human review + explicit AI status',
+    explanation: 'Export the active queue and completed archive. In the intended workflow, each active candidate arrives after the required AI stage, with either advice and evidence or “AI incomplete—manual review needed”. The Sheet remains the working interface for staff decisions and notes.',
     points: ['Preserve existing manual decisions and notes during synchronization.', 'Update both Sheet tabs in one batch to avoid a clear-then-write gap.', 'Human edits between the read and write can still conflict; this is an operational limitation.'],
   },
 } satisfies Record<string, HrsNode>
