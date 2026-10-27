@@ -6,6 +6,7 @@ import type { Experience } from '@/data/schemas'
 import styles from '@/components/hrs/HrsCaseStudy.module.css'
 
 export function ExperienceCard({ experience }: { experience: Experience }) {
+  const triggerRef = useRef<HTMLButtonElement>(null)
   const dialogRef = useRef<HTMLDialogElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
   const previousOverflow = useRef<string | null>(null)
@@ -22,6 +23,7 @@ export function ExperienceCard({ experience }: { experience: Experience }) {
       previousOverflow.current = null
     }
     backdropPress.current = false
+    triggerRef.current?.focus({ preventScroll: true })
   }
 
   useEffect(() => () => {
@@ -70,7 +72,7 @@ export function ExperienceCard({ experience }: { experience: Experience }) {
         <strong className="experience-company">{experience.company}</strong>
         {experience.course && <span className="experience-course">{experience.course}</span>}
         <p>{experience.summary}</p>
-        <button aria-controls={dialogId} aria-haspopup="dialog" aria-label={`View ${experience.role} details`} className="experience-toggle experience-card-trigger" onClick={open} type="button">
+        <button aria-controls={dialogId} aria-haspopup="dialog" aria-label={`View ${experience.role} details`} className="experience-toggle experience-card-trigger" onClick={open} ref={triggerRef} type="button">
           View details <span aria-hidden="true">↗</span>
         </button>
         <noscript><Link className="experience-role-link" href={`/experience#${experience.id}`}>Read full role details →</Link></noscript>

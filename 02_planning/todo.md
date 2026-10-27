@@ -206,3 +206,12 @@ User clarified that the public homepage must address recruiters from any company
 - [x] Chart-only required AI stage with explicit incomplete/manual-review export and clear implementation boundary.
 - [x]8 tests,scoped lint/TypeScript and desktop/mobile browser checks pass.
 - [ ] Future runtime enforcement of this policy/exact label is separate work; not authorized by this chart-only request.
+
+
+## Pages repair — 2026-10-27
+
+- [x] Diagnose actual failed Actions run and reproduce both static budget failures.
+- [x] Optimize image/lazy-load local guide data without raising budgets.
+- [x] Repair verified cross-browser initialization/focus/scroll issues; all71 units,lint,TypeScript,build,5 budgets,182 core checks+1 world check pass (42 intentional skips).
+- [ ] User reviews,commits and pushes repair through GitHub Desktop.
+- [ ] Verify subsequent GitHub Actions deployment and live site; not yet performed.

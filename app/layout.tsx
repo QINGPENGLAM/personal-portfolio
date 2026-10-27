@@ -73,6 +73,9 @@ const personStructuredData = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html className={`${michroma.variable} ${manrope.variable} ${plexMono.variable}`} data-scroll-behavior="smooth" lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var t;try{t=localStorage.getItem('qingpeng-portfolio-theme')}catch(e){}document.documentElement.dataset.theme=t==='day'||t==='night'?t:matchMedia('(prefers-color-scheme: light)').matches?'day':'night'})()` }} />
+      </head>
       <body>
         <div aria-hidden="true" className="cosmic-backdrop"><span className="cosmic-stars" /><span className="cosmic-twinkles" /></div>
         <AudioProvider>

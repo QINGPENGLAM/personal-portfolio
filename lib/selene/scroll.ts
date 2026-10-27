@@ -42,7 +42,7 @@ export function onFrame(fn: Tick): () => void {
 export function scrollToHash(hash: string, {immediate = false, offset = 0}: {immediate?: boolean; offset?: number} = {}) {
   const target = hash === '#top' ? null : document.querySelector<HTMLElement>(hash);
   if (hash !== '#top' && !target) return;
-  const top = target ? Math.max(0, window.scrollY + target.getBoundingClientRect().top - offset) : 0;
+  const top = target ? Math.max(0, Math.round(window.scrollY + target.getBoundingClientRect().top - offset)) : 0;
   if (lenis) lenis.scrollTo(top, {immediate, duration: 1.6, force: true});
   else window.scrollTo({top, behavior: immediate ? 'instant' : 'smooth'});
   target?.focus({preventScroll: true});

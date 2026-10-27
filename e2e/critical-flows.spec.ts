@@ -1,3 +1,4 @@
+import { pressTab } from './helpers/keyboard'
 import { expect, test } from '@playwright/test'
 
 test('loads the recruiter-first homepage and quick view', async ({ page }) => {
@@ -78,7 +79,7 @@ test('keeps contact Submit disabled until required fields are valid', async ({ p
 
 test('supports the skip link using only the keyboard', async ({ page }) => {
   await page.goto('/')
-  await page.keyboard.press('Tab')
+  await pressTab(page)
   await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused()
   await page.keyboard.press('Enter')
   await expect(page.locator('#main-content')).toBeFocused()

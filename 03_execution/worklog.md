@@ -545,3 +545,33 @@ order and no horizontal overflow at1440px/390px. QA locator was narrowed from
 duplicate node/popup caption to the visible AI button before the successful rerun.
 Reflection:a required attempt/stage differs from guaranteed successful screening;
 keep intended policy distinguishable from currently enforced runtime behavior.
+
+
+## Pages failure diagnosis and repair — 2026-10-27
+
+Inspected GitHub Actions run40538962089 for pushed commit7f85bd9. Quality
+failed at static budgets; build/unit/lint/typecheck passed and deploy was skipped.
+Reproduced homepage JS281658>281600bytes and export12651>11719KiB.
+Optimized same-dimension portrait PNG1.76MB→JPEG126871bytes, kept original
+Downloads image. Lazy-load local portfolio answer data with pending guard/status
+and failure fallback; suggested-question compatibility export retained. No budget
+threshold or workflow gate changes.
+Full CI-style validation exposed existing cross-browser issues:theme transition
+sampling, tiny Firefox geometry rounding, Safari focus return and fractional
+scroll quantization. Apply saved/OS theme before first paint; keep audits enabled
+and wait for settled fonts/theme; tolerate only0.05px box rounding; explicitly
+restore opener focus and round scroll destination. Platform-equivalent Option-Tab
+in macOS WebKit tests does not alter Linux Tab behavior or system settings.
+Final:71 unit tests,full lint,TypeScript,Pages-base-path build and all5 budgets
+pass (home260/275KiB,total11097/11719KiB). Full CI browser core182 passed/42
+intentional skips plus fresh-world1 passed,exit0,no retries. New async-load failure
+regression was red before the fix; final success/failure checks pass across engines.
+Generated next-env.d.ts restored toHEAD; no dependency version change.
+Read-only independent review covered assistant loading; focused WebKit diagnosis
+and18-pass/5-skip probe covered platform fixes. Details:docs/Pages_Deployment_Fix_2026-10-27.md.
+No commit,push,remote rerun or deployment. User can review and publish via GitHub
+Desktop; live deployment remains unverified until a subsequent successful run.
+Reflection:run the actual deployment gates,not only focused feature tests; log
+exact bytes when rounded numbers hide small budget excess. Apply theme before
+paint and compare equivalent keyboard navigation across platforms. Existing
+verification principles cover this; no new global rule proposed.

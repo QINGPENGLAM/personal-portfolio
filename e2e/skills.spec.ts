@@ -1,3 +1,4 @@
+import { pressTab } from './helpers/keyboard'
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
 
@@ -19,7 +20,7 @@ test('previews evidence without losing the destination when entering the panel',
   const cpp = map.getByRole('button', { name: chip('C++') })
   await cpp.hover()
   await cpp.focus()
-  await page.keyboard.press('Tab')
+  await pressTab(page)
   await expect(panel.getByRole('heading', { name: 'JavaScript', exact: true })).toBeVisible()
 })
 
@@ -46,7 +47,7 @@ test('supports keyboard selection, search, source filters and honest empty state
   await expect(react).toHaveAttribute('aria-pressed', 'true')
   const panel = page.getByRole('complementary', { name: 'Skill connections' })
   await expect(panel.getByRole('heading', { name: 'React', exact: true })).toBeFocused()
-  for (let step = 0; step < 5; step++) await page.keyboard.press('Tab')
+  for (let step = 0; step < 5; step++) await pressTab(page)
   await expect(panel.getByRole('link', { name: 'personal-portfolio', exact: true })).toBeFocused()
   await expect(panel.getByRole('heading', { name: 'React', exact: true })).toBeVisible()
   await expect(panel.getByRole('link', { name: 'FITgym', exact: true })).toBeVisible()

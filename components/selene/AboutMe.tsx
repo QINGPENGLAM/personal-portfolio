@@ -33,7 +33,7 @@ export function AboutMe() {
               height={1205}
               loading="lazy"
               sizes="(max-width: 850px) 88vw, 38vw"
-              src={withBasePath('/images/qingpeng-portrait.png')}
+              src={withBasePath('/images/qingpeng-portrait.jpg')}
               width={1306}
             />
           </div>

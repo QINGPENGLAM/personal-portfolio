@@ -1,3 +1,4 @@
+import { pressTab } from './helpers/keyboard'
 import { expect, test } from '@playwright/test'
 
 test('opens role popups without changing the alternating timeline layout', async ({ page }) => {
@@ -21,11 +22,12 @@ test('opens role popups without changing the alternating timeline layout', async
   await expect(popup).not.toContainText('Technologies')
   await expect(popup.getByRole('button', { name: /Close/ })).toBeFocused()
   await expect(page.locator('body')).toHaveCSS('overflow', 'hidden')
-  await page.keyboard.press('Shift+Tab')
+  await pressTab(page, true)
   await expect(popup.getByRole('link', { name: /Full role details/ })).toBeFocused()
-  await page.keyboard.press('Tab')
+  await pressTab(page)
   await expect(popup.getByRole('button', { name: /Close/ })).toBeFocused()
-  expect((await course.boundingBox())?.height).toBe(before?.height)
+  // Firefox can round the same box by a tiny fraction of a CSS pixel.
+  expect((await course.boundingBox())?.height).toBeCloseTo(before?.height ?? 0, 1)
   await page.screenshot({ path: `/tmp/experience-popup-${test.info().project.name}.png` })
   await page.keyboard.press('Escape')
   await expect(popup).not.toBeVisible()
