@@ -180,3 +180,9 @@ User clarified that the public homepage must address recruiters from any company
 - [x] Show a red inline email-format warning while invalid text is entered, and clear it when corrected.
 
 - [x] Audit .gitignore; protect local env/Worker secrets and generated artifacts; stage removal of tracked .DS_Store files while preserving local copies.
+
+
+## Light-theme contrast — 2026-10-27
+- [x] Correct light-theme accents, secondary text, surfaces, borders and project-card opacity.
+- [x] Verify 15 routes and interactive contact/role/HRS states on desktop and mobile (32 contrast checks).
+- [ ] Resolve the existing total static-export budget before release (12,630 KiB / 11,719 KiB).

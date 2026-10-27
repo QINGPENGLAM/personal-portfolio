@@ -27,15 +27,21 @@
 :root[data-theme='day'] {
   color-scheme: light;
   --ink: #172036;
-  --ink-soft: #43506b;
-  --ink-muted: #66738c;
-  --surface: #e5e7eb;
-  --surface-deep: #e5e7eb;
+  --ink-soft: #34445c;
+  --ink-muted: #526078;
+  --surface: #f4f6f9;
+  --surface-deep: #edf1f6;
   --surface-raised: rgba(255, 255, 255, 0.76);
-  --surface-solid: #f2f3f5;
-  --line: rgba(29, 55, 97, 0.13);
-  --line-strong: rgba(29, 55, 97, 0.24);
+  --surface-solid: #ffffff;
+  --line: rgba(29, 55, 97, 0.24);
+  --line-strong: rgba(29, 55, 97, 0.58);
   --shadow: 0 28px 80px rgba(54, 78, 114, 0.18);
+  --violet: #245b94;
+  --violet-bright: #245b94;
+  --cyan: #245b94;
+  --mint: #176650;
+  --magenta: #7c3f79;
+  --gold: #75500f;
 }
 
 * { box-sizing: border-box; }
@@ -1172,3 +1178,32 @@ h3, .project-reel h3 { font-family: var(--font-sans); font-weight: 650; letter-s
 :is(.button-secondary, .icon-button, .reel-controls button, .project-filters button, .selene-path-quick) { background-image: radial-gradient(circle at 88% 23%, #e4efff99 0 .7px, transparent 1.5px), radial-gradient(circle at 12% 76%, #a4ccff88 0 .6px, transparent 1.4px), radial-gradient(ellipse at 100% 100%, #6b85bb26, transparent 70%); }
 :is(.button-secondary, .icon-button, .reel-controls button, .project-filters button, .selene-path-quick):hover { background-image: radial-gradient(circle at 88% 23%, #f5f8ff 0 .8px, transparent 2px), radial-gradient(circle at 12% 76%, #c6e0ff 0 .7px, transparent 1.8px), radial-gradient(ellipse at 100% 100%, #7e9edb40, transparent 70%); box-shadow: 0 0 22px #84b9ff1c, inset 0 0 18px #9fc5ff0a; }
 @media (prefers-reduced-motion: reduce) { .cosmic-twinkles { animation: none; opacity: .65; } }
+
+
+/* Day theme uses darker accents on light surfaces, including the project deck. */
+:root[data-theme='day'] .site-header.selene-header .brand-mark { background: #111a26; color: #b6d7ff; }
+:root[data-theme='day'] .project-reel { color: var(--ink); }
+:root[data-theme='day'] .project-reel-copy h2 { color: var(--ink); }
+:root[data-theme='day'] .project-reel-copy > p:not(.reel-eyebrow),
+:root[data-theme='day'] .reel-progress { color: var(--ink-soft); }
+:root[data-theme='day'] .reel-eyebrow,
+:root[data-theme='day'] .reel-card-number,
+:root[data-theme='day'] .reel-card-action { color: var(--cyan); }
+:root[data-theme='day'] .project-reel-card { opacity: 1 !important; }
+:root[data-theme='day'] .reel-card-link { background: var(--surface-solid); border-color: var(--line-strong); }
+:root[data-theme='day'] .reel-card-caption h3 { color: var(--ink); }
+:root[data-theme='day'] .reel-card-tags { color: var(--ink-muted); }
+:root[data-theme='day'] .reel-card-description { color: var(--ink-soft); }
+:root[data-theme='day'] .reel-progress-track { background: var(--line); }
+:root[data-theme='day'] .reel-progress-track > span { background: var(--cyan); }
+:root[data-theme='day'] .reel-controls button { border-color: var(--line-strong); background: var(--surface-solid); color: var(--ink); }
+:root[data-theme='day'] .contact-form input,
+:root[data-theme='day'] .contact-form textarea { border-color: var(--line-strong); }
+:root[data-theme='day'] .contact-form [aria-invalid='true'] { border-color: #b42339; }
+:root[data-theme='day'] .contact-form :is(input, textarea):focus { border-color: var(--cyan); }
+:root[data-theme='day'] .contact-form [aria-invalid='true']:focus { border-color: #b42339; }
+:root[data-theme='day'] :is(.assistant-panel, .assistant-toggle) { --cyan: #8fc4ff; --violet: #245b94; }
+
+:root[data-theme='day'] :is(.verified-metrics span, .case-study-overview dt, .contribution-list span, .decision-grid article > span) { color: var(--cyan); }
+/* Technical panels intentionally retain dark surfaces in both themes. */
+:root[data-theme='day'] .technical-breakdown { --ink: #eef1f5; --ink-soft: #b6beca; --ink-muted: #8b94a3; --cyan: #8fc4ff; }

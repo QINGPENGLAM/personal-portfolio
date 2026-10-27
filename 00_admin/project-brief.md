@@ -198,3 +198,7 @@ Contact Email now shows a red inline “Enter a valid email address.” warning 
 
 ### Repository hygiene — 2026-10-26
 Keep source, content data, tests, scripts, package-lock.json, project/governance docs, deployment workflow, asset licenses and required public assets (including the résumé) in Git. Ignore local .env files (retain .env.example), Worker .dev.vars secrets, deployment state, dependencies, build/cache output, coverage, browser reports and logs. The configured Web3Forms access key is intentionally public and remains versioned. Two previously tracked .DS_Store files are staged for removal from Git only; local copies remain. Legacy image/ assets and HTML are retained pending a separate cleanup decision; ignore rules do not remove already tracked content or history. No commit/push.
+
+
+## Light-theme contrast — 2026-10-27
+Updated light surfaces, secondary text, blue/green accents, borders, project cards and case-study labels for readable contrast. Light-mode carousel cards stay opaque so unfocused card text does not fade into the background. Intentionally dark technical panels retain local light-text tokens. Layout and dark-theme styles are preserved. Verified with 32 desktop/mobile contrast checks across 15 routes plus contact feedback and experience/HRS popups, 71 unit tests, lint and production build. Individual asset budgets pass; existing total export budget remains over. Local only; no commit/push/deployment.
