@@ -215,3 +215,19 @@ User clarified that the public homepage must address recruiters from any company
 - [x] Repair verified cross-browser initialization/focus/scroll issues; all71 units,lint,TypeScript,build,5 budgets,182 core checks+1 world check pass (42 intentional skips).
 - [ ] User reviews,commits and pushes repair through GitHub Desktop.
 - [ ] Verify subsequent GitHub Actions deployment and live site; not yet performed.
+
+
+## Queue-label typography — 2026-10-27
+
+- [x] Match both shared-queue labels to surrounding caption fonts; browser confirmed12px Manrope.
+- [x] Verify metadata preparation and AI text-extraction responsibilities against pipeline source.
+
+
+## Combined metadata/queue — 2026-10-27
+
+- [x] Combine diagram nodes,retain popup detail andverify browser,5 tests,lint andTypeScript.
+
+
+## AI popup copy trim — 2026-10-27
+
+Removed the exact user-selected required-stage/opt-in/cloud-status passage from the AI popup. Separate implementation note below the chart remains. Updated wording assertions;5 HRS tests pass. No behavior or deployment change. Reflection:no new rule.

@@ -70,8 +70,7 @@ export function HrsCaseStudy() {
           <div className={styles.mainTrack}><Connector outcome="Yes" label="Check PMID" /></div>
           <Decision node={hrsWorkflow.pmid} exit={hrsWorkflow.pmidSkip} label="Yes" />
           <div className={styles.mainTrack}>
-            <Connector outcome="No" label="Prepare candidate" />
-            <Node node={hrsWorkflow.authors} /><Connector />
+            <Connector outcome="No" label="New candidate" />
           </div>
           <div className={styles.sharedQueue}>
             <p className={styles.queueJoin}>Both candidate paths join here <span aria-hidden="true">↓</span></p>

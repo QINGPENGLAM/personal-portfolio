@@ -36,7 +36,7 @@ describe('HRS case-study draft', () => {
     expect(html).toContain('Required before Sheet output')
     expect(html).toContain('AI incomplete—manual review needed')
     expect(html).toContain('The current runtime remains opt-in')
-    expect(html).toContain('a requirement for a successful classification')
+    expect(html).not.toContain('This is a required stage, not a requirement for a successful classification.')
     expect(html).toContain('aria-label="AI screening evidence-to-decision flow"')
     expect(html).toContain('Paper source')
     expect(html).toContain('Verified PubMed record + abstract')
@@ -50,7 +50,7 @@ describe('HRS case-study draft', () => {
     expect(html).toContain('Google Sheet + CSV')
     expect(html).toContain('three-paper full-text pilot recorded one known LASI false positive')
     expect(html).toContain('soft admission limit, not a guaranteed bill cap')
-    expect(html).toContain('the paused cloud deployment has not been updated or verified')
+    expect(html).not.toContain('The current pipeline remains opt-in and has not yet been changed to enforce this policy; the paused cloud deployment has not been updated or verified with this newer stage.')
     expect(html).not.toContain('This branch is a placeholder')
   })
 

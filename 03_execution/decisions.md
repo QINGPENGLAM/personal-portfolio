@@ -359,3 +359,18 @@ Reflection:run the actual deployment gates,not only focused feature tests; log
 exact bytes when rounded numbers hide small budget excess. Apply theme before
 paint and compare equivalent keyboard navigation across platforms. Existing
 verification principles cover this; no new global rule proposed.
+
+
+## Shared-queue label typography — 2026-10-27
+
+Matched Continue to shared queue and Both candidate paths join here to var(--font-sans),12px captions. Browser computed styles confirm all three label/caption families and sizes match. No pipeline or metadata-flow change. Reviewed process_candidate and AI _fetch_metadata/_run_one:email intake already captures title/URL; matched preparation enriches identity/authors/journal/leadership; AI-stage program separately verifies identity and fetches/extracts text before the model. Metadata is needed, although a separate diagram box is a presentation choice. Reflection:no new global rule.
+
+
+## Combined candidate preparation/queue — 2026-10-27
+
+Combined the high-level metadata and shared-queue boxes into Prepare and queue candidates. Removed the unused standalone authors node definition; retained metadata, source-link, PubMed enrichment and leadership explanation in the shared queue popup. AI text extraction remains a separate responsibility and the intended required-stage/implementation boundary is unchanged. Browser confirms old node absent and combined popup complete;5 HRS tests,scoped lint and TypeScript pass. No pipeline change,commit,push or deployment. Reflection:combine presentation steps that do not need separate discussion while retaining their implementation distinction.
+
+
+## AI popup copy trim — 2026-10-27
+
+Removed the exact user-selected required-stage/opt-in/cloud-status passage from the AI popup. Separate implementation note below the chart remains. Updated wording assertions;5 HRS tests pass. No behavior or deployment change. Reflection:no new rule.

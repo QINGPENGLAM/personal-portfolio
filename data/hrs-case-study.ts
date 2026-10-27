@@ -70,19 +70,12 @@ export const hrsWorkflow = {
     explanation: 'The identifier check found an existing publication, so another manual-entry task is unnecessary.',
     points: ['Keep the processing outcome for repeat runs.'],
   },
-  authors: {
-    id: 'authors', title: 'Prepare candidate metadata', caption: 'Paper identifiers + author context',
-    explanation: 'Prepare the matched paper’s title, PMID, DOI, journal and authors, and compare authors with the HRS co-investigator list. Save these details in the active queue. The saved identity supports later AI source lookup, while publication details and leadership matches also remain useful to the human reviewer.',
-    points: [
-      'This is a current metadata-preparation step, not a final handoff that bypasses AI. The candidate joins the shared active queue before the required AI stage in the intended workflow and then output.',
-      'Metadata is not the AI evidence itself. Inside the enabled AI stage, the program fetches and verifies a PubMed abstract or permitted article text, then prepares bounded text sources for the model.',
-      'The model judges HRS data-use evidence from supplied text; author names or a leadership match alone do not establish data use. Staff keep the final decision.',
-    ],
-  },
   queue: {
-    id: 'queue', title: 'Shared active review queue', caption: 'PubMed-matched + unmatched candidates',
-    explanation: 'Both intake paths save candidates in PostgreSQL. In the intended workflow, the shared queue then goes through the required AI stage before export. A reliable PubMed match that is not already in HRS becomes ready_for_manual_entry; a missing reliable match becomes needs_non_pubmed_review. Both statuses are active review candidates.',
+    id: 'queue', title: 'Prepare and queue candidates', caption: 'Shared active queue · paper metadata',
+    explanation: 'Collect each paper’s available identity and publication details, then save the candidate in the shared PostgreSQL review queue. A reliable PubMed match that is not already in HRS becomes ready_for_manual_entry; a missing reliable match becomes needs_non_pubmed_review. Both paths feed the AI stage before output in the intended workflow.',
     points: [
+      'Email intake already provides the title and source links. When there is a reliable PubMed match, enrich the candidate with its PMID, DOI, journal, authors and HRS leadership matches. Missing fields stay missing; an unmatched candidate is still queued.',
+      'These saved details identify the paper and support source lookup and human review. Inside the AI stage, the program separately retrieves, verifies and extracts the abstract or permitted article text supplied to the model; metadata alone is not HRS data-use evidence.',
       'In the intended workflow, every active candidate passes through the AI stage before CSV and Google Sheet output. Both matched and unmatched paths are included; a still-current result can be reused rather than calling the model again.',
       'If text is unavailable, the API fails, or batch, time or cost limits prevent screening, export the candidate with the explicit status “AI incomplete—manual review needed”. A successful classification is not required for export.',
       'Implementation boundary: this is the intended required-stage policy. The current runtime is still opt-in and does not yet enforce the policy or this exact incomplete-status label. Staff retain the final decision.',
@@ -90,7 +83,7 @@ export const hrsWorkflow = {
   },
   ai: {
     id: 'ai', title: 'AI screening', caption: 'Required before Sheet output',
-    explanation: 'In the intended workflow, AI screening is a required pre-output stage for both PubMed-matched and unmatched active candidates. Reuse a still-current result or attempt screening; if it cannot complete, export with “AI incomplete—manual review needed” rather than silently omitting the AI status. This is a required stage, not a requirement for a successful classification. The current pipeline remains opt-in and has not yet been changed to enforce this policy; the paused cloud deployment has not been updated or verified with this newer stage.',
+    explanation: 'In the intended workflow, AI screening is a required pre-output stage for both PubMed-matched and unmatched active candidates. Reuse a still-current result or attempt screening; if it cannot complete, export with “AI incomplete—manual review needed” rather than silently omitting the AI status.',
     points: [
       'Sources: a verified PMID can provide a PubMed abstract; a stored article URL can provide bounded HTML/PDF text after identity and processing-permission checks. PMC uses its separate license-aware path. Generic full-text extracts may be partial.',
       'The model selects source/span IDs. The program copies exact original text and validates its source and range before showing evidence. A verified quote proves where text came from, not that the classification is correct.',
