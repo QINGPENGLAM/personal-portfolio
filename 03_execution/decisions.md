@@ -374,3 +374,8 @@ Combined the high-level metadata and shared-queue boxes into Prepare and queue c
 ## AI popup copy trim — 2026-10-27
 
 Removed the exact user-selected required-stage/opt-in/cloud-status passage from the AI popup. Separate implementation note below the chart remains. Updated wording assertions;5 HRS tests pass. No behavior or deployment change. Reflection:no new rule.
+
+
+## AI-assisted section:implementation and evaluation — 2026-10-27
+
+Presentation update complete. Kept ChatGPT design refinement and Codex incremental implementation as stage1; replaced harness/WoS cards with stage2 fresh-context review, human findings triage, a3-round pause/rethink rule and prompt refinement. Included SQLite-to-PostgreSQL acceptance example and harmless style versus real syntax/SQL failures. Linked the original Claude Code review article. User explicitly said broader workflow implementation is future work; page content completion is not completion of an automated general review engine. Actual parser harness remains unchanged and narrower.71 units,scoped lint,TypeScript,Pages build,all5 budgets (home260KiB,total11107KiB),and two-stage/six-card desktop/mobile browser checks pass. Existing presentation regression was red before rewrite,green after. No commit,push or deployment. Reflection:separate communication of a method from evidence that its automation exists.

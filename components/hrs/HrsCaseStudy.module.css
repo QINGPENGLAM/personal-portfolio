@@ -108,7 +108,7 @@
 .storyGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .storyCard { min-width: 0; padding: 1.4rem; border: 1px solid var(--line-strong); border-radius: 14px; background: color-mix(in srgb, var(--surface-solid) 72%, transparent); }
 .storyCaption { color: var(--cyan); font: .68rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
-.storyCard h3 { margin: .6rem 0 .75rem; font-size: 1.15rem; }
+.storyCard h3, .storyCard h4 { margin: .6rem 0 .75rem; font-size: 1.15rem; }
 .storyCard p { color: var(--ink-soft); font-size: .88rem; }
 .storyCard ul { margin: .9rem 0 0; padding-left: 1.15rem; color: var(--ink-soft); font-size: .82rem; }
 .storyCard li + li { margin-top: .6rem; }
@@ -177,3 +177,5 @@
 .sharedQueue { border-top: 1px solid var(--line-strong); padding-top: .5rem; }
 .queueJoin { margin: 0 0 .6rem; color: var(--ink-soft); text-align: center; font-family: var(--font-sans); font-size: .75rem; line-height: 1.5; }
 .queueJoin span { display: inline-block; margin-left: .5rem; color: var(--cyan); }
+
+.subsectionTitle { margin: 2rem 0 1rem; color: var(--ink); font-size: 1.1rem; font-weight: 650; }

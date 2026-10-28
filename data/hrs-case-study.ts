@@ -129,45 +129,66 @@ export const hrsCloud: HrsNode[] = [
 
 export const hrsDevelopment: HrsNode[] = [
   {
-    id: 'development-design',
+    id: 'development-requirements',
     title: 'ChatGPT for design refinement',
-    caption: 'Turn broad goals into reviewable slices',
-    explanation: 'I used ChatGPT to refine requirements and explore implementation boundaries, then kept the decisions and approvals with me.',
+    caption: '01 / Baseline + requirements',
+    explanation: 'Start from working code, examples and a specific goal. Use ChatGPT to clarify the requirement, allowed scope and acceptance checks before asking an agent to change the system.',
     points: [
-      'Break the work into explicit slices: preserve existing review state, add optional screening, validate evidence, and account for model usage.',
-      'Treat the assistant as a design partner—not an authority on HRS policy, source permissions, or whether a paper belongs in the collection.',
+      'Example: a SQLite-to-PostgreSQL change must preserve existing papers, alert occurrences, checkpoints and review records—not just establish a database connection.',
+      'Make the expected behavior, protected data and non-goals explicit so implementation and review use the same standard.',
     ],
   },
   {
-    id: 'development-codex',
+    id: 'development-tools',
     title: 'Codex for incremental implementation',
-    caption: 'Small changes, tests, inspectable diffs',
-    explanation: 'I used Codex to help implement bounded changes in the existing Python project, while retaining ownership of scope, review, and acceptance.',
+    caption: '02 / Bounded implementation + checks',
+    explanation: 'Give Codex access to the relevant files and checks so it can carry out the engineering work: inspect the current implementation, edit within scope, run tests and report actual results.',
     points: [
-      'Prefer a narrow code change with a failing regression over a broad rewrite.',
-      'Review the resulting diff and run focused checks before relying on the change; keep credentials, live queues, and deployment operations outside the coding loop.',
+      'For database work, use an isolated test database and representative examples. Check transactions, uniqueness and retry behavior as well as the normal path.',
+      'Inspect the diff and test output. Credentials, production data, commits and deployment remain outside the task unless separately authorized.',
+    ],
+  },
+]
+
+export const hrsEvaluation: HrsNode[] = [
+  {
+    id: 'development-fresh-review',
+    title: 'Review in a fresh context',
+    caption: '03 / Independent context + evidence',
+    explanation: 'A separate reviewer starts without the implementation chat history. Give it the requirements, constraints, diff, relevant code and tests so it can assess the change on its own evidence.',
+    points: [
+      'Ask whether the change meets the goal and whether it breaks callers, stored state, recovery or another part of the workflow. The reviewer can inspect surrounding code when needed.',
+      'Require a file location, failure scenario and reason for each finding. A fresh context helps challenge assumptions; the findings still need verification.',
     ],
   },
   {
-    id: 'development-harness',
-    title: 'Harness-controlled evaluation',
-    caption: 'Let the test result—not the agent—decide',
-    explanation: 'A local parser harness runs the real Google Scholar and Web of Science parser tests, classifies assertion failures separately from test-environment errors, then independently reruns tests after a repair.',
+    id: 'development-triage',
+    title: 'Triage by impact',
+    caption: '04 / Human judgment + scope control',
+    explanation: 'Review the findings rather than automatically implementing every suggestion. Prioritize correctness, data loss, security and regressions; document why a finding is accepted, deferred or rejected.',
     points: [
-      'Repairs are limited to existing Python parser files, capped at three Codex calls, and bounded by test and agent timeouts.',
-      'The harness snapshots managed files and records per-step and cumulative diffs. Scope checks detect out-of-scope changes after execution; they are not complete file-access isolation.',
-      'The recorded real-project check-only run passed all eight parser tests without invoking Codex. Fake-agent repair behavior was tested separately in disposable projects.',
+      'A preferred variable name, quote style or alternative expression layout can be deferred when behavior and readability are already clear. Unnecessary refactoring should not expand the task.',
+      'Syntax errors, type errors and broken SQL are correctness issues. A PostgreSQL-incompatible placeholder is not a cosmetic nit, even when the fix is only one character.',
     ],
   },
   {
-    id: 'development-wos-counterexample',
-    title: 'The WoS counterexample',
-    caption: 'A green parser test is not a complete alert',
-    explanation: 'One saved Web of Science alert says “Showing 5 of the 6.” The parser extracts the five visible records, and intake marks the email partial because the parsed count is below the reported count.',
+    id: 'development-rounds',
+    title: 'Fix and re-review',
+    caption: '05 / At most three review rounds',
+    explanation: 'Apply the accepted fixes, rerun the relevant checks and review the changed code against the same goal. Carry a short findings list forward so resolved issues are not repeatedly rediscovered.',
     points: [
-      'Preserve the records that were extracted, but do not label the alert complete.',
-      'The counterexample tests the end-to-end completeness signal, not just whether HTML parsing returns plausible paper titles.',
-      'It is one fixture-backed case—not proof that every WoS alert format or missing-record scenario is handled.',
+      'After three review rounds, pause if important issues remain. Reconsider the approach, clarify the prompt or reduce the scope instead of allowing an endless author–reviewer loop.',
+      'Use later passes for the updated diff and unresolved findings. Unresolved blocking issues require a revised plan or human review; the round limit is not automatic approval.',
+    ],
+  },
+  {
+    id: 'development-ownership',
+    title: 'Refine the brief and own the result',
+    caption: '06 / Better instructions + acceptance',
+    explanation: 'Use review feedback to improve the overall approach: add missing context, sharpen acceptance criteria and turn repeatable failures into checks. Keep responsibility for the final decision with the engineer.',
+    points: [
+      'For the migration example, replace “looks correct” with evidence such as preserved records, correct sequence state, rollback behavior and recovery checks.',
+      'Improve the prompt to reduce misunderstandings—not to silence valid findings. Review the evidence and remaining limits before accepting the change.',
     ],
   },
 ]

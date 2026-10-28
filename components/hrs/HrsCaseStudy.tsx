@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { hrsCloud, hrsDatabase, hrsDevelopment, hrsResults, hrsWorkflow, type HrsNode } from '@/data/hrs-case-study'
+import { hrsCloud, hrsDatabase, hrsDevelopment, hrsEvaluation, hrsResults, hrsWorkflow, type HrsNode } from '@/data/hrs-case-study'
 import { HrsNode as Node } from './HrsNode'
 import styles from './HrsCaseStudy.module.css'
 
@@ -105,18 +105,31 @@ export function HrsCaseStudy() {
 
       <section id="hrs-development" className={styles.section} aria-labelledby="hrs-development-heading">
         <p className="eyebrow">04 / AI-assisted development and evaluation</p>
-        <h2 id="hrs-development-heading">I used AI to accelerate the work—not to own the decisions.</h2>
-        <p className={styles.sectionIntro}>ChatGPT for design refinement, Codex for incremental implementation, harness-controlled evaluation, and the WoS counterexample.</p>
+        <h2 id="hrs-development-heading">Structure the work. Implement it. Evaluate independently.</h2>
+        <p className={styles.sectionIntro}>ChatGPT helps structure the requirement and Codex carries out a bounded implementation. A separate evaluation stage checks the result, filters findings and limits the review loop.</p>
+        <h3 className={styles.subsectionTitle}>1 / Structure and implementation</h3>
         <div className={styles.storyGrid}>
           {hrsDevelopment.map((node) => (
             <article className={styles.storyCard} key={node.id}>
               <span className={styles.storyCaption}>{node.caption}</span>
-              <h3>{node.title}</h3>
+              <h4>{node.title}</h4>
               <p>{node.explanation}</p>
               <ul>{node.points.map((point) => <li key={point}>{point}</li>)}</ul>
             </article>
           ))}
         </div>
+        <h3 className={styles.subsectionTitle}>2 / Evaluation and refinement</h3>
+        <div className={styles.storyGrid}>
+          {hrsEvaluation.map((node) => (
+            <article className={styles.storyCard} key={node.id}>
+              <span className={styles.storyCaption}>{node.caption}</span>
+              <h4>{node.title}</h4>
+              <p>{node.explanation}</p>
+              <ul>{node.points.map((point) => <li key={point}>{point}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+        <p className={styles.statusNote}>Reading reference: <a href="https://claude.dev/blog/solving-code-review-at-anthropic/" target="_blank" rel="noreferrer">How the Claude Code team does code review <span aria-hidden="true">↗</span></a>. The workflow here adapts those review principles to a bounded project change.</p>
       </section>
 
       <section id="hrs-results" className={styles.section} aria-labelledby="hrs-results-heading">

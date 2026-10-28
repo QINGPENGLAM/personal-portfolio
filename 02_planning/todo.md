@@ -231,3 +231,10 @@ User clarified that the public homepage must address recruiters from any company
 ## AI popup copy trim — 2026-10-27
 
 Removed the exact user-selected required-stage/opt-in/cloud-status passage from the AI popup. Separate implementation note below the chart remains. Updated wording assertions;5 HRS tests pass. No behavior or deployment change. Reflection:no new rule.
+
+
+## AI-assisted development/evaluation — 2026-10-27
+
+- [x] Keep first-stage ChatGPT/Codex content and replace old harness/WoS examples with a clearly labeled Evaluation stage.
+- [x] Verify71 units,lint/TypeScript,build/budgets and desktop/mobile rendering.
+- [ ] General automated review-workflow implementation remains future work in HRS project notes.

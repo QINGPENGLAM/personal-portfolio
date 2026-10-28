@@ -54,15 +54,20 @@ describe('HRS case-study draft', () => {
     expect(html).not.toContain('This branch is a placeholder')
   })
 
-  it('explains AI-assisted development, the harness limits, and the WoS partial-alert counterexample', () => {
+  it('presents tool-enabled implementation, fresh review, triage and a bounded review loop', () => {
     const html = renderToStaticMarkup(createElement(HrsCaseStudyPage))
-    expect(html).toContain('ChatGPT for design refinement')
-    expect(html).toContain('Codex for incremental implementation')
-    expect(html).toContain('Harness-controlled evaluation')
-    expect(html).toContain('The recorded real-project check-only run passed all eight parser tests without invoking Codex')
-    expect(html).toContain('Scope checks detect out-of-scope changes after execution')
-    expect(html).toContain('Showing 5 of the 6')
-    expect(html).toContain('marks the email partial')
+    for (const label of ['ChatGPT for design refinement', 'Codex for incremental implementation', 'Review in a fresh context', 'Triage by impact', 'Fix and re-review', 'Refine the brief and own the result']) {
+      expect(html).toContain(label)
+    }
+    expect(html).toContain('1 / Structure and implementation')
+    expect(html).toContain('2 / Evaluation and refinement')
+    expect(html).toContain('without the implementation chat history')
+    expect(html).toContain('requirements, constraints, diff, relevant code and tests')
+    expect(html).toContain('After three review rounds, pause')
+    expect(html).toContain('Syntax errors, type errors and broken SQL are correctness issues')
+    expect(html).toContain('SQLite-to-PostgreSQL')
+    expect(html).toContain('https://claude.dev/blog/solving-code-review-at-anthropic/')
+    expect(html).not.toContain('The WoS counterexample')
   })
 
   it('separates functional results from model-quality and rollout limits', () => {
