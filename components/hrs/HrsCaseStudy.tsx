@@ -134,8 +134,8 @@ export function HrsCaseStudy() {
 
       <section id="hrs-results" className={styles.section} aria-labelledby="hrs-results-heading">
         <p className="eyebrow">05 / Results and lessons</p>
-        <h2 id="hrs-results-heading">A useful system—and clear evidence for what is not ready.</h2>
-        <p className={styles.sectionIntro}>Supported functional outcomes, verification limits, and next priorities.</p>
+        <h2 id="hrs-results-heading">What I built, learned, and would improve.</h2>
+        <p className={styles.sectionIntro}>A working review workflow, better structure for AI assistance, and a clearer understanding of the work involved in cloud deployment.</p>
         <div className={styles.storyGrid}>
           {hrsResults.map((node) => (
             <article className={styles.storyCard} key={node.id}>
@@ -146,6 +146,7 @@ export function HrsCaseStudy() {
             </article>
           ))}
         </div>
+        <p className={styles.statusNote}>These results describe implemented behavior, not measured time savings or AI accuracy. Model-quality and deployment limits are covered in the AI and cloud sections.</p>
       </section>
 
       <div className={styles.end}><span>More of my work</span><Link href="/projects">Back to projects <span aria-hidden="true">↗</span></Link></div>

@@ -238,3 +238,9 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Keep first-stage ChatGPT/Codex content and replace old harness/WoS examples with a clearly labeled Evaluation stage.
 - [x] Verify71 units,lint/TypeScript,build/budgets and desktop/mobile rendering.
 - [ ] General automated review-workflow implementation remains future work in HRS project notes.
+
+
+## Results and reflections — 2026-10-27
+
+- [x] Refocus on user-stated AI-structuring lessons,cloud complexity and next-time planning;retain real results/boundaries.
+- [x] Verify71 units,lint/TypeScript,build/budgets and desktop/mobile layout.

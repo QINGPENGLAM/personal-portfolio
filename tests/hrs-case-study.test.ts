@@ -70,12 +70,15 @@ describe('HRS case-study draft', () => {
     expect(html).not.toContain('The WoS counterexample')
   })
 
-  it('separates functional results from model-quality and rollout limits', () => {
+  it('connects project outcomes to AI structure and cloud reflections without claiming measured impact', () => {
     const html = renderToStaticMarkup(createElement(HrsCaseStudyPage))
-    expect(html).toContain('487 tests against mocked external services and disposable PostgreSQL')
-    expect(html).toContain('was a known false positive')
-    expect(html).toContain('independently staff-labeled evaluation set')
-    expect(html).toContain('Newer local AI work has not been deployed or verified there')
-    expect(html).toContain('preserve human decisions')
+    expect(html).toContain('What the project delivers')
+    expect(html).toContain('Structure AI assistance more deliberately')
+    expect(html).toContain('Cloud involved more than I expected')
+    expect(html).toContain('What I would do differently next time')
+    expect(html).toContain('what must stay unchanged')
+    expect(html).toContain('execution, persistent storage, scheduling, permissions, OAuth and secret configuration')
+    expect(html).toContain('Newer local AI changes still require separate cloud validation')
+    expect(html).toContain('not measured time savings or AI accuracy')
   })
 })
