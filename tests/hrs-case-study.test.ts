@@ -31,14 +31,14 @@ describe('HRS case-study draft', () => {
     expect(html).toContain('previously processed')
   })
 
-  it('distinguishes the intended required AI stage from current opt-in implementation', () => {
+  it('presents the AI stage and evidence details without the removed workflow footer', () => {
     const html = renderToStaticMarkup(createElement(HrsCaseStudyPage))
     expect(html).toContain('AI screening')
     expect(html).toContain('aria-controls="hrs-dialog-ai"')
     expect(html).toContain('id="hrs-dialog-ai"')
     expect(html).toContain('Required before Sheet output')
     expect(html).toContain('AI incomplete—manual review needed')
-    expect(html).toContain('The current runtime remains opt-in')
+    expect(html).not.toContain('Workflow shown: intended required AI stage.')
     expect(html).not.toContain('This is a required stage, not a requirement for a successful classification.')
     expect(html).toContain('aria-label="AI screening evidence-to-decision flow"')
     expect(html).toContain('Paper source')
@@ -81,7 +81,7 @@ describe('HRS case-study draft', () => {
     expect(html).toContain('What I would do differently next time')
     expect(html).toContain('what must stay unchanged')
     expect(html).toContain('execution, persistent storage, scheduling, permissions, OAuth and secret configuration')
-    expect(html).toContain('Newer local AI changes still require separate cloud validation')
-    expect(html).toContain('not measured time savings or AI accuracy')
+    expect(html).not.toContain('Newer local AI changes still require separate cloud validation')
+    expect(html).not.toContain('These results describe implemented behavior, not measured time savings or AI accuracy.')
   })
 })

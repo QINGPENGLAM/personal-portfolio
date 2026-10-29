@@ -394,3 +394,38 @@ Added chapter 05 after AI-assisted development using the existing two-column car
 ## Optional engineering discussion — 2026-10-28
 
 Restored the original five main chapters and Results + lessons as chapter 05. Moved engineering considerations after Results, labeled Optional, and removed it from main chapter navigation. Six scenario cards and their details remain unchanged. Reflection: optional interview follow-up material belongs after the main narrative.
+
+
+## Workflow footer copy removal — 2026-10-29
+
+Removed the exact user-selected workflow footer about intended AI policy and current opt-in behavior. Updated its presentation assertion. This is a copy-only change; pipeline behavior is unchanged. Reflection: keep requested copy edits bounded.
+
+
+## Cloud presentation order — 2026-10-29
+
+Reordered the existing deployment cards to follow the supplied talk track: SQLite/JSONL migration and persistent state, cloud overview, Scheduler, Run Job, Cloud SQL, identity/secrets, monitoring, then both tradeoff cards in a final shared block. Preserved card details and two-column styling. Five focused tests, scoped ESLint, diff whitespace checks and an explicit card-order check passed. Reflection: presentation order should support the speaker’s narrative; no runtime change or new global rule.
+
+
+## Cloud footer copy removal — 2026-10-29
+
+Removed the exact user-selected dated deployment-record footer below the cloud section. Card details and runtime behavior are unchanged. Reflection: keep requested copy removal limited to the selected line.
+
+
+## AI reference copy trim — 2026-10-29
+
+Removed the selected sentence about adapting review principles; retained the reading-reference link. Reflection: keep copy edits scoped to the requested sentence.
+
+
+## Inline cloud tradeoffs — 2026-10-29
+
+Returned each tradeoff card to the end of its existing Database or Google Cloud column; removed the separate C / Trade-offs block. Kept the script-aligned card order and popup content. Reflection: preserve the requested two-column grouping when reordering content.
+
+
+## Results copy trim — 2026-10-29
+
+Removed the selected newer-local-AI validation sentence from What the project delivers; retained the base pipeline cloud-execution statement. Updated the related assertion. Reflection: keep sentence removals narrowly scoped.
+
+
+## Results footer removal — 2026-10-29
+
+Removed the exact selected footer below Results and updated its assertion. Reflection: keep copy changes limited to the requested text.

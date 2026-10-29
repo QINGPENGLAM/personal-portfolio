@@ -252,3 +252,17 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Verify unit tests, lint, production build, budgets and desktop/mobile dialog behavior.
 
 - [x] Restore five main chapters; move concerns after Results as an optional section.
+
+- [x] Remove the selected workflow footer and update its presentation assertion (2026-10-29).
+
+- [x] Align cloud section order with the supplied script and place tradeoffs last (2026-10-29).
+
+- [x] Remove the selected dated cloud footer (2026-10-29).
+
+- [x] Remove the selected AI-assisted reference sentence (2026-10-29).
+
+- [x] Keep tradeoffs inside the existing database/cloud columns (2026-10-29).
+
+- [x] Remove the selected cloud-validation sentence from Results (2026-10-29).
+
+- [x] Remove the selected Results footer (2026-10-29).

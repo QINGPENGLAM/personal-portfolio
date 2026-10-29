@@ -83,24 +83,22 @@ export function HrsCaseStudy() {
             <Node node={hrsWorkflow.review} />
           </div>
         </div>
-        <p className={styles.statusNote}>Workflow shown: intended required AI stage. The current runtime remains opt-in; enforcing this policy and the explicit incomplete-status label is a separate implementation change.</p>
       </section>
 
       <section id="hrs-deployment" className={styles.section} aria-labelledby="hrs-deployment-heading">
         <p className="eyebrow">03 / Cloud deployment + trade-offs</p>
-        <h2 id="hrs-deployment-heading">Where it runs.<br />Where its state lives.</h2>
-        <p className={styles.sectionIntro}>Execution and persistence needed separate decisions. Explore the reasoning and the components on each side.</p>
+        <h2 id="hrs-deployment-heading">Where its state lives.<br />How the daily job runs.</h2>
+        <p className={styles.sectionIntro}>Start with persistent state, then follow the daily execution, access controls and failure monitoring. Each column ends with its trade-offs.</p>
         <div className={styles.deploymentGrid}>
           <section className={styles.deploymentColumn} aria-labelledby="hrs-database-heading">
-            <header><span className={styles.columnNumber}>A / Persistence</span><h3 id="hrs-database-heading">Database</h3><p>What must survive the next run.</p></header>
+            <header><span className={styles.columnNumber}>A / Preserve state</span><h3 id="hrs-database-heading">Database</h3><p>What must survive the next run.</p></header>
             {hrsDatabase.map((node) => <Node node={node} key={node.id} />)}
           </section>
           <section className={styles.deploymentColumn} aria-labelledby="hrs-cloud-heading">
-            <header><span className={styles.columnNumber}>B / Execution + hosting</span><h3 id="hrs-cloud-heading">Google Cloud</h3><p>How the pipeline runs without a laptop.</p></header>
+            <header><span className={styles.columnNumber}>B / Run, secure and monitor</span><h3 id="hrs-cloud-heading">Google Cloud</h3><p>How the pipeline runs without a laptop.</p></header>
             {hrsCloud.map((node) => <Node node={node} key={node.id} />)}
           </section>
         </div>
-        <p className={styles.statusNote}>Deployment record · October 24, 2026: cloud execution and scheduling were verified, then paused pending staff readiness. Newer local changes require a separate deployment.</p>
       </section>
 
       <section id="hrs-development" className={styles.section} aria-labelledby="hrs-development-heading">
@@ -129,7 +127,7 @@ export function HrsCaseStudy() {
             </article>
           ))}
         </div>
-        <p className={styles.statusNote}>Reading reference: <a href="https://claude.dev/blog/solving-code-review-at-anthropic/" target="_blank" rel="noreferrer">How the Claude Code team does code review <span aria-hidden="true">↗</span></a>. The workflow here adapts those review principles to a bounded project change.</p>
+        <p className={styles.statusNote}>Reading reference: <a href="https://claude.dev/blog/solving-code-review-at-anthropic/" target="_blank" rel="noreferrer">How the Claude Code team does code review <span aria-hidden="true">↗</span></a>.</p>
       </section>
 
       <section id="hrs-results" className={styles.section} aria-labelledby="hrs-results-heading">
@@ -146,7 +144,6 @@ export function HrsCaseStudy() {
             </article>
           ))}
         </div>
-        <p className={styles.statusNote}>These results describe implemented behavior, not measured time savings or AI accuracy. Model-quality and deployment limits are covered in the AI and cloud sections.</p>
       </section>
 
       <section id="hrs-concerns" className={styles.section} aria-labelledby="hrs-concerns-heading">
