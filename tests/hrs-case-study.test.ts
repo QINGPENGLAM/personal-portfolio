@@ -4,11 +4,14 @@ import { describe, expect, it } from 'vitest'
 import HrsCaseStudyPage from '@/app/projects/hrs-publication-pipeline/page'
 
 describe('HRS case-study draft', () => {
-  it('presents all five interview chapters in order without hard-coded talk timings', () => {
+  it('presents the original five interview chapters in order without hard-coded talk timings', () => {
     const html = renderToStaticMarkup(createElement(HrsCaseStudyPage))
     const positions = ['hrs-problem', 'hrs-workflow', 'hrs-deployment', 'hrs-development', 'hrs-results'].map((id) => html.indexOf(`id="${id}"`))
     expect(positions.every((position) => position >= 0)).toBe(true)
     expect(positions).toEqual([...positions].sort((a, b) => a - b))
+    expect(html.indexOf('id="hrs-concerns"')).toBeGreaterThan(positions[4])
+    expect(html).toContain('Optional / Engineering considerations')
+    expect(html).not.toContain('href="#hrs-concerns"')
     expect(html).not.toMatch(/0:55|1:25|1:35|7:00/)
     for (const label of ['AI-assisted development', 'Results + lessons']) expect(html).toContain(label)
   })

@@ -600,3 +600,15 @@ Presentation update complete. Kept ChatGPT design refinement and Codex increment
 ## Results and personal reflections — 2026-10-27
 
 Refocused Results and Lessons into4 cards:delivered review workflow;structuring AI assistance with explicit scope/context/checks;user-reported cloud complexity;what to plan earlier next time. Detailed model-quality findings remain in the AI section;closing retains a brief no-measured-impact note and current AI rollout boundary. Supplied a corresponding talk track in the HRS repo.71 units,scoped lint,TypeScript,Pages production build,all5 budgets(home260KiB,total11110KiB),and desktop/mobile4-card layout checks passed. No runtime or deployment changes. Reflection:closing interview material should explain personal learning and next-time decisions,while keeping technical evidence available for follow-up.
+
+
+## Engineering considerations — 2026-10-28
+
+Added chapter 05 after AI-assisted development using the existing two-column card grid and HrsNode detail dialogs; Results and Lessons is now chapter 06. Six conditional scenarios cover data growth, backlog, API failures, interrupted runs, concurrent Sheet edits and AI cost/quality. Each explains a concern, possible response and tradeoff without claiming a production incident or a runtime implementation change. Validation: 71 unit tests, scoped ESLint, production build with TypeScript and all five size budgets passed. Chromium checks at 1440px and 390px opened/closed all six dialogs, confirmed tradeoff content and found no horizontal overflow. No commit, push or deployment.
+
+Reflection: reusing the existing card and modal components kept this change small. Conditional language communicates engineering judgment without turning potential responses into historical implementation claims. No new global rule needed.
+
+
+## Optional engineering discussion — 2026-10-28
+
+Restored the original five main chapters and Results + lessons as chapter 05. Moved engineering considerations after Results, labeled Optional, and removed it from main chapter navigation. Six scenario cards and their details remain unchanged. Reflection: optional interview follow-up material belongs after the main narrative.

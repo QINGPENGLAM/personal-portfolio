@@ -193,6 +193,75 @@ export const hrsEvaluation: HrsNode[] = [
   },
 ]
 
+export const hrsConcerns: HrsNode[] = [
+  {
+    "id": "concern-growth",
+    "title": "What if data grows to gigabytes?",
+    "caption": "01 / Data volume + memory",
+    "explanation": "The concern is loading too many records or large article documents into one worker. I would first measure memory use, query latency and processing time.",
+    "points": [
+      "Approach: process records in bounded batches; keep searchable metadata and statuses in PostgreSQL, with large documents in object storage. Add indexes based on actual query patterns.",
+      "Trade-off: document uploads and database writes can fail independently. Stable object keys and reconciliation would help detect missing or orphaned documents.",
+      "Decision point: total data size alone is not a reason to redesign. Change the storage or processing approach when measured resource use becomes a constraint."
+    ]
+  },
+  {
+    "id": "concern-backlog",
+    "title": "What if work arrives faster than it finishes?",
+    "caption": "02 / Backlog + bounded concurrency",
+    "explanation": "Slow article retrieval or AI screening could cause the daily workload to accumulate. I would watch backlog size and the age of the oldest pending candidate.",
+    "points": [
+      "Approach: introduce a durable queue of candidate IDs and a bounded worker pool. Limit concurrency for each external service and acknowledge work after saving its result.",
+      "Trade-off: a queue adds operational complexity and can deliver the same task more than once. Workers would still need safe repeated processing.",
+      "Decision point: introduce a queue when measured backlog or run duration shows that the scheduled batch no longer keeps up."
+    ]
+  },
+  {
+    "id": "concern-api-failures",
+    "title": "What if external APIs fail?",
+    "caption": "03 / Timeouts + bounded retries",
+    "explanation": "Gmail, PubMed, Google Sheets and the model provider can time out, enforce rate limits or return errors. Different failures need different responses.",
+    "points": [
+      "Approach: set request timeouts, use bounded exponential backoff with jitter, honor Retry-After when supplied, and retain progress at the failed stage.",
+      "Trade-off: retries consume time, quota and possibly money. Authentication errors and invalid requests need intervention rather than repeated identical calls.",
+      "Recovery question: a timeout may leave the remote outcome unknown. Check whether an operation is safe to repeat or reconcile its result before retrying."
+    ]
+  },
+  {
+    "id": "concern-crash",
+    "title": "What if a run crashes halfway?",
+    "caption": "04 / Checkpoints + safe repeated writes",
+    "explanation": "A restart should preserve completed work without duplicating papers or unnecessarily repeating expensive operations.",
+    "points": [
+      "Approach: define durable stage boundaries, checkpoint completed work, and use stable identifiers, unique constraints and database transactions. Resume pending work rather than restarting everything.",
+      "Trade-off: a database transaction cannot atomically include an external API call. A model request could succeed just before the process crashes while saving its response.",
+      "Recovery question: record attempts and results where reconciliation matters. Aim for controlled duplicate effects and safe recovery rather than promising end-to-end exactly-once execution."
+    ]
+  },
+  {
+    "id": "concern-sheet-conflicts",
+    "title": "What if staff edit during Sheet sync?",
+    "caption": "05 / Human decisions + edit conflicts",
+    "explanation": "An automated sync could overwrite a reviewer’s decision or notes. Protecting those edits matters more than making every row look immediately up to date.",
+    "points": [
+      "Approach: separate pipeline-owned columns from human-owned fields, match rows by stable candidate ID, compare versions or last-synced values, and preserve conflicts for resolution.",
+      "Traceability: retain an edit history so decisions and conflicting updates can be understood and recovered.",
+      "Trade-off: a read-before-write comparison still has a race between checking and updating. Stronger guarantees may call for a controlled editing interface or database-backed review application."
+    ]
+  },
+  {
+    "id": "concern-ai-quality",
+    "title": "What if AI gets expensive or gives wrong answers?",
+    "caption": "06 / Cost + evidence + human review",
+    "explanation": "Repeated screening can increase spending, while plausible answers can misinterpret real evidence. Cost control and quality evaluation need separate checks.",
+    "points": [
+      "Approach: set spending limits and track usage. Reuse suitable results using the paper, input content, model and prompt version; reevaluate when those inputs change.",
+      "Quality checks: validate structured outputs, verify quoted evidence against supplied text, and evaluate labeled examples including difficult negatives and incomplete documents. Route uncertainty to human review.",
+      "Trade-off: cached results can become stale and stricter evidence rules can increase manual review. A verified quote proves that text exists, not that the model’s interpretation is correct."
+    ]
+  }
+]
+
 export const hrsResults: HrsNode[] = [
   {
     id: 'results-delivered',

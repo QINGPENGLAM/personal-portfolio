@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { hrsCloud, hrsDatabase, hrsDevelopment, hrsEvaluation, hrsResults, hrsWorkflow, type HrsNode } from '@/data/hrs-case-study'
+import { hrsCloud, hrsConcerns, hrsDatabase, hrsDevelopment, hrsEvaluation, hrsResults, hrsWorkflow, type HrsNode } from '@/data/hrs-case-study'
 import { HrsNode as Node } from './HrsNode'
 import styles from './HrsCaseStudy.module.css'
 
@@ -147,6 +147,15 @@ export function HrsCaseStudy() {
           ))}
         </div>
         <p className={styles.statusNote}>These results describe implemented behavior, not measured time savings or AI accuracy. Model-quality and deployment limits are covered in the AI and cloud sections.</p>
+      </section>
+
+      <section id="hrs-concerns" className={styles.section} aria-labelledby="hrs-concerns-heading">
+        <p className="eyebrow">Optional / Engineering considerations</p>
+        <h2 id="hrs-concerns-heading">What if the system grows—or something fails?</h2>
+        <p className={styles.sectionIntro}>Questions I think through beyond the normal workflow: what could become a bottleneck, how I would respond, and what each solution would trade off. Click a scenario to explore the reasoning.</p>
+        <div className={styles.storyGrid}>
+          {hrsConcerns.map((node) => <Node node={node} key={node.id} />)}
+        </div>
       </section>
 
       <div className={styles.end}><span>More of my work</span><Link href="/projects">Back to projects <span aria-hidden="true">↗</span></Link></div>

@@ -244,3 +244,11 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 
 - [x] Refocus on user-stated AI-structuring lessons,cloud complexity and next-time planning;retain real results/boundaries.
 - [x] Verify71 units,lint/TypeScript,build/budgets and desktop/mobile layout.
+
+
+## Engineering considerations — 2026-10-28
+
+- [x] Add six what-if scenarios using existing HRS cards/dialogs and chapter navigation.
+- [x] Verify unit tests, lint, production build, budgets and desktop/mobile dialog behavior.
+
+- [x] Restore five main chapters; move concerns after Results as an optional section.
