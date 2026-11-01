@@ -356,3 +356,13 @@ Removed the selected newer-local-AI validation sentence from What the project de
 ## Results footer removal — 2026-10-29
 
 Removed the exact selected footer below Results and updated its assertion. Reflection: keep copy changes limited to the requested text.
+
+
+## Code cleanup — 2026-11-01
+
+Removed the retired root HTML/CSS/sidebar implementation, the unreachable canvas
+WorldPlaceholder and its old hero/placeholder styles, unused easing helpers,
+duplicate language-list calculation, obsolete compatibility exports, and unused
+schema type aliases. Kept component-private types local. The active Next.js app,
+3D world, optional contact worker, original media, content, and dependency versions
+are preserved. Local cleanup only; no commit, push, or deployment.

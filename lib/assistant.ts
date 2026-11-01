@@ -5,7 +5,7 @@ import { projects } from '@/data/projects'
 import { skillGroups } from '@/data/skills'
 import { getSkillEvidence } from './skills'
 
-export type AssistantLink = { href: string; label: string }
+type AssistantLink = { href: string; label: string }
 export type AssistantAnswer = { answer: string; links: AssistantLink[]; available: boolean }
 
 function projectLinks() {
@@ -92,5 +92,3 @@ export function answerPortfolioQuestion(question: string): AssistantAnswer {
     links: [{ href: '/resume', label: 'View résumé' }, { href: '/contact', label: 'Contact page' }],
   }
 }
-
-export { suggestedAssistantQuestions } from '@/data/assistant-suggestions'

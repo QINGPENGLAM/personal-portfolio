@@ -266,3 +266,12 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Remove the selected cloud-validation sentence from Results (2026-10-29).
 
 - [x] Remove the selected Results footer (2026-10-29).
+
+
+## Code cleanup — 2026-11-01
+
+- [x] Audit imports/references before removing dead code and duplicate exports.
+- [x] Remove retired root site code and unused app code/styles; preserve original media.
+- [x] Pass lint, TypeScript, all 71 unit tests, Pages-base-path build, and size budgets.
+- [x] Complete read-only code review; no actionable issues found.
+- [x] Finish desktop/mobile browser checks: Chromium 53 passed/3 configured skips; focused desktop/mobile run 17 passed/7 configured skips.

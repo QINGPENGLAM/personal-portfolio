@@ -5,7 +5,7 @@ import { useId, useRef, useState } from 'react'
 import type { SkillEvidence } from '@/lib/skills'
 import styles from './SkillExplorer.module.css'
 
-export type SkillExplorerGroup = { label: string; items: { name: string; evidence: SkillEvidence[] }[] }
+type SkillExplorerGroup = { label: string; items: { name: string; evidence: SkillEvidence[] }[] }
 type EvidenceKind = 'all' | SkillEvidence['kind']
 const filters: { value: EvidenceKind; label: string }[] = [
   { value: 'all', label: 'All' }, { value: 'project', label: 'Projects' },

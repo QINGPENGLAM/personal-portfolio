@@ -18,8 +18,6 @@ export type SkillEvidence = {
 }
 
 export const portfolioSkills = skillGroups.flatMap(group => group.items)
-// Compatibility for existing consumers; the list now also includes project-supported skills.
-export const resumeSkills = portfolioSkills
 const normalize = (value: string) => value.trim().toLowerCase()
 
 export function getSkillEvidence(skill: string): SkillEvidence[] {

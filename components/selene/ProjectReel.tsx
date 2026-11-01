@@ -8,7 +8,7 @@ import { withBasePath } from '@/lib/site'
 import { nearestProject } from '@/lib/selene/deck'
 import { useReducedMotion } from './useReducedMotion'
 
-export type ReelProject = {
+type ReelProject = {
   id: string; slug: string; title: string; description: string
   image: string | null; alt: string; tags: string[]; accent: string
 }

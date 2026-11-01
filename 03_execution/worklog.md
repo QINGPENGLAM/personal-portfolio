@@ -647,3 +647,33 @@ Removed the selected newer-local-AI validation sentence from What the project de
 ## Results footer removal — 2026-10-29
 
 Removed the exact selected footer below Results and updated its assertion. Reflection: keep copy changes limited to the requested text.
+
+
+## Code cleanup — 2026-11-01
+
+Audited the clean checkout using the TypeScript symbol checker, app import
+reachability, text references, and the deployment workflow. Removed 12 retired
+root HTML/CSS/sidebar files, the unreachable 144-line WorldPlaceholder renderer,
+68 lines of old hero/placeholder CSS, two unused easing helpers, a duplicate unused
+repository-language calculation, three unused inferred schema types, the unused
+assistant suggestion re-export, and the obsolete resumeSkills alias. Tests now
+consume portfolioSkills; four types used only within their modules are local.
+Preserved the real world, Next route exports, documented optional contact Worker,
+content, original media, dependencies, and all performance limits. Restored the
+Next-generated next-env.d.ts change so it is outside this cleanup.
+
+Validation: baseline and final lint/TypeScript/all 71 unit tests passed. Final
+Pages-base-path build produced all 20 static pages; all five budgets passed
+(home JS 260/275 KiB, world JS 267/290 KiB, largest JS 240/303 KiB,
+CSS 19/21 KiB, export 11138/11719 KiB). Chromium browser suite: 53 passed,
+3 configured skips. Focused desktop/mobile checks: 17 passed, 7 configured skips,
+including mobile navigation/overflow, skills, contact placement, and reel lifecycle.
+The sandbox initially denied local port binding; the authorized retry passed.
+Read-only code review found no actionable issues. Diff whitespace check passed.
+No commit, push, deployment, or external service mutation.
+
+Reflection: the first broad documentation read produced truncated output; scoped
+reads were more useful. Dead-looking Next convention exports and optional server
+entry points need explicit retention; import reachability alone is insufficient.
+The reusable check is to combine source references with the actual deployed
+artifact boundary before deleting legacy code. No new global rule is needed.

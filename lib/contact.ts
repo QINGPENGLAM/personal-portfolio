@@ -11,7 +11,7 @@ export const contactSubmissionSchema = z.object({
 
 export type ContactSubmission = z.infer<typeof contactSubmissionSchema>
 
-export type ContactValidationResult =
+type ContactValidationResult =
   | { success: true; data: ContactSubmission }
   | { success: false; fieldErrors: Partial<Record<keyof ContactSubmission, string>> }
 

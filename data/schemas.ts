@@ -155,11 +155,8 @@ export const githubRepositorySchema = z.object({
   liveCheckedAt: z.iso.date().nullable(),
 })
 
-export type Profile = z.infer<typeof profileSchema>
 export type Experience = z.infer<typeof experienceSchema>
 export type Project = z.infer<typeof projectSchema>
-export type Education = z.infer<typeof educationSchema>
-export type SkillGroup = z.infer<typeof skillGroupSchema>
 export type TimelineItem = z.infer<typeof timelineItemSchema>
 export type WorldTourStop = z.infer<typeof worldTourStopSchema>
 export type GitHubRepository = z.infer<typeof githubRepositorySchema>

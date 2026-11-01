@@ -80,8 +80,3 @@ export const githubRepositories = githubRepositorySchema.array().parse(repositor
     liveCheckedAt: repository.hasPages ? githubRepositorySnapshot.liveCheckedAt : null,
   }
 }))
-
-export const githubRepositoryLanguages = [
-  'All',
-  ...Array.from(new Set(githubRepositories.map((repository) => repository.primaryLanguage ?? 'Not reported'))).sort(),
-] as const

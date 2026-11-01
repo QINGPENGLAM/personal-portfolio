@@ -5,7 +5,7 @@ import { projects } from '@/data/projects'
 import { skillGroups } from '@/data/skills'
 import { filterTimeline, timelineItems, timelineTypes } from '@/data/timeline'
 import { isWorldPanelKind, worldPanelIds } from '@/data/world'
-import { getSkillEvidence, resumeSkills } from '@/lib/skills'
+import { getSkillEvidence, portfolioSkills } from '@/lib/skills'
 
 describe('Phase 4 professional story', () => {
   it('keeps timeline identifiers unique and newest milestones first', () => {
@@ -28,10 +28,10 @@ describe('Phase 4 professional story', () => {
   })
 
   it('uses unique portfolio skills and resolves evidence to published records', () => {
-    expect(new Set(resumeSkills)).toHaveLength(resumeSkills.length)
-    expect(resumeSkills).toEqual(skillGroups.flatMap((group) => group.items))
+    expect(new Set(portfolioSkills)).toHaveLength(portfolioSkills.length)
+    expect(portfolioSkills).toEqual(skillGroups.flatMap((group) => group.items))
     const validIds = new Set([...projects.map((project) => project.id), ...experiences.map((experience) => experience.id), ...githubRepositories.map(repository => repository.name), 'hrs-publication-pipeline'])
-    for (const skill of resumeSkills) {
+    for (const skill of portfolioSkills) {
       for (const evidence of getSkillEvidence(skill)) expect(validIds.has(evidence.id)).toBe(true)
     }
   })

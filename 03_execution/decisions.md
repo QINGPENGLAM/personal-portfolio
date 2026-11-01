@@ -429,3 +429,15 @@ Removed the selected newer-local-AI validation sentence from What the project de
 ## Results footer removal — 2026-10-29
 
 Removed the exact selected footer below Results and updated its assertion. Reflection: keep copy changes limited to the requested text.
+
+
+## Cleanup boundary — 2026-11-01
+
+The user's unused/duplicate-code cleanup request resolves the previously deferred
+legacy-code cleanup: remove root HTML, CSS, and sidebar JS because deployment
+uploads only Next.js out/ and no active source references those files. Preserve
+original image/ media and public assets. Delete only proven-unused app code;
+retain Next.js convention exports and the documented optional Worker. Use
+portfolioSkills directly rather than maintaining the obsolete resumeSkills alias;
+assistant suggestions remain in their dedicated lightweight data module. No
+feature redesign, dependency change, commit, push, or publication.
