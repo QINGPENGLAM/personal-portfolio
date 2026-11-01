@@ -51,6 +51,14 @@ jobs:
       - name: Install browser test engines
         run: npx playwright install --with-deps chromium firefox webkit
 
+      - name: Start virtual audio output
+        run: |
+          sudo apt-get install --no-install-recommends -y pulseaudio pulseaudio-utils
+          pulseaudio --start --exit-idle-time=-1 --log-target=stderr
+          pactl load-module module-null-sink sink_name=portfolio_ci
+          pactl set-default-sink portfolio_ci
+          pactl info
+
       - name: Critical browser flows
         run: npm run test:e2e
 

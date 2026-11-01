@@ -501,3 +501,14 @@ after3 seconds of inactivity, leaving it visible while hovered or focused inside
 Hidden controls are inert. A separate small24px volume opener preserves the
 main button's pause semantics and allows touch users to reopen without stopping
 music. It does not change header layout width. No unrelated changes or publication.
+
+
+## Pages CI audio environment — 2026-11-01
+Repair the CI runtime rather than mute/mock/skip native audio tests. Start
+PulseAudio with a named null output before the unchanged browser gate. Wait for
+actual guide interactivity instead of networkidle; retain a pending-media
+regression. Compare volume to four decimals, well below the1%UI step, because
+Linux audio backends quantize it. Reopen the auto-hidden panel before adjusting
+volume. Use disposable Linux testing only; Docker is not part of the website or
+Pages architecture. Preserve existing browser matrix, limits and deployment gate.
+No commit/push or remote rerun requested; user retains GitHub Desktop publication.

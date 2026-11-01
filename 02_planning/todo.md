@@ -307,3 +307,12 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Fade controls after3 seconds and retain hover/focus/touch access.
 - [x] Attempt default playback, fall back to an eligible user interaction, respect manual pause.
 - [x] Pass77 unit tests and24 browser cases plus lint/types/build/budgets and desktop/mobile axe/layout.
+
+
+## Pages CI repair — 2026-11-01
+- [x] Inspect run41308626525 logs and identify all seven browser failures.
+- [x] Reproduce network-idle timeout and Linux Firefox native audio-sink failure.
+- [x] Fix CI audio setup, guide readiness and volume/control browser assertions.
+- [x] Pass lint, TypeScript,77 unit tests, production build and budgets; read-only review.
+- [x] Complete final Linux four-browser coverage in batches:218 distinct passes/42 configured skips, plus1 fresh-world pass; no retries on final batches.
+- [ ] User commits/pushes repair through GitHub Desktop; verify the new Actions deployment.

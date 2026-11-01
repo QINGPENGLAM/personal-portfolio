@@ -809,3 +809,33 @@ push or deployment.
 Reflection: fading must retain a touch-accessible way to reopen controls; keep
 that separate from pause. Treat autoplay policy rejection as an expected state
 and test pause intent after interaction fallback. No new global rule.
+
+
+## Pages CI browser failure repair — 2026-11-01
+Read Actions run41308626525/job124854148118 via the GitHub connector. Lint,
+types,77 unit tests, build and budgets passed; browser gate had211 passed,
+42 configured skips and7 failures; deploy skipped. Reproduced a networkidle
+timeout with a pending media request, then switched to guide interactivity.
+Official Playwright1.62.1 Ubuntu container reproduced Firefox OpenCubeb /
+NS_ERROR_DOM_MEDIA_MEDIASINK_ERR. The same native case passed after starting
+PulseAudio+named null sink. First full Linux pass:217 passed/42 skipped/1 failed,
+revealing actual backend volume.20000492036. Adjusted volume tolerance to four
+decimals; all native playback checks remain. Explicitly reopen transient volume
+controls before adjustment. Mac targeted Chromium/WebKit20 passed; final lint,
+TypeScript,77 tests, build and7 budgets passed. Read-only review: no actionable
+findings. A4-worker Linux stress run hit5OOM kills/5WebKit process crashes
+(213 other passes/42 configured skips); this exceeded CI’s unchanged2 workers.
+Reran all WebKit cases at2 workers:52 passed/13 configured skips,0 retries and
+no further OOM kills. Combined final-code four-browser coverage:218 distinct
+passes/42 configured skips in batches; fresh Chromium world:1 passed. Do not
+represent the four-worker stress command as green. Details and boundaries:
+docs/Pages_Deployment_Fix_2026-11-01.md.
+Reflection: local media tests do not establish Linux audio availability; avoid
+networkidle for UI readiness with streams and compare media values at meaningful
+precision. Existing verification rules cover this; no global rule update.
+
+Temporary task-only Docker containers and downloaded browser image were removed.
+Pre-existing containers/services were left untouched. Source snapshot and logs
+remain under /tmp/portfolio-ci-linux for inspection; durable conclusions are in
+the project diagnosis document. Restored generated next-env.d.ts; final diff
+whitespace checks pass. No commit, push, remote rerun or deployment.

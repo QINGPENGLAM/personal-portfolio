@@ -418,3 +418,14 @@ click/key, and never override a later manual pause/cancel. This supersedes the
 previous default-off/click-only behavior and may request music on page load.
 77 unit tests, 24 cross-browser music checks, lint/TypeScript/build/budgets and
 desktop/mobile axe/overflow checks passed. No commit/push/deployment.
+
+
+## Pages CI repair — 2026-11-01
+Diagnosed run41308626525: browser checks failed after all build/code/budget
+checks passed. Added CI virtual audio output, guide readiness independent of
+background streams, precision-aware volume assertions and explicit reopening
+of transient controls. Website behavior, dependency versions and gates unchanged.
+Linux Firefox media-sink failure reproduced; native playback passes with virtual
+output. Final Linux verification covers218 passing cases/42 configured skips in
+batches, plus1 fresh-world pass. Local repair complete; hosted verification
+awaits the user’s next GitHub Desktop push. See docs/Pages_Deployment_Fix_2026-11-01.md.
