@@ -1,0 +1,3 @@
+# Copy to .dev.vars locally. Never commit real values.
+OPENROUTER_API_KEY=replace-privately
+ASSISTANT_RATE_LIMIT_SALT=replace-with-random-private-value

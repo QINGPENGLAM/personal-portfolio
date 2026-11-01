@@ -316,3 +316,18 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Pass lint, TypeScript,77 unit tests, production build and budgets; read-only review.
 - [x] Complete final Linux four-browser coverage in batches:218 distinct passes/42 configured skips, plus1 fresh-world pass; no retries on final batches.
 - [ ] User commits/pushes repair through GitHub Desktop; verify the new Actions deployment.
+
+## Optional portfolio RAG — 2026-11-01
+- [x] Approve free-only OpenRouter + independent Worker + public lexical retrieval design.
+- [x] Implement bilingual/project aliases, bounded public corpus and proposed labels.
+- [x] Implement strict request/output/citation validation and persistent atomic quotas.
+- [x] Integrate existing widget, short follow-ups, source links, disclosure, cancellation and local fallback.
+- [x] Verify unit tests, types/lint/build/budgets, configured desktop/mobile mocked browser flows and local SQLite concurrency/restart behavior.
+- [x] Complete independent read-only review and regressions for both P2 findings.
+- [x] User privately configured the OpenRouter key and Cloudflare secrets; user confirmed Workers Free.
+- [x] User privately checked free-request allowance: used0/limit50/remaining50 before latest evaluation.
+- [ ] Complete provider availability/precise rate-limit diagnosis without purchasing credits or relaxing privacy.
+- [x] Deploy Worker and prepare the real frontend endpoint plus mocked release-browser gate in Pages workflow.
+- [x] Verify one real source-linked English answer against public HRS data (PostgreSQL17/Cloud SQL).
+- [ ] Complete Chinese follow-up/proposed-status/adversarial live evaluation when free service is available; current total7 agent attempts,6 failed,1 passed. Retain labeled local fallback.
+- [ ] User commits/pushes the prepared portfolio changes through GitHub Desktop; verify Pages deployment.

@@ -429,3 +429,37 @@ Linux Firefox media-sink failure reproduced; native playback passes with virtual
 output. Final Linux verification covers218 passing cases/42 configured skips in
 batches, plus1 fresh-world pass. Local repair complete; hosted verification
 awaits the user’s next GitHub Desktop push. See docs/Pages_Deployment_Fix_2026-11-01.md.
+
+## Optional portfolio RAG — 2026-11-01
+User-approved OpenRouter free-only assistant implemented behind optional
+NEXT_PUBLIC_ASSISTANT_ENDPOINT. Static export and the existing local guide are
+preserved. Public lexical retrieval, bounded short history, source-linked AI
+responses, proposed-content labeling, cancellation and explicit local fallback
+are implemented. A separate Cloudflare Worker uses a SQLite-backed global
+Durable Object to cap attempts at10/UTC day and3/minute/address hash. No paid
+fallback, raw-question logging or frontend API key. Private credentials, bounded
+live model evaluation, account configuration and deployment remain pending.
+See server/assistant/README.md and the approved RAG spec/implementation plan.
+
+### RAG deployment setup — 2026-11-01
+User deployed https://portfolio-assistant.qingpenglam.workers.dev, privately set
+both secrets, and confirmed Workers Free. Prepared release-build endpoint wiring
+and mocked AI browser gate in Pages workflow; not committed/pushed. Three bounded
+live attempts failed upstream (router503 twice, pinned free Liquid404 once).
+Default router restored; no paid fallback or relaxed privacy setting. Sanitized
+diagnostics distinguish provider HTTP rejection from quota/output/timeout errors.
+Live AI availability and account routing eligibility remain unresolved; user asked
+to inspect OpenRouter Activity error details without disclosing the key.
+
+Latest RAG setup status: fourth bounded agent test returned upstream429 after
+prior503/404 failures. Successful live generation remains unverified. Awaiting a
+user-private read-only free-request quota check; aggregate Activity screenshots
+cannot establish the failed-request cause. Safe classifier deployed;96 unit tests
+and lint/types passed. No publication of frontend changes.
+
+RAG live connection confirmed: one real English answer correctly cited public
+HRS PostgreSQL17/Cloud SQL evidence (~7.7s). User's private quota check showed50/50
+remaining before evaluation. Subsequent Chinese samples hit429; broad quality
+and reliable availability are unverified.7 agent attempts total today,1 success;
+no further live calls planned in this setup pass.98 unit tests, lint/types pass.
+Frontend workflow wiring remains uncommitted/unpushed for user publication.

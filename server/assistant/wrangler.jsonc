@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "portfolio-assistant",
+  "main": "worker.ts",
+  "compatibility_date": "2026-10-30",
+  "vars": {
+    "ASSISTANT_ALLOWED_ORIGIN": "https://qingpenglam.github.io",
+    "ASSISTANT_MODEL": "openrouter/free"
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "ASSISTANT_QUOTA", "class_name": "AssistantQuota" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["AssistantQuota"] }],
+  "observability": { "enabled": false }
+}

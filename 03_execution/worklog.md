@@ -839,3 +839,126 @@ Pre-existing containers/services were left untouched. Source snapshot and logs
 remain under /tmp/portfolio-ci-linux for inspection; durable conclusions are in
 the project diagnosis document. Restored generated next-env.d.ts; final diff
 whitespace checks pass. No commit, push, remote rerun or deployment.
+
+## Optional portfolio RAG — 2026-11-01
+Implemented the approved design in the existing portfolio checkout, retaining
+GitHub Pages static export and no-endpoint local guide. Added explicit public
+corpus, bilingual lexical retrieval, proposed future-work labels, strict shared
+contracts, a standalone free-only OpenRouter Worker, SQLite DO quotas, bounded
+frontend transport, source links, short history, mode/privacy disclosure and
+cancel/fallback behavior. Setup instructions and ignored-secret example are in
+server/assistant/. No changes to agentic or access to its credentials.
+
+Verification: lint and TypeScript passed without warnings;93 unit tests passed;
+production export and all seven unchanged budgets passed (homepage261KiB gzip,
+core static11385KiB). Default Chromium browser suite:62 passed/6 configured skips;
+configured AI test build:6 mocked desktop/mobile flows passed; default guide
+focused desktop/mobile:4 passed. Default no-endpoint export restored afterward.
+Worker dry-run with Wrangler4.156.0 passed (~109KiB gzip). Actual local SQLite DO
+probe accepted exactly10/20 concurrent requests and returned429 after process
+restart using the same persisted state. No AI API calls were made. Static JS/
+HTML/JSON scan found no backend secret identifiers or test key. Local probe
+artifacts remain under /tmp/portfolio-rag-runtime; no probe route ships in Worker.
+
+Fresh-context read-only review found2P2 issues: unlabeled GPA/contact facts and
+caller timestamps resetting quota across midnight. Added failing regressions,
+then fixed both; expanded personal/Chinese/P2/project fixtures and corrected the
+education link to /about#education. A separate failing regression also caught
+midnight alarms clearing current-day reservations; alarms now preserve today's
+record. DO uses its own reservation clock and rejects backward state regression.
+
+Reflection: free-only routing and mocks prove boundary behavior, not real model
+availability, grounding quality or actual account quota. Field labels and public
+future-work status must survive corpus generation. Runtime date support must be
+checked rather than assuming today's date is supported; pinned2026-10-30 after
+local workerd rejected2026-11-01. These are local implementation lessons covered
+by existing evidence-first rules; no global governance changes needed.
+
+Pending: user-private OpenRouter/Cloudflare setup, account-wide quota/policy check,
+authorized deployment/frontend endpoint build variable and a bounded live factual/
+adversarial evaluation. No commit, push, real provider call or deployment performed.
+
+### RAG private setup continuation — 2026-11-01
+User reported successful manual Worker deployment and private secret setup,
+then confirmed Workers Free. Continued the existing authorized integration:
+prepared the real Worker URL in Pages release-build environment, retained the
+broad offline regression build, added a mocked configured-release browser gate
+and a second budget check before artifact upload. Browser fixtures accept the
+build's test endpoint without any production runtime override.
+
+First bounded live request returned502 with generic service error. Added safe
+failure-stage/HTTP-status diagnostics after a failing regression; tests passed.
+Deployed diagnostic Worker, retaining secret values, original DO instance and
+all free-only/privacy/quota rules. Second attempt established upstream503.
+Queried public no-key model/endpoint catalogs; a zero-price JSON-capable Liquid
+pin was tested once and returned upstream404. Restored approved default router
+without another inference call. Final Worker version:
+756cb6d6-ff41-4b2b-8493-ecf0228a4edb. Total agent inference attempts this pass:3,
+all failed and retained their reservations; actual account-wide usage unknown.
+No paid model, retries, secret inspection, privacy relaxation, commit or push.
+
+Validation:94 unit tests, lint and TypeScript passed; real-endpoint-configured
+static build and seven unchanged budgets passed;6 configured Chromium/mobile
+browser tests passed with intercepted service traffic and no live calls. Workflow
+parsed using js-yaml, offline-build/release-build/upload ordering checked. Full
+existing browser suite was already verified earlier; only affected configured
+transport was rerun here. Git diff whitespace check passed.
+
+OpenRouter official error documentation and live503 support a routing/provider
+availability problem; exact account/privacy constraint remains unverified. Asked
+user for Activity error text (never API key). Successful live AI generation and
+factual/adversarial evaluation remain pending. Reflection: maintain safe failure
+categories from the start; a generic fallback alone obscures integration defects.
+Do not fix provider eligibility by silently weakening approved data policies.
+
+### RAG rejection diagnostics — 2026-11-01
+User's Activity Explore/Overview screenshots expose aggregate usage (~$0.03,
+83 requests, Top API Key eecs498-008), not rejected-request error detail. They do
+not establish whether the portfolio shares that key or what caused prior errors.
+Corrected the earlier dashboard instruction rather than requesting more screenshots.
+
+Added bounded upstream-error classification into static categories only (data
+policy/routing/provider availability); raw provider text is inspected in memory,
+never returned or logged. Two category tests failed before implementation and
+passed afterward;96 total unit tests plus lint/types passed. Deployed to existing
+Worker, unchanged default free router/privacy/counters/secrets. Version:
+a42ae021-2175-44bc-9ae5-2605594ab2f8. Fourth agent live inference attempt returned
+upstream429. No successful AI response yet; exact minute/day/account/provider
+limit scope remains unknown, and prior503/404 eligibility failures remain open.
+
+Next safe evidence: user runs the official GET /api/v1/key quota check privately,
+using a hidden terminal prompt, and shares only free_model_daily_requests fields.
+This is a read-only account check, not another model invocation. No secret is to
+be sent to chat or read by the agent. No credit purchase, privacy change, paid
+fallback, commit or push. Existing frontend build/browser/budget checks were not
+repeated for this backend-only error classification change.
+Reflection: a dashboard summary is not a failed-request log; prefer minimal,
+sanitized provider diagnostics and explicit quota fields over navigation guesses.
+
+### RAG first real answer — 2026-11-01
+User-private GET /api/v1/key output: free_model_daily_requests used0/limit50/
+remaining50. This excludes daily exhaustion for the queried key at that moment;
+exact same-key correspondence with the deployed secret is user-reported, not
+independently inspected. No key was shared/read. Extend safe diagnostics to known
+error types and numeric Retry-After/X-RateLimit headers only; minute-throttle test
+failed then passed, and unknown values remain omitted.98 total unit tests plus
+lint/types passed. Backend deployed version:
+b6948859-ca07-4886-a97d-78e521939614. Model/privacy/global quota unchanged.
+
+Fifth agent live attempt succeeded: HTTP200,7.6875s, available:true, answer states
+PostgreSQL17 on Cloud SQL as HRS persistent storage, with HRS Cloud SQL and
+PostgreSQL skill citations. Independently matched to data/hrs-case-study.ts
+cloud-sql node (line124). Sixth Chinese proposed-status and seventh Chinese
+follow-up attempts each returned upstream429, with no exact rate-limit headers
+or known error type exposed. Seven agent attempts overall today:503,503,404,429,
+200,429,429;1 success/6 failures, all reservations retained. Stop further live
+attempts for now, preserving the10/day cap. Do not report Chinese/adversarial
+quality as verified or attribute429 specifically to daily exhaustion.
+
+No recharge, paid fallback, account/privacy changes, raw error disclosure,
+secret inspection, commit or frontend push. Frontend release endpoint/gates are
+already prepared; user can publish through GitHub Desktop, after which the actual
+Pages release still requires verification. Free availability remains intermittent;
+existing clearly labeled local fallback handles failures. Reflection: a successful
+connection and a factual example are narrower evidence than stable availability
+or broad conversational quality; separate all three in handoff.

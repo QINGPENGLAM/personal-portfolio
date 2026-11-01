@@ -512,3 +512,54 @@ Linux audio backends quantize it. Reopen the auto-hidden panel before adjusting
 volume. Use disposable Linux testing only; Docker is not part of the website or
 Pages architecture. Preserve existing browser matrix, limits and deployment gate.
 No commit/push or remote rerun requested; user retains GitHub Desktop publication.
+
+## Optional RAG implementation — 2026-11-01
+Use the user-approved independent Cloudflare Worker and OpenRouter free route;
+leave agentic code and secrets untouched. No endpoint means the existing local
+guide; AI errors/limits cause labeled local fallback. Only openrouter/free or
+vendor/model:free is accepted; deny data collection, require requested provider
+parameters and disable provider fallbacks. No live inference or deployment yet.
+
+Retrieve only explicit public fields, not internal notes or repository files.
+V1 is lexical retrieval with bilingual/topic aliases, six chunks/8000 characters,
+not embeddings. Mark published future-work fields and intended HRS AI nodes
+proposed. Include labels for GPA/contact and use /about#education as the actual
+education source. Resolve citations on the server and render escaped text.
+
+The single global SQLite DO owns the reservation clock and atomic persistent
+counters. Caller timestamps are ignored; delayed alarms cannot erase today's
+counts; backward clock movement fails closed. Ten attempts/day, three/minute/hash,
+600 output tokens,20-second upstream deadline, failed attempts counted, no retry.
+Current-day counters/hashes only; midnight alarm clears old data. Pin compatibility
+date2026-10-30 to the verified Wrangler4.156.0 runtime. Keep deployment and private
+secret configuration separate from offline verification. No commit/push requested.
+
+### RAG live setup and offline CI — 2026-11-01
+User's successful manual deployment/secret setup authorizes continuation of the
+same bounded backend integration. Keep real endpoint out of the broad regression
+build; create configured release afterward, intercept every AI request during its
+browser gate, and recheck budgets before upload. No CI calls to live model.
+
+Investigate real failures via safe stage/status diagnostics, never raw provider
+error messages, key inspection or chat logs. Three live inference attempts maximum
+in this setup pass; failed attempts retain reservations. A public-catalog-verified
+free Liquid pin also failed and was reverted to approved openrouter/free. Do not
+relax data_collection:deny or enable paid routes to bypass failures. Next evidence
+needed: user's private OpenRouter Activity error explanation/account eligibility.
+
+### RAG account diagnostics — 2026-11-01
+Use safe static upstream-error categories, never return raw provider messages or
+metadata. Activity summary screenshots cannot attribute portfolio cost or expose
+rejections. Latest upstream429 requires checking actual allowance privately via
+GET /api/v1/key; do not assume daily exhaustion from total request count. Stop
+additional inference attempts until quota evidence is available. No paid upgrade
+or implicit relaxation of data_collection:deny.
+
+### RAG bounded live evaluation — 2026-11-01
+User's private allowance check shows50/50 remaining before current samples; do
+not diagnose daily exhaustion from429 alone. Keep default free router and strict
+privacy. Numeric rate headers/known error types may be returned for diagnosis;
+raw provider strings never leave the Worker. After7 total agent attempts with1
+verified English success and6 failures, stop live calls now rather than exhaust
+all10 pilot slots. Record Chinese/proposed-status/adversarial quality as pending,
+and retain local fallback for free-provider throttling/unavailability.

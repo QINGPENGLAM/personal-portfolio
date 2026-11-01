@@ -14,6 +14,9 @@ concurrency:
   group: 'pages'
   cancel-in-progress: true
 
+env:
+  PORTFOLIO_ASSISTANT_ENDPOINT: https://portfolio-assistant.qingpenglam.workers.dev
+
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -61,6 +64,26 @@ jobs:
 
       - name: Critical browser flows
         run: npm run test:e2e
+
+      # Keep the existing regression suite offline; test the configured release
+      # separately with mocked requests so CI never spends the shared AI quota.
+      - name: Build release with assistant endpoint
+        if: github.event_name != 'pull_request'
+        env:
+          NEXT_PUBLIC_BASE_PATH: /personal-portfolio
+          NEXT_PUBLIC_ASSISTANT_ENDPOINT: ${{ env.PORTFOLIO_ASSISTANT_ENDPOINT }}
+        run: npm run build
+
+      - name: Verify configured assistant with mocked service
+        if: github.event_name != 'pull_request'
+        env:
+          PLAYWRIGHT_ASSISTANT_RAG: '1'
+          PLAYWRIGHT_ASSISTANT_ENDPOINT: ${{ env.PORTFOLIO_ASSISTANT_ENDPOINT }}
+        run: npx playwright test e2e/assistant-rag.spec.ts
+
+      - name: Release performance budgets
+        if: github.event_name != 'pull_request'
+        run: npm run audit:budgets
 
       - name: Setup Pages
         if: github.event_name != 'pull_request'
