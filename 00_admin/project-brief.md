@@ -366,3 +366,55 @@ duplicate language-list calculation, obsolete compatibility exports, and unused
 schema type aliases. Kept component-private types local. The active Next.js app,
 3D world, optional contact worker, original media, content, and dependency versions
 are preserved. Local cleanup only; no commit, push, or deployment.
+
+
+## Ignore rules and audio review — 2026-11-01
+Expanded local-only ignore rules; existing build, dependency, environment, log,
+and test-report exclusions were already effective. Legacy images and internal
+notes remain tracked while the user considers their purpose. Confirmed the
+audio control enables short interface tones only; background music is not
+implemented. Local Chromium measured a running context and a nonzero audio
+signal; the user also confirmed hearing the beep. No music or playback changes.
+
+
+## Legacy media reuse — 2026-11-01
+User chose to ignore old image/ originals while retaining project notes in Git.
+All 65 originals remain local and byte-identical; image/ has been removed from
+the Git index. Inspected all 63 raster files, plus historical HTML and the source
+audit, to map seven project images. Proposed archive-card treatment is documented
+in docs/superpowers/specs/2026-11-01-legacy-project-images-design.md; UI changes
+await scope/design confirmation. User clarified looping background music; no
+track is selected and no music implementation is authorized by this explanation.
+
+
+### Approved archive-card images implemented — 2026-11-01
+Added seven original-image previews to the existing repository archive after the
+user approved that scope. Curated WebP copies total 158932 bytes; originals stay
+local/ignored. Cards use full-frame contain sizing, lazy loading, deployment
+base paths, alt text, and distinct artwork/gameplay/game-over captions. All
+repository descriptions, dates, filters and links remain intact. Local checks
+passed: 74 unit tests, lint, TypeScript, static build/budgets, Chromium/Firefox/
+mobile browser flows, and desktop/mobile axe/overflow checks. No publication.
+
+
+## Selected background music implemented — 2026-11-01
+Integrated the user-supplied Calm Ambient Dreamscape MP3, byte-identical to the
+Downloads original. The header button now starts/pauses looping music with
+volume adjustment; default off, no pre-click download, route continuity and
+retry/cancellation guards. Retained optional interface tones. Credits are recorded.
+Validated 77 unit tests, lint/TypeScript/build, explicit core/music/full-export
+budgets, and 12 real-browser cases across Chromium/Firefox/mobile Chrome,
+including native end-of-track looping. Desktop/mobile axe and layout passed.
+Local only; no commit, push or deployment.
+
+
+## Music-control follow-up — 2026-11-01
+User requested no visible track link, a fading volume panel, and default sound.
+Removed the link while retaining credit/provenance files. The panel fades after
+3 seconds, stays open during slider interaction and reopens through hover,
+keyboard focus or a separate touch-accessible volume button. Attempt autoplay
+on document load; on browser NotAllowedError wait silently for the first eligible
+click/key, and never override a later manual pause/cancel. This supersedes the
+previous default-off/click-only behavior and may request music on page load.
+77 unit tests, 24 cross-browser music checks, lint/TypeScript/build/budgets and
+desktop/mobile axe/overflow checks passed. No commit/push/deployment.

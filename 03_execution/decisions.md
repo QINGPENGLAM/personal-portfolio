@@ -441,3 +441,63 @@ retain Next.js convention exports and the documented optional Worker. Use
 portfolioSkills directly rather than maintaining the obsolete resumeSkills alias;
 assistant suggestions remain in their dedicated lightweight data module. No
 feature redesign, dependency change, commit, push, or publication.
+
+
+## Tracking and audio boundary — 2026-11-01
+Keep source, current public assets, and existing tracked documents unchanged while
+clarifying the user's desired GitHub exclusions. Added only local editor/agent/
+cloud-state and temporary-file ignore rules. Do not treat .gitignore as removing
+already tracked content. The audio button currently means interface sound; the
+user expected background music, but no track or music implementation is selected.
+
+
+## Original media retention and reuse — 2026-11-01
+User explicitly selected ignoring old images and retaining notes. Untrack image/
+with git rm --cached only; preserve all local bytes. Selected public-facing copies
+will belong in public/project-previews/archive/ if the archive-card design is
+approved. Source mapping is based on visual inspection plus historical HTML,
+not filenames alone. Label artwork separately from game screens. The music
+question means looping background music; explain user-initiated looping and
+controls, with a music file still needed. Do not add a fabricated soundtrack.
+
+
+## Approved archive preview implementation — 2026-11-01
+User selected current portfolio cards rather than separate project websites.
+Keep curated preview metadata in data/repository-previews.ts, separate from the
+dated GitHub snapshot. Publish seven compressed WebP copies under public/;
+use Next Image with existing unoptimized static-export config, base paths and
+contain sizing. Use artwork labels for Calculator/food-ordering-/topicshare/
+Tic-Tac-Toe and historical screen labels for the three Unity projects. Existing
+text-only cards remain unchanged. No music, dependency or remote repo changes.
+
+
+## Selected-track integration and media budgets — 2026-11-01
+The user's downloaded MP3 selects the background track. Self-host the full
+7,108,608-byte file under public/audio/ and keep the Downloads original untouched.
+Use HTML audio for music independently of optional Web Audio effects. Default
+off on document load; no enabled-preference auto-resume. Create src only on a
+user click, loop, use20% default volume, allow pause/cancel and volume changes,
+and let root-layout context preserve the player across client-side navigation.
+A request generation guard prevents late canceled promises from enabling music.
+
+The selected music is6.8MiB, beyond the prior complete-export headroom. Retain
+12,000,000 bytes for every other static file and all JS/CSS limits; give only the
+exact MP3 path7,200,000 bytes and also enforce19,200,000 bytes combined. Regression
+tests reject excess core/media sizes. The local preview server needs MIME,
+Content-Length and single byte-range responses for reliable seeking/duration.
+No dependency change, external music host, source mutation, commit or push.
+
+
+## Revised music defaults and transient controls — 2026-11-01
+The user's latest request supersedes default-off/no-prefetch behavior: try playback
+after mount. A NotAllowedError is expected browser policy, not a broken file;
+wait for an eligible click/key outside audio controls. Manual play/pause/cancel
+turns off automatic fallback. Keep async request generations and clean listeners
+on unmount. Other playback errors remain retryable. Browser policy cannot be
+bypassed by setting a UI preference.
+
+Remove the visible source link; keep public/audio/CREDITS.txt. Fade the panel
+after3 seconds of inactivity, leaving it visible while hovered or focused inside.
+Hidden controls are inert. A separate small24px volume opener preserves the
+main button's pause semantics and allows touch users to reopen without stopping
+music. It does not change header layout width. No unrelated changes or publication.

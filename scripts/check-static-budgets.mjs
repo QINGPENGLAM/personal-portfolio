@@ -33,11 +33,16 @@ const cssFiles = allFiles.filter((file) => file.endsWith('.css'))
 const largestJavaScript = Math.max(...jsFiles.map((file) => gzipSync(readFileSync(file)).byteLength))
 const largestStylesheet = Math.max(...cssFiles.map((file) => gzipSync(readFileSync(file)).byteLength))
 const totalExport = allFiles.reduce((total, file) => total + statSync(file).size, 0)
+// Only this user-selected track has a separate media allowance.
+const optionalMusicPath = join(outputDirectory, 'audio', 'calm-ambient-dreamscape.mp3')
+const optionalMusicBytes = existsSync(optionalMusicPath) ? statSync(optionalMusicPath).size : 0
 const checks = [
   ...routeBudgets.map((budget) => ({ label: budget.label, actual: scriptGzipSize(budget.path), max: budget.max })),
   { label: 'largest JavaScript chunk (gzip)', actual: largestJavaScript, max: 310_000 },
   { label: 'largest stylesheet (gzip)', actual: largestStylesheet, max: 22_000 },
-  { label: 'complete static export', actual: totalExport, max: 12_000_000 },
+  { label: 'static export excluding optional music', actual: totalExport - optionalMusicBytes, max: 12_000_000 },
+  { label: 'optional background music', actual: optionalMusicBytes, max: 7_200_000 },
+  { label: 'complete static export', actual: totalExport, max: 19_200_000 },
 ]
 
 for (const check of checks) {

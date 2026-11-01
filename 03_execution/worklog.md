@@ -677,3 +677,135 @@ reads were more useful. Dead-looking Next convention exports and optional server
 entry points need explicit retention; import reachability alone is insufficient.
 The reusable check is to combine source references with the actual deployed
 artifact boundary before deleting legacy code. No new global rule is needed.
+
+
+## Ignore rules and audio diagnosis — 2026-11-01
+Verified clean baseline after user commit f2fda21. Existing ignores cover builds,
+dependencies, environments, reports, logs, and macOS metadata; no tracked file
+matched ignore rules. Added .idea/, .vscode/, .codex/, .aws/, swap files, and
+Windows desktop metadata. git check-ignore confirmed representative excluded
+paths; required source/public assets and .env.example remain trackable.
+Explained that image/ contains 65 legacy files (~73 MB), while governance notes
+contain TODOs, worklogs, and decisions. Retained both pending user preference.
+Traced AudioProvider and all play() calls: tones are event effects, no soundtrack.
+Local Chromium probe observed oscillator start in running state and peak signal
+0.02445; user confirmed the beep. No audio code changes.
+Reflection: explain file categories with concrete examples before asking about
+tracking; a music-note icon can suggest background music despite an interface-
+sound label. No new global rule. No commit, push, or remote mutation.
+
+
+## Legacy image inventory and tracking — 2026-11-01
+Added /image/ ignore and removed all 65 originals from the Git index with
+git rm -r --cached -- image. Confirmed 0 tracked image entries, all 65 original
+local files byte-identical to HEAD, and governance notes still tracked. No
+commit/push/history rewrite. Viewed contact sheets for every raster original
+(63 files; remaining two are PDFs). Historical web.html and gameplan.html from
+f2fda21^ corroborate seven mappings to Calculator, food-ordering-, topicshare,
+Tic-Tac-Toe, cube-game, random-spawn-dodge and arthistory-RPG. Kept uncertain
+commerce images, generic artwork and personal photos out of proposed assignments.
+Prepared a short design for image-bearing archive cards; asked whether the user
+means current portfolio cards or the separate old websites. UI implementation
+is pending confirmation under the loaded brainstorming design gate.
+User clarified circular background means looping music; explained the need for
+a selected music file, click-to-start looping, pause and volume. No audio changes.
+Reflection: ignored originals can coexist with curated public copies; distinguish
+project illustrations from runtime screenshots and portfolio-card redesign from
+changes to separate repositories. No new global rule.
+
+
+## Seven archive previews delivered — 2026-11-01
+User approved the written current-portfolio-card design. Recorded the bounded
+plan and implemented in the existing checkout, preserving prior untracking/docs
+changes. Added data/repository-previews.ts, seven optimized WebPs (158932 bytes),
+conditional lazy Next Image figures, full-frame contain CSS and honest captions.
+Existing 39 repository records, filter logic, source/live links and dated claims
+are unchanged. Added three unit regressions and one cross-browser interaction
+flow. The unit test first failed on missing preview module, then on missing
+figures, then passed with implementation. SSR unit tests use Next's default
+optimizer configuration, so source assertions resolve its URL parameter; built
+static-browser tests independently require direct /personal-portfolio/ asset URLs.
+
+Validation: baseline 71 tests passed; final 74 tests, lint and TypeScript passed.
+Pages-base-path build passed, all five budgets passed (home JS260/275 KiB,
+world JS267/290 KiB, largest JS240/303 KiB, CSS19/21 KiB, export11314/11719 KiB).
+The new browser flow passed Chromium, Firefox and mobile Chrome (3/3), checking
+all seven loaded images, links, contain sizing, filtering, text-only fallback and
+viewport overflow. Desktop1440/mobile390 axe found no serious/critical violations
+and no horizontal overflow. Viewed both card screenshots. First standalone axe
+runner required browser.newContext(); corrected the QA runner and reran cleanly.
+Read-only review found no actionable issues; no scope rulings or deferred issues.
+Restored generated next-env.d.ts; diff whitespace checks passed. No commit/push.
+
+Reflection: keep historical project media separate from the dated repository
+snapshot, preserve original composition, and check static-host paths in a real
+browser because SSR unit tests do not load Next config. No new global rule.
+
+
+## Background music integration — 2026-11-01
+Located the only Downloads MP3: morgan-ambient-calm-ambient-dreamscape-529861.mp3.
+Official Pixabay page confirms title/author,3:42,AI-generated label and Content
+License usage. Copied the full7,108,608-byte asset unchanged; cmp passed. Recorded
+source/license in public/audio/CREDITS.txt. Added HTML music playback to existing
+AudioProvider and header control, loop/pause/cancel,20% default/volume slider,
+retryable status, no source before click, and client-route continuity. Every new
+document starts off. Interface tones remain optional and independent of music
+failures; removed the old toggle-confirmation beep and stored enabled preference.
+
+Added e2e/background-music.spec.ts and tests/static-music-budget.test.ts. Initial
+browser regression failed on the absent music button; all three budget regressions
+failed before implementation. Final77 unit tests, lint and TypeScript passed.
+Pages-base-path production build passed. All7 budgets passed: homeJS260/275KiB,
+worldJS267/290KiB,largestJS240/303KiB,CSS19/21KiB,core11316/11719KiB,
+music6942/7031KiB,complete18258/18750KiB. Exact-file-only music allowance is
+covered by oversized-core and oversized-music failures.
+
+All12 final browser checks passed in Chromium,Firefox,mobile Chrome: real playback,
+no pre-click media request/src,20% volume/slider,loop returning from end to start,
+route continuity,pause,new-document off,rejected play retry,missing file retry,
+and canceled late promises. Strengthening native-loop testing exposed preview
+server deficiencies: missing length gave Chromium infinite duration; missing
+byte ranges prevented reliable Firefox near-end seeking. Added explicit MP3
+MIME,length,single-range206/416 responses and verified a32-byte range plus native
+looping on all three engines. A finite-duration wait also avoids a metadata race.
+Desktop1440/mobile390 homepage checks found no serious/critical axe issues or
+horizontal overflow; viewed both playing-control screenshots. Read-only music
+review found no actionable issues. Restored generated next-env.d.ts. No commits,
+push,external writes or deployment.
+
+Reflection: exercise actual playback and end transitions,not only a loop property.
+Keep optional large media separately bounded without relaxing the existing core
+cap,and ensure test hosting models duration/range behavior. No new global rule.
+
+
+## Default sound and fading panel — 2026-11-01
+Removed the requested visible Calm Ambient Dreamscape link. Added3-second panel
+fade, pointer/focus reveal, inert hidden controls and slider-focus/hover protection.
+Default playback now attempts after mount; NotAllowedError silently arms an
+eligible click/keydown fallback. Manual pause/cancel disables fallback and pending
+request generations continue to prevent late re-enablement. Guarded the scheduled
+initial frame so an earlier manual interaction is not overwritten. This changes
+the former no-download-before-click policy per the user's request; full music
+file, credits and budget partition remain unchanged.
+
+Initial new regressions failed against the prior build on missing automatic
+attempts and the still-present link. Read-only review found oneP2: a touch user
+could not reopen a faded panel without pausing. Added a real mobile tap regression,
+observed failure on the missing reveal button, then added a separate24px volume
+opener. Narrowed slider locators by role/exact name after the new button caused
+a label substring collision. Final24 browser checks passed across Chromium,
+Firefox and mobile Chrome, covering autoplay allowed/blocked, first-click/key
+fallback, manual pause, fade without stopping audio, touch reopening without
+pause, persistent slider focus, retry/cancel and native looping. No review findings
+remain; no rulings or deferred minors.
+
+77 unit tests, full lint, TypeScript, Pages-base-path build and all7 budgets pass.
+Core11318/11719KiB, music6942/7031KiB, total18260/18750KiB; JS/CSS limits
+unchanged. Desktop1440/mobile390 axe found no serious/critical issues, no overflow;
+viewed faded mobile screenshot and confirmed the panel no longer obstructs
+content. Restored generated next-env.d.ts; diff whitespace checks pass. No commit,
+push or deployment.
+
+Reflection: fading must retain a touch-accessible way to reopen controls; keep
+that separate from pause. Treat autoplay policy rejection as an expected state
+and test pause intent after interaction fallback. No new global rule.

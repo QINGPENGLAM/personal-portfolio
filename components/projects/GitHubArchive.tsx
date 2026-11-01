@@ -1,6 +1,9 @@
 'use client'
 
+import Image from 'next/image'
 import { useMemo, useState } from 'react'
+import { repositoryPreviews } from '@/data/repository-previews'
+import { withBasePath } from '@/lib/site'
 import type { GitHubRepository } from '@/data/schemas'
 
 type SortOption = 'newest' | 'oldest' | 'name'
@@ -63,19 +66,26 @@ export function GitHubArchive({ repositories, snapshotDate }: { repositories: Gi
 
       {filteredRepositories.length ? (
         <div className="archive-grid">
-          {filteredRepositories.map((repository) => (
-            <article className="archive-card glass-card" key={repository.codeUrl}>
-              <div className="archive-card-meta"><span>{repository.primaryLanguage ?? 'Language not reported'}</span><time dateTime={repository.pushedAt}>Updated {formatMonth(repository.pushedAt)}</time></div>
-              <h3>{repository.name}</h3>
-              <p className={repository.description ? undefined : 'archive-description-missing'}>{repository.description ?? 'No repository description is published on GitHub.'}</p>
-              {repository.liveStatus === 'verified' ? <span className="archive-live-badge">Live page verified · {formatFullDate(repository.liveCheckedAt!)}</span> : null}
-              {repository.liveStatus === 'unavailable' ? <span className="archive-live-unavailable">Configured live URL returned 404 · {formatFullDate(repository.liveCheckedAt!)}</span> : null}
-              <div className="archive-card-actions">
-                <a aria-label={`View ${repository.name} code on GitHub`} href={repository.codeUrl} rel="noreferrer" target="_blank">View code <span aria-hidden="true">↗</span></a>
-                {repository.liveUrl ? <a aria-label={`Open ${repository.name} verified live demo`} href={repository.liveUrl} rel="noreferrer" target="_blank">Live demo <span aria-hidden="true">↗</span></a> : null}
-              </div>
-            </article>
-          ))}
+          {filteredRepositories.map((repository) => {
+            const preview = repositoryPreviews[repository.name]
+            return (
+              <article className="archive-card glass-card" key={repository.codeUrl}>
+                {preview ? <figure className="archive-preview">
+                  <div className="archive-preview-image"><Image alt={preview.alt} fill sizes="(max-width: 760px) 100vw, (max-width: 1240px) 50vw, 560px" src={withBasePath(preview.src)} /></div>
+                  <figcaption>{preview.caption}</figcaption>
+                </figure> : null}
+                <div className="archive-card-meta"><span>{repository.primaryLanguage ?? 'Language not reported'}</span><time dateTime={repository.pushedAt}>Updated {formatMonth(repository.pushedAt)}</time></div>
+                <h3>{repository.name}</h3>
+                <p className={repository.description ? undefined : 'archive-description-missing'}>{repository.description ?? 'No repository description is published on GitHub.'}</p>
+                {repository.liveStatus === 'verified' ? <span className="archive-live-badge">Live page verified · {formatFullDate(repository.liveCheckedAt!)}</span> : null}
+                {repository.liveStatus === 'unavailable' ? <span className="archive-live-unavailable">Configured live URL returned 404 · {formatFullDate(repository.liveCheckedAt!)}</span> : null}
+                <div className="archive-card-actions">
+                  <a aria-label={`View ${repository.name} code on GitHub`} href={repository.codeUrl} rel="noreferrer" target="_blank">View code <span aria-hidden="true">↗</span></a>
+                  {repository.liveUrl ? <a aria-label={`Open ${repository.name} verified live demo`} href={repository.liveUrl} rel="noreferrer" target="_blank">Live demo <span aria-hidden="true">↗</span></a> : null}
+                </div>
+              </article>
+            )
+          })}
         </div>
       ) : (
         <div className="archive-empty glass-card"><h3>No repositories match those filters.</h3><p>Try a shorter search or choose another evidence filter.</p><button onClick={() => { setQuery(''); setLanguage('All'); setAvailability('all') }} type="button">Clear filters</button></div>

@@ -275,3 +275,35 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Pass lint, TypeScript, all 71 unit tests, Pages-base-path build, and size budgets.
 - [x] Complete read-only code review; no actionable issues found.
 - [x] Finish desktop/mobile browser checks: Chromium 53 passed/3 configured skips; focused desktop/mobile run 17 passed/7 configured skips.
+
+
+## Ignore rules and audio review — 2026-11-01
+- [x] Verify existing exclusions and absence of tracked files matching ignore rules.
+- [x] Ignore local editor/agent/cloud state, swap files, and desktop metadata.
+- [x] Explain legacy image/ assets and project notes before changing tracking.
+- [x] Confirm the sound toggle generates a beep and explain that no background track exists.
+- [x] User chose: ignore legacy image/ originals and keep project notes tracked.
+
+
+## Reuse legacy project images — 2026-11-01
+- [x] Ignore /image/ and untrack its 65 originals without deleting local files.
+- [x] Preserve project notes in Git and verify originals byte-for-byte.
+- [x] Inspect legacy raster images and corroborate seven repository mappings.
+- [x] Prepare a concrete archive-card image design for scope confirmation.
+- [x] User approved updating the current portfolio archive cards.
+- [x] Add seven image previews and pass 74 unit tests, lint/TypeScript/build/budgets, three browser engines and desktop/mobile axe/layout checks.
+
+
+## Selected background music — 2026-11-01
+- [x] Locate the supplied Downloads MP3 and verify official track/license details.
+- [x] Copy it unchanged and add click-to-load loop/pause/volume controls.
+- [x] Handle failed/canceled starts and preserve playback across client routes.
+- [x] Keep core/JS/CSS limits; bound the exact optional music asset and full export.
+- [x] Verify 77 unit tests, build, 12 cross-browser music cases, and desktop/mobile axe/layout.
+
+
+## Music defaults and fading controls — 2026-11-01
+- [x] Remove the visible track link; retain licensing/provenance file.
+- [x] Fade controls after3 seconds and retain hover/focus/touch access.
+- [x] Attempt default playback, fall back to an eligible user interaction, respect manual pause.
+- [x] Pass77 unit tests and24 browser cases plus lint/types/build/budgets and desktop/mobile axe/layout.

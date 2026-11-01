@@ -26,3 +26,18 @@ yarn-error.log*
 
 # macOS metadata
 .DS_Store
+
+# Local editor, agent state, and cloud credentials
+.idea/
+.vscode/
+.codex/
+.aws/
+*.swp
+*.swo
+
+# Other desktop metadata
+Thumbs.db
+Desktop.ini
+
+# Original legacy media stays local; publish selected copies from public/
+/image/

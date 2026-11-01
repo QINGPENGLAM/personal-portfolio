@@ -34,7 +34,7 @@ The source-level review in [`docs/PUBLIC_PROJECT_CODEBASE_AUDIT_2026-08-11.md`](
 - Expanded About story covering interests, working style, curiosity, and current direction without becoming an autobiography
 - In-world Experience, About, Skills, and Education dossiers using `/world/?panel=[landmark]`, browser Back, Escape, and focus trapping
 - Local portfolio guide that answers only from approved structured content, links to supporting sections, refuses unavailable facts, and rate-limits questions in the browser
-- Optional synthesized interface sounds that are muted by default, require a user gesture, persist the preference locally, and fail closed
+- Optional looping background music with default-play attempts, browser-policy interaction fallback, pause, fading volume controls, retryable errors, and interface tones
 - World loader whose progress reflects WebGL and renderer milestones, with lightweight-map and Recruiter View exits
 - Advanced procedural data-signal animation that respects reduced motion and performance mode
 - Privacy-conscious event tracking for world entry, Recruiter View, projects, résumé downloads, successful contact delivery, and guide opening
@@ -265,3 +265,44 @@ Updated light surfaces, secondary text, blue/green accents, borders, project car
 
 ### Carousel callback lifecycle — 2026-10-27
 Fixed the reported ProjectReel barRef.current.style null-reference crash. The scroll/resize effect captures the mounted progress-bar node and ignores updates once disposed or when the track/bar refs detach or are replaced. Cleanup marks the effect disposed before removing listeners/disconnecting its observer. Layout and carousel behavior remain intact; this handles late observer callbacks during navigation or component replacement. No commit/push/deployment.
+
+
+### Repository hygiene review — 2026-11-01
+The retired root HTML/CSS/JS has now been removed. Local editor settings, Codex
+state, AWS credentials, swap files, and Windows desktop metadata are also ignored.
+The 65 legacy image/ files and project/governance notes remain tracked pending the
+user's choice; current app assets in public/ remain required. Ignore rules do not
+untrack existing files or remove Git history.
+
+
+### Legacy originals — 2026-11-01
+The user selected retaining all original image/ files locally while removing them
+from Git tracking. Project notes remain tracked. Approved website imagery will
+be published as selected optimized copies under public/, independently of the
+ignored original folder. Previous Git history is unchanged.
+
+
+### Original project previews — 2026-11-01
+Seven older archive cards now reuse original artwork or historical game screens.
+Preview metadata lives in data/repository-previews.ts and optimized assets in
+public/project-previews/archive/. The source image/ folder remains local and
+ignored. Captions distinguish artwork from game screens; images do not imply
+current deployment or runtime verification.
+
+
+### Optional background music — 2026-11-01
+The header music button now plays the user-selected Calm Ambient Dreamscape by
+morgan-ambient. Music attempts playback by default, loops, continues through client navigation,
+and pauses with the same button. When browser policy blocks autoplay, the first
+eligible click or key starts it; manually pausing cancels this fallback. The volume
+panel fades after three seconds and can be reopened with its small volume button,
+hover or keyboard focus. Using the slider keeps it open. The visible track link
+was removed at the user’s request; provenance remains in the credit file.
+The complete supplied MP3 is preserved in public/audio/; source/license credit
+is in public/audio/CREDITS.txt. No music hotlink or external playback request.
+
+The original JS/CSS caps and 12,000,000-byte non-music static export cap remain.
+Only this exact selected MP3 has a separate 7,200,000-byte cap; the complete
+export is also bounded at 19,200,000 bytes. Extra media does not inherit this
+allowance. scripts/serve-static.mjs supplies MP3 MIME, content length and byte
+ranges for browser duration detection and seeking.
