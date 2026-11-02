@@ -1,0 +1,40 @@
+import { expect, test } from '@playwright/test'
+import { suggestedAssistantQuestions } from '../data/assistant-suggestions'
+
+test('browses expanded local questions without contacting AI or hiding the input', async ({ page }, testInfo) => {
+  let aiRequests = 0
+  await page.route('**/*', route => {
+    if (/openrouter\.ai|portfolio-assistant\.[^/]+\.workers\.dev/.test(route.request().url())) { aiRequests++; return route.abort() }
+    return route.continue()
+  })
+  await page.goto('/personal-portfolio/')
+  await page.getByRole('button', { name: 'Ask portfolio', exact: true }).click()
+  await expect(page.getByText('Local demo · approved data only')).toBeVisible()
+  await expect(page.locator('.assistant-suggestions button')).toHaveCount(suggestedAssistantQuestions.length)
+  const input = page.getByRole('textbox', { name: 'Ask about QingPeng’s portfolio' })
+  await expect(input).toBeInViewport()
+  const last = page.getByRole('button', { name: 'Where is his source code?', exact: true })
+  await last.scrollIntoViewIfNeeded()
+  await expect(last).toBeInViewport()
+  await expect(input).toBeInViewport()
+  if (testInfo.project.name === 'mobile-chrome') await page.screenshot({ path: '/tmp/portfolio-local-question-bank-mobile.png' })
+  const hrs = page.getByRole('button', { name: 'Is HRS AI screening already deployed?', exact: true })
+  await hrs.scrollIntoViewIfNeeded()
+  await hrs.click()
+  await expect(page.getByText(/HRS AI screening is a proposed\/intended workflow/)).toBeVisible()
+  await page.getByRole('button', { name: 'Browse common questions', exact: true }).click()
+  await expect(input).toBeInViewport()
+  const testing = page.getByRole('button', { name: 'How is DevDoctor tested?', exact: true })
+  await testing.scrollIntoViewIfNeeded()
+  await testing.click()
+  await expect(page.locator('.assistant-messages article').last()).toContainText('260+')
+  await input.fill('What backend stack does Immich use?')
+  await page.getByRole('button', { name: 'Ask', exact: true }).click()
+  const lastAnswer = page.locator('.assistant-messages article').last()
+  await expect(lastAnswer).toContainText('Express')
+  await expect(lastAnswer).not.toContainText('FastAPI')
+  await input.fill('What is his salary?')
+  await page.getByRole('button', { name: 'Ask', exact: true }).click()
+  await expect(page.locator('.assistant-messages article').last()).toContainText('not available')
+  expect(aiRequests).toBe(0)
+})

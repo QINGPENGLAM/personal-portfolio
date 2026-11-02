@@ -491,3 +491,13 @@ alternative declined; no AI binding/call or billing change made. Keep current
 free-only pinned route and all existing protections. Frontend fallback clarity/
 education fixes remain ready locally for user publication; provider reliability
 and Chinese/adversarial quality are not represented as resolved.
+
+## Expanded local questionnaire — 2026-11-01
+Expanded common questions from5 to25 using the existing deterministic guide and
+published data. Specific projects/roles take precedence over broad keywords;
+bilingual aliases cover common facts. Added bounded scrolling and a reopen/hide
+control so questions remain available after an answer without hiding the input.
+Current OpenRouter configuration and real quota controls are preserved; no API
+calls, deployment, commit or push for this task. Local-only build restored after
+mocked configured-AI compatibility checks. Coverage is documented in
+docs/Local_Portfolio_Guide.md;131 units and14 desktop/mobile browser cases pass.

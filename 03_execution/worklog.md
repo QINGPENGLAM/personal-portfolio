@@ -1036,3 +1036,32 @@ fallback clarity/education fix, then release verification; do not claim stable
 free-provider or Chinese/adversarial quality. Reflection: honor the chosen provider
 boundary without repeated migration pressure; distinguish completed resilience
 improvements from unresolved external reliability.
+
+### Expanded local static questionnaire — 2026-11-01
+User requested more local static questions. Extended existing guide without a new
+provider or API call:25 initial prompts, named project/experience routing before
+broad keyword intents, profile/GPA/education/resume/contact/GitHub/Unity facts,
+HRS overview/database/dedup/cloud/evaluation and explicit proposed AI status,
+bounded source-evidence skill examples and Chinese topic aliases. Reused public
+data arrays and removed superseded duplicate education/contact/substring-skill
+branches. Unknown salary/visa/birth/availability details stay unavailable.
+
+24 added unit cases initially exposed21 failures, then passed. Added unrelated
+capital/internet probes; they failed, then passed after token-boundary fixes.
+JavaScript does not match Java; C++ escaping verified. Browser reopen-control
+fixture failed before implementation (missing button), then passed after adding
+native reopen/hide control and bounded scrolling. Mobile screenshot reviewed:
+common questions scroll within panel and input remains visible/reachable.
+
+Verification:131 total units, lint, TypeScript, configured and unconfigured static
+builds passed; all seven budgets unchanged and green (home261KiB/core11401KiB).
+Unconfigured Chromium/mobile checks6 passed, including existing lazy-load failure;
+new case confirms zero AI network requests, scroll/input visibility, reopening,
+named project answer and unsupported-question handling. Configured mocked AI
+compatibility8 passed. No real inference calls, secrets/account changes, backend
+deployment, commit or push. Restoring local-only export for user preview and
+restoring incidental generated next-env.d.ts to HEAD. Coverage/limits documented
+in docs/Local_Portfolio_Guide.md. Earlier fallback fixes preserved from user commit9020ecd; this expansion remains uncommitted.
+Reflection: a larger question list needs bounded scrolling and a route back to
+it; named-subject precedence and token boundaries prevent misleading generic
+answers. No new cross-project rule needed beyond existing grounding/verification.

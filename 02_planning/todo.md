@@ -341,3 +341,11 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Preserve quotas/privacy; verify pinned-free English success and record Chinese output/rate-limit failures honestly.
 - [x] User explicitly chose to retain OpenRouter free models; Cloudflare Workers AI migration declined and not implemented.
 - [ ] Publish the frontend fix/provider choice through user-authorized release and verify new live behavior.
+
+## More local static questions — 2026-11-01
+- [x] Expand common prompts5→25 and local answers for profile, education, resume, contact, named projects/roles, HRS and skill evidence.
+- [x] Prioritize named subjects and fix Java/JavaScript plus API/capital and intern/internet matching boundaries.
+- [x] Keep unsupported personal facts unavailable and HRS AI explicitly proposed.
+- [x] Bound prompt-list scrolling, preserve mobile input and allow reopening questions after an answer.
+- [x] Pass131 units, lint/types/build/budgets and14 desktop/mobile browser cases (local6, configured mocked8); no real AI calls.
+- [ ] User publishes local questionnaire/fallback improvements through GitHub Desktop; verify the resulting release.

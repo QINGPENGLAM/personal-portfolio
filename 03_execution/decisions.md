@@ -595,3 +595,14 @@ validation, no paid fallback and website-wide10-attempt/UTC-day cap (failures co
 Keep the completed client error/typography/education fixes; they need a frontend
 publication to appear online. Stop provider-switch proposals and additional live
 trial calls in this decision pass; external availability remains an honest limit.
+
+### Local questionnaire expansion — 2026-11-01
+Use existing deterministic guide/public data as the requested low-risk expansion;
+no provider, hosting or AI behavior change. Add25 common prompts with a bounded
+native scroll area and a reopen/hide button. Keep API logic/rate controls intact.
+Specific project/company matches precede broad intents; reuse public data fields,
+source links and skill evidence rather than duplicating project facts. Prepared
+Chinese summaries cover key personal/HRS-status facts; published English excerpts
+remain original elsewhere. Unknown personal/recruiting details remain unavailable.
+No new current-year, proficiency or deployed-AI claims. Avoid substring matches
+that mistake JavaScript for Java, capital for API or internet for intern.
