@@ -501,3 +501,22 @@ Current OpenRouter configuration and real quota controls are preserved; no API
 calls, deployment, commit or push for this task. Local-only build restored after
 mocked configured-AI compatibility checks. Coverage is documented in
 docs/Local_Portfolio_Guide.md;131 units and14 desktop/mobile browser cases pass.
+
+## Reply preparation/reveal animation — 2026-11-01
+Added requested short preparation dots and chunked text presentation, retaining
+local/AI identity and data boundaries. Minimum550ms includes service latency;
+complete-word chunks40ms, source links after completion. Cancel/unmount clear
+pending presentation, reduced motion shows full answer immediately, and scrolling
+follows output unless the reader scrolls up.135 units and20 desktop/mobile browser
+cases passed, with lint/types/build and unchanged budgets. Presentation only:
+no new model calls, provider/account change, commit or push. Local-only export
+restored for preview; built on user commit1933677.
+
+## Chat panel open/close animation — 2026-11-01
+Added240ms fade/lift/scale opening and180ms fade/drop/scale closing using CSS.
+Closing phase keeps the panel mounted but inert/aria-hidden, then removes it and
+returns focus. A260ms fallback handles interrupted animation; repeated Escape
+cannot prolong closing. Draft/history retained; reduced motion closes immediately.
+135 units,32 targeted browser cases (Chrome/mobile18,Firefox/WebKit6,configured
+mocked AI8), lint/types/build/budgets pass. Local-only preview restored. No model
+calls, provider/account changes, commit, push or deployment in this task.

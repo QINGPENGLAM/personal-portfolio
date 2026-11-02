@@ -35,3 +35,22 @@ presented as confirmed deployment. Skills/source counts are not proficiency scor
 Question text: data/assistant-suggestions.ts.
 Answer routing/public data: lib/assistant.ts and the linked data modules.
 Regression fixtures: tests/assistant-local.test.ts, e2e/assistant-local.spec.ts.
+
+Reply presentation: normal motion uses a minimum550ms preparation phase with
+animated dots, then reveals complete-word chunks about every40ms. Real service
+waiting counts toward that minimum; this does not add a second full wait after
+a slow API call. This is a display effect applied to an already prepared/validated
+answer, not model generation or network streaming. Local/AI labels remain intact.
+Source links appear only after completion. Cancel stops timers and discards the
+partial display; reduced motion skips artificial delay/reveal animation. The
+message area follows new content unless the visitor scrolls up to read earlier
+messages. aria-busy marks partial updates as pending so assistive technology can announce
+the completed reply.
+
+Panel motion: opening fades/slides up with a slight scale over240ms; closing
+fades/slides down over180ms. Exit keeps the panel mounted but inert/hidden from
+assistive technology until the animation completes. A260ms fallback covers an
+interrupted/disabled animation; repeated Escape does not restart it. Close returns
+focus to the opener after removal, and the draft/history remain available on
+reopen. Reduced motion skips panel animations and closes immediately. Exit timers
+are cleared on completion, reopening or component unmount.

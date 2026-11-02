@@ -606,3 +606,23 @@ Chinese summaries cover key personal/HRS-status facts; published English excerpt
 remain original elsewhere. Unknown personal/recruiting details remain unavailable.
 No new current-year, proficiency or deployed-AI claims. Avoid substring matches
 that mistake JavaScript for Java, capital for API or internet for intern.
+
+### Reply presentation — 2026-11-01
+Treat the user's requested thinking/chunk effect as client presentation of existing
+static or validated AI text. Keep local labels and disclosures honest. Use550ms
+minimum preparation including existing network wait, then word-boundary chunks
+at40ms. Do not change provider protocol to streaming or add model calls. Hide
+links until completion; cancel removes partial content and clears timers/listeners.
+Respect reduced motion with immediate full text and no animated dots; defer live
+region announcements with aria-busy. Follow scroll only while near the latest
+message, resuming on a new question. No account/quota or content changes.
+
+### Chat panel lifecycle animation — 2026-11-01
+Use native CSS keyframes rather than a new animation dependency. Opening240ms,
+closing180ms; maintain a separate closing phase so DOM is not removed before the
+exit can paint. Keep exiting controls inert/aria-hidden and ignore descendant/
+entry animation events. Finish on the panel's exit event or260ms watchdog, clearing
+it to prevent stale timers from closing a reopened panel. Repeated Escape is a
+no-op during exit. Preserve draft/history and return focus after removal. Reduced
+motion skips both effects and exit delay. Preserve existing pending reply behavior
+on panel close; component unmount still aborts/cleans both lifecycles.

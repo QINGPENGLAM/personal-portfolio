@@ -1065,3 +1065,59 @@ in docs/Local_Portfolio_Guide.md. Earlier fallback fixes preserved from user com
 Reflection: a larger question list needs bounded scrolling and a route back to
 it; named-subject precedence and token boundaries prevent misleading generic
 answers. No new cross-project rule needed beyond existing grounding/verification.
+
+### Animated preparation and chunked reply — 2026-11-01
+User requested a short thinking-like ellipsis and chunk-by-chunk answer display.
+Built on user commit1933677. Added pure presentation helper: minimum550ms
+preparation, full-word chunks24+characters/40ms, exact original text/Unicode,
+AbortSignal cleanup, immediate reduced-motion path. Presentation clock is kept
+outside the React component and tested so real API wait counts toward preparation
+instead of adding delay after a slow response. Initial purity lint objected to
+component-local clock reads; moved timing into the independent helper, then lint
+passed without suppression.
+
+Widget now creates a single pending reply bubble immediately, shows three animated
+dots, updates that same reply progressively, preserves Guide/AI guide identity,
+reveals source links only after completion and replaces cancelled partial text.
+Unmount aborts pending work and guards state updates. aria-busy defers screen-reader
+chunk announcements. Output follows scroll when reader is at bottom; manual scroll
+up pauses following. Existing question bank and source/provider contracts intact.
+
+Initial helper tests failed before implementation because the feature was absent;
+delay/prefix, abort and reduced-motion cases then passed. Added network-wait
+accounting coverage alongside the separate clock helper; four presentation tests
+now pass. Full135-unit suite, lint/types, local and configured
+builds passed. Local Chromium/mobile checks12 passed (new presentation6 plus
+existing loading/question-bank6); configured mocked AI compatibility8 passed.
+DOM observations prove multiple distinct prefixes before the final full answer;
+source links are absent during preparation. Reduced-motion browser check succeeds
+with animation timers frozen. No real AI requests; model traffic blocked/mocked.
+Budgets green:home262KiB,world269KiB,CSS20KiB,core11403KiB. Restoring local-only
+export and incidental generated next-env.d.ts. No commit/push/deployment or account
+changes. Reflection: separate presentation timing from response production, keep
+cancellation tied to one reply identity, and announce only completed text accessibly.
+
+### Chat box opening and closing motion — 2026-11-01
+User requested open/close animation. Added native240ms fade/lift/.97→1 opening
+and180ms fade/drop/1→.97 closing with bottom-right origin. Separate closing state
+retains DOM for exit, makes it inert/aria-hidden and blocks interaction. Own exit
+animationend finishes removal; descendant dots/entry events cannot finish close.
+260ms fallback covers interrupted CSS or motion changes; timer/ref guards prevent
+repeated Escape extension and stale callbacks after reopen/unmount. Kept draft,
+message history, existing reply presentation and focus restoration; reduced motion
+bypasses effects and close delay. Opening analytics/audio stay in the event action,
+not in a potentially replayed React state updater.
+
+Red browser fixture before implementation: opening and interrupted-exit cases
+failed; pre-existing reduced-motion instant-close behavior passed. Final Chrome/
+mobile local checks18 passed, Firefox/WebKit targeted panel checks6 passed, and
+configured mocked AI checks8 passed (32 total targeted cases, no retries). Cases
+cover actual CSS animation, retained draft and opener focus after close/reopen,
+interrupted exit with frozen timers, repeated Escape and reduced-motion no-delay.
+135 units, lint/types and local/configured builds passed. Seven budgets green:
+home262KiB,world269KiB,CSS20KiB,core11405KiB. No real model requests or account/
+provider changes. Restoring local-only export and incidental generated next-env.
+Earlier reply-animation changes preserved; no commit/push/deployment performed.
+Reflection: exit needs a presence phase and cleanup fallback; animation completion
+must be filtered by event target/name so child effects cannot remove the panel.
+This follows the project's existing exit-pattern principle; no global rule update.

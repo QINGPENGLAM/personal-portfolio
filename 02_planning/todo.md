@@ -349,3 +349,17 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Bound prompt-list scrolling, preserve mobile input and allow reopening questions after an answer.
 - [x] Pass131 units, lint/types/build/budgets and14 desktop/mobile browser cases (local6, configured mocked8); no real AI calls.
 - [ ] User publishes local questionnaire/fallback improvements through GitHub Desktop; verify the resulting release.
+
+## Animated guide reply — 2026-11-01
+- [x] Add short animated-dot preparation and progressive complete-word chunks.
+- [x] Preserve source text/Unicode and local/AI labels; defer source links until completion.
+- [x] Cleanly cancel/unmount, respect reduced motion, and follow output without overriding manual scrolling.
+- [x] Pass135 units,20 desktop/mobile browser cases, lint/types/build and all existing budgets; no real AI calls.
+- [ ] User publishes the presentation change through GitHub Desktop if desired.
+
+## Chat panel opening/closing — 2026-11-01
+- [x] Add opening/exit fade, slide and subtle scale matching the existing panel style.
+- [x] Retain exit DOM inertly until completion, with watchdog cleanup and repeated-Escape guard.
+- [x] Preserve draft/reopen, focus return, reply presentation and reduced-motion behavior.
+- [x] Pass135 units,32 targeted browser cases, lint/types/build and unchanged budgets; no live model calls.
+- [ ] User publishes chat motion changes through GitHub Desktop if desired.
