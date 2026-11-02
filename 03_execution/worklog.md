@@ -1121,3 +1121,6 @@ Earlier reply-animation changes preserved; no commit/push/deployment performed.
 Reflection: exit needs a presence phase and cleanup fallback; animation completion
 must be filtered by event target/name so child effects cannot remove the panel.
 This follows the project's existing exit-pattern principle; no global rule update.
+
+### Failed Pages quality job — 2026-11-02
+Read Actions41446783024 logs:245 passed,58 skipped,one WebKit cancellation failure on both attempts. Playwright waited for Cancel actionability as the short reply completed and removed the button. Local original passed once, consistent with a timing-dependent fixture. Fixed only e2e/assistant-presentation.spec.ts: wait for entry animation; freeze preparation before asking/cancelling; advance clock for the next reply. All12 presentation cases across four browsers pass without retries; lint/types pass. User requested job run: reran failed jobs on existingf3027c2 (attempt2 confirmed in progress), without commit/push or model calls. Local test change is not part of that rerun. Reflection: tests for transient controls should own the clock rather than race a real-time presentation window; no new global rule needed.

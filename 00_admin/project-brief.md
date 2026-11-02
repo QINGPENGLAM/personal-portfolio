@@ -520,3 +520,6 @@ cannot prolong closing. Draft/history retained; reduced motion closes immediatel
 135 units,32 targeted browser cases (Chrome/mobile18,Firefox/WebKit6,configured
 mocked AI8), lint/types/build/budgets pass. Local-only preview restored. No model
 calls, provider/account changes, commit, push or deployment in this task.
+
+### CI cancellation test repair — 2026-11-02
+Actions41446783024 failed only the WebKit presentation-cancellation test;245 browser tests passed. Added deterministic test-clock control locally; product behavior unchanged. Failed jobs rerun as attempt2 on existing commitf3027c2; deployment outcome pending.

@@ -626,3 +626,6 @@ it to prevent stale timers from closing a reopened panel. Repeated Escape is a
 no-op during exit. Preserve draft/history and return focus after removal. Reduced
 motion skips both effects and exit delay. Preserve existing pending reply behavior
 on panel close; component unmount still aborts/cleans both lifecycles.
+
+### Deterministic cancellation test — 2026-11-02
+Control the presentation clock in the cancellation fixture after panel entrance finishes. Keep preparation pending until the normal Cancel click executes; then advance time for the next answer. Do not force-click, increase user-visible delay, skip WebKit or loosen the deployment gate.

@@ -30,12 +30,19 @@ test('shows animated preparation and progressively reveals an honestly labeled l
 test('cancels the presentation and permits a fresh question without a stale reply', async ({ page }) => {
   await page.goto('/personal-portfolio/')
   await page.getByRole('button', { name: 'Ask portfolio', exact: true }).click()
+  await page.locator('#portfolio-assistant-panel').evaluate(node => Promise.all(node.getAnimations().map(animation => animation.finished)))
+  // Hold preparation while Playwright checks click actionability. On a busy
+  // WebKit runner the short reply can otherwise finish before Cancel is clicked.
+  await page.clock.install({ time: new Date('2026-11-02T12:00:00Z') })
+  await page.clock.pauseAt(new Date('2026-11-02T12:00:01Z'))
   await page.getByRole('button', { name: 'What backend systems has QingPeng built?', exact: true }).click()
   await expect(page.locator('.assistant-dots')).toBeVisible()
   await page.getByRole('button', { name: 'Cancel request', exact: true }).click()
   await expect(page.getByText('Request cancelled.', { exact: true })).toBeVisible()
   await page.getByRole('textbox').fill('What is his GPA?')
   await page.getByRole('button', { name: 'Ask', exact: true }).click()
+  await expect(page.locator('.assistant-dots')).toBeVisible()
+  await page.clock.runFor(3_000)
   await expect(page.getByRole('link', { name: 'Education detail' })).toBeVisible()
   await expect(page.locator('.assistant-messages article').last()).toContainText('3.8')
   await expect(page.getByRole('link', { name: 'DevDoctor', exact: true })).toHaveCount(0)

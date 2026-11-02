@@ -363,3 +363,10 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Preserve draft/reopen, focus return, reply presentation and reduced-motion behavior.
 - [x] Pass135 units,32 targeted browser cases, lint/types/build and unchanged budgets; no live model calls.
 - [ ] User publishes chat motion changes through GitHub Desktop if desired.
+
+## CI cancellation timing — 2026-11-02
+- [x] Identify WebKit Cancel click racing a short completed reply in Actions41446783024.
+- [x] Wait for panel entrance and freeze preparation with Playwright clock; advance clock for fresh answer.
+- [x] Pass12 four-browser presentation tests, lint and types.
+- [x] Start failed-job rerun (attempt2) on existing pushed commit.
+- [ ] Publish local test stabilization through GitHub Desktop and verify release result.
