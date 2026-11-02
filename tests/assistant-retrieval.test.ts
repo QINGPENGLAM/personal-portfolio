@@ -20,7 +20,7 @@ describe('public assistant evidence', () => {
     expect(new Set(assistantCorpus.map(s => s.id)).size).toBe(assistantCorpus.length)
   })
   it('retrieves personal facts, Chinese skill questions and project aliases', () => {
-    for (const q of ['What is his GPA?', 'What is QingPeng’s GPA?']) expect(retrieveSources(q).some(s => s.id.startsWith('education') && s.href === '/about#education')).toBe(true)
+    for (const q of ['What is his GPA?', 'What is QingPeng’s GPA?', 'what year is qingpeng', 'When will QingPeng graduate?', '他几年级']) expect(retrieveSources(q).some(s => s.id.startsWith('education') && s.href === '/about#education')).toBe(true)
     expect(retrieveSources('What is his email address?').some(s => s.id.startsWith('contact'))).toBe(true)
     expect(retrieveSources('你是谁').some(s => s.id.startsWith('identity'))).toBe(true)
     expect(retrieveSources('他会什么编程语言').some(s => s.id.startsWith('skill-'))).toBe(true)

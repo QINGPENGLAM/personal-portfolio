@@ -77,7 +77,17 @@ export async function handleAssistant(request: Request, env: AssistantEnv, fetch
     const hash = [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`${env.ASSISTANT_RATE_LIMIT_SALT}\0${ip}`)))].map(b => b.toString(16).padStart(2, '0')).join('')
     const quota = env.ASSISTANT_QUOTA.get(env.ASSISTANT_QUOTA.idFromName('global'))
     const reserved = await quota.fetch(new Request('https://quota/reserve', { method: 'POST', body: JSON.stringify({ hash }) }))
-    if (!reserved.ok) return reply(reserved.status === 429 ? 429 : 503, { error: 'quota' })
+    if (!reserved.ok) {
+      let scope: 'day' | 'minute' | undefined
+      let retryAfterSeconds: number | undefined
+      try {
+        const result = JSON.parse(await boundedText(reserved.body, 1024))
+        if (result.scope === 'day' || result.scope === 'minute') scope = result.scope
+        if (Number.isInteger(result.retryAfterSeconds) && result.retryAfterSeconds > 0 && result.retryAfterSeconds <= 86400) retryAfterSeconds = result.retryAfterSeconds
+      } catch { /* Missing quota details still fail closed. */ }
+      if (retryAfterSeconds) headers['Retry-After'] = String(retryAfterSeconds)
+      return reply(reserved.status === 429 ? 429 : 503, { error: 'quota', ...(scope ? { scope } : {}), ...(retryAfterSeconds ? { retryAfterSeconds } : {}) })
+    }
     // Reservation is never refunded; every dispatched attempt, including failures, counts.
     failureStage = 'upstream'
     const controller = new AbortController()
@@ -101,10 +111,16 @@ export async function handleAssistant(request: Request, env: AssistantEnv, fetch
       }
       failureStage = 'output'
       const envelope = JSON.parse(await boundedText(response.body, 24000))
+      const outputError = (outputIssue: string) => reply(502, { error: 'service-unavailable', reason: 'output', outputIssue })
+      if (envelope?.choices?.[0]?.finish_reason === 'length') return outputError('truncated')
       const content = envelope?.choices?.[0]?.message?.content
-      if (typeof content !== 'string') throw new Error('output')
-      const output = modelSchema.parse(JSON.parse(content))
-      if (output.citationIds.some(id => !sources.some(s => s.id === id))) throw new Error('citations')
+      if (typeof content !== 'string' || !content.trim()) return outputError('missing-content')
+      let json: unknown
+      try { json = JSON.parse(content) } catch { return outputError('invalid-json') }
+      const parsed = modelSchema.safeParse(json)
+      if (!parsed.success) return outputError('invalid-schema')
+      const output = parsed.data
+      if (output.citationIds.some(id => !sources.some(s => s.id === id))) return outputError('unknown-citations')
       const cited = sources.filter(s => output.citationIds.includes(s.id))
       const links = [...new Map(cited.map(s => [s.href, { href: s.href, label: s.title }])).values()]
       return reply(200, responseSchema.parse({ mode: 'ai', available: output.available, answer: output.answer, links }))

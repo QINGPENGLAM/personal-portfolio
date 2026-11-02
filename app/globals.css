@@ -376,6 +376,7 @@ button { color: inherit; }
 .assistant-messages article { max-width: 91%; padding: .7rem .75rem; border: 1px solid rgba(211,226,255,.12); border-radius: .75rem; background: rgba(255,255,255,.035); }
 .assistant-messages article.is-user { align-self: flex-end; border-color: rgba(143,187,231,.3); background: rgba(111,182,255,.11); }
 .assistant-messages article > span { color: #6edff4; font-family: var(--font-mono); font-size: .48rem; text-transform: uppercase; }
+.assistant-messages article > small { display: block; margin-top: .3rem; color: #9babbe; font-size: .58rem; line-height: 1.5; }
 .assistant-messages p { margin: .3rem 0 0; color: #c5d0e2; font-size: .68rem; line-height: 1.55; }
 .assistant-messages article > div { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .55rem; }
 .assistant-messages a { padding: .32rem .42rem; border: 1px solid rgba(114,230,255,.2); border-radius: .38rem; color: #8deaff; font-size: .55rem; }

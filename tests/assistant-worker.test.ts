@@ -55,6 +55,14 @@ it('a delayed midnight alarm cannot erase today’s new reservations', async () 
   await q.alarm()
   expect((await reserve()).status).toBe(429)
 })
+it('reports quota scope without clearing counters', async () => {
+  const q = new AssistantQuota({ storage: storage() })
+  const reserve = (i: number) => q.fetch(new Request('https://quota', { method: 'POST', body: JSON.stringify({ hash: i.toString(16).padStart(64, '0') }) }))
+  await reserve(1); await reserve(1); await reserve(1)
+  expect(await (await reserve(1)).json()).toMatchObject({ scope: 'minute', retryAfterSeconds: expect.any(Number) })
+  for (let i = 2; i < 9; i++) await reserve(i)
+  expect(await (await reserve(10)).json()).toMatchObject({ scope: 'day', retryAfterSeconds: expect.any(Number) })
+})
 describe('assistant boundary', () => {
   it('makes one free-only bounded request and resolves sources itself', async () => {
     const { env, upstream, request } = setup()
@@ -119,6 +127,15 @@ describe('assistant boundary', () => {
     const upstream = vi.fn(async () => Response.json({ error: { message: 'unknown', metadata: { error_type: 'secret-key' } } }, { status: 429, headers: { 'Retry-After': 'secret-key' } }))
     const response = await handleAssistant(request(), env, upstream)
     expect(await response.json()).toEqual({ error: 'service-unavailable', reason: 'provider-rejected', providerStatus: 429 })
+  })
+  it.each([
+    [{ choices: [{ finish_reason: 'length', message: { content: '{' } }] }, 'truncated'],
+    [{ choices: [{ message: { reasoning: 'private reasoning' } }] }, 'missing-content'],
+    [{ choices: [{ message: { content: 'not JSON private response' } }] }, 'invalid-json'],
+  ])('classifies unusable model output without revealing it', async (payload, outputIssue) => {
+    const { env, request } = setup()
+    const response = await handleAssistant(request(), env, async () => Response.json(payload))
+    expect(await response.json()).toEqual({ error: 'service-unavailable', reason: 'output', outputIssue })
   })
   it('aborts an upstream call at its deadline', async () => {
     vi.useFakeTimers()

@@ -563,3 +563,35 @@ raw provider strings never leave the Worker. After7 total agent attempts with1
 verified English success and6 failures, stop live calls now rather than exhaust
 all10 pilot slots. Record Chinese/proposed-status/adversarial quality as pending,
 and retain local fallback for free-provider throttling/unavailability.
+
+### RAG release evidence — 2026-11-01
+Treat Actions success plus served endpoint-containing assets as publication proof;
+CI mocked interaction and prior real-English inference are separate evidence.
+Do not spend remaining pilot calls just to re-prove deployment. Record the existing
+mobile contact test retry honestly; no unrelated form changes in this release
+verification. Retain pending Chinese/adversarial free-model evaluation. Keep this
+verification note local; no additional commit/push authorized by status checking.
+
+### Online fallback remediation — 2026-11-01
+Do not identify all fallback as site quota: actual repro was upstream429. Expose
+only validated day/minute/retry details from DO; retain atomic cap10/day and3/min,
+failed attempts counted, no resets/refunds/retries. Map safe error codes to
+specific local notices and separate notice typography from the GUIDE label.
+Ambiguous year question may state expected graduation, but cannot invent class
+year or birth year. Add source aliases and local public-fact answer.
+
+One pinned free Xing/Phala success does not establish stability; Chinese output
+validation and429 still failed. Stop further OpenRouter trial churn. A change to
+Cloudflare-hosted inference changes the processing service and original approved
+provider design, so ask user choice before implementing/binding/calling it. Keep
+Workers Free, all existing safeguards and source checks; do not relax privacy or
+upgrade account. Proposed design is in the dated Cloudflare AI spec.
+
+### Retain OpenRouter — 2026-11-01
+User explicitly selected '保留 OpenRouter 免费模型'. Do not implement or resume the
+Cloudflare Workers AI alternative without a new user request. Preserve existing
+xingchen-agi/xing4.0-29b-a4b:free configuration, data_collection:deny, source/output
+validation, no paid fallback and website-wide10-attempt/UTC-day cap (failures count).
+Keep the completed client error/typography/education fixes; they need a frontend
+publication to appear online. Stop provider-switch proposals and additional live
+trial calls in this decision pass; external availability remains an honest limit.

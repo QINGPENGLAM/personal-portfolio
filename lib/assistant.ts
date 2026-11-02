@@ -60,7 +60,15 @@ export function answerPortfolioQuestion(question: string): AssistantAnswer {
     }
   }
 
-  if (normalized.includes('education') || normalized.includes('university') || normalized.includes('degree')) {
+  if (/what year is qingpeng|year of study|school year|几年级/.test(normalized)) {
+    return {
+      available: true,
+      answer: `If you mean graduation, the portfolio lists ${education.endDate} as his expected graduation at ${education.institution}. His current year of study and birth year are not explicitly stated.`,
+      links: [{ href: '/about#education', label: 'Education detail' }],
+    }
+  }
+
+  if (/graduat|哪年毕业|什么时候毕业/.test(normalized) || normalized.includes('education') || normalized.includes('university') || normalized.includes('degree')) {
     return {
       available: true,
       answer: `${education.degree}, Minor in ${education.minor}, at ${education.institution}. The portfolio lists an expected graduation of ${education.endDate} and GPA ${education.gpa}.`,

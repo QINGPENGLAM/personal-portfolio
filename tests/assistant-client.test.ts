@@ -27,3 +27,22 @@ it('does not silently generate a local answer when user cancels', async () => {
   const controller = new AbortController(); controller.abort()
   await expect(askAssistant('HRS', [], 'https://assistant.test', controller.signal)).rejects.toMatchObject({ name: 'AbortError' })
 })
+it.each([
+  [502, { error: 'service-unavailable', reason: 'provider-rejected', providerStatus: 429 }, 'Free AI provider is rate-limiting'],
+  [429, { error: 'quota', scope: 'day', retryAfterSeconds: 3600 }, 'daily limit reached'],
+  [429, { error: 'quota', scope: 'minute', retryAfterSeconds: 30 }, 'Too many questions this minute'],
+  [502, { error: 'service-unavailable', reason: 'timeout' }, 'AI timed out'],
+])('distinguishes fallback causes (%s %j)', async (status, body, expected) => {
+  const fetcher = vi.fn(async () => Response.json(body, { status }))
+  const result = await askAssistant('backend', [], 'https://assistant.test', undefined, fetcher)
+  expect(result.mode).toBe('fallback')
+  expect(result.notice).toContain(expected)
+  expect(fetcher).toHaveBeenCalledTimes(1)
+})
+it('answers the reported education question from public facts even when AI is unavailable', async () => {
+  const fetcher = vi.fn(async () => Response.json({ error: 'service-unavailable', providerStatus: 429 }, { status: 502 }))
+  const result = await askAssistant('what year is qingpeng', [], 'https://assistant.test', undefined, fetcher)
+  expect(result.answer).toContain('Dec. 2026')
+  expect(result.answer).toContain('not explicitly stated')
+  expect(result.links).toContainEqual({ href: '/about#education', label: 'Education detail' })
+})

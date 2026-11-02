@@ -12,22 +12,23 @@ export class AssistantQuota {
   async fetch(request: Request): Promise<Response> {
     const { hash } = await request.json() as { hash: string }
     if (!/^[a-f0-9]{64}$/.test(hash)) return new Response(null, { status: 400 })
-    const allowed = await this.ctx.storage.transaction(async tx => {
+    const result = await this.ctx.storage.transaction(async tx => {
       const now = Date.now() // Reservation time belongs to this atomic authority, never its caller.
       const day = new Date(now).toISOString().slice(0, 10), minute = Math.floor(now / 60000)
       const saved = await tx.get<Counts>('counts')
-      if (saved && saved.day > day) return false // Fail closed if the wall clock regresses.
+      if (saved && saved.day > day) return { scope: 'clock', retryAfterSeconds: 60 } // Fail closed if the wall clock regresses.
       const counts: Counts = saved?.day === day ? saved : { day, total: 0, buckets: {} }
       const bucket = counts.buckets[hash]
-      if (counts.total >= 10 || (bucket && bucket.minute >= minute && bucket.count >= 3)) return false
+      if (counts.total >= 10) return { scope: 'day', retryAfterSeconds: Math.ceil((Date.parse(`${day}T00:00:00Z`) + 86400000 - now) / 1000) }
+      if (bucket && bucket.minute >= minute && bucket.count >= 3) return { scope: 'minute', retryAfterSeconds: Math.ceil(((bucket.minute + 1) * 60000 - now) / 1000) }
       counts.total++
       counts.buckets[hash] = { minute: Math.max(minute, bucket?.minute ?? minute), count: bucket && bucket.minute >= minute ? bucket.count + 1 : 1 }
       await tx.put('counts', counts)
       // Bound retention even if no requests arrive tomorrow.
       await tx.setAlarm?.(Date.parse(`${day}T00:00:00Z`) + 86400000)
-      return true
+      return null
     })
-    return new Response(null, { status: allowed ? 204 : 429 })
+    return result ? Response.json(result, { status: result.scope === 'clock' ? 503 : 429, headers: { 'Retry-After': String(result.retryAfterSeconds) } }) : new Response(null, { status: 204 })
   }
   async alarm() {
     await this.ctx.storage.transaction(async tx => {

@@ -962,3 +962,77 @@ Pages release still requires verification. Free availability remains intermitten
 existing clearly labeled local fallback handles failures. Reflection: a successful
 connection and a factual example are narrower evidence than stable availability
 or broad conversational quality; separate all three in handoff.
+
+### RAG publication verification — 2026-11-01
+User committed/pushed0cf9508883c2d7d1b0a971a84856960265c45da9; GitHub remote
+master matches local HEAD. Followed run41358531180 to completion: quality10m51s,
+deploy11s, both success. Quality included lint/types,98 unit tests, offline build/
+budgets, four-browser core suite, fresh world, configured release build, mocked
+assistant gate and release budgets before upload. Exact browser outcome:217
+passed/54 configured skips/1 flaky (mobile-chrome contact-delivery optional-Company
+validation; first submission showed highlighted-fields error, retry passed),
+world1 passed, configured assistant12 passed. Do not report as first-attempt all
+green or attribute this agent-observed existing-contact anomaly to user reports.
+
+Actual public homepage HTTP200, last-modified2026-11-01T22:54:12Z. Read13 initial
+script references; /personal-portfolio/_next/static/chunks/19t65w9kzd35t.js contains
+https://portfolio-assistant.qingpenglam.workers.dev and no backend secret variable
+names. Actual Worker OPTIONS for Origin:https://qingpenglam.github.io returned204,
+allow-origin exact origin, allowed methodPOST/headerContent-Type, Cache-Control:
+no-store. These were read-only HTTP checks, not model calls. User's commit tracks
+only .env.example and server/assistant/.dev.vars.example as env/secret files.
+
+CUA has neither IAB nor another available browser; no post-publication interactive
+UI verification was claimed. Configured UI behavior is covered by the successful
+12-case CI mocked gate; real model factual proof remains the earlier single
+English sample, with Chinese/proposed/adversarial checks still throttled/pending.
+No new model call, rerun, commit or push during release verification. Updated local
+status documentation only. Reflection: distinguish deployment, served assets,
+mocked browser interaction and live inference, and retain first-run retry evidence.
+
+### User-reported fallback remediation — 2026-11-01
+User screenshot shows initial published generic local fallback plus unavailable
+answer for 'what year is qingpeng'. Actual probe returned502/providerStatus429,
+not the app's429/quota. Added failing tests for four distinct fallback causes,
+reported education question, education aliases and quota day/minute metadata;
+fixed client bounded response reading/error mapping, quota safe scope/retry
+propagation, notice block/font and local expected-graduation/explicit-unknowns
+answer. All107 units pass with lint/types; configured static build/seven budgets
+pass (home261KiB, core11387KiB). Eight mocked Chromium/mobile cases pass, including
+reported question and day-limit UI. Viewed mobile screenshot: GUIDE label and
+notice are separate, notice smaller than answer, education source link visible.
+Frontend improvements not committed/pushed; prior local verification docs retained.
+
+Read public no-key catalogs for zero-price JSON support and endpoint health.
+Tested NVIDIA free pin under unchanged data_collection:deny ->404/data-policy.
+Tested Xing4.0 free via Phala ->200,1.777991s, expected graduationDecember2026 with
+/about#education citation. Chinese HRS proposed-status sample ->output validation
+failure; added failing output-category fixtures, then static safe categories;
+repeat diagnostic ->upstream429. Do not weaken output validation or privacy.
+Five agent inference calls this fix pass,12 across overall setup; natural UTC
+rollover occurred (observed2026-11-02T00:06:45Z, stillNov1America/Detroit). No DO
+identity/storage reset, cap increase, refund, paid model or automatic retry.
+Current Worker model:xingchen-agi/xing4.0-29b-a4b:free; version:
+45127023-4bed-4777-a2e1-eef6993d85cd. No raw invalid output/key read or disclosure.
+
+Reviewed current Workers AI free allowance, data usage, JSON support and active
+model catalog as a proposed alternative. Drafted concrete migration spec for
+@cf/meta/llama-3.3-70b-instruct-fp8-fast (older8B documentation redirects unavailable;
+do not propose that stale model). Asked user to choose service/destination before
+implementation or account changes. No Workers AI binding/inference/upgrade made.
+Reflection: distinguish provider reliability, malformed output and app quota;
+never call a route 'fixed' after a single sample. Improve fallback usefulness
+without misrepresenting it as AI. Existing evidence-first/privacy rules suffice.
+
+### Provider choice resolved — 2026-11-01
+User declined the proposed Cloudflare Workers AI migration and chose to retain
+OpenRouter free models. Verified current config remains the pinned free Xing
+model and prior local fixes are still uncommitted. Updated proposal status,
+brief/TODO/decisions/README accordingly. No source changes, new inference calls,
+account/billing changes, commits or pushes in this decision pass. Earlier107-unit,
+8-case mocked browser, lint/type/build/budget evidence still applies to unchanged
+source. Whitespace check passed. Next step is user publication of the prepared
+fallback clarity/education fix, then release verification; do not claim stable
+free-provider or Chinese/adversarial quality. Reflection: honor the chosen provider
+boundary without repeated migration pressure; distinguish completed resilience
+improvements from unresolved external reliability.

@@ -315,7 +315,7 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Fix CI audio setup, guide readiness and volume/control browser assertions.
 - [x] Pass lint, TypeScript,77 unit tests, production build and budgets; read-only review.
 - [x] Complete final Linux four-browser coverage in batches:218 distinct passes/42 configured skips, plus1 fresh-world pass; no retries on final batches.
-- [ ] User commits/pushes repair through GitHub Desktop; verify the new Actions deployment.
+- [x] User pushed repair through GitHub Desktop; subsequent Actions runs41315241976 and41358531180 completed quality/deploy successfully.
 
 ## Optional portfolio RAG — 2026-11-01
 - [x] Approve free-only OpenRouter + independent Worker + public lexical retrieval design.
@@ -329,5 +329,15 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [ ] Complete provider availability/precise rate-limit diagnosis without purchasing credits or relaxing privacy.
 - [x] Deploy Worker and prepare the real frontend endpoint plus mocked release-browser gate in Pages workflow.
 - [x] Verify one real source-linked English answer against public HRS data (PostgreSQL17/Cloud SQL).
-- [ ] Complete Chinese follow-up/proposed-status/adversarial live evaluation when free service is available; current total7 agent attempts,6 failed,1 passed. Retain labeled local fallback.
-- [ ] User commits/pushes the prepared portfolio changes through GitHub Desktop; verify Pages deployment.
+- [ ] Complete Chinese follow-up/proposed-status/adversarial live evaluation when free service is available; setup samples span a natural UTC rollover:12 agent attempts,2 English successes; Chinese quality remains unverified. Retain labeled local fallback.
+- [x] User pushed RAG commit0cf9508 through GitHub Desktop; Actions41358531180 succeeded and live assets contain the configured Worker URL.
+
+
+## Reported online AI fallback — 2026-11-01
+- [x] Verify current failure is upstream429, independently of site daily cap.
+- [x] Distinguish daily/minute site quotas, provider throttling and timeout in UI; style notice separately.
+- [x] Retrieve education for reported question and return expected graduation/explicit unknowns in local mode.
+- [x] Pass107 unit tests,8 mocked desktop/mobile checks, lint/types/build/budgets.
+- [x] Preserve quotas/privacy; verify pinned-free English success and record Chinese output/rate-limit failures honestly.
+- [x] User explicitly chose to retain OpenRouter free models; Cloudflare Workers AI migration declined and not implemented.
+- [ ] Publish the frontend fix/provider choice through user-authorized release and verify new live behavior.

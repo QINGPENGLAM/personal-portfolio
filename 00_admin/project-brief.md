@@ -463,3 +463,31 @@ remaining before evaluation. Subsequent Chinese samples hit429; broad quality
 and reliable availability are unverified.7 agent attempts total today,1 success;
 no further live calls planned in this setup pass.98 unit tests, lint/types pass.
 Frontend workflow wiring remains uncommitted/unpushed for user publication.
+
+### RAG frontend published and verified — 2026-11-01
+User pushed0cf9508883c2d7d1b0a971a84856960265c45da9 through GitHub Desktop.
+Actions41358531180 completed quality and deploy successfully. Live homepage
+returns200; last-modified22:54:12UTC and served JS chunk19t65w9kzd35t.js contains
+the configured portfolio-assistant.qingpenglam.workers.dev URL. Worker CORS
+preflight for qingpenglam.github.io returns204. No extra inference in this check.
+CI configured-chat gate:12 passed. Core suite:217 passed,54 configured skips,
+1 contact-form case passed on retry; fresh world:1 passed. No post-publication
+live UI browser was available in this session; HTTP/asset checks and CI interaction
+tests establish publication, not fresh end-to-end model availability. Free-route
+throttling and broad live Chinese/adversarial quality remain separate limits.
+
+### User-reported online fallback — 2026-11-01
+Screenshot confirms current frontend falls back after AI failure. New live probe
+returned upstream429, not app quota. Fixed client failure categories/typography,
+quota scope/retry metadata and education aliases/local answer.107 units,8 mocked
+desktop/mobile checks, lint/types/build/budgets pass; frontend fix unpublished.
+Backend keeps strict privacy/citations/quotas. Free NVIDIA pin rejected current
+policy; pinned Xing/Phala returned correct graduation in1.78s but Chinese output
+and throttling failures persist. Stable AI behavior is not fixed. Awaiting user's
+choice on a documented Workers AI alternative (no binding/call/upgrade performed).
+
+User decision — 2026-11-01: retain OpenRouter free models. Cloudflare Workers AI
+alternative declined; no AI binding/call or billing change made. Keep current
+free-only pinned route and all existing protections. Frontend fallback clarity/
+education fixes remain ready locally for user publication; provider reliability
+and Chinese/adversarial quality are not represented as resolved.

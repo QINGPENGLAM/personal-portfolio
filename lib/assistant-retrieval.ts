@@ -3,6 +3,7 @@ import type { AssistantRequest } from './assistant-protocol'
 
 const aliases: [RegExp, string][] = [
   [/你是谁|他是谁|who|背景|介绍/gi, 'qingpeng lam'],
+  [/graduat\w*|what year is qingpeng|几年级|哪年毕业|什么时候毕业/gi, 'education university degree'],
   [/gpa|成绩|学分/gi, 'education gpa'],
   [/email|contact|邮箱|邮件地址|联系/gi, 'contact email'],
   [/编程语言|语言/gi, 'skill language'],

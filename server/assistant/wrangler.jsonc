@@ -5,7 +5,7 @@
   "compatibility_date": "2026-10-30",
   "vars": {
     "ASSISTANT_ALLOWED_ORIGIN": "https://qingpenglam.github.io",
-    "ASSISTANT_MODEL": "openrouter/free"
+    "ASSISTANT_MODEL": "xingchen-agi/xing4.0-29b-a4b:free"
   },
   "durable_objects": {
     "bindings": [{ "name": "ASSISTANT_QUOTA", "class_name": "AssistantQuota" }]
