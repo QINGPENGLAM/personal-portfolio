@@ -12,6 +12,7 @@ const experienceSortKeys: Record<string, string> = {
 }
 
 const projectSortKeys: Record<string, string> = {
+  'personal-ai-assistant-platform': '2026-11',
   devdoctor: '2026-06',
   'immich-ai-photo-search': '2026-02',
 }
@@ -31,7 +32,7 @@ export const timelineItems: TimelineItem[] = timelineItemSchema.array().parse([
   })),
   // Only publish dated milestones when their chronology is supplied.
   ...projects.filter((project) => projectSortKeys[project.slug]).map((project) => {
-    const [startDate, endDate] = project.date.split(' - ')
+    const [startDate, endDate = startDate] = project.date.split(' - ')
     return {
       id: `project-${project.slug}`,
       type: 'project' as const,
@@ -39,7 +40,7 @@ export const timelineItems: TimelineItem[] = timelineItemSchema.array().parse([
       endDate,
       sortKey: projectSortKeys[project.slug],
       title: project.title,
-      organization: 'Independent engineering project',
+      organization: project.slug === 'personal-ai-assistant-platform' ? 'EECS 498-016 · Hackathon 2' : 'Independent engineering project',
       summary: project.shortDescription,
       technologies: project.technologies,
       href: `/projects/${project.slug}`,

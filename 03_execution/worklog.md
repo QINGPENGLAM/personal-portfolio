@@ -1124,3 +1124,64 @@ This follows the project's existing exit-pattern principle; no global rule updat
 
 ### Failed Pages quality job — 2026-11-02
 Read Actions41446783024 logs:245 passed,58 skipped,one WebKit cancellation failure on both attempts. Playwright waited for Cancel actionability as the short reply completed and removed the button. Local original passed once, consistent with a timing-dependent fixture. Fixed only e2e/assistant-presentation.spec.ts: wait for entry animation; freeze preparation before asking/cancelling; advance clock for the next reply. All12 presentation cases across four browsers pass without retries; lint/types pass. User requested job run: reran failed jobs on existingf3027c2 (attempt2 confirmed in progress), without commit/push or model calls. Local test change is not part of that rerun. Reflection: tests for transient controls should own the clock rather than race a real-time presentation window; no new global rule needed.
+
+
+### Axe investigation and bounded cleanup — 2026-11-11
+Existing project; started from a clean Git tree. The old export passed an initial
+audit, so rebuilt before drawing conclusions. The fresh night-theme homepage
+reproduced 11 contrast failures from whole-card opacity; case-study wrappers
+failed aria-prohibited-attr. Expanded regression tests failed on both before
+product changes. Testing the open guide then exposed duplicate banner landmarks and settled
+mobile status-text contrast of 4.14:1. An earlier mid-animation reading was
+transient; waiting for finite animations distinguished the persistent defect.
+Brightened status text to the existing readable chat secondary color.
+Fixed these shared sources; removed an obsolete day-only opacity override and
+updated README test coverage. No layout redesign or unrelated refactoring.
+Lint, types, 135 unit tests, production build and seven size budgets passed.
+Final desktop/mobile browser verification: 70 passed without retries, including
+60 route/theme/layout scans, two interactive axe flows and eight carousel/chat
+lifecycle cases. Zero axe violations in the tested states.
+The screenshot's hidden-focus, invalid-list and nested-control findings did not
+reproduce in the audited local states; exact source URL/state is unavailable.
+No commit, push, deployment or external AI calls.
+Reflection: stale exports and narrow axe filters can conceal regressions. Reuse
+the expanded rule/theme/layout/state matrix and rebuild before auditing. No
+new cross-project rule is needed for this project-specific fix.
+
+
+### Hackathon 2 public copy and portfolio integration — 2026-11-11
+Read private course README/current source, API/runtime/scheduler/workspace code,
+lockfiles/scripts and portfolio data/schema/rendering. Prepared 80 allowlisted
+public files, with app source identical to the original. Excluded course slides,
+staff material, internal documents, runtime and private Git history; credential
+pattern scan and independent read-only publication review found no blocker.
+Created a concise public README, stronger credential ignore rules and an actual
+local simulated-UI screenshot using synthetic test data. No real model calls.
+Fresh copy checks: 303 backend tests, Ruff, 3 frontend unit tests, TypeScript/Vite
+build and 24 simulated desktop/mobile browser cases passed. One upstream
+Starlette/httpx deprecation warning; Vite ignored React Router use-client directives.
+Published PUBLIC QINGPENGLAM/personal-ai-assistant-platform from persistent
+/Users/qp2333/eecs498-016/personal-ai-assistant-platform, fresh root commit
+d5670b02420d99a1c0233a2eac8a1c3a57096f78. Remote main exactly matches local;
+new copy clean. Original course tree stays clean with its original remote.
+Added data-driven project/case study, source link, preview, timeline and automatic
+sitemap/homepage inclusion. New content tests failed before the data addition.
+Existing timeline tests caught the missing dated mapping, then schema validation
+caught single-month endDate; added verified sort key and same-month default.
+137 portfolio units, lint/types/build and seven budgets passed; four new-route
+axe theme/layout scans and two discovery/mobile cases passed. The first browser
+fixture matched both card and technical breakdown; scoped it to the project card.
+Portfolio integration and previous accessibility changes remain local/uncommitted.
+Reflection: fresh application-only history is clearer than exposing a private
+course fork; source identity checks and distinct simulated/manual/real evidence
+make the publication reviewable. No new cross-project governance rule needed.
+
+
+### Smaller intro choices — 2026-11-11
+Initial spacing/type reduction was still too large for the user. Reduced the
+opening choices to single-line controls, hiding extra labels/descriptions and
+keeping 44px targets. Also compacted the later hero action buttons. Initial
+desktop/mobile Quick View checks: 4 passed; no navigation behavior changed.
+Reflection: for a compact-control request, remove secondary visual copy before
+shrinking readable text or touch targets. No global rule update needed.
+Final build and desktop/mobile geometry checks passed: 44px height, no horizontal overflow. Changes remain local.

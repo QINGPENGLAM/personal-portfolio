@@ -523,3 +523,25 @@ calls, provider/account changes, commit, push or deployment in this task.
 
 ### CI cancellation test repair — 2026-11-02
 Actions41446783024 failed only the WebKit presentation-cancellation test;245 browser tests passed. Added deterministic test-clock control locally; product behavior unchanged. Failed jobs rerun as attempt2 on existing commitf3027c2; deployment outcome pending.
+
+
+### Accessibility cleanup — 2026-11-11
+Reproduced night-theme carousel contrast failures, unsupported labeling on a
+case-study visual wrapper, and duplicate banner landmarks with the guide open.
+Also corrected low-contrast mobile guide status text.
+Fixed the shared sources and removed the obsolete day-only opacity override.
+Expanded default-rule axe audits to 15 routes, both themes, desktop/mobile and
+animated carousel/experience/chat states. Changes remain local; the screenshot's
+full 67-node report was not reproduced in this checkout.
+
+
+### Hackathon 2 public portfolio entry — 2026-11-11
+Added Personal AI Assistant Platform through existing project data, case-study,
+homepage reel, sitemap and dated timeline patterns. Public source copy:
+https://github.com/QINGPENGLAM/personal-ai-assistant-platform (PUBLIC main,
+d5670b02420d99a1c0233a2eac8a1c3a57096f78 verified). The private course original
+was unchanged. Portfolio integration remains local and uncommitted.
+
+
+### Compact homepage entry controls — 2026-11-11
+Reduced the opening 3D/Quick Portfolio choices to single-line buttons. Local only.

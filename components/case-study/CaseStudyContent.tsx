@@ -33,7 +33,7 @@ export function CaseStudyContent({ mode = 'page', project }: { mode?: 'page' | '
             {mode === 'dialog' ? <Link className="button button-secondary" href={`/projects/${project.slug}`}>Open standalone case study</Link> : null}
           </div>
         </div>
-        <div className={`case-study-visual${project.course ? ' is-gameplay' : ''}`} aria-label={`${project.title} project visual`}>
+        <div className={`case-study-visual${project.course ? ' is-gameplay' : ''}`}>
           {preview ? <Image alt={project.screenshotAlt ?? `${project.title} product preview`} fill loading="eager" sizes="(max-width: 760px) 100vw, 44vw" src={withBasePath(preview)} /> : (
             <div className="case-study-core-visual" aria-hidden="true"><span /><span /><span /><strong>{project.title.slice(0, 2).toUpperCase()}</strong></div>
           )}

@@ -20,6 +20,7 @@ export default function HomePage() {
     id: project.id, slug: project.slug, title: project.title,
     description: project.shortDescription, image: project.screenshots[0] ?? null,
     alt: project.screenshotAlt ?? `${project.title} project illustration`,
+    imageLabel: project.gameplay ? 'Gameplay capture' : 'Interface preview',
     tags: project.technologies.slice(0, 3), accent: project.landmark.accent,
   }))]
   return <main><Earthrise /><AboutMe /><ProjectReel projects={reelProjects} /><RecruiterView />

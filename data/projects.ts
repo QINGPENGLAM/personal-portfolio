@@ -2,6 +2,208 @@ import { projectSchema } from './schemas'
 
 export const projects = projectSchema.array().parse([
   {
+    "id": "personal-ai-assistant-platform",
+    "slug": "personal-ai-assistant-platform",
+    "title": "Personal AI Assistant Platform",
+    "shortDescription": "A browser-based platform for private AI assistants with persistent chat, workspace files, and scheduled work.",
+    "fullOverview": "Built for EECS 498-016 Hackathon 2, this full-stack platform lets users create named assistants, chat with them, browse their workspace files, and schedule tasks. Each assistant runs Codex app server in its own Docker container, coordinated by a Python/FastAPI backend with SQLite persistence. The public repository is a separate source snapshot of my implementation; the preview shows the local simulated runtime, not a deployed AI service.",
+    "problem": "Users need an inspectable place for AI assistants to work over time, with clear ownership, durable files and conversations, and visible control over scheduled or interrupted work.",
+    "role": "Developer",
+    "directContributions": [
+      "Built account and assistant management, persistent chat, workspace browsing, and scheduling across a React UI and FastAPI backend.",
+      "Integrated the Python Codex SDK with per-assistant containers, streamed run activity, and Stop/Continue controls.",
+      "Exposed backend MCP scheduling tools so agents can create jobs that users can inspect in the browser.",
+      "Implemented ownership checks, durable run queues and events, file-path controls, and automated regression coverage."
+    ],
+    "technicalChallenges": [
+      "Keeping account data and assistant workspaces separate",
+      "Preserving conversations and queued work across interruptions",
+      "Stopping agent commands and making cleanup visible",
+      "Coordinating user-created and agent-created schedules"
+    ],
+    "solutions": [
+      "Server-side ownership checks and scoped workspace access",
+      "SQLite-backed runs, events, schedules, and saved history",
+      "Explicit pause, interrupt, and container cleanup lifecycle",
+      "Shared job service used by the browser API and agent MCP tools"
+    ],
+    "architecture": [
+      "React and TypeScript browser UI",
+      "Python/FastAPI API and ownership checks",
+      "SQLite persistence and durable run/event records",
+      "Per-assistant Docker containers running Codex app server",
+      "Backend scheduler, run queue, and MCP scheduling tools"
+    ],
+    "measurableResults": [
+      "303 backend tests passed in the public-copy verification",
+      "3 frontend unit tests passed",
+      "24 simulated desktop/mobile browser cases passed"
+    ],
+    "focusAreas": [
+      "AI systems",
+      "Backend",
+      "Infrastructure",
+      "Reliability"
+    ],
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Python",
+      "FastAPI",
+      "SQLite",
+      "Docker",
+      "Codex app server",
+      "MCP",
+      "Playwright"
+    ],
+    "screenshots": [
+      "/project-previews/personal-ai-assistant-platform.webp"
+    ],
+    "screenshotAlt": "Personal AI Assistant Platform chat, workspace, and scheduling interface using simulated local test data.",
+    "githubUrl": "https://github.com/QINGPENGLAM/personal-ai-assistant-platform",
+    "liveDemoUrl": null,
+    "status": "completed",
+    "date": "November 2026",
+    "landmark": {
+      "type": "Assistant workspace",
+      "position": [
+        -12,
+        0,
+        5
+      ],
+      "cameraOffset": [
+        4.8,
+        3.8,
+        5.8
+      ],
+      "accent": "#68d5c2"
+    },
+    "caseStudy": {
+      "audience": "People who want a private assistant workspace with durable conversations, inspectable files, and scheduled tasks.",
+      "constraints": [
+        "The runtime uses Codex app server through the Python SDK.",
+        "Users must not access another account’s assistants, jobs, runs, or files.",
+        "Chat and scheduled jobs share an explicit run lifecycle with visible failures and Stop controls.",
+        "The real runtime requires the supported Linux/Docker/XFS environment; the browser demo is simulated."
+      ],
+      "architectureNodes": [
+        {
+          "id": "browser",
+          "label": "React workspace",
+          "responsibility": "Presents accounts, assistants, chat, activity, files, and jobs.",
+          "kind": "interface"
+        },
+        {
+          "id": "api",
+          "label": "FastAPI backend",
+          "responsibility": "Authenticates requests, verifies ownership, and coordinates assistant services.",
+          "kind": "service"
+        },
+        {
+          "id": "sqlite",
+          "label": "SQLite state",
+          "responsibility": "Persists accounts, assistants, runs, events, and job schedules.",
+          "kind": "data"
+        },
+        {
+          "id": "scheduler",
+          "label": "Scheduler and run queue",
+          "responsibility": "Turns due jobs and chat requests into serialized assistant runs.",
+          "kind": "worker"
+        },
+        {
+          "id": "runtime",
+          "label": "Containerized Codex app server",
+          "responsibility": "Executes assistant turns in a per-assistant Docker workspace.",
+          "kind": "model"
+        },
+        {
+          "id": "mcp",
+          "label": "MCP scheduling tools",
+          "responsibility": "Allows an agent to create and inspect jobs through the backend job service.",
+          "kind": "control"
+        }
+      ],
+      "architectureEdges": [
+        {
+          "source": "browser",
+          "target": "api",
+          "label": "Authenticated browser requests"
+        },
+        {
+          "source": "api",
+          "target": "sqlite",
+          "label": "Persist state and run events"
+        },
+        {
+          "source": "api",
+          "target": "scheduler",
+          "label": "Queue chat and scheduled work"
+        },
+        {
+          "source": "scheduler",
+          "target": "runtime",
+          "label": "Start and manage a turn"
+        },
+        {
+          "source": "runtime",
+          "target": "mcp",
+          "label": "Agent scheduling calls"
+        },
+        {
+          "source": "mcp",
+          "target": "api",
+          "label": "Scoped job operations"
+        }
+      ],
+      "requestFlow": [
+        "browser",
+        "api",
+        "sqlite",
+        "scheduler",
+        "runtime",
+        "mcp"
+      ],
+      "decisions": [
+        {
+          "challenge": "A conversation can outlive a browser tab.",
+          "decision": "Persist runs and ordered activity events in SQLite, and reconnect the UI to saved state.",
+          "tradeoff": "Requires explicit replay, deduplication, and terminal-state handling.",
+          "outcome": "The browser can reload and inspect existing chat, files, and run results."
+        },
+        {
+          "challenge": "Agents and users both need to schedule work.",
+          "decision": "Use a common job service with browser endpoints and backend MCP tools.",
+          "tradeoff": "Tool calls need their own scoped authorization and run context.",
+          "outcome": "Agent-created jobs are visible through the same browser job interface."
+        },
+        {
+          "challenge": "An interrupt alone may leave a running command behind.",
+          "decision": "Coordinate interrupt, pause state, and container cleanup rather than relying only on a UI cancel action.",
+          "tradeoff": "Cleanup failures and uncertain states must be surfaced and can block subsequent work.",
+          "outcome": "Stop and continuation behavior has regression coverage and a recorded manual live check."
+        }
+      ],
+      "testing": [
+        "Fresh public-copy verification: 303 backend tests and Ruff passed without real model calls.",
+        "Fresh frontend verification: 3 unit tests, TypeScript/Vite build, and 24 simulated desktop/mobile browser cases passed.",
+        "The original project records manual live acceptance for registration, assistant creation, real chat/file creation, persistence after reload, Stop preventing delayed writes, and an agent-created scheduled job.",
+        "The full automated real-runtime suite is incomplete; check-project.sh --real deliberately exits 2. A simulated test pass does not certify Docker/XFS behavior or model availability."
+      ],
+      "reflection": {
+        "learned": "An assistant platform needs durable state, observable execution, ownership enforcement, and explicit cleanup as much as it needs a model integration.",
+        "next": [
+          "Complete the independent automated real-runtime lifecycle suite.",
+          "Extend supported-host storage and recovery acceptance.",
+          "Validate a deployment separately before publishing any live-service claim."
+        ]
+      }
+    },
+    "placeholders": [
+      "No public application deployment is configured; use the repository’s local simulated demo instructions."
+    ]
+  },
+  {
     id: 'devdoctor',
     slug: 'devdoctor',
     title: 'DevDoctor',

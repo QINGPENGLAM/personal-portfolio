@@ -10,7 +10,7 @@ import { useReducedMotion } from './useReducedMotion'
 
 type ReelProject = {
   id: string; slug: string; title: string; description: string
-  image: string | null; alt: string; tags: string[]; accent: string
+  image: string | null; imageLabel?: string; alt: string; tags: string[]; accent: string
 }
 
 export function ProjectReel({ projects }: { projects: readonly ReelProject[] }) {
@@ -38,7 +38,8 @@ export function ProjectReel({ projects }: { projects: readonly ReelProject[] }) 
       const nearest = nearestProject(centers, focus)
       cards.current.forEach((card, index) => {
         const distance = Math.min(1, Math.abs(centers[index] - focus) / (track.clientWidth * 0.75))
-        card.style.opacity = String(1 - distance * 0.5)
+        // Fade images only; text and links must retain full contrast.
+        card.style.setProperty('--reel-media-opacity', String(1 - distance * 0.5))
         card.dataset.focused = String(index === nearest)
       })
       if (activeRef.current !== nearest) { activeRef.current = nearest; setActive(nearest) }
@@ -83,7 +84,7 @@ export function ProjectReel({ projects }: { projects: readonly ReelProject[] }) 
               <Link aria-label={`View ${project.title} case study`} className="reel-card-link" data-analytics-event="project_opened" href={`/projects/${project.slug}`} onFocus={event => { if (event.currentTarget.matches(':focus-visible')) showProject(index, true) }}>
                 <div className="reel-card-media">
                   {project.image ? <Image alt={project.alt} fill loading="lazy" sizes="(max-width: 767px) 78vw, 420px" src={withBasePath(project.image)} /> : <div aria-hidden="true" className="reel-system-visual"><div className="reel-system-orbit" /><strong>DD</strong><span>Signal → Diagnose → Review</span></div>}
-                  <span className="reel-media-label">{!project.image ? 'System concept' : project.image.endsWith('.svg') ? 'Concept illustration' : 'Gameplay capture'}</span>
+                  <span className="reel-media-label">{!project.image ? 'System concept' : project.image.endsWith('.svg') ? 'Concept illustration' : project.imageLabel ?? 'Project preview'}</span>
                 </div>
                 <div className="reel-card-caption"><span className="reel-card-number">{String(index + 1).padStart(2, '0')}</span><div><p className="reel-card-tags">{project.tags.join(' / ')}</p><h3>{project.title}</h3><p className="reel-card-description">{project.description}</p><span className="reel-card-action">Open case study <span aria-hidden="true">↗</span></span></div></div>
               </Link>

@@ -93,7 +93,7 @@ npm run test:e2e
 
 The static site is exported to `out/`.
 
-The Playwright suite serves the completed static export, including its `/personal-portfolio` asset paths, rather than testing a hot-reload server. The local matrix runs Chromium, Firefox, and mobile Chromium. CI also runs WebKit on Ubuntu; the bundled WebKit build is not locally enabled on this macOS 14 host because that Playwright browser is frozen and protocol-incompatible. Automated axe checks run in Chromium, while the critical semantic and fallback flows run across the browser projects.
+The Playwright suite serves the completed static export, including its `/personal-portfolio` asset paths, rather than testing a hot-reload server. The local matrix runs Chromium, Firefox, and mobile Chromium. CI also runs WebKit on Ubuntu; the bundled WebKit build is not locally enabled on this macOS 14 host because that Playwright browser is frozen and protocol-incompatible. Automated axe checks run across desktop and mobile Chromium in both themes on 15 routes, with additional animated-carousel and open-dialog states. They check all default axe rules and report affected selectors; the critical semantic and fallback flows also run across the browser projects.
 
 ## Content architecture
 
@@ -306,3 +306,12 @@ Only this exact selected MP3 has a separate 7,200,000-byte cap; the complete
 export is also bounded at 19,200,000 bytes. Extra media does not inherit this
 allowance. scripts/serve-static.mjs supplies MP3 MIME, content length and byte
 ranges for browser duration detection and seeking.
+
+## Personal AI Assistant Platform
+
+The `/projects/personal-ai-assistant-platform/` case study presents the EECS
+498-016 Hackathon 2 implementation with a local simulated-UI preview. Its
+[public source copy](https://github.com/QINGPENGLAM/personal-ai-assistant-platform)
+excludes private course materials/history and runtime data. The case study
+distinguishes simulated checks, historical manual live acceptance, incomplete
+real-runtime automation, and the absence of a public application deployment.

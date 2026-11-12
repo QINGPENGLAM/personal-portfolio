@@ -629,3 +629,36 @@ on panel close; component unmount still aborts/cleans both lifecycles.
 
 ### Deterministic cancellation test — 2026-11-02
 Control the presentation clock in the cancellation fixture after panel entrance finishes. Keep preparation pending until the normal Cancel click executes; then advance time for the next answer. Do not force-click, increase user-visible delay, skip WebKit or loosen the deployment gate.
+
+
+### Accessibility rules and carousel contrast — 2026-11-11
+Keep carousel captions and links fully opaque; apply distance fading only to
+images. Remove the now-redundant day-theme opacity override. Keep image alt text
+as the case-study preview's accessible description instead of labeling a generic
+wrapper. Use a plain styled container for the guide heading so it cannot become
+a second page banner. Use the existing readable secondary color for chat status
+text and wait for finite entrance animations before contrast measurement.
+Audit all default axe rules in both themes and desktop/
+mobile layouts, plus interactive states; retain selector-level diagnostics.
+
+
+### Public Hackathon 2 source copy — 2026-11-11
+User confirmed public source visibility and clarified the original is a private
+course-invitation repository. Leave that repository untouched; publish a fresh
+standalone snapshot of the user's application under personal-ai-assistant-platform.
+Use a tracked-path allowlist for backend/frontend/agent/scripts, lockfiles and
+build/config files. Exclude slides, staff instructions/reference docs, internal
+records, Git history and runtime data. New README/preview/ignore rules are the
+only public-copy packaging changes; application files match byte-for-byte.
+Use the normal portfolio project/case-study pipeline and the verified November
+2026 milestone. A single-month project timeline defaults its end to its start.
+Label the screenshot as simulated local UI; preserve the distinction between
+simulated checks, historical manual acceptance and incomplete full-real automation.
+Do not advertise a public app deployment. Keep portfolio changes local: only the
+separate source repository push was explicitly requested.
+
+
+### Compact intro choices — 2026-11-11
+After the user requested an even smaller size, hide the extra intro labels and
+descriptions. Use 13px titles, 44px minimum height, a 420px desktop pair and
+240px stacked mobile controls. Preserve destinations and keyboard focus.

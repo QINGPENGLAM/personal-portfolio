@@ -370,3 +370,26 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Pass12 four-browser presentation tests, lint and types.
 - [x] Start failed-job rerun (attempt2) on existing pushed commit.
 - [ ] Publish local test stabilization through GitHub Desktop and verify release result.
+
+
+## Accessibility cleanup — 2026-11-11
+- [x] Rebuild the current checkout and reproduce axe failures before product edits.
+- [x] Fix carousel/status-text contrast, unsupported visual labeling and chat landmarks.
+- [x] Expand axe coverage beyond serious WCAG-only findings to all default rules.
+- [x] Verify 70 desktop/mobile browser cases, 135 units, lint/types/build and budgets.
+- [ ] If the original 67 findings persist, compare the exact URL, state and expanded node selectors with the current build.
+
+
+## Hackathon 2 source publication — 2026-11-11
+- [x] Inspect the actual private-course implementation and verification boundaries.
+- [x] Copy only application source/tests/config/scripts into fresh public history.
+- [x] Exclude staff materials, private history, internal logs and runtime/credentials.
+- [x] Verify 303 backend tests, 3 frontend tests, Ruff/build and 24 simulated browser cases.
+- [x] Publish and verify the separate PUBLIC repository and matching remote commit.
+- [x] Add project, real simulated-UI screenshot, case study and dated timeline milestone.
+- [x] Verify portfolio unit tests, route/mobile navigation and four theme/layout axe scans.
+- [ ] Publish portfolio changes when requested, including a deliberate review of the pending accessibility cleanup.
+
+
+## Compact intro controls — 2026-11-11
+- [x] Reduce both opening choices further after user feedback; keep 44px tap targets.
