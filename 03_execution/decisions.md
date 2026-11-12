@@ -662,3 +662,9 @@ separate source repository push was explicitly requested.
 After the user requested an even smaller size, hide the extra intro labels and
 descriptions. Use 13px titles, 44px minimum height, a 420px desktop pair and
 240px stacked mobile controls. Preserve destinations and keyboard focus.
+
+
+### Content-independent keyboard regression — 2026-11-11
+Test each filter tab stop, then the first evidence link, rather than assuming a
+particular repository remains first after case studies are added. Keep explicit
+repository visibility assertions. Do not skip the test or weaken the quality gate.

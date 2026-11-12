@@ -393,3 +393,8 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 
 ## Compact intro controls — 2026-11-11
 - [x] Reduce both opening choices further after user feedback; keep 44px tap targets.
+
+
+## Skills CI correction — 2026-11-11
+- [x] Reproduce the failed keyboard fixture and verify the corrected order in all four browsers.
+- [ ] Push the fixture correction and verify a fresh Actions/deployment run.

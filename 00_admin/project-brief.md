@@ -545,3 +545,8 @@ was unchanged. Portfolio integration remains local and uncommitted.
 
 ### Compact homepage entry controls — 2026-11-11
 Reduced the opening 3D/Quick Portfolio choices to single-line buttons. Local only.
+
+
+### Skills CI fixture correction — 2026-11-11
+Actions 43138728190 failed on an outdated keyboard-test destination after the new
+React project changed evidence order. Fixed locally; no product behavior change.

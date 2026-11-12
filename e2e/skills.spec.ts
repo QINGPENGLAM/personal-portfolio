@@ -47,8 +47,15 @@ test('supports keyboard selection, search, source filters and honest empty state
   await expect(react).toHaveAttribute('aria-pressed', 'true')
   const panel = page.getByRole('complementary', { name: 'Skill connections' })
   await expect(panel.getByRole('heading', { name: 'React', exact: true })).toBeFocused()
-  for (let step = 0; step < 5; step++) await pressTab(page)
-  await expect(panel.getByRole('link', { name: 'personal-portfolio', exact: true })).toBeFocused()
+  for (const label of [/^All/, /^Projects/, /^Repositories/, /^Experience/]) {
+    await pressTab(page)
+    await expect(panel.getByRole('button', { name: label })).toBeFocused()
+  }
+  // New case studies can precede repository evidence. Verify keyboard order
+  // without assuming a particular repository will always be the first link.
+  await pressTab(page)
+  await expect(panel.getByRole('listitem').first().getByRole('link').first()).toBeFocused()
+  await expect(panel.getByRole('link', { name: 'personal-portfolio', exact: true })).toBeVisible()
   await expect(panel.getByRole('heading', { name: 'React', exact: true })).toBeVisible()
   await expect(panel.getByRole('link', { name: 'FITgym', exact: true })).toBeVisible()
   await panel.getByRole('button', { name: /^Experience/ }).click()

@@ -1185,3 +1185,17 @@ desktop/mobile Quick View checks: 4 passed; no navigation behavior changed.
 Reflection: for a compact-control request, remove secondary visual copy before
 shrinking readable text or touch targets. No global rule update needed.
 Final build and desktop/mobile geometry checks passed: 44px height, no horizontal overflow. Changes remain local.
+
+
+### Failed Actions 43138728190 — 2026-11-11
+User reported failure after pushing c57a4cb. Read current failed-step logs: only
+the Skills keyboard scenario failed in Chromium, Firefox, WebKit and mobile
+Chrome; 304 passed and 100 skipped. The new React case study precedes repository
+evidence, invalidating the hardcoded expectation after five Tabs. Reproduced
+locally before editing. Updated fixture to assert four filter tab stops and the
+first evidence link, retaining repository visibility checks. No UI/runtime change.
+Fresh complete Skills suite with CI=1 and retries=0: 13 passed, 11 existing
+platform-specific skips, including the formerly failing scenario in all four
+engines. Lint/types pass. Fix remains local; no rerun of unchanged failed commit,
+commit, push or deployment claimed. Reflection: verify keyboard order separately
+from mutable content identity. This fixture-specific lesson needs no global rule.
