@@ -26,10 +26,13 @@ describe('optional background music budget', () => {
     expect(result.stdout).toContain('PASS static export excluding optional music')
     expect(result.stdout).toContain('PASS complete static export')
   })
-  it('retains the original 12 MB cap for everything other than the selected music file', () => {
-    const result = checkBudget(0, 12_000_001)
+  it('enforces the 12.2 MB course-page content cap for everything other than the selected music file', () => {
+    const result = checkBudget(0, 12_200_001)
     expect(result.status).not.toBe(0)
     expect(result.stdout).toContain('FAIL static export excluding optional music')
+  })
+  it('accepts the content allowance boundary', () => {
+    expect(checkBudget(0, 12_200_000).status).toBe(0)
   })
   it('rejects music above its explicit 7.2 MB allowance', () => {
     const result = checkBudget(7_200_001)

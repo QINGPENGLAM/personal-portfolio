@@ -398,3 +398,10 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 ## Skills CI correction — 2026-11-11
 - [x] Reproduce the failed keyboard fixture and verify the corrected order in all four browsers.
 - [ ] Push the fixture correction and verify a fresh Actions/deployment run.
+
+
+## Course project case studies — 2026-11-13
+- [x] Inspect Hackathon 1 requirements/design/runtime and Agentic tutorial/project2 sources; classify both as course-based.
+- [x] Add approved English cards/pages at /projects/taskr-ai-planner/ and /projects/where-on-the-map/ without copying source or linking repositories.
+- [x] Verify unit tests, lint, types, build, export budgets, desktop/mobile accessibility and homepage/index navigation.
+- [ ] Publish portfolio changes when requested; these additions remain local.

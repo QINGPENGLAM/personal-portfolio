@@ -2,6 +2,144 @@ import { projectSchema } from './schemas'
 
 export const projects = projectSchema.array().parse([
   {
+    "id": "taskr-ai-planner",
+    "slug": "taskr-ai-planner",
+    "title": "Taskr AI Planning Assistant",
+    "course": "EECS 498-016 \u00b7 Hackathon 1 \u00b7 University of Michigan",
+    "shortDescription": "A terminal AI assistant that helps negotiate a realistic day, searches tasks and calendar events, and asks permission before making changes.",
+    "fullOverview": "Built for EECS 498-016 Hackathon 1 on top of a course-provided Taskr application. The starter supplied task storage, calendar operations, conflict checks, a CLI, and a model-call interface. My implementation added AI categorization and a conversational planning assistant: it retrieves relevant records, discusses tradeoffs, and executes approved task or calendar changes. This page describes the Hackathon 1 work; course source is not published here.",
+    "problem": "Turn an overloaded day into a feasible plan while keeping the user in control of changes and preserving unresolved work.",
+    "role": "Developer \u00b7 AI integration",
+    "directContributions": [
+      "Implemented a fixed categorization workflow that validates model-returned task identities and categories before saving changes.",
+      "Built a tool-calling assistant with filtered task and calendar retrieval instead of placing the complete task history in every model request.",
+      "Implemented a shared Python approval gate for task and calendar writes, including denial feedback and an explicit bypass mode.",
+      "Preserved conversation history across follow-up messages and returned actual tool errors to the model for recovery.",
+      "Added a ten-round limit per user turn, one retry for model-call failures, and fake-model regression tests for assistant behavior."
+    ],
+    "technicalChallenges": [
+      "Planning within a bounded model context",
+      "Enforcing permission independently of model instructions",
+      "Recovering from failed or denied changes"
+    ],
+    "solutions": [
+      "Filtered retrieval through Python tools",
+      "Central approval gate before store writes",
+      "Tool-result feedback and bounded execution"
+    ],
+    "architecture": [
+      "Terminal CLI and persistent conversation history",
+      "Python-controlled model/tool loop and permission gate",
+      "Course-provided Taskr storage and calendar foundation"
+    ],
+    "measurableResults": [
+      "Ten model rounds maximum per user turn"
+    ],
+    "focusAreas": [
+      "AI agents",
+      "Human-in-the-loop systems"
+    ],
+    "technologies": [
+      "Python",
+      "LLM tool calling",
+      "JSON",
+      "iCalendar",
+      "unittest"
+    ],
+    "screenshots": [],
+    "githubUrl": null,
+    "liveDemoUrl": null,
+    "status": "completed",
+    "date": "Hackathon 1",
+    "landmark": {
+      "type": "AI planning assistant",
+      "position": [
+        -2,
+        0,
+        8
+      ],
+      "cameraOffset": [
+        4.5,
+        3.5,
+        5.2
+      ],
+      "accent": "#79d7b7"
+    },
+    "placeholders": []
+  },
+  {
+    "id": "where-on-the-map",
+    "slug": "where-on-the-map",
+    "title": "Where on the Map?",
+    "course": "EECS 498-008 \u00b7 Project 2 \u00b7 University of Michigan",
+    "shortDescription": "A native iOS city-guessing game combining streamed AI hints, map interaction, and authorization before revealing the answer on the map.",
+    "fullOverview": "Built as EECS 498-008 Project 2, extending the course tutorial architecture with a mystery-city game. A SwiftUI client exchanges streamed messages and tool results with a Python/Starlette backend. The model selects a city and judges guesses; application state tracks the round and guards map actions. This case study covers the project2 implementation, rather than the separate llmVec tutorial branch. It is a course-project overview with no public source or hosted demo linked.",
+    "problem": "Coordinate model-driven gameplay, native map controls, and user authorization without letting stale responses or an unfinished action change the current round.",
+    "role": "Developer \u00b7 iOS and backend integration",
+    "directContributions": [
+      "Extended the tutorial app with mystery-city selection, hints, guess handling, round state, and replay behavior.",
+      "Integrated game-state reporting and map-recentering tools with the streamed conversation flow.",
+      "Guarded map movement with the current winning action and a valid authorization ticket; giving up does not authorize map movement.",
+      "Integrated the tutorial Google sign-in and protected ticket flow into winning map actions.",
+      "Implemented app-scoped conversation clearing, a confirmation dialog, and reset to an idle game state.",
+      "Added backend and native tool checks covering game state, clearing, and map-action behavior."
+    ],
+    "technicalChallenges": [
+      "Synchronizing streamed model output with native game state",
+      "Restricting map movement to an authorized current win",
+      "Resetting a round without applying stale work"
+    ],
+    "solutions": [
+      "Action identities and staged game-state reports",
+      "Ticket checks tied to the current winning action",
+      "Confirmed server clearing and explicit client reset"
+    ],
+    "architecture": [
+      "SwiftUI and MapKit client extending the course tutorials",
+      "Python/Starlette streaming backend with SQLite conversation records",
+      "Model-selected city and game-state tools",
+      "Google sign-in and protected authorization tickets"
+    ],
+    "measurableResults": [
+      "Native game flow with guarded map actions"
+    ],
+    "focusAreas": [
+      "AI agents",
+      "Mobile development",
+      "Human-in-the-loop systems"
+    ],
+    "technologies": [
+      "Swift",
+      "SwiftUI",
+      "MapKit",
+      "Python",
+      "Starlette",
+      "SQLite",
+      "Server-Sent Events"
+    ],
+    "screenshots": [],
+    "githubUrl": null,
+    "liveDemoUrl": null,
+    "status": "completed",
+    "date": "Project 2 \u00b7 Fall 2026",
+    "landmark": {
+      "type": "AI map game",
+      "position": [
+        3,
+        0,
+        9
+      ],
+      "cameraOffset": [
+        4.5,
+        3.5,
+        5.2
+      ],
+      "accent": "#74b9ff"
+    },
+    "placeholders": []
+  },
+
+  {
     "id": "personal-ai-assistant-platform",
     "slug": "personal-ai-assistant-platform",
     "title": "Personal AI Assistant Platform",

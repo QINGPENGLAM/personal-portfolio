@@ -1199,3 +1199,13 @@ platform-specific skips, including the formerly failing scenario in all four
 engines. Lint/types pass. Fix remains local; no rerun of unchanged failed commit,
 commit, push or deployment claimed. Reflection: verify keyboard order separately
 from mutable content identity. This fixture-specific lesson needs no global rule.
+
+
+### Course project portfolio entries — 2026-11-13
+User approved two course-attributed description-only pages. Added Taskr AI Planning Assistant and Where on the Map? via data/projects.ts; existing homepage deck, project index, routes, world and sitemap consume the entries. No course source/assets copied; no code/demo/download URLs. Inspected Taskr implementation and project2 branch sources without changing originals.
+Validation: 137 unit tests passed; lint, TypeScript and production static build passed. All seven budgets passed after the documented 100 KB non-music allowance adjustment. Chromium at 1440px and 390px verified both pages' attribution, absent source/demo/download actions and no horizontal overflow; four axe WCAG scans passed. Both cards navigated correctly from homepage and project index. git diff --check passed. Next-generated next-env.d.ts change reverted. Local only; no commit/push/deployment.
+Reflection: browser assertion initially omitted Next trailing slashes; inspected actual URLs and corrected the verification. Axe required an explicit browser context; rerun passed with that harness fix. Local server initially hit sandbox bind restrictions; authorized local-only execution succeeded. Reusable lesson: adding static case studies grows HTML/route payload totals independently of initial runtime budgets. No new global rule needed; no external governance or memory edits.
+
+
+### Publication preflight correction — 2026-11-13
+User authorized commit and push. Fresh full units caught the budget fixture left at the old cap after the previous content change; the earlier passing unit run predated that budget edit. GitHub Pages basePath export adds URL bytes and exceeded both export caps. Set non-music content to 12.2 MB and complete export to 19.4 MB (the 7.2 MB music allowance is unchanged), and update the boundary fixture with an at-limit acceptance check. JavaScript/CSS caps unchanged. Verify the actual Pages-path build before publication. Reflection: after modifying a verification script, rerun its own tests and use release build configuration before reporting completion.

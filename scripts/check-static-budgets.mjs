@@ -40,9 +40,10 @@ const checks = [
   ...routeBudgets.map((budget) => ({ label: budget.label, actual: scriptGzipSize(budget.path), max: budget.max })),
   { label: 'largest JavaScript chunk (gzip)', actual: largestJavaScript, max: 310_000 },
   { label: 'largest stylesheet (gzip)', actual: largestStylesheet, max: 22_000 },
-  { label: 'static export excluding optional music', actual: totalExport - optionalMusicBytes, max: 12_000_000 },
+  // Two additional course case studies add exported HTML and route payloads.
+  { label: 'static export excluding optional music', actual: totalExport - optionalMusicBytes, max: 12_200_000 },
   { label: 'optional background music', actual: optionalMusicBytes, max: 7_200_000 },
-  { label: 'complete static export', actual: totalExport, max: 19_200_000 },
+  { label: 'complete static export', actual: totalExport, max: 19_400_000 },
 ]
 
 for (const check of checks) {

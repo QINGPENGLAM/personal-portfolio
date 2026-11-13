@@ -550,3 +550,7 @@ Reduced the opening 3D/Quick Portfolio choices to single-line buttons. Local onl
 ### Skills CI fixture correction — 2026-11-11
 Actions 43138728190 failed on an outdated keyboard-test destination after the new
 React project changed evidence order. Fixed locally; no product behavior change.
+
+
+## Course project case studies — 2026-11-13
+Added Taskr AI Planning Assistant (EECS 498-016 Hackathon 1) and Where on the Map? (EECS 498-008 Project 2) as English project cards and standalone pages. Both are course-based: credit supplied foundations, describe personal implementation, and expose no source/demo/download links. Original repositories were only read; no source copied. Local verification passed; no commit, push or deployment performed.

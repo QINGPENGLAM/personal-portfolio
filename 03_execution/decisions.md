@@ -668,3 +668,12 @@ descriptions. Use 13px titles, 44px minimum height, a 420px desktop pair and
 Test each filter tab stop, then the first evidence link, rather than assuming a
 particular repository remains first after case studies are added. Keep explicit
 repository visibility assertions. Do not skip the test or weaken the quality gate.
+
+
+### Course project source boundaries — 2026-11-13
+Both requested projects are course-derived, despite general-purpose elements. Hackathon 1 README explicitly supplies Taskr storage/calendar/CLI/model-call plumbing. Agentic README identifies tutorials and PROJECT.md records Project 2 extending them. Read project2 through git show because the current branch is llmVec; do not switch or modify the original checkout. User approved description-only cards/pages. Keep githubUrl/liveDemoUrl null and omit downloads/source copies. Keep Hackathon 1.5 outside the Hackathon 1 entry and do not claim current AWS/device acceptance. Use existing visual fallbacks and omit timeline additions rather than invent dated milestones.
+Non-music static export exceeded the 12 MB allowance by approximately 70 KiB after adding two routes. Increase only that content allowance to 12.1 MB; all runtime JavaScript, CSS, media and total export limits stay unchanged. Actual non-music export is approximately 11,788 KiB. No publication requested.
+
+
+### Publication preflight correction — 2026-11-13
+User authorized commit and push. Fresh full units caught the budget fixture left at the old cap after the previous content change; the earlier passing unit run predated that budget edit. GitHub Pages basePath export adds URL bytes and exceeded both export caps. Set non-music content to 12.2 MB and complete export to 19.4 MB (the 7.2 MB music allowance is unchanged), and update the boundary fixture with an at-limit acceptance check. JavaScript/CSS caps unchanged. Verify the actual Pages-path build before publication. Reflection: after modifying a verification script, rerun its own tests and use release build configuration before reporting completion.
