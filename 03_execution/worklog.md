@@ -1231,3 +1231,7 @@ Styled Cancel request with the chat’s existing outlined-button rules, includin
 
 ## Repository publication — 2026-11-17
 Owner authorized committing and pushing the reviewed content cleanup, retained HRS engineering scenarios, default-off background music and matching chat Cancel styling to origin/master. The internal review document is included in repository history and excluded from website output.
+
+
+## Pages browser expectation repair — 2026-11-17
+Run 44098091338 on commit 44ca7be failed only assistant-local.spec.ts in all four CI browsers: it expected the removed HRS proposed/intended-workflow answer. Reproduced locally, then updated the expectation to the published optional-advisory answer. Product behavior is unchanged. Fresh checks: 138 unit tests, lint, TypeScript, base-path production build, all budgets and three targeted desktop/mobile/Firefox browser cases passed. Push and hosted verification authorized. Reflection: wording edits require matching browser expectations as well as unit fixtures; no global-rule change.

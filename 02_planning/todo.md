@@ -417,3 +417,7 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Restore owner-selected category 3: six HRS engineering scenarios.
 
 - [x] Match chat Cancel request styling to existing chat buttons and verify desktop/mobile cancellation.
+
+- [x] Repair stale HRS browser expectation from run 44098091338; verify locally.
+- [ ] Confirm new hosted quality/deploy run succeeds.
+- [ ] Owner selection/approval of story-bank chat design, then implement curated public stories.

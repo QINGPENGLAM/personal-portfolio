@@ -693,3 +693,7 @@ Owner selected category 3 from the content review. Restored all six hypothetical
 
 ## Chat cancel button styling — 2026-11-17
 Styled Cancel request with the chat’s existing outlined-button rules, including rounded corners, text, hover and compact placement. Cancellation behavior unchanged. Lint, TypeScript, production build and desktop/mobile Chromium cancellation/style checks passed. No deployment. Reflection: a direct child button missed the form-only styling; reuse existing control rules.
+
+
+## Pages browser expectation repair — 2026-11-17
+Run 44098091338 on commit 44ca7be failed only assistant-local.spec.ts in all four CI browsers: it expected the removed HRS proposed/intended-workflow answer. Reproduced locally, then updated the expectation to the published optional-advisory answer. Product behavior is unchanged. Fresh checks: 138 unit tests, lint, TypeScript, base-path production build, all budgets and three targeted desktop/mobile/Firefox browser cases passed. Push and hosted verification authorized. Reflection: wording edits require matching browser expectations as well as unit fixtures; no global-rule change.

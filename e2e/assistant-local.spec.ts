@@ -21,7 +21,7 @@ test('browses expanded local questions without contacting AI or hiding the input
   const hrs = page.getByRole('button', { name: 'Is HRS AI screening already deployed?', exact: true })
   await hrs.scrollIntoViewIfNeeded()
   await hrs.click()
-  await expect(page.getByText(/HRS AI screening is a proposed\/intended workflow/)).toBeVisible()
+  await expect(page.getByText(/HRS AI screening is an optional advisory step/)).toBeVisible()
   await page.getByRole('button', { name: 'Browse common questions', exact: true }).click()
   await expect(input).toBeInViewport()
   const testing = page.getByRole('button', { name: 'How is DevDoctor tested?', exact: true })
