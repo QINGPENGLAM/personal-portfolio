@@ -1,3 +1,4 @@
+import { suggestedAssistantQuestions } from '@/data/assistant-suggestions'
 import type { AssistantAnswer } from './assistant'
 import { responseSchema, type AssistantRequest } from './assistant-protocol'
 export type GuideResult = AssistantAnswer & { mode: 'ai' | 'insufficient' | 'local' | 'fallback'; notice?: string }
@@ -42,6 +43,11 @@ function failureNotice(status: number, body: unknown): string {
 }
 export async function askAssistant(question: string, history: AssistantRequest['history'], configuredEndpoint?: string, signal?: AbortSignal, fetcher: typeof fetch = fetch): Promise<GuideResult> {
   signal?.throwIfAborted()
+  if (suggestedAssistantQuestions.some(prompt => prompt.toLowerCase() === question.trim().toLowerCase())) {
+    const answer = (await import('./assistant')).answerPortfolioQuestion(question)
+    signal?.throwIfAborted()
+    return { ...answer, mode: 'local', notice: 'Prepared answer · portfolio sources' }
+  }
   const endpoint = assistantEndpoint(configuredEndpoint)
   let notice = endpoint ? 'Local guide · AI could not be reached. Please try later.' : 'Local guide · Showing published portfolio facts.'
   if (endpoint) {

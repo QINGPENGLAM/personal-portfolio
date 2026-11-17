@@ -1,3 +1,4 @@
+import { assistantStories } from './assistant-stories'
 import { profile } from './profile'
 import { education } from './education'
 import { experiences } from './experience'
@@ -36,4 +37,5 @@ for (const r of githubRepositories) if (r.description) add(`repo-${r.name}`, r.n
 for (const [section, nodes] of Object.entries({ workflow: Object.values(hrsWorkflow), database: hrsDatabase, cloud: hrsCloud, development: hrsDevelopment, evaluation: hrsEvaluation })) {
   for (const n of nodes) add(`hrs-${section}-${n.id}`, `HRS: ${n.title}`, '/projects/hrs-publication-pipeline', [n.title, n.caption, n.explanation, ...n.points].join('\n'))
 }
+for (const story of assistantStories) add(`story-${story.id}`, story.title, `/about#story-${story.id}`, `${story.question}\n${story.answer}`)
 export const assistantCorpus: readonly AssistantSource[] = chunks

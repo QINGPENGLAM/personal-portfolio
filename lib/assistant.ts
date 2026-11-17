@@ -1,3 +1,4 @@
+import { getAssistantStory } from '@/data/assistant-stories'
 import { education } from '@/data/education'
 import { experiences } from '@/data/experience'
 import { profile } from '@/data/profile'
@@ -32,6 +33,8 @@ const experienceAliases: Record<string, string[]> = {
 export function answerPortfolioQuestion(question: string): AssistantAnswer {
   const normalized = question.trim().toLowerCase()
   const chinese = /[\u3400-\u9fff]/.test(question)
+  const story = getAssistantStory(question)
+  if (story) return { available: true, answer: story.answer, links: [{ href: `/about#story-${story.id}`, label: story.title }] }
   // Specific subjects precede broad words such as "built", "backend" and "testing".
   if (/salary|sponsorship|visa|citizenship|date of birth|birthday|full.time.*start|start.*full.time|薪资|签证|国籍|出生|入职时间/.test(normalized)) {
     return { available: false, answer: chinese ? '公开作品集没有提供这项个人或招聘信息，请直接联系 QingPeng 确认。' : 'That information is not available in the public portfolio. Please contact QingPeng to confirm.', links: [{ href: '/contact', label: 'Contact QingPeng' }] }

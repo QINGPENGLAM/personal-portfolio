@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 import { usePortfolioAudio } from '@/components/audio/AudioProvider'
-import { suggestedAssistantQuestions } from '@/data/assistant-suggestions'
+import { assistantQuestionGroups } from '@/data/assistant-suggestions'
 import type { GuideResult } from '@/lib/assistant-client'
 import { createReplyDelay, revealAssistantAnswer } from '@/lib/assistant-presentation'
 import { trackPortfolioEvent } from '@/lib/analytics'
@@ -22,6 +22,7 @@ export function PortfolioAssistant() {
   const [open, setOpen] = useState(false)
   const [closing, setClosing] = useState(false)
   const [showQuestions, setShowQuestions] = useState(true)
+  const [questionTopic, setQuestionTopic] = useState('all')
   const [question, setQuestion] = useState('')
   const [pending, setPending] = useState(false)
   const pendingRef = useRef(false)
@@ -148,10 +149,18 @@ export function PortfolioAssistant() {
             {messages.map((message, index) => <article className={`is-${message.kind}`} id={index === 0 ? 'portfolio-assistant-description' : undefined} key={message.id}><span>{message.kind === 'user' ? 'You' : message.answer?.mode === 'ai' ? 'AI guide' : 'Guide'}</span>{message.answer?.notice ? <small>{message.answer.notice}</small> : null}<p>{message.revealing && !message.text ? <><span aria-hidden="true" className="assistant-dots"><span>.</span><span>.</span><span>.</span></span><span className="sr-only">Preparing response</span></> : message.text}</p>{!message.revealing && message.answer?.links.length ? <div>{message.answer.links.map((link) => <Link href={link.href} key={`${message.id}-${link.href}`}>{link.label} <span aria-hidden="true">→</span></Link>)}</div> : null}</article>)}
           </div>
           {messages.length > 1 && !pending ? <button aria-expanded={showQuestions} className="assistant-question-picker" onClick={() => setShowQuestions(current => !current)} type="button">{showQuestions ? 'Hide common questions' : 'Browse common questions'}</button> : null}
-          {showQuestions ? <div className="assistant-suggestions"><span>Common portfolio questions</span>{suggestedAssistantQuestions.map((suggestion) => <button disabled={pending} key={suggestion} onClick={(event) => ask(suggestion, event.timeStamp)} type="button">{suggestion}</button>)}</div> : null}
+          {showQuestions ? <div className="assistant-suggestions"><span>Choose a topic or ask your own question</span>
+            <div aria-label="Question topics" className="assistant-topics" role="group">
+              {[{ id: 'all', label: 'All' }, ...assistantQuestionGroups].map(topic => <button aria-pressed={questionTopic === topic.id} disabled={pending} key={topic.id} onClick={() => setQuestionTopic(topic.id)} type="button">{topic.label}</button>)}
+            </div>
+            {assistantQuestionGroups.filter(group => questionTopic === 'all' || group.id === questionTopic).map(group => <div className="assistant-question-group" key={group.id}>
+              <strong>{group.label}</strong>
+              {group.questions.map(suggestion => <button disabled={pending} key={suggestion} onClick={event => ask(suggestion, event.timeStamp)} type="button">{suggestion}</button>)}
+            </div>)}
+          </div> : null}
           <form onSubmit={submit}><label className="sr-only" htmlFor="portfolio-question">Ask about QingPeng’s portfolio</label><input id="portfolio-question" maxLength={240} onChange={(event) => setQuestion(event.target.value)} placeholder="Ask about projects, skills, or experience…" ref={inputRef} value={question} /><button disabled={pending || !question.trim()} type="submit">Ask</button></form>
           {pending ? <button className="assistant-cancel" onClick={() => controllerRef.current?.abort()} type="button">Cancel request</button> : null}
-          <small role="status">{pending ? 'Preparing reply…' : endpoint ? 'Questions and recent chat are sent to our AI service and OpenRouter. Please avoid personal or sensitive information.' : 'No external AI or personal data collection is active in this mode.'}</small>
+          <small role="status">{pending ? 'Preparing reply…' : endpoint ? 'Custom questions and recent chat may be sent to our AI service and OpenRouter. Avoid personal or sensitive information. Preset choices are answered locally.' : 'No external AI or personal data collection is active in this mode.'}</small>
         </section>
       ) : null}
       <button aria-controls="portfolio-assistant-panel" aria-expanded={open} className={`assistant-toggle${open ? ' is-open' : ''}`} onClick={toggle} ref={toggleRef} type="button"><span aria-hidden="true">◇</span><strong>Ask portfolio</strong></button>

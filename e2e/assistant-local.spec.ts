@@ -10,7 +10,7 @@ test('browses expanded local questions without contacting AI or hiding the input
   await page.goto('/personal-portfolio/')
   await page.getByRole('button', { name: 'Ask portfolio', exact: true }).click()
   await expect(page.getByText('Local demo · approved data only')).toBeVisible()
-  await expect(page.locator('.assistant-suggestions button')).toHaveCount(suggestedAssistantQuestions.length)
+  await expect(page.locator('.assistant-question-group button')).toHaveCount(suggestedAssistantQuestions.length)
   const input = page.getByRole('textbox', { name: 'Ask about QingPeng’s portfolio' })
   await expect(input).toBeInViewport()
   const last = page.getByRole('button', { name: 'Where is his source code?', exact: true })

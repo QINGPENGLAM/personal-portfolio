@@ -1,3 +1,5 @@
+import Link from 'next/link'
+import { assistantStories } from '@/data/assistant-stories'
 import { SectionPage } from '@/components/SectionPage'
 import { education } from '@/data/education'
 import { profile } from '@/data/profile'
@@ -15,6 +17,14 @@ export default function AboutPage() {
         <section className="glass-card prose-card"><p className="eyebrow">Current direction</p><h2>Growing across software, AI, and data engineering.</h2><p>My goal is to keep building systems with strong engineering fundamentals, clear product thinking, and enough curiosity to explore better ways of working.</p></section>
         <section className="glass-card prose-card" id="education"><p className="eyebrow">Education</p><h2>{education.institution}</h2><p>{education.degree}, Minor in {education.minor}. Expected {education.endDate}. GPA {education.gpa}.</p></section>
       </div>
+      <section aria-labelledby="work-stories-heading" className="about-stories">
+        <p className="eyebrow">Experience in practice</p>
+        <h2 id="work-stories-heading">Stories behind the work.</h2>
+        <p>Selected examples of ownership, problem solving and learning, shared from my experience.</p>
+        <div className="detail-grid">{assistantStories.map(story => <article className="glass-card prose-card" id={`story-${story.id}`} key={story.id}>
+          <h3>{story.title}</h3><p>{story.answer}</p><Link href={story.relatedHref}>Explore the related work →</Link>
+        </article>)}</div>
+      </section>
     </SectionPage>
   )
 }

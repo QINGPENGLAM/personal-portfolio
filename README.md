@@ -33,7 +33,7 @@ The source-level review in [`docs/PUBLIC_PROJECT_CODEBASE_AUDIT_2026-08-11.md`](
 - Searchable skill evidence map with connection counts, source filters, hover/focus previews, click/tap pinning, and sourced project, repository and role connections, plus a plain accessible list
 - Expanded About story covering interests, working style, curiosity, and current direction without becoming an autobiography
 - In-world Experience, About, Skills, and Education dossiers using `/world/?panel=[landmark]`, browser Back, Escape, and focus trapping
-- Local portfolio guide that answers only from approved structured content, links to supporting sections, refuses unavailable facts, and rate-limits questions in the browser
+- Portfolio guide with grouped premade questions, six curated work stories and linked public sources; preset choices answer locally while custom questions retain optional AI and local fallback
 - Optional looping background music with default-off playback, pause, fading volume controls, retryable errors, and interface tones
 - World loader whose progress reflects WebGL and renderer milestones, with lightweight-map and Recruiter View exits
 - Advanced procedural data-signal animation that respects reduced motion and performance mode

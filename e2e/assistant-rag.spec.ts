@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { assistantStories } from '../data/assistant-stories'
 
 // Match this test-only setting to the endpoint used at build time.
 const endpoint = process.env.PLAYWRIGHT_ASSISTANT_ENDPOINT || 'https://assistant.test'
@@ -6,6 +7,25 @@ const endpoint = process.env.PLAYWRIGHT_ASSISTANT_ENDPOINT || 'https://assistant
 // No runtime endpoint override or production test hook.
 test.describe('configured portfolio AI transport', () => {
   test.skip(!process.env.PLAYWRIGHT_ASSISTANT_RAG, 'Requires the explicitly configured test build')
+  test('keeps premade stories local while custom questions still use configured AI', async ({ page }) => {
+    let requests = 0
+    await page.route(`${endpoint.replace(/\/$/, '')}/**`, route => {
+      requests++
+      return route.fulfill({ json: { mode: 'ai', available: true, answer: 'A custom sourced reply.', links: [{ href: '/about', label: 'About source' }] } })
+    })
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await page.goto('/personal-portfolio/')
+    await page.getByRole('button', { name: 'Ask portfolio', exact: true }).click()
+    const story = assistantStories[0]
+    await page.getByRole('button', { name: story.question, exact: true }).click()
+    await expect(page.locator('.assistant-messages article').last()).toContainText(story.answer)
+    await expect(page.getByText('Prepared answer · portfolio sources', { exact: true })).toBeVisible()
+    expect(requests).toBe(0)
+    await page.getByRole('textbox').fill('What else can you explain about search integration?')
+    await page.getByRole('button', { name: 'Ask', exact: true }).click()
+    await expect(page.getByText('A custom sourced reply.', { exact: true })).toBeVisible()
+    expect(requests).toBe(1)
+  })
   test('shows sourced AI text safely and sends short follow-up history', async ({ page }) => {
     const bodies: { question: string; history: unknown[] }[] = []
     await page.route(`${endpoint.replace(/\/$/, '')}/**`, async route => {
@@ -14,7 +34,7 @@ test.describe('configured portfolio AI transport', () => {
     })
     await page.goto('/personal-portfolio/')
     await page.getByRole('button', { name: 'Ask portfolio' }).click()
-    await expect(page.getByText('Questions and recent chat are sent to our AI service and OpenRouter. Please avoid personal or sensitive information.')).toBeVisible()
+    await expect(page.getByText('Custom questions and recent chat may be sent to our AI service and OpenRouter. Avoid personal or sensitive information. Preset choices are answered locally.')).toBeVisible()
     await page.getByRole('textbox', { name: 'Ask about QingPeng’s portfolio' }).fill('HRS database?')
     await page.getByRole('button', { name: 'Ask', exact: true }).click()
     await expect(page.getByText('<script>not executable</script> HRS uses PostgreSQL.', { exact: true })).toBeVisible()
