@@ -422,4 +422,4 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Confirm CI repair run 44103060320 completed quality and deploy successfully.
 - [x] Owner approved story-bank chat design; implemented grouped local choices and six curated public stories.
 
-- [ ] Push grouped story feature and verify its hosted deployment/live content.
+- [x] Push grouped story feature; run 44105142116 quality/deploy and live desktop/mobile checks passed.

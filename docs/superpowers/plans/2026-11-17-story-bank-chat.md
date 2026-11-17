@@ -26,6 +26,6 @@
 
 ## Task 3: Release
 - [x] Lint/types/full unit suite, base-path local and configured builds, budgets, affected browser suites, independent final review.
-- [ ] Update governance/guide docs, commit/push approved work and observe hosted quality/deploy + live story/source output.
+- [x] Update governance/guide docs, commit/push approved work and observe hosted quality/deploy + live story/source output. Verified e9ec715 / Actions 44105142116 and live desktop/mobile source flow.
 
 Ruling: execute in the current checkout as requested for this repository update; avoid an extra branch/worktree or repeat permission gate after owner approval. One final independent review follows implementation.
