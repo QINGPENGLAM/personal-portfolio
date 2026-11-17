@@ -21,8 +21,8 @@ describe('expanded local portfolio guide', () => {
     ['What did he do at ISR?', '/experience#isr', 'pipelines'],
     ['Tell me about Hillel', '/experience#hillel', 'Michigan Hillel'],
     ['HRS uses which database?', '/projects/hrs-publication-pipeline', 'PostgreSQL'],
-    ['Is HRS AI screening already deployed?', '/projects/hrs-publication-pipeline', 'proposed'],
-    ['HRS 的 AI 筛选已经上线了吗？', '/projects/hrs-publication-pipeline', '计划'],
+    ['Is HRS AI screening already deployed?', '/projects/hrs-publication-pipeline', 'optional'],
+    ['HRS 的 AI 筛选已经上线了吗？', '/projects/hrs-publication-pipeline', '可选'],
     ['Which Unity games did he build?', '/projects/modular-weapon-arena', 'Unity'],
     ['Where is his source code?', '/projects/archive', 'GitHub'],
   ])('answers %s using public facts', (question, href, fact) => {

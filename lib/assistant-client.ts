@@ -37,13 +37,13 @@ function failureNotice(status: number, body: unknown): string {
   if (error.providerStatus === 429) return 'Local guide · Free AI provider is rate-limiting requests. Please try later.'
   if (error.reason === 'timeout') return 'Local guide · AI timed out. Please try later.'
   if (error.reason === 'output') return 'Local guide · AI returned an unusable answer. Showing published portfolio facts.'
-  if (error.error === 'unconfigured') return 'Local guide · AI service is not configured.'
+  if (error.error === 'unconfigured') return 'Local guide · AI is temporarily unavailable.'
   return 'Local guide · Free AI service is temporarily unavailable.'
 }
 export async function askAssistant(question: string, history: AssistantRequest['history'], configuredEndpoint?: string, signal?: AbortSignal, fetcher: typeof fetch = fetch): Promise<GuideResult> {
   signal?.throwIfAborted()
   const endpoint = assistantEndpoint(configuredEndpoint)
-  let notice = endpoint ? 'Local guide · AI could not be reached. Please try later.' : 'Local guide · AI endpoint is not configured correctly.'
+  let notice = endpoint ? 'Local guide · AI could not be reached. Please try later.' : 'Local guide · Showing published portfolio facts.'
   if (endpoint) {
     const controller = new AbortController()
     const abort = () => controller.abort()

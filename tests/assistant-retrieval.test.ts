@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import { retrieveSources } from '@/lib/assistant-retrieval'
-import { projects } from '@/data/projects'
 import { assistantCorpus } from '@/data/assistant-corpus'
 import { requestSchema, modelSchema } from '@/lib/assistant-protocol'
 
@@ -13,10 +12,10 @@ describe('public assistant evidence', () => {
     expect(sources.length).toBeLessThanOrEqual(6)
     expect(sources.reduce((n, s) => n + s.text.length, 0)).toBeLessThanOrEqual(8000)
   })
-  it('does not call unrelated facts evidence and marks proposals', () => {
+  it('excludes owner planning notes from public answers', () => {
     expect(retrieveSources('What is the weather in Tokyo?')).toEqual([])
-    expect(assistantCorpus.some(s => s.status === 'proposed' && s.text.includes('PROPOSED'))).toBe(true)
-    for (const p of projects) for (const next of p.caseStudy?.reflection.next ?? []) expect(assistantCorpus.some(s => s.status === 'proposed' && s.text.includes(next))).toBe(true)
+    expect(assistantCorpus.every(s => s.status === 'published')).toBe(true)
+    expect(assistantCorpus.some(s => /PROPOSED, NOT IMPLEMENTED|Implementation boundary:|intended workflow|AI incomplete—manual review needed/.test(s.text))).toBe(false)
     expect(new Set(assistantCorpus.map(s => s.id)).size).toBe(assistantCorpus.length)
   })
   it('retrieves personal facts, Chinese skill questions and project aliases', () => {

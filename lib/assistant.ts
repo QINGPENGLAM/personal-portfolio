@@ -40,14 +40,14 @@ export function answerPortfolioQuestion(question: string): AssistantAnswer {
     const href = '/projects/hrs-publication-pipeline'
     let text: string
     if (/\bai\b|screening|筛选|人工智能/.test(normalized)) {
-      text = chinese ? '公开案例把 AI 筛选描述为计划中的目标流程，不能据此确认已经上线。计划中 AI 只提供建议与证据，工作人员保留最终决定；无法完成时标记为需要人工审核。' : 'HRS AI screening is a proposed/intended workflow in the public case study, not confirmation that it is deployed. The design keeps staff in control and marks incomplete screening for manual review.'
+      text = chinese ? 'HRS 的 AI 筛选是可选的辅助审核步骤，提供建议和来源证据，由工作人员保留最终决定。公开案例没有确认该步骤已部署到云端。' : 'HRS AI screening is an optional advisory step that provides suggestions and source evidence. Staff retain the final decision. The public case study does not confirm cloud deployment of this step.'
     } else {
       const node = /database|postgres|数据库|存储/.test(normalized) ? hrsDatabase.find(n => n.id === 'db-why')
         : /dedup|duplicate|去重|重复/.test(normalized) ? hrsWorkflow.storage
         : /cloud|deploy|云|部署/.test(normalized) ? hrsCloud.find(n => n.id === 'cloud-why')
         : /test|验证|测试/.test(normalized) ? hrsEvaluation[0] : undefined
       text = node ? `${node.title}: ${node.explanation} ${node.points.slice(0, 2).join(' ')}`
-        : 'The HRS publication pipeline processes Google Scholar and Web of Science alerts, extracts publication metadata, checks for existing records, and maintains a PostgreSQL review queue for staff. The case study separately describes proposed AI screening.'
+        : 'The HRS publication pipeline processes Google Scholar and Web of Science alerts, extracts publication metadata, checks for existing records, and maintains a PostgreSQL review queue for staff. Optional AI screening provides advisory evidence for staff review.'
       if (chinese) text = `公开案例资料（以下保留原文）：${text}`
     }
     return { available: true, answer: text, links: [{ href, label: 'HRS publication pipeline' }] }

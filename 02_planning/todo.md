@@ -405,3 +405,15 @@ Removed the exact user-selected required-stage/opt-in/cloud-status passage from 
 - [x] Add approved English cards/pages at /projects/taskr-ai-planner/ and /projects/where-on-the-map/ without copying source or linking repositories.
 - [x] Verify unit tests, lint, types, build, export budgets, desktop/mobile accessibility and homepage/index navigation.
 - [ ] Publish portfolio changes when requested; these additions remain local.
+
+
+## Public content cleanup — 2026-11-17
+- [x] Review public source/content and assistant paths for owner-facing planning notes.
+- [x] Move removed text into docs/INTERNAL_CONTENT_REVIEW_2026-11-17.md.
+- [x] Verify tests, lint/types, production export, budgets and exclusion of review notes.
+
+- [x] 2026-11-17: Default background music off; verify explicit playback and desktop/mobile music flows.
+
+- [x] Restore owner-selected category 3: six HRS engineering scenarios.
+
+- [x] Match chat Cancel request styling to existing chat buttons and verify desktop/mobile cancellation.

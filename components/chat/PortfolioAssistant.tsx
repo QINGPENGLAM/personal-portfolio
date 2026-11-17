@@ -150,7 +150,7 @@ export function PortfolioAssistant() {
           {messages.length > 1 && !pending ? <button aria-expanded={showQuestions} className="assistant-question-picker" onClick={() => setShowQuestions(current => !current)} type="button">{showQuestions ? 'Hide common questions' : 'Browse common questions'}</button> : null}
           {showQuestions ? <div className="assistant-suggestions"><span>Common portfolio questions</span>{suggestedAssistantQuestions.map((suggestion) => <button disabled={pending} key={suggestion} onClick={(event) => ask(suggestion, event.timeStamp)} type="button">{suggestion}</button>)}</div> : null}
           <form onSubmit={submit}><label className="sr-only" htmlFor="portfolio-question">Ask about QingPeng’s portfolio</label><input id="portfolio-question" maxLength={240} onChange={(event) => setQuestion(event.target.value)} placeholder="Ask about projects, skills, or experience…" ref={inputRef} value={question} /><button disabled={pending || !question.trim()} type="submit">Ask</button></form>
-          {pending ? <button onClick={() => controllerRef.current?.abort()} type="button">Cancel request</button> : null}
+          {pending ? <button className="assistant-cancel" onClick={() => controllerRef.current?.abort()} type="button">Cancel request</button> : null}
           <small role="status">{pending ? 'Preparing reply…' : endpoint ? 'Questions and recent chat are sent to our AI service and OpenRouter. Please avoid personal or sensitive information.' : 'No external AI or personal data collection is active in this mode.'}</small>
         </section>
       ) : null}

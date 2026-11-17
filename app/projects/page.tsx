@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { SectionPage } from '@/components/SectionPage'
 import { ProjectsExplorer } from '@/components/projects/ProjectsExplorer'
 import { githubRepositories } from '@/data/github-repositories'
-import { projectContentPlaceholders, projects } from '@/data/projects'
+import { projects } from '@/data/projects'
 import { createPageMetadata } from '@/lib/site'
 
 export const metadata = createPageMetadata('Projects', 'Explore evidence-backed software engineering case studies covering AI workflows, reliability, search, data, and developer tooling.', '/projects')
@@ -31,7 +31,6 @@ export default function ProjectsPage() {
           </article>
         ))}
       </section>
-      <details className="content-placeholders"><summary>Unresolved content placeholders ({projectContentPlaceholders.length})</summary><ul>{projectContentPlaceholders.map((item) => <li key={item}>{item}</li>)}</ul></details>
     </SectionPage>
   )
 }

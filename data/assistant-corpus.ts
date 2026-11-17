@@ -26,7 +26,6 @@ for (const p of projects) {
   if (p.caseStudy) {
     const c = p.caseStudy
     add(`project-${p.slug}-case`, p.title, `/projects/${p.slug}`, JSON.stringify({ audience: c.audience, constraints: c.constraints, architectureNodes: c.architectureNodes, architectureEdges: c.architectureEdges, requestFlow: c.requestFlow, decisions: c.decisions, testing: c.testing, learned: c.reflection.learned }))
-    c.reflection.next.forEach((next, i) => add(`project-${p.slug}-next-${i}`, `${p.title}: future work`, `/projects/${p.slug}`, next, true))
   }
 }
 for (const group of skillGroups) for (const skill of group.items) {
@@ -35,6 +34,6 @@ for (const group of skillGroups) for (const skill of group.items) {
 }
 for (const r of githubRepositories) if (r.description) add(`repo-${r.name}`, r.name, '/projects', `${r.name}: ${r.description}\nLanguage: ${r.primaryLanguage ?? 'unspecified'}. Metadata snapshot: ${githubRepositorySnapshot.capturedAt}; not proof of current deployment.`)
 for (const [section, nodes] of Object.entries({ workflow: Object.values(hrsWorkflow), database: hrsDatabase, cloud: hrsCloud, development: hrsDevelopment, evaluation: hrsEvaluation })) {
-  for (const n of nodes) add(`hrs-${section}-${n.id}`, `HRS: ${n.title}`, '/projects/hrs-publication-pipeline', [n.title, n.caption, n.explanation, ...n.points].join('\n'), ('planned' in n && n.planned === true) || /intended workflow|AI screening/i.test(n.explanation))
+  for (const n of nodes) add(`hrs-${section}-${n.id}`, `HRS: ${n.title}`, '/projects/hrs-publication-pipeline', [n.title, n.caption, n.explanation, ...n.points].join('\n'))
 }
 export const assistantCorpus: readonly AssistantSource[] = chunks

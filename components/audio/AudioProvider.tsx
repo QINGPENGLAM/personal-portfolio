@@ -20,7 +20,6 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const musicRef = useRef<HTMLAudioElement>(null)
   const audioContextRef = useRef<AudioContext | null>(null)
   const requestRef = useRef(0)
-  const automaticRef = useRef(true)
   const volumeRef = useRef(0.2)
   const [enabled, setEnabled] = useState(false)
   const [pending, setPending] = useState(false)
@@ -35,7 +34,6 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const failPlayback = useCallback(() => {
-    automaticRef.current = false
     requestRef.current += 1
     musicRef.current?.pause()
     setEnabled(false)
@@ -43,7 +41,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     setError('Music could not play. Please try again.')
   }, [])
 
-  const startMusic = useCallback((automatic = false) => {
+  const startMusic = useCallback(() => {
     const music = musicRef.current
     if (!music) return
     const request = ++requestRef.current
@@ -51,52 +49,32 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     if (!music.getAttribute('src') || music.error) music.src = withBasePath('/audio/calm-ambient-dreamscape.mp3')
     music.volume = volumeRef.current
     setPending(true)
-    const handleFailure = (reason: unknown) => {
+    const handleFailure = () => {
       if (request !== requestRef.current) return
-      if (automatic && reason instanceof DOMException && reason.name === 'NotAllowedError') {
-        // Browser policy: wait for a real interaction without showing a failure.
-        setPending(false)
-        return
-      }
       failPlayback()
     }
     try {
       void music.play().then(() => {
         if (request !== requestRef.current) return
-        automaticRef.current = false
         setEnabled(true)
         setPending(false)
       }).catch(handleFailure)
-    } catch (reason) {
-      handleFailure(reason)
+    } catch {
+      handleFailure()
     }
   }, [failPlayback])
 
   useEffect(() => {
     const music = musicRef.current
-    const firstInteraction = (event: Event) => {
-      if (!automaticRef.current || (event.target instanceof Element && event.target.closest('.audio-control'))) return
-      if (event instanceof KeyboardEvent && (event.repeat || event.ctrlKey || event.metaKey || event.altKey || ['Tab', 'Escape', 'Shift', 'Control', 'Alt', 'Meta'].includes(event.key))) return
-      automaticRef.current = false
-      startMusic()
-    }
-    document.addEventListener('click', firstInteraction)
-    document.addEventListener('keydown', firstInteraction)
-    // Schedule the automatic attempt after mount; manual controls remain available.
-    const frame = window.requestAnimationFrame(() => { if (automaticRef.current) startMusic(true) })
     return () => {
-      window.cancelAnimationFrame(frame)
-      document.removeEventListener('click', firstInteraction)
-      document.removeEventListener('keydown', firstInteraction)
       requestRef.current += 1
       music?.pause()
       void audioContextRef.current?.close().catch(() => {})
       audioContextRef.current = null
     }
-  }, [startMusic])
+  }, [])
 
   const toggle = useCallback(() => {
-    automaticRef.current = false
     if (enabled || pending) {
       requestRef.current += 1
       musicRef.current?.pause()

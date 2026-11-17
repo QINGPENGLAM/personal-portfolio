@@ -1,23 +1,11 @@
-import { expect, test, type Page } from '@playwright/test'
-
-async function blockInitialAutoplay(page: Page) {
-  await page.addInitScript(() => {
-    const nativePlay = HTMLMediaElement.prototype.play
-    let initial = true
-    HTMLMediaElement.prototype.play = function () {
-      if (initial) { initial = false; return Promise.reject(new DOMException('Autoplay blocked', 'NotAllowedError')) }
-      return nativePlay.call(this)
-    }
-  })
-}
+import { expect, test } from '@playwright/test'
 
 test('plays the selected music, loops, adjusts volume and continues across routes', async ({ page }) => {
-  await blockInitialAutoplay(page)
   const audioRequests: string[] = []
   page.on('request', request => { if (request.url().endsWith('.mp3')) audioRequests.push(request.url()) })
   await page.goto('/projects/archive/')
   await expect(page.getByRole('button', { name: 'Play background music' })).toBeVisible()
-  await expect(page.locator('audio')).toHaveAttribute('src', /calm-ambient-dreamscape\.mp3$/)
+  await expect(page.locator('audio')).not.toHaveAttribute('src')
   const range = await page.request.get('/personal-portfolio/audio/calm-ambient-dreamscape.mp3', { headers: { Range: 'bytes=0-31' } })
   expect(range.status()).toBe(206)
   expect(range.headers()['content-range']).toBe('bytes 0-31/7108608')
@@ -46,7 +34,7 @@ test('plays the selected music, loops, adjusts volume and continues across route
   expect(await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused)).toBe(true)
   await page.reload()
   await expect(page.getByRole('button', { name: 'Play background music' })).toHaveAttribute('aria-pressed', 'false')
-  await expect(page.locator('audio')).toHaveAttribute('src', /calm-ambient-dreamscape\.mp3$/)
+  await expect(page.locator('audio')).not.toHaveAttribute('src')
 })
 
 test('offers a retry if the browser rejects playback', async ({ page }) => {
@@ -55,8 +43,7 @@ test('offers a retry if the browser rejects playback', async ({ page }) => {
     let attempts = 0
     HTMLMediaElement.prototype.play = function () {
       attempts += 1
-      if (attempts === 1) return Promise.reject(new DOMException('Autoplay blocked', 'NotAllowedError'))
-      if (attempts === 2) return Promise.reject(new DOMException('Playback failed', 'NotSupportedError'))
+      if (attempts === 1) return Promise.reject(new DOMException('Playback failed', 'NotSupportedError'))
       return nativePlay.call(this)
     }
   })
@@ -70,9 +57,7 @@ test('offers a retry if the browser rejects playback', async ({ page }) => {
 
 test('does not enable music when a canceled start resolves late', async ({ page }) => {
   await page.addInitScript(() => {
-    let initial = true
     HTMLMediaElement.prototype.play = () => {
-      if (initial) { initial = false; return Promise.reject(new DOMException('Autoplay blocked', 'NotAllowedError')) }
       return new Promise<void>(resolve => { Object.assign(window, { finishAudioStart: resolve }) })
     }
   })
@@ -85,7 +70,6 @@ test('does not enable music when a canceled start resolves late', async ({ page 
 })
 
 test('shows a readable retry if the music asset cannot load', async ({ page }) => {
-  await blockInitialAutoplay(page)
   await page.route('**/audio/calm-ambient-dreamscape.mp3', route => route.fulfill({ status: 404, body: 'Missing music' }))
   await page.goto('/projects/archive/')
   await page.getByRole('button', { name: 'Play background music' }).click()
@@ -95,37 +79,7 @@ test('shows a readable retry if the music asset cannot load', async ({ page }) =
   await expect(page.getByRole('button', { name: 'Pause background music' })).toHaveAttribute('aria-pressed', 'true')
 })
 
-test('attempts default playback and falls back to the first interaction if autoplay is blocked', async ({ page }) => {
-  await page.addInitScript(() => {
-    const nativePlay = HTMLMediaElement.prototype.play
-    let attempts = 0
-    HTMLMediaElement.prototype.play = function () {
-      Object.assign(window, { musicAttempts: ++attempts })
-      if (attempts === 1) return Promise.reject(new DOMException('Autoplay blocked', 'NotAllowedError'))
-      return nativePlay.call(this)
-    }
-  })
-  await page.goto('/projects/archive/')
-  await expect.poll(() => page.evaluate(() => (window as unknown as { musicAttempts: number }).musicAttempts)).toBe(1)
-  await expect(page.getByRole('button', { name: 'Play background music' })).toBeVisible()
-  await expect(page.locator('.audio-control [role="status"]')).toHaveCount(0)
-  await page.getByRole('heading', { level: 1 }).click()
-  await expect(page.getByRole('button', { name: 'Pause background music' })).toHaveAttribute('aria-pressed', 'true')
-  await page.getByRole('button', { name: 'Pause background music' }).click()
-  await page.getByRole('heading', { level: 1 }).click()
-  await expect(page.getByRole('button', { name: 'Play background music' })).toHaveAttribute('aria-pressed', 'false')
-  expect(await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused)).toBe(true)
-})
-
 test('removes the track link and fades controls without stopping music', async ({ page }, testInfo) => {
-  await page.addInitScript(() => {
-    const nativePlay = HTMLMediaElement.prototype.play
-    let first = true
-    HTMLMediaElement.prototype.play = function () {
-      if (first) { first = false; return Promise.reject(new DOMException('Autoplay blocked', 'NotAllowedError')) }
-      return nativePlay.call(this)
-    }
-  })
   await page.goto('/projects/archive/')
   await page.getByRole('button', { name: 'Play background music' }).click()
   await expect(page.getByRole('slider', { name: 'Music volume', exact: true })).toBeVisible()
@@ -146,28 +100,25 @@ test('removes the track link and fades controls without stopping music', async (
 })
 
 
-test('starts by default when the browser permits autoplay', async ({ page }) => {
+test('keeps music off on load and unrelated clicks or keys, then starts only from its control', async ({ page }) => {
   await page.addInitScript(() => {
+    Object.assign(window, { musicAttempts: 0 })
     HTMLMediaElement.prototype.play = function () {
-      Object.assign(window, { autoplayRequested: true })
+      const state = window as unknown as { musicAttempts: number }
+      state.musicAttempts += 1
       return Promise.resolve()
     }
   })
+  const audioRequests: string[] = []
+  page.on('request', request => { if (request.url().endsWith('.mp3')) audioRequests.push(request.url()) })
   await page.goto('/projects/archive/')
-  await expect(page.getByRole('button', { name: 'Pause background music' })).toHaveAttribute('aria-pressed', 'true')
-  expect(await page.evaluate(() => (window as unknown as { autoplayRequested: boolean }).autoplayRequested)).toBe(true)
-})
-
-
-test('starts after a keyboard interaction and respects a later manual pause', async ({ page }) => {
-  await blockInitialAutoplay(page)
-  await page.goto('/projects/archive/')
-  await expect(page.locator('audio')).toHaveAttribute('src', /calm-ambient-dreamscape\.mp3$/)
-  await expect(page.getByRole('button', { name: 'Play background music' })).toBeVisible()
-  await page.keyboard.press('a')
-  await expect(page.getByRole('button', { name: 'Pause background music' })).toHaveAttribute('aria-pressed', 'true')
-  await page.getByRole('button', { name: 'Pause background music' }).click()
-  await page.getByRole('button', { name: 'Play background music' }).blur()
-  await page.keyboard.press('a')
   await expect(page.getByRole('button', { name: 'Play background music' })).toHaveAttribute('aria-pressed', 'false')
+  await page.getByRole('heading', { level: 1 }).click()
+  await page.keyboard.press('a')
+  await expect(page.locator('audio')).not.toHaveAttribute('src')
+  expect(await page.evaluate(() => (window as unknown as { musicAttempts: number }).musicAttempts)).toBe(0)
+  expect(audioRequests).toEqual([])
+  await page.getByRole('button', { name: 'Play background music' }).click()
+  await expect(page.getByRole('button', { name: 'Pause background music' })).toHaveAttribute('aria-pressed', 'true')
+  expect(await page.evaluate(() => (window as unknown as { musicAttempts: number }).musicAttempts)).toBe(1)
 })

@@ -330,16 +330,10 @@ export const projects = projectSchema.array().parse([
       ],
       "reflection": {
         "learned": "An assistant platform needs durable state, observable execution, ownership enforcement, and explicit cleanup as much as it needs a model integration.",
-        "next": [
-          "Complete the independent automated real-runtime lifecycle suite.",
-          "Extend supported-host storage and recovery acceptance.",
-          "Validate a deployment separately before publishing any live-service claim."
-        ]
+        "next": []
       }
     },
-    "placeholders": [
-      "No public application deployment is configured; use the repository’s local simulated demo instructions."
-    ]
+    "placeholders": []
   },
   {
     id: 'devdoctor',
@@ -410,10 +404,10 @@ export const projects = projectSchema.array().parse([
       ],
       reflection: {
         learned: 'AI remediation becomes credible when safety boundaries, model lifecycle, tenant isolation, and recovery are designed as first-class product behavior.',
-        next: ['Add approved public repository and interface evidence.', 'Continue validating hosted release and operational controls before making production claims.'],
+        next: [],
       },
     },
-    placeholders: ['Add a public repository URL if one becomes available.', 'Add approved screenshots and an architecture diagram.', 'Add a verified hosted demo URL if deployed.'],
+    placeholders: [],
   },
   {
     id: 'immich-ai-photo-search',
@@ -483,10 +477,10 @@ export const projects = projectSchema.array().parse([
       ],
       reflection: {
         learned: 'AI search quality depends as much on resilient ingestion, format compatibility, and idempotency as it does on the model itself.',
-        next: ['Replace the current illustration with approved product screenshots.', 'Add an approved deployment architecture diagram and broader retrieval evaluation.'],
+        next: [],
       },
     },
-    placeholders: ['Replace the current product illustration with approved interface screenshots.', 'Add an approved architecture diagram.'],
+    placeholders: [],
   },
   {
     id: 'zelda-recreation',
@@ -581,8 +575,3 @@ export const projects = projectSchema.array().parse([
     placeholders: [],
   },
 ])
-
-export const projectContentPlaceholders = [
-  'Add one to three additional resume-supported flagship projects if desired.',
-  ...projects.flatMap((project) => project.placeholders.map((item) => `${project.title}: ${item}`)),
-]

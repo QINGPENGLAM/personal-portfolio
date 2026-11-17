@@ -34,7 +34,7 @@ The source-level review in [`docs/PUBLIC_PROJECT_CODEBASE_AUDIT_2026-08-11.md`](
 - Expanded About story covering interests, working style, curiosity, and current direction without becoming an autobiography
 - In-world Experience, About, Skills, and Education dossiers using `/world/?panel=[landmark]`, browser Back, Escape, and focus trapping
 - Local portfolio guide that answers only from approved structured content, links to supporting sections, refuses unavailable facts, and rate-limits questions in the browser
-- Optional looping background music with default-play attempts, browser-policy interaction fallback, pause, fading volume controls, retryable errors, and interface tones
+- Optional looping background music with default-off playback, pause, fading volume controls, retryable errors, and interface tones
 - World loader whose progress reflects WebGL and renderer milestones, with lightweight-map and Recruiter View exits
 - Advanced procedural data-signal animation that respects reduced motion and performance mode
 - Privacy-conscious event tracking for world entry, Recruiter View, projects, résumé downloads, successful contact delivery, and guide opening
@@ -161,7 +161,7 @@ The portfolio guide is intentionally a deterministic local retrieval mode. It ne
 - Approved Immich interface screenshots and architecture diagram
 - Additional flagship projects only when future résumé or project evidence supports them
 
-The UI lists project-specific placeholders in the Projects page so missing evidence stays visible instead of being fabricated.
+Owner-facing content notes are collected in `docs/INTERNAL_CONTENT_REVIEW_2026-11-17.md` and are excluded from the website export. Public pages and assistant sources omit planning checklists and future-work notes.
 
 ## Phase status
 
@@ -292,9 +292,8 @@ current deployment or runtime verification.
 
 ### Optional background music — 2026-11-01
 The header music button now plays the user-selected Calm Ambient Dreamscape by
-morgan-ambient. Music attempts playback by default, loops, continues through client navigation,
-and pauses with the same button. When browser policy blocks autoplay, the first
-eligible click or key starts it; manually pausing cancels this fallback. The volume
+morgan-ambient. Music stays off until the visitor presses the music button, then loops,
+continues through client navigation, and pauses with the same button. The volume
 panel fades after three seconds and can be reopened with its small volume button,
 hover or keyboard focus. Using the slider keeps it open. The visible track link
 was removed at the user’s request; provenance remains in the credit file.

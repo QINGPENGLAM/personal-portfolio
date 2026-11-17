@@ -22,7 +22,7 @@ describe('portfolio content', () => {
   it('marks absent project links as null instead of fabricating URLs', () => {
     const devDoctor = projects.find((project) => project.slug === 'devdoctor')
     expect(devDoctor?.githubUrl).toBeNull()
-    expect(devDoctor?.placeholders.length).toBeGreaterThan(0)
+    expect(devDoctor?.placeholders).toEqual([])
   })
 
   it('keeps every metric attached to a described project or role', () => {

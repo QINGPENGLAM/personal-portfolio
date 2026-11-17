@@ -18,14 +18,13 @@ describe('Zelda playable build', () => {
 
   it('keeps the placeholder non-navigable', () => {
     const html = renderToStaticMarkup(createElement(ProjectDownload, { url: 'GAME_DOWNLOAD_URL' }))
-    expect(html).toContain('disabled')
-    expect(html).toContain('Download Game')
+    expect(html).toBe('')
     expect(html).not.toContain('href=')
   })
 
   it('accepts the P2 placeholder but never turns it into a link', () => {
     const html = renderToStaticMarkup(createElement(ProjectDownload, { url: 'P2_GAME_DOWNLOAD_URL' }))
-    expect(html).toContain('disabled')
+    expect(html).toBe('')
     expect(html).not.toContain('href=')
     const project = getProjectBySlug('zelda-recreation')
     expect(projectSchema.safeParse({ ...project, downloadUrl: 'P2_GAME_DOWNLOAD_URL' }).success).toBe(true)

@@ -16,6 +16,6 @@ describe('Personal AI Assistant Platform project', () => {
     expect(project?.caseStudy?.testing.join(' ')).toMatch(/simulated/i)
     expect(project?.caseStudy?.testing.join(' ')).toMatch(/manual/i)
     expect(project?.caseStudy?.testing.join(' ')).toMatch(/incomplete/i)
-    expect(project?.placeholders.join(' ')).toMatch(/public.*deployment/i)
+    expect(project?.placeholders).toEqual([])
   })
 })

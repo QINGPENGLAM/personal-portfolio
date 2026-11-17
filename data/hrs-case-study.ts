@@ -53,7 +53,7 @@ export const hrsWorkflow = {
   pubmed: {
     id: 'pubmed', title: 'Reliable PubMed match?', caption: 'Resolve publication metadata',
     explanation: 'Search PubMed for a reliable title match and retrieve the matched record’s PMID, DOI, authors and journal.',
-    points: ['A match provides identifiers for a second HRS check.', 'No reliable match: save an unmatched active candidate. It joins the same review queue as matched candidates before the required AI stage in the intended workflow and then output.', 'PubMed membership does not prove that a paper used HRS data.'],
+    points: ['A match provides identifiers for a second HRS check.', 'No reliable match: save an unmatched active candidate. It joins the same review queue as matched candidates for optional AI screening and CSV/Sheet output.', 'PubMed membership does not prove that a paper used HRS data.'],
   },
   unmatched: {
     id: 'unmatched', title: 'Save unmatched candidate', caption: 'Rejoins the shared queue below',
@@ -72,25 +72,23 @@ export const hrsWorkflow = {
   },
   queue: {
     id: 'queue', title: 'Prepare and queue candidates', caption: 'Shared active queue · paper metadata',
-    explanation: 'Collect each paper’s available identity and publication details, then save the candidate in the shared PostgreSQL review queue. A reliable PubMed match that is not already in HRS becomes ready_for_manual_entry; a missing reliable match becomes needs_non_pubmed_review. Both paths feed the AI stage before output in the intended workflow.',
+    explanation: 'Collect each paper’s available identity and publication details, then save the candidate in the shared PostgreSQL review queue. A reliable PubMed match that is not already in HRS becomes ready_for_manual_entry; a missing reliable match becomes needs_non_pubmed_review. Both paths support optional AI screening before output.',
     points: [
       'Email intake already provides the title and source links. When there is a reliable PubMed match, enrich the candidate with its PMID, DOI, journal, authors and HRS leadership matches. Missing fields stay missing; an unmatched candidate is still queued.',
       'These saved details identify the paper and support source lookup and human review. Inside the AI stage, the program separately retrieves, verifies and extracts the abstract or permitted article text supplied to the model; metadata alone is not HRS data-use evidence.',
-      'In the intended workflow, every active candidate passes through the AI stage before CSV and Google Sheet output. Both matched and unmatched paths are included; a still-current result can be reused rather than calling the model again.',
-      'If text is unavailable, the API fails, or batch, time or cost limits prevent screening, export the candidate with the explicit status “AI incomplete—manual review needed”. A successful classification is not required for export.',
-      'Implementation boundary: this is the intended required-stage policy. The current runtime is still opt-in and does not yet enforce the policy or this exact incomplete-status label. Staff retain the final decision.',
+      'AI screening is opt-in. A still-current result can be reused rather than calling the model again.',
     ],
   },
   ai: {
-    id: 'ai', title: 'AI screening', caption: 'Required before Sheet output',
-    explanation: 'In the intended workflow, AI screening is a required pre-output stage for both PubMed-matched and unmatched active candidates. Reuse a still-current result or attempt screening; if it cannot complete, export with “AI incomplete—manual review needed” rather than silently omitting the AI status.',
+    id: 'ai', title: 'AI screening', caption: 'Optional review assistance',
+    explanation: 'AI screening is an opt-in step for PubMed-matched and unmatched active candidates. It provides advisory evidence for staff review and can reuse a still-current result.',
     points: [
       'Sources: a verified PMID can provide a PubMed abstract; a stored article URL can provide bounded HTML/PDF text after identity and processing-permission checks. PMC uses its separate license-aware path. Generic full-text extracts may be partial.',
       'The model selects source/span IDs. The program copies exact original text and validates its source and range before showing evidence. A verified quote proves where text came from, not that the classification is correct.',
       'Suggestions are uses_hrs_data, mentions_hrs_only, or insufficient_evidence. “Mentions only” requires complete main-text context; an abstract or partial extract cannot establish non-use. Unclear, conflicting, and policy-sensitive cases stay with staff.',
       'The local PostgreSQL usage ledger records tracked request costs. Its default $25 monthly threshold is a soft admission limit, not a guaranteed bill cap; unresolved request costs pause further tracked calls.',
       'A three-paper full-text pilot recorded one known LASI false positive: related or harmonized cohorts were mistaken for US HRS use. The result remains documented; exact quotations do not resolve that inference error. Broader staff-labeled validation is still open.',
-      'For the intended output, show either the AI advice with evidence/scope or the explicit incomplete status. AI never adds or removes HRS records or replaces the staff decision.',
+      'AI advice includes its evidence and source scope. AI never adds or removes HRS records or replaces the staff decision.',
     ],
     visualDiagram: {
       sources: [
@@ -100,12 +98,12 @@ export const hrsWorkflow = {
       check: { title: 'Validate evidence', detail: 'Resolve model-selected source/span IDs to exact original text and stored source ranges.' },
       outcomes: ['Uses HRS data', 'Mentions only*', 'Insufficient evidence'],
       humanDecision: 'Staff decide; AI never adds or removes records',
-      fallback: '*“Mentions only” requires complete main text. If screening cannot finish, export “AI incomplete—manual review needed”; partial text, conflicts and uncertain cases stay with staff.',
+      fallback: '*“Mentions only” requires complete main text. Partial text, conflicts and uncertain cases stay with staff.',
     },
   },
   review: {
-    id: 'review', title: 'Google Sheet + CSV', caption: 'Human review + explicit AI status',
-    explanation: 'Export the active queue and completed archive. In the intended workflow, each active candidate arrives after the required AI stage, with either advice and evidence or “AI incomplete—manual review needed”. The Sheet remains the working interface for staff decisions and notes.',
+    id: 'review', title: 'Google Sheet + CSV', caption: 'Human review + publication details',
+    explanation: 'Export the active queue and completed archive. Optional AI advice supports review when screening is enabled. The Sheet remains the working interface for staff decisions and notes.',
     points: ['Preserve existing manual decisions and notes during synchronization.', 'Update both Sheet tabs in one batch to avoid a clear-then-write gap.', 'Human edits between the read and write can still conflict; this is an operational limitation.'],
   },
 } satisfies Record<string, HrsNode>
@@ -192,6 +190,7 @@ export const hrsEvaluation: HrsNode[] = [
     ],
   },
 ]
+
 
 export const hrsConcerns: HrsNode[] = [
   {
@@ -294,17 +293,6 @@ export const hrsResults: HrsNode[] = [
       'I had to think separately about execution, persistent storage, scheduling, permissions, OAuth and secret configuration.',
       'A local success did not answer what happens when a cloud run overlaps, authorization fails, or output synchronization stops halfway through.',
       'This taught me to account for operational behavior earlier, rather than treating deployment as a final step after the code works.',
-    ],
-  },
-  {
-    id: 'results-next-approach',
-    title: 'What I would do differently next time',
-    caption: 'Next time / Validate the boundaries earlier',
-    explanation: 'I would plan the cloud and AI workflow boundaries earlier, then validate a small end-to-end path before expanding the system.',
-    points: [
-      'Map where state lives, which identity accesses each service, and how a failed step can be retried.',
-      'Test a small cloud path with the required access and persistence before assuming the full local workflow will transfer directly.',
-      'Keep AI tasks bounded and acceptance checks explicit. Own the decisions about scope, user needs and what the evidence actually supports.',
     ],
   },
 ]

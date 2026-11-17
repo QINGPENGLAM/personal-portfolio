@@ -37,7 +37,16 @@ test('cancels the presentation and permits a fresh question without a stale repl
   await page.clock.pauseAt(new Date('2026-11-02T12:00:01Z'))
   await page.getByRole('button', { name: 'What backend systems has QingPeng built?', exact: true }).click()
   await expect(page.locator('.assistant-dots')).toBeVisible()
-  await page.getByRole('button', { name: 'Cancel request', exact: true }).click()
+  const cancel = page.getByRole('button', { name: 'Cancel request', exact: true })
+  const styles = await cancel.evaluate(button => {
+    const style = getComputedStyle(button)
+    return { background: style.backgroundColor, radius: parseFloat(style.borderRadius), border: style.borderTopStyle, cursor: style.cursor }
+  })
+  expect(styles.background).toBe('rgba(0, 0, 0, 0)')
+  expect(styles.radius).toBeGreaterThan(0)
+  expect(styles.border).toBe('solid')
+  expect(styles.cursor).toBe('pointer')
+  await cancel.click()
   await expect(page.getByText('Request cancelled.', { exact: true })).toBeVisible()
   await page.getByRole('textbox').fill('What is his GPA?')
   await page.getByRole('button', { name: 'Ask', exact: true }).click()

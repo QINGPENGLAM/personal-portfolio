@@ -93,7 +93,7 @@ export const projectSchema = z.object({
     testing: z.array(nonEmptyText).min(1),
     reflection: z.object({
       learned: nonEmptyText,
-      next: z.array(nonEmptyText).min(1),
+      next: z.array(nonEmptyText),
     }),
   }).optional(),
   placeholders: z.array(nonEmptyText),

@@ -109,7 +109,7 @@ export function CaseStudyContent({ mode = 'page', project }: { mode?: 'page' | '
 
       <section className="case-study-section reflection-section" aria-labelledby={`${project.slug}-reflection`}>
         <div><p className="eyebrow">Reflection</p><h2 id={`${project.slug}-reflection`}>What this project clarified.</h2></div>
-        <div><p>{project.caseStudy.reflection.learned}</p><h3>What I would improve next</h3><ul>{project.caseStudy.reflection.next.map((item) => <li key={item}>{item}</li>)}</ul></div>
+        <div><p>{project.caseStudy.reflection.learned}</p></div>
       </section>
 
       </> : (

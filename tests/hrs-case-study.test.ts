@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import HrsCaseStudyPage from '@/app/projects/hrs-publication-pipeline/page'
 
-describe('HRS case-study draft', () => {
+describe('HRS case study', () => {
   it('presents the original five interview chapters in order without hard-coded talk timings', () => {
     const html = renderToStaticMarkup(createElement(HrsCaseStudyPage))
     const positions = ['hrs-problem', 'hrs-workflow', 'hrs-deployment', 'hrs-development', 'hrs-results'].map((id) => html.indexOf(`id="${id}"`))
@@ -36,8 +36,10 @@ describe('HRS case-study draft', () => {
     expect(html).toContain('AI screening')
     expect(html).toContain('aria-controls="hrs-dialog-ai"')
     expect(html).toContain('id="hrs-dialog-ai"')
-    expect(html).toContain('Required before Sheet output')
-    expect(html).toContain('AI incomplete—manual review needed')
+    expect(html).toContain('Optional review assistance')
+    expect(html).not.toContain('AI incomplete—manual review needed')
+    expect(html).not.toContain('Implementation boundary:')
+    expect(html).toContain('AI screening is opt-in.')
     expect(html).not.toContain('Workflow shown: intended required AI stage.')
     expect(html).not.toContain('This is a required stage, not a requirement for a successful classification.')
     expect(html).toContain('aria-label="AI screening evidence-to-decision flow"')
@@ -78,7 +80,7 @@ describe('HRS case-study draft', () => {
     expect(html).toContain('What the project delivers')
     expect(html).toContain('Structure AI assistance more deliberately')
     expect(html).toContain('Cloud involved more than I expected')
-    expect(html).toContain('What I would do differently next time')
+    expect(html).not.toContain('What I would do differently next time')
     expect(html).toContain('what must stay unchanged')
     expect(html).toContain('execution, persistent storage, scheduling, permissions, OAuth and secret configuration')
     expect(html).not.toContain('Newer local AI changes still require separate cloud validation')

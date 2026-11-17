@@ -677,3 +677,19 @@ Non-music static export exceeded the 12 MB allowance by approximately 70 KiB aft
 
 ### Publication preflight correction — 2026-11-13
 User authorized commit and push. Fresh full units caught the budget fixture left at the old cap after the previous content change; the earlier passing unit run predated that budget edit. GitHub Pages basePath export adds URL bytes and exceeded both export caps. Set non-music content to 12.2 MB and complete export to 19.4 MB (the 7.2 MB music allowance is unchanged), and update the boundary fixture with an at-limit acceptance check. JavaScript/CSS caps unchanged. Verify the actual Pages-path build before publication. Reflection: after modifying a verification script, rerun its own tests and use release build configuration before reporting completion.
+
+
+## 2026-11-17 — Keep owner planning notes outside published content
+Move project TODOs, future-work lists and hypothetical HRS extensions into the owner review document. Describe existing optional HRS screening rather than its unimplemented mandatory policy. Keep factual limitations and attribution public. The review document is excluded from the website export but is readable to repository viewers.
+
+
+## Background music default off — 2026-11-17
+Music now starts only when the visitor presses its control; removed mount autoplay and unrelated click/keyboard activation. Playback, looping, volume, navigation continuity and retry/cancellation remain available. Supersedes the earlier default-on choice. Lint, TypeScript, production build and 12 desktop/mobile Chromium music checks passed. No deployment. Reflection: keep browser checks aligned with the chosen playback default; no new global rule needed.
+
+
+## HRS engineering scenarios restored — 2026-11-17
+Owner selected category 3 from the content review. Restored all six hypothetical HRS engineering scenarios and their existing popup details, retaining conditional wording. Other removed categories stay excluded. HRS rendering tests (5), TypeScript and lint passed. No deployment. Reflection: engineering reasoning can be public when clearly distinguished from delivered features; owner TODOs remain separate.
+
+
+## Chat cancel button styling — 2026-11-17
+Styled Cancel request with the chat’s existing outlined-button rules, including rounded corners, text, hover and compact placement. Cancellation behavior unchanged. Lint, TypeScript, production build and desktop/mobile Chromium cancellation/style checks passed. No deployment. Reflection: a direct child button missed the form-only styling; reuse existing control rules.

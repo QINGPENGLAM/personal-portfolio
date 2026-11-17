@@ -77,7 +77,7 @@ export function HrsCaseStudy() {
             <Node node={hrsWorkflow.queue} /><Connector />
             <div className={styles.aiStep}>
               <Node node={hrsWorkflow.ai} />
-              <p>Required pre-output stage. If screening cannot finish, export “AI incomplete—manual review needed”. Staff make the final decision.</p>
+              <p>Optional AI screening supports the review queue. Staff make the final decision.</p>
             </div>
             <Connector />
             <Node node={hrsWorkflow.review} />
@@ -132,7 +132,7 @@ export function HrsCaseStudy() {
 
       <section id="hrs-results" className={styles.section} aria-labelledby="hrs-results-heading">
         <p className="eyebrow">05 / Results and lessons</p>
-        <h2 id="hrs-results-heading">What I built, learned, and would improve.</h2>
+        <h2 id="hrs-results-heading">What I built and learned.</h2>
         <p className={styles.sectionIntro}>A working review workflow, better structure for AI assistance, and a clearer understanding of the work involved in cloud deployment.</p>
         <div className={styles.storyGrid}>
           {hrsResults.map((node) => (
@@ -145,6 +145,7 @@ export function HrsCaseStudy() {
           ))}
         </div>
       </section>
+
 
       <section id="hrs-concerns" className={styles.section} aria-labelledby="hrs-concerns-heading">
         <p className="eyebrow">Optional / Engineering considerations</p>
